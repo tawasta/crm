@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+ 	<record model="ir.ui.view" id="crm_claim_tree_view_extension">
+            <field name="name">Claims tree view</field>
+            <field name="model">crm.claim</field>
+            <field name="inherit_id" ref="crm_claim.crm_case_claims_tree_view"/>
+            <field name="arch" type="xml">
+
+				<field name='name' position='before'>
+					<field name='claim_number' />
+				</field>
+
+            </field>
+            
+		</record>
+    
+    </data>
+</openerp>
