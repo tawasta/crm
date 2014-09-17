@@ -2,15 +2,23 @@
 <openerp>
     <data>
     
- 	<record model="ir.ui.view" id="crm_claim_tree_view_extension">
+ 		<record model="ir.ui.view" id="crm_claim.crm_case_claims_tree_view">
             <field name="name">Claims tree view</field>
             <field name="model">crm.claim</field>
-            <field name="inherit_id" ref="crm_claim.crm_case_claims_tree_view"/>
             <field name="arch" type="xml">
 
-				<field name='name' position='before'>
-					<field name='claim_number' />
-				</field>
+				<tree colors="grey: stage=='Rejected';" fonts="bold: stage=='New';">
+					<field name='claim_number' string='#'/>
+					<field name='name' />
+					<field name='partner_id' />
+					<field name='user_id' />
+					<field name='stage_id' />
+					<field name='stage' invisible='1'/>
+					<field name='date' />
+					<field name='write_date' />
+					<field name='date_action_next' />
+					<field name='action_next' />
+				</tree>
 
             </field>
             
