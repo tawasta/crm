@@ -46,7 +46,7 @@ class crm_claim(osv.Model):
         reply_ids=self.pool.get('crm_claim.reply').search(cr,uid,[])
         if reply_ids:
             for reply_obj in self.pool.get('crm_claim.reply').browse(cr,uid,reply_ids):
-                reply_to=reply_obj.reply
+                reply_to=reply_obj.reply_to
                 return reply_to
         return False
         
