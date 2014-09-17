@@ -15,5 +15,6 @@
 
 import claim
 import claim_settings
+import claim_reply
 import mail_message
 import res_partner

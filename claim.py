@@ -6,6 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class crm_claim(osv.Model):      
 
+    _name='crm.claim'
     _inherit = 'crm.claim'
     _order = 'date DESC'
     
@@ -42,9 +43,9 @@ class crm_claim(osv.Model):
         return res
         
     def _default_get_reply_to(self, cr, uid, context=None):
-        reply_ids=self.pool.get('reply.to').search(cr,uid,[])
+        reply_ids=self.pool.get('crm_claim.reply').search(cr,uid,[])
         if reply_ids:
-            for reply_obj in self.pool.get('reply.to').browse(cr,uid,reply_ids):
+            for reply_obj in self.pool.get('crm_claim.reply').browse(cr,uid,reply_ids):
                 reply_to=reply_obj.reply
                 return reply_to
         return False

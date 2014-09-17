@@ -31,6 +31,7 @@ Claims extension
         'view/claim_menu.xml',
         'view/claim_form_view.xml',
         'view/claim_tree_view.xml',
+        'view/claim_reply_view.xml',
         'data/claim_number_init.xml',
     ],
 }
