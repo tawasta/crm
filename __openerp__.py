@@ -15,7 +15,7 @@
 {
     'name': 'MMG Claim customizations',
     'category': 'Sales',
-    'version': '0.1',
+    'version': '0.2',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': ['crm_claim'],
@@ -26,9 +26,9 @@ Claims extension
 * Generates account numbers for all existing claims
 * Starts from 10001 by default, can be customized in data XML file
 * Keeps track of assigned numbers internally, and gives a new one each time a new claim is created
-
 """,
     'data': [
+        'view/claim_menu.xml',
         'view/claim_form_view.xml',
         'view/claim_tree_view.xml',
         'data/claim_number_init.xml',
