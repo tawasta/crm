@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <openerp>
-    <data>
-    
+    <data>    
  		<record model="ir.ui.view" id="crm_claim.crm_case_claims_tree_view">
             <field name="name">Claims tree view</field>
             <field name="model">crm.claim</field>
             <field name="arch" type="xml">
-
+            
 				<tree colors="grey: (stage=='Rejected') or (stage=='Settled'); blue: stage=='New'; red: date_deadline and (date_deadline&lt;current_date) and (stage=='In Progress')" fonts="bold: (message_unread==True) or (stage=='New')">
 					<field name="message_unread" invisible="1"/>
 					<field name='claim_number' string='#'/>
@@ -25,6 +24,5 @@
             </field>
             
 		</record>
-    
     </data>
 </openerp>
