@@ -45,9 +45,14 @@
             <field name="model">crm.claim</field>
             <field name="inherit_id" ref="crm_claim.view_crm_case_claims_filter"/>
             <field name="arch" type="xml">
+            
             	<search position='inside'>
             		<filter string="Active claims" name="active_claims" domain="[('stage_id','in',(1,2))]" help="Active claims (new or in progress)"/>
             	</search>
+            	
+            	<field name="name" position='replace'>
+            		<field name="name" string="Claims" filter_domain="['|', ('name','ilike',self), ('partner_id.name', 'ilike', self)]"/>
+            	</field>
             </field>
       	</record> 
 	</data>
