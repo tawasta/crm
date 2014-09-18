@@ -7,7 +7,8 @@
             <field name="model">crm.claim</field>
             <field name="arch" type="xml">
 
-				<tree colors="grey: stage=='Rejected';" fonts="bold: stage=='New';">
+				<tree colors="grey: (stage=='Rejected') or (stage=='Settled'); blue: stage=='New'; red: date_deadline and (date_deadline&lt;current_date) and (stage=='In Progress')" fonts="bold: (message_unread==True) or (stage=='New')">
+					<field name="message_unread" invisible="1"/>
 					<field name='claim_number' string='#'/>
 					<field name='name' />
 					<field name='partner_id' />
@@ -17,6 +18,7 @@
 					<field name='date' />
 					<field name='write_date' />
 					<field name='date_action_next' />
+					<field name='date_deadline' invisible='1' />
 					<field name='action_next' />
 				</tree>
 
