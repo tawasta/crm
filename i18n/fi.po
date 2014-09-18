@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_claim_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 07:59+0000\n"
+"PO-Revision-Date: 2014-09-18 11:04+0200\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: crm_claim_extension
+#: model:ir.actions.act_window,help:crm_claim_extension.crm_case_categ_claim_all
+#: model:ir.actions.act_window,help:crm_claim_extension.crm_case_categ_claim_my
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                    Record and track your customers' claims. Claims may be "
+"linked to a sales order or a lot.You can send emails with attachments and "
+"keep the full history for a claim (emails sent, intervention type and so on)."
+"Claims may automatically be linked to an email address using the mail "
+"gateway module.\n"
+"                </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                    Record and track your customers' claims. Claims may be "
+"linked to a sales order or a lot.You can send emails with attachments and "
+"keep the full history for a claim (emails sent, intervention type and so on)."
+"Claims may automatically be linked to an email address using the mail "
+"gateway module.\n"
+"                </p>\n"
+"            "
+
+#. module: crm_claim_extension
+#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
+msgid "Active claims"
+msgstr "Aktiiviset tiketit"
+
+#. module: crm_claim_extension
+#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
+msgid "Active claims (new or in progress)"
+msgstr "Aktiiviset tiketit (uudet ja työn alla)"
+
+#. module: crm_claim_extension
+#: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_all
+msgid "All Claims"
+msgstr "Kaikki tiketit"
+
+#. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_crm_claim
+msgid "Claim"
+msgstr "Tiketti"
+
+#. module: crm_claim_extension
+#: model:ir.actions.act_window,name:crm_claim_extension.action_claim_reply
+msgid "Claim reply address"
+msgstr "Tiketin vastausosoite"
+
+#. module: crm_claim_extension
+#: view:crm_claim.reply:crm_claim_extension.claim_reply_form
+#: view:crm_claim.reply:crm_claim_extension.claim_reply_tree
+msgid "Claim reply to address"
+msgstr "Tiketin vastausosoite"
+
+#. module: crm_claim_extension
+#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
+#: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_all
+#: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_my
+msgid "Claims"
+msgstr "Tiketit"
+
+#. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_mail_message
+msgid "Message"
+msgstr "Viesti"
+
+#. module: crm_claim_extension
+#: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_my
+msgid "My Claims"
+msgstr "Omat tiketit"
+
+#. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Lähtevät sähköpostit"
+
+#. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_res_partner
+msgid "Partner"
+msgstr "Kumppani"
+
+#. module: crm_claim_extension
+#: model:ir.ui.menu,name:crm_claim_extension.menu_claim_reply
+msgid "Reply To"
+msgstr "Vastausosoite"
+
+#. module: crm_claim_extension
+#: code:addons/crm_claim_extension/claim.py:83 sql_constraint:crm.claim:0
+#, python-format
+msgid "This claim number is already in use."
+msgstr "Tämä tikettinumero on jo käytössä"
