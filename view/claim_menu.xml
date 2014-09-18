@@ -35,8 +35,8 @@
             </field>
         </record>
 		
-		<menuitem name="All claims" id="menu_crm_case_claims_all" parent="base.menu_aftersale" action="crm_case_categ_claim_all" sequence="10"/>
-        <menuitem name="My claims" id="menu_crm_case_claims_my" parent="base.menu_aftersale" action="crm_case_categ_claim_my" sequence="20"/> 
+		<menuitem name="All Claims" id="menu_crm_case_claims_all" parent="base.menu_aftersale" action="crm_case_categ_claim_all" sequence="10"/>
+        <menuitem name="My Claims" id="menu_crm_case_claims_my" parent="base.menu_aftersale" action="crm_case_categ_claim_my" sequence="20"/> 
         
 		
 		<!-- Filters view -->
