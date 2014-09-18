@@ -13,9 +13,9 @@
 #
 ##############################################################################
 {
-    'name': 'MMG Claim customizations',
+    'name': 'CRM Claim customizations',
     'category': 'Sales',
-    'version': '0.2',
+    'version': '0.3',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': ['crm_claim'],
@@ -26,6 +26,14 @@ Claims extension
 * Generates account numbers for all existing claims
 * Starts from 10001 by default, can be customized in data XML file
 * Keeps track of assigned numbers internally, and gives a new one each time a new claim is created
+* Removes settled and rejected claims from (default) tree view
+* Extends the claims search to partner names
+* Adds message history to sent mails
+* Adds a company-spesific reply-to option for claims
+* Adds the first-level child partner claims to partner claims-button
+* Adds coloring and bolding for claims depending on their state
+* Overwrites the claim tree view
+* Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
 """,
     'data': [
         'view/claim_menu.xml',
