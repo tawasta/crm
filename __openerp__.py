@@ -13,7 +13,7 @@
 #
 ##############################################################################
 {
-    'name': 'CRM Claim extension',
+    'name': 'CRM Claims extension',
     'category': 'Sales',
     'version': '0.3',
     'author': 'Vizucom Oy',
