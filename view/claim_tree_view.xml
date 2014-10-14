@@ -10,6 +10,7 @@
 					<field name="message_unread" invisible="1"/>
 					<field name='claim_number' string='#'/>
 					<field name='name' />
+					<field name='company_id' />
 					<field name='partner_id' />
 					<field name='user_id' />
 					<field name='stage_id' />

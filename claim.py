@@ -68,14 +68,22 @@ class crm_claim(osv.Model):
             
         return result
     
+    def _get_company(self, cr, uid, context=None):
+        current_user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
+        res = current_user.company_id.id
+        
+        return res
+    
     _columns = {
         'claim_number': fields.char('Claim number'),
+        'company': fields.many2one('res.company', string=_('Claim owner'), required=True),
         'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
         'reply_to':fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
     }
     
     _defaults = {
         'reply_to': _default_get_reply_to,
+        'company_id': _get_company
     }
     
     _sql_constraints = [

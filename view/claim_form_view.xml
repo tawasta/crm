@@ -10,6 +10,7 @@
 
 				<field name='name' position='before'>
 					<field name='claim_number' readonly='1'/>
+					<field name='company_id' readonly='1'/>
 				</field>
 				
             	<field name="email_from" position="after">
