@@ -15,7 +15,7 @@
 {
     'name': 'CRM Claims extension',
     'category': 'Sales',
-    'version': '0.3',
+    'version': '0.4',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': ['crm_claim'],
@@ -29,6 +29,7 @@ Claims extension
 * Removes settled and rejected claims from (default) tree view
 * Extends the claims search to partner names
 * Adds message history to sent mails
+* Adds a company for claims
 * Adds a company-spesific reply-to option for claims
 * Adds the first-level child partner claims to partner claims-button
 * Adds coloring and bolding for claims depending on their state

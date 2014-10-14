@@ -39,6 +39,8 @@ class crm_claim(osv.Model):
         if self.browse(cr, uid, [res], context)[0]:
             write_vals = {'claim_number': self._get_claim_number(cr,uid) }
             super(crm_claim, self).write(cr, uid, [res], write_vals, context)
+            _logger.info('Created a claim: %s' % write_vals)
+            
         return res
         
     def _default_get_reply_to(self, cr, uid, context=None):
@@ -76,7 +78,7 @@ class crm_claim(osv.Model):
     
     _columns = {
         'claim_number': fields.char('Claim number'),
-        'company': fields.many2one('res.company', string=_('Claim owner'), required=True),
+        'company_id': fields.many2one('res.company', string=_('Company'), required=True),
         'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
         'reply_to':fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
     }
