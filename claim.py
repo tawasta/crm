@@ -39,7 +39,7 @@ class crm_claim(osv.Model):
         if self.browse(cr, uid, [res], context)[0]:
             write_vals = {'claim_number': self._get_claim_number(cr,uid) }
             super(crm_claim, self).write(cr, uid, [res], write_vals, context)
-            _logger.info('Created a claim: %s' % write_vals)
+            #_logger.info('Created a claim: %s' % write_vals)
             
         return res
         
