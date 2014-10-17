@@ -12,7 +12,11 @@ class mail_mail(osv.Model):
         if 'notification' not in values and values.get('mail_message_id'):
             values['notification'] = True
        
-        if 'mail_message_id' in values:
+        if context is None:
+            context = {}
+
+        model = context.get('default_model')
+        if model and model=='crm.claim' and 'mail_message_id' in values:
             message_model = self.pool.get('mail.message')
             message_instance = message_model.browse(cr, SUPERUSER_ID, [ values['mail_message_id'] ])
             message_child_ids = message_model.search(cr, SUPERUSER_ID, [('parent_id', '=', message_instance.parent_id.id), ('subtype_id', '=', 1), ('id', '!=', message_instance.id)])
