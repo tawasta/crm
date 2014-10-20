@@ -8,7 +8,8 @@ class crm_claim(osv.Model):
 
     _name='crm.claim'
     _inherit = 'crm.claim'
-    _order = 'write_date DESC'
+    # 
+    _order = "stage_id, write_date DESC"
     
     ''' When the module is installed, fetch all claims without a number and assign them one '''
     def _init_claim_numbers(self, cr, uid, ids=None, context=None):
