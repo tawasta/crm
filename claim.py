@@ -83,7 +83,8 @@ class crm_claim(osv.Model):
         'claim_number': fields.char('Claim number'),
         'company_id': fields.many2one('res.company', string=_('Company'), required=True),
         'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
-        'reply_to':fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
+        'reply_to': fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
+        'autoreply_sent': fields.boolean('Auto-reply sent'),
     }
     
     _defaults = {
