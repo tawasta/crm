@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-21 05:24+0000\n"
-"PO-Revision-Date: 2014-10-21 08:26+0200\n"
+"POT-Creation-Date: 2014-10-21 06:09+0000\n"
+"PO-Revision-Date: 2014-10-21 09:10+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr "Palautteet"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Claims with new answers"
+msgid "Claims with new replies"
 msgstr "Tiketit joissa on uusia vastauksia"
 
 #. module: crm_claim_extension
@@ -144,6 +144,11 @@ msgid "My Claims"
 msgstr "Omat tiketit"
 
 #. module: crm_claim_extension
+#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
+msgid "New reply"
+msgstr "Uusi vastaus"
+
+#. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_mail_mail
 msgid "Outgoing Mails"
 msgstr "Lähtevät sähköpostit"
@@ -157,11 +162,6 @@ msgstr "Kumppani"
 #: help:crm.claim,reply_to:0
 msgid "Provide reply to address for message thread."
 msgstr "Anna viestiketjuun vastauosoite"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Replied claims"
-msgstr "Vastatut"
 
 #. module: crm_claim_extension
 #: model:ir.ui.menu,name:crm_claim_extension.menu_claim_reply
