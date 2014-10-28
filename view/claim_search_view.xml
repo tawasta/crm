@@ -14,12 +14,8 @@
             	</search>
             	
             	<field name="name" position='replace'>
-            		<field name="name" string="Claims" filter_domain="['|', ('name','ilike',self), ('partner_id.name', 'ilike', self)]"/>
+            		<field name="name" string="Claims" filter_domain="['|', '|', ('name','ilike',self), ('partner_id.name', 'ilike', self), ('claim_number','ilike',self)]"/>
             	</field>
-            	
-                <field name="name" position='after'>
-                    <field name="claim_number" string="Claim number" filter_domain="[('claim_number','ilike',self)]"/>
-                </field>
                 
                 <search position='inside'>
 	                <group expand="0" string="Claim owner">
