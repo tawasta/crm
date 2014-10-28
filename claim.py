@@ -85,9 +85,11 @@ class crm_claim(osv.Model):
         'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
         'reply_to': fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
         'autoreply_sent': fields.boolean('Auto-reply sent'),
+        'sla': fields.selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', select=True),
     }
     
     _defaults = {
+        'sla': '1',
         'reply_to': _default_get_reply_to,
         'company_id': _get_company
     }
