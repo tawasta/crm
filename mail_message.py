@@ -36,10 +36,13 @@ class mail_mail(osv.Model):
             
             messages_history += '</div>'
             
+            auto_message = _('Please do not modify the subject of this message. If the subject is modified, the reply will be treated as a new ticket.')
             
             # TODO: clean up this mess:
             values['record_name'] = "#" + claim_instance.claim_number + ": " + claim_instance.name
-            values['body_html'] = re.sub(r'(^<p>)', r'<p>#' + claim_instance.claim_number + ": " + claim_instance.name + "</p><p>", values['body_html']) + messages_history
+            values['body_html'] = re.sub(r'(^<p>)', r'<p>#' + claim_instance.claim_number + ": " + claim_instance.name + "</p><p>", values['body_html'])
+            values['body_html'] += "<p><small>" + auto_message + "</small></p>"
+            values['body_html'] += messages_history
         
         return super(mail_mail, self).create(cr, uid, values, context=context)
 
