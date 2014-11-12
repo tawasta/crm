@@ -18,20 +18,24 @@ class mail_mail(osv.Model):
         model = context.get('default_model')
         if model and model=='crm.claim' and 'mail_message_id' in values:
             message_model = self.pool.get('mail.message')
-            message_instance = message_model.browse(cr, SUPERUSER_ID, [ values['mail_message_id'] ])
-            message_child_ids = message_model.search(cr, SUPERUSER_ID, [('parent_id', '=', message_instance.parent_id.id), ('subtype_id', '=', 1), ('id', '!=', message_instance.id)])
+            message_instance = message_model.browse(cr, SUPERUSER_ID, [ values.get('mail_message_id') ])
+            mail_parent_id = message_instance.parent_id.id
+            mail_grandparent_id = message_instance.parent_id.parent_id.id
+            message_child_ids = message_model.search(cr, SUPERUSER_ID, ['|',('parent_id', '=', mail_parent_id), ('parent_id', '=', mail_grandparent_id), ('subtype_id', '=', 1), ('id', '!=', message_instance.id)])
             
             claim_model = self.pool.get('crm.claim')
             claim_instance = claim_model.browse(cr, SUPERUSER_ID, [ message_instance.res_id ])
             
-            messages_history = '<br/>--<br/><div style="color: grey;">'
+            messages_history = '<div dir="ltr" style="color: grey;">'
             
             for child_id in message_child_ids:
                 child_message = message_model.browse(cr, SUPERUSER_ID, [ child_id ])
                 
-                messages_history += "<p>" + child_message.email_from + " " + child_message.date + ":</p>" +  child_message.body
+                messages_history += "<p>" + child_message.date + ", " + child_message.email_from + " :</p>"
+                messages_history += child_message.body
             
             messages_history += '</div>'
+            
             
             # TODO: clean up this mess:
             values['record_name'] = "#" + claim_instance.claim_number + ": " + claim_instance.name
