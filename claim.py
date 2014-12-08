@@ -56,7 +56,7 @@ class crm_claim(osv.Model):
         values = {}
 
         subject = "#" + claim.claim_number + ", " + claim.name + ": " + _("Claim received")
-        email = self._default_get_reply_to(cr, uid, False, claim.company_id.id)
+        email = claim.reply_to
     
         if claim.description == False:
             claim.description = ''
