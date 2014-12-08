@@ -22,6 +22,8 @@
 		                <group>
 		                     <field name="company_id" required="1"/>   
 		                     <field name="reply_to" required="1"/>   
+		                     <field name="signature" required="0"/>   
+		                     <field name="footer" required="0"/>   
 		                </group>
 	                </sheet>
                 </form>

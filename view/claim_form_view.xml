@@ -14,7 +14,12 @@
 					<field name='sla' widget='priority'/>
 				</field>
 				
+				<field name='partner_id' position='attributes'>
+				    <attribute name='required'>1</attribute>
+				</field>
+				
             	<field name="email_from" position="after">
+             		<field name="email_cc"/>
              		<field name="reply_to"/>
             	</field>
 

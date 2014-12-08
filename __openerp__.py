@@ -18,7 +18,7 @@
     'version': '0.5',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
-    'depends': ['crm_claim'],
+    'depends': ['crm_claim', 'fetchmail'],
 
     'description': """
 Claims extension
@@ -36,6 +36,7 @@ Claims extension
 * Overwrites the claim tree view to colorize claims with new messages and past deadlines
 * Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
 * Adds an 'autoreply_sent' helper field for automated actions
+* Adds an automatic disclaimer to all reply messages
 """,
     'data': [
         'view/claim_menu.xml',
@@ -43,6 +44,7 @@ Claims extension
         'view/claim_tree_view.xml',
         'view/claim_reply_view.xml',
         'view/claim_search_view.xml',
+        'view/fetchmail_server_form_view.xml',
         'data/claim_number_init.xml',
         'security/claim_security.xml',
         'security/ir.model.access.csv',

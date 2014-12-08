@@ -17,4 +17,6 @@ import claim_reply
 import claim
 import claim_settings
 import mail_message
+import mail_notification
+import fetchmail_server
 import res_partner
