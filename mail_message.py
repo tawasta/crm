@@ -45,8 +45,8 @@ class mail_mail(osv.Model):
             values['email_cc'] = claim_instance.email_cc
 
             # TODO: clean up this mess:
-            values['record_name'] = "#" + claim_instance.claim_number + ": " + claim_instance.name
-            values['body_html'] = re.sub(r'(^<p>)', r'<p>#' + claim_instance.claim_number + ": " + claim_instance.name + "</p><p>", values['body_html'])
+            values['record_name'] = "#" + str(claim_instance.claim_number) + ": " + claim_instance.name
+            values['body_html'] = re.sub(r'(^<p>)', r'<p>#' + str(claim_instance.claim_number) + ": " + claim_instance.name + "</p><p>", values['body_html'])
             
             values['body_html'] += messages_history
             

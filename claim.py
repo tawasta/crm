@@ -8,7 +8,6 @@ class crm_claim(osv.Model):
 
     _name='crm.claim'
     _inherit = 'crm.claim'
-    # 
     _order = "stage_id, write_date DESC"
     
     ''' When the module is installed, fetch all claims without a number and assign them one '''
@@ -35,21 +34,35 @@ class crm_claim(osv.Model):
         if not context:
             context = {}
     
+        vals['claim_number'] = self._get_claim_number(cr,uid)
         res = super(crm_claim, self).create(cr, uid, vals, context)
         
         if self.browse(cr, uid, [res], context)[0]:
             fetchmail_server = self.pool.get('fetchmail.server').browse(cr,uid,context.get('fetchmail_server_id'))
             
-            company_id = fetchmail_server.company_id.id
-            reply_to = self._default_get_reply_to(cr, uid, company_id=company_id)
-            
-            write_vals = { 'claim_number': self._get_claim_number(cr,uid), 'company_id': company_id, 'reply_to': reply_to }
-            
-            super(crm_claim, self).write(cr, uid, [res], write_vals, context)
+            if fetchmail_server:
+                company_id = fetchmail_server.company_id.id
+                reply_to = self._default_get_reply_to(cr, uid, company_id=company_id)
+                
+                write_vals = { 'company_id': company_id, 'reply_to': reply_to }
+                
+                super(crm_claim, self).write(cr, uid, [res], write_vals, context)
 
         self._claim_created_mail(cr, uid, res, context)
         
         return res
+    
+    # Not working
+    def action_rejected(self, cr, uid, ids, context=None):
+        _logger.warn("Rejected")
+        
+        return super(crm_claim, self).action_rejected(cr, uid, context)
+        
+    # Not working
+    def action_settled(self, cr, uid, ids, context=None):
+        _logger.warn("Settled")
+        
+        return super(crm_claim, self).action_settled(cr, uid, context)
     
     ''' Send a "claim created" mail to the partner '''
     def _claim_created_mail(self, cr, uid, claim_id, context):
@@ -57,7 +70,7 @@ class crm_claim(osv.Model):
         mail_message = self.pool.get('mail.message')
         values = {}
 
-        subject = "#" + claim.claim_number + ", " + claim.name + ": " + _("Claim received")
+        subject = "#" + str(claim.claim_number) + ", " + claim.name + ": " + _("Claim received")
         email = claim.reply_to
     
         if claim.description == False:
