@@ -40,13 +40,15 @@ class crm_claim(osv.Model):
         if self.browse(cr, uid, [res], context)[0]:
             fetchmail_server = self.pool.get('fetchmail.server').browse(cr,uid,context.get('fetchmail_server_id'))
             
-            write_vals = { 'claim_number': self._get_claim_number(cr,uid), 'company_id': fetchmail_server.company_id.id}
+            company_id = fetchmail_server.company_id.id
+            reply_to = self._default_get_reply_to(cr, uid, company_id=company_id)
             
+            write_vals = { 'claim_number': self._get_claim_number(cr,uid), 'company_id': company_id, 'reply_to': reply_to }
             
             super(crm_claim, self).write(cr, uid, [res], write_vals, context)
 
         self._claim_created_mail(cr, uid, res, context)
-            
+        
         return res
     
     ''' Send a "claim created" mail to the partner '''
@@ -87,7 +89,7 @@ class crm_claim(osv.Model):
     def _default_get_reply_to(self, cr, uid, context=None, company_id=None):
         if not company_id:
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
-            
+        
         reply_ids=self.pool.get('crm_claim.reply').search(cr,uid,[('company_id', '=', company_id)])
         if reply_ids:
             for reply_obj in self.pool.get('crm_claim.reply').browse(cr,uid,reply_ids):
