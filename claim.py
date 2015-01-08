@@ -171,7 +171,6 @@ class crm_claim(osv.Model):
         'company_id': fields.many2one('res.company', string=_('Company'), required=True),
         'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
         'reply_to': fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
-        'autoreply_sent': fields.boolean('Auto-reply sent'),
         'sla': fields.selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', select=True),
         'email_to': fields.char('Email to', help='Email recipient'),
         'email_cc': fields.char('Email CC', help='Carbon copy message recipients'),

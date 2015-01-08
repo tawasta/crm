@@ -35,7 +35,6 @@ Claims extension
 * Adds coloring and bolding for claims depending on their state
 * Overwrites the claim tree view to colorize claims with new messages and past deadlines
 * Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
-* Adds an 'autoreply_sent' helper field for automated actions
 * Adds an automatic disclaimer to all reply messages
 """,
     'data': [
