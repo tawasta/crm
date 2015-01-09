@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-12 10:44+0000\n"
-"PO-Revision-Date: 2014-11-12 12:45+0200\n"
+"POT-Creation-Date: 2015-01-09 09:41+0000\n"
+"PO-Revision-Date: 2015-01-09 11:42+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,14 +54,9 @@ msgid "All Claims"
 msgstr "Kaikki tiketit"
 
 #. module: crm_claim_extension
-#: field:crm.claim,autoreply_sent:0
-msgid "Auto-reply sent"
-msgstr "Automaattivastaus lähetetty"
-
-#. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_crm_claim
 msgid "Claim"
-msgstr "Palaute"
+msgstr "Tiketti"
 
 #. module: crm_claim_extension
 #: field:crm.claim,claim_number:0
@@ -72,6 +67,13 @@ msgstr "Tiketin numero"
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Claim owner"
 msgstr "Tiketin omistaja"
+
+#. module: crm_claim_extension
+#: code:addons/crm_claim_extension/claim.py:94
+#: code:addons/crm_claim_extension/claim.py:102
+#, python-format
+msgid "Claim received"
+msgstr "Tiketti vastaanotettu"
 
 #. module: crm_claim_extension
 #: model:ir.actions.act_window,name:crm_claim_extension.action_claim_reply
@@ -94,7 +96,7 @@ msgstr "Tiketin vaihe"
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_all
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_my
 msgid "Claims"
-msgstr "Palautteet"
+msgstr "Tiketit"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -102,8 +104,8 @@ msgid "Claims with new replies"
 msgstr "Tiketit joissa on uusia vastauksia"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:87
-#: field:crm_claim.reply,company_id:0
+#: code:addons/crm_claim_extension/claim.py:192
+#: field:crm_claim.reply,company_id:0 field:fetchmail.server,company_id:0
 #, python-format
 msgid "Company"
 msgstr "Yritys"
@@ -127,6 +129,21 @@ msgstr "Digital Lessons"
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Digital Lessons claims"
 msgstr "Digital Lessonsin tiketit"
+
+#. module: crm_claim_extension
+#: help:crm.claim,email_to:0
+msgid "Email recipient"
+msgstr "Email recipient"
+
+#. module: crm_claim_extension
+#: field:crm.claim,email_to:0
+msgid "Email to"
+msgstr "Email to"
+
+#. module: crm_claim_extension
+#: field:crm_claim.reply,footer:0
+msgid "Footer message"
+msgstr "Alatunnisteen viesti"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -184,6 +201,21 @@ msgid "Message"
 msgstr "Viesti"
 
 #. module: crm_claim_extension
+#: field:crm_claim.reply,message_completed:0
+msgid "Message to be sent when a claim is completed"
+msgstr "Viesti joka lähetetään kun tiketti on hoidettu"
+
+#. module: crm_claim_extension
+#: field:crm_claim.reply,message_received:0
+msgid "Message to be sent when a claim is created"
+msgstr "Viesti joka lähetetään kun tiketti on luotu"
+
+#. module: crm_claim_extension
+#: field:crm_claim.reply,message_rejected:0
+msgid "Message to be sent when a claim is rejected"
+msgstr "Viesti joka lähetetään kun tiketti on hylätty"
+
+#. module: crm_claim_extension
 #: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_my
 msgid "My Claims"
 msgstr "Omat tiketit"
@@ -192,6 +224,11 @@ msgstr "Omat tiketit"
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "New reply"
 msgstr "Uusi vastaus"
+
+#. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_mail_notification
+msgid "Notifications"
+msgstr "Ilmoitukset"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -209,24 +246,14 @@ msgid "Outgoing Mails"
 msgstr "Lähtevät sähköpostit"
 
 #. module: crm_claim_extension
-#: field:res.partner,parent_name:0
-msgid "Parent name"
-msgstr "Parent name"
+#: model:ir.model,name:crm_claim_extension.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr "POP/IMAP-palvelin"
 
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_res_partner
 msgid "Partner"
 msgstr "Kumppani"
-
-#. module: crm_claim_extension
-#: code:addons/crm_claim_extension/mail_message.py:39
-#, python-format
-msgid ""
-"Please do not modify the subject of this message. If the subject is "
-"modified, the reply will be treated as a new ticket."
-msgstr ""
-"Älä muokkaa tämän sähköpostin otsikkoa. Jos otsikkoa muutetaan, vastaus "
-"käsitellään uutena tukipyyntönä."
 
 #. module: crm_claim_extension
 #: help:crm.claim,reply_to:0
@@ -247,6 +274,11 @@ msgstr "Vastausosoite"
 #: field:crm.claim,sla:0
 msgid "Service level"
 msgstr "Palvelutaso"
+
+#. module: crm_claim_extension
+#: field:crm_claim.reply,signature:0
+msgid "Signature message"
+msgstr "Allekirjoitus"
 
 #. module: crm_claim_extension
 #: selection:crm.claim,sla:0
@@ -284,7 +316,7 @@ msgid "The next claim number"
 msgstr "Seuraava tikettinumero"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:101 sql_constraint:crm.claim:0
+#: code:addons/crm_claim_extension/claim.py:207 sql_constraint:crm.claim:0
 #, python-format
 msgid "This claim number is already in use."
 msgstr "Tämä tikettinumero on jo käytössä"
