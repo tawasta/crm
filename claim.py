@@ -1,6 +1,7 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
+import re
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -34,6 +35,10 @@ class crm_claim(osv.Model):
         if not context:
             context = {}
     
+        ''' If partner doesn't exist, we need to create one '''
+        if vals.get('partner_id') == False:
+            vals['partner_id'] = self._create_partner(cr, uid, vals, context=context)
+    
         vals['claim_number'] = self._get_claim_number(cr,uid)
         res = super(crm_claim, self).create(cr, uid, vals, context)
         
@@ -51,6 +56,22 @@ class crm_claim(osv.Model):
         self._claim_created_mail(cr, uid, res, context)
         
         return res
+    
+    def _create_partner(self, cr, uid, vals, context=None):
+        email_from = vals.get('email_from')
+        name_regex = re.compile("^[^<]+")
+        email_regex = re.compile("[<][^>]+[>]")
+        
+        name = name_regex.findall(email_from)[0]
+        email = email_regex.findall(email_from)[0]
+        email = re.sub(r'[<>]', "", email)
+        
+        partner_vals = {}
+        partner_vals['name'] = name
+        partner_vals['email'] = email
+        partner_id = self.pool.get('res.partner').create(cr, uid, partner_vals)
+        
+        return partner_id
     
     # Not working
     def action_rejected(self, cr, uid, ids, context=None):
