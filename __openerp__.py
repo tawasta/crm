@@ -36,6 +36,7 @@ Claims extension
 * Overwrites the claim tree view to colorize claims with new messages and past deadlines
 * Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
 * Adds an automatic disclaimer to all reply messages
+* Overrides notify_email when sending helpdesk messages
 """,
     'data': [
         'view/claim_menu.xml',
