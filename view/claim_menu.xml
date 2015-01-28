@@ -8,9 +8,10 @@
         <record model="ir.actions.act_window" id="crm_case_categ_claim_my">
             <field name="name">Claims</field>
             <field name="res_model">crm.claim</field>
+            <field name="view_id" ref="crm_claim.crm_case_claims_tree_view"/>
             <field name="view_type">form</field>
             <field name="view_mode">tree,calendar,form</field>
-            <field name="auto_refresh">10</field>
+            <field name="auto_refresh">5</field>
             <field name="domain">[('user_id', '=', uid)]</field>
             <field name="context">{"search_default_active_claims":1, "search_default_new_replies":1}</field>
             <field name="help" type="html">
@@ -26,7 +27,7 @@
             <field name="res_model">crm.claim</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,calendar,form</field>
-            <field name="auto_refresh">10</field>
+            <field name="auto_refresh">5</field>
             <field name="context">{"search_default_active_claims":1, "search_default_new_replies":1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
@@ -35,8 +36,8 @@
             </field>
         </record>
 		
-		<menuitem name="All Claims" id="menu_crm_case_claims_all" parent="base.menu_aftersale" action="crm_case_categ_claim_all" sequence="10"/>
-        <menuitem name="My Claims" id="menu_crm_case_claims_my" parent="base.menu_aftersale" action="crm_case_categ_claim_my" sequence="20"/> 
+		<menuitem name="My Claims" id="menu_crm_case_claims_my" parent="base.menu_aftersale" action="crm_case_categ_claim_my" sequence="10"/> 
+		<menuitem name="All Claims" id="menu_crm_case_claims_all" parent="base.menu_aftersale" action="crm_case_categ_claim_all" sequence="20"/>
         
 	</data>
 </openerp>
