@@ -91,7 +91,7 @@ class crm_claim(osv.Model):
         mail_message = self.pool.get('mail.message')
         values = {}
 
-        subject = "#" + str(claim.claim_number) + ", " + claim.name + ": " + _("Claim received")
+        subject = "#" + str(claim.claim_number) + ": " + claim.name # + ": " + _("Claim received")
         email = claim.reply_to
     
         if claim.description == False:
