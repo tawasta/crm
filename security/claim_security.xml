@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data noupdate="0">
+<data noupdate="1">
 
    <record model="ir.rule" id="ir_crm_multicompany_rule">
        <field name="name">Multicompany claim rule</field>
