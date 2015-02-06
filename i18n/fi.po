@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-09 09:41+0000\n"
-"PO-Revision-Date: 2015-01-09 11:42+0200\n"
+"PO-Revision-Date: 2015-02-06 10:31+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,67 +41,67 @@ msgstr ""
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Active claims"
-msgstr "Aktiiviset tiketit"
+msgstr "Aktiiviset tukipyynnöt"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Active claims (new or in progress)"
-msgstr "Aktiiviset tiketit (uudet ja työn alla)"
+msgstr "Aktiiviset tukipyynnöt (uudet ja työn alla)"
 
 #. module: crm_claim_extension
 #: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_all
 msgid "All Claims"
-msgstr "Kaikki tiketit"
+msgstr "Kaikki tukipyynnöt"
 
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_crm_claim
 msgid "Claim"
-msgstr "Tiketti"
+msgstr "Tukipyyntö"
 
 #. module: crm_claim_extension
 #: field:crm.claim,claim_number:0
 msgid "Claim number"
-msgstr "Tiketin numero"
+msgstr "Tukipyynnön numero"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Claim owner"
-msgstr "Tiketin omistaja"
+msgstr "Tukipyynnön omistaja"
 
 #. module: crm_claim_extension
 #: code:addons/crm_claim_extension/claim.py:94
 #: code:addons/crm_claim_extension/claim.py:102
 #, python-format
 msgid "Claim received"
-msgstr "Tiketti vastaanotettu"
+msgstr "Tukipyyntö vastaanotettu"
 
 #. module: crm_claim_extension
 #: model:ir.actions.act_window,name:crm_claim_extension.action_claim_reply
 msgid "Claim reply address"
-msgstr "Tiketin vastausosoite"
+msgstr "Tukipyynnön vastausosoite"
 
 #. module: crm_claim_extension
 #: view:crm_claim.reply:crm_claim_extension.claim_reply_form
 #: view:crm_claim.reply:crm_claim_extension.claim_reply_tree
 msgid "Claim reply to address"
-msgstr "Tiketin vastausosoite"
+msgstr "Tukipyynnön vastausosoite"
 
 #. module: crm_claim_extension
 #: field:crm.claim,stage:0
 msgid "Claim stage"
-msgstr "Tiketin vaihe"
+msgstr "Tukipyynnön vaihe"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_all
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_my
 msgid "Claims"
-msgstr "Tiketit"
+msgstr "Tukipyynnöt"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Claims with new replies"
-msgstr "Tiketit joissa on uusia vastauksia"
+msgstr "Tukipyynnöt joissa on uusia vastauksia"
 
 #. module: crm_claim_extension
 #: code:addons/crm_claim_extension/claim.py:192
@@ -128,17 +128,17 @@ msgstr "Digital Lessons"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Digital Lessons claims"
-msgstr "Digital Lessonsin tiketit"
+msgstr "Digital Lessonsin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: help:crm.claim,email_to:0
 msgid "Email recipient"
-msgstr "Email recipient"
+msgstr "Sähköpostin vastaanottaja"
 
 #. module: crm_claim_extension
 #: field:crm.claim,email_to:0
 msgid "Email to"
-msgstr "Email to"
+msgstr "Sähköpostin vastaanottaja"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,footer:0
@@ -153,7 +153,7 @@ msgstr "Futurable"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Futurable claims"
-msgstr "Futurablen tiketit"
+msgstr "Futurablen tukipyynnöt"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,reply_to:0
@@ -173,7 +173,7 @@ msgstr "Kuusela"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Kuusela Com claims"
-msgstr "Kuusela Comin tiketit"
+msgstr "Kuusela Comin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,write_uid:0 field:crm_claim.settings,write_uid:0
@@ -193,7 +193,7 @@ msgstr "Mediamaisteri"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Mediamaisteri claims"
-msgstr "Mediamaisterin tiketit"
+msgstr "Mediamaisterin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_mail_message
@@ -203,22 +203,22 @@ msgstr "Viesti"
 #. module: crm_claim_extension
 #: field:crm_claim.reply,message_completed:0
 msgid "Message to be sent when a claim is completed"
-msgstr "Viesti joka lähetetään kun tiketti on hoidettu"
+msgstr "Viesti joka lähetetään kun tukipyyntö on hoidettu"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,message_received:0
 msgid "Message to be sent when a claim is created"
-msgstr "Viesti joka lähetetään kun tiketti on luotu"
+msgstr "Viesti joka lähetetään kun tukipyyntö on luotu"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,message_rejected:0
 msgid "Message to be sent when a claim is rejected"
-msgstr "Viesti joka lähetetään kun tiketti on hylätty"
+msgstr "Viesti joka lähetetään kun tukipyyntö on hylätty"
 
 #. module: crm_claim_extension
 #: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_my
 msgid "My Claims"
-msgstr "Omat tiketit"
+msgstr "Omat tukipyynnöt"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -238,7 +238,7 @@ msgstr "Open Trainers"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Open Trainers claims"
-msgstr "Open Trainersin tiketit"
+msgstr "Open Trainersin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_mail_mail
@@ -308,18 +308,18 @@ msgstr "Tawasta"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Tawasta claims"
-msgstr "Tawastan tiketit"
+msgstr "Tawastan tukipyynnöt"
 
 #. module: crm_claim_extension
 #: field:crm_claim.settings,next_number:0
 msgid "The next claim number"
-msgstr "Seuraava tikettinumero"
+msgstr "Seuraava tukipyynnön numero"
 
 #. module: crm_claim_extension
 #: code:addons/crm_claim_extension/claim.py:207 sql_constraint:crm.claim:0
 #, python-format
 msgid "This claim number is already in use."
-msgstr "Tämä tikettinumero on jo käytössä"
+msgstr "Tämä tukipyynnön numero on jo käytössä"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -329,4 +329,4 @@ msgstr "Vizucom"
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Vizucom claims"
-msgstr "Vizucomin tiketit"
+msgstr "Vizucomin tukipyynnöt"
