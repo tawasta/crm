@@ -5,6 +5,21 @@ import re
 import logging
 _logger = logging.getLogger(__name__)
 
+class ir_mail_server(osv.Model):
+    _inherit = 'ir.mail_server'
+    
+    def send_email(self, cr, uid, message, mail_server_id=None, smtp_server=None, smtp_port=None,
+                   smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False,
+                   context=None):
+        ''' Send a BCC message to an address every time a mail is sent '''
+
+        # Set a BCC recipient. This only works if one is not already set
+        message['Bcc'] = "testi@vizucom.com"
+        
+        return super(ir_mail_server, self).send_email(cr, uid, message, mail_server_id, smtp_server, smtp_port,
+                   smtp_user, smtp_password, smtp_encryption, smtp_debug,
+                   context=context)
+
 class mail_mail(osv.Model):
     _inherit = 'mail.mail'
     
