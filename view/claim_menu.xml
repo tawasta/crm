@@ -2,7 +2,9 @@
 <openerp>
     <data>
     	<!-- Delete the 'Claims' menu item -->
-		<delete model="ir.ui.menu" id="crm_claim.menu_crm_case_claims" />
+    	<!--
+			<delete model="ir.ui.menu" id="crm_claim.menu_crm_case_claims" />
+		 -->
 		
 		<!-- My claims menu action -->
         <record model="ir.actions.act_window" id="crm_case_categ_claim_my">
