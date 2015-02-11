@@ -62,8 +62,14 @@ class crm_claim(osv.Model):
         name_regex = re.compile("^[^<]+")
         email_regex = re.compile("[<][^>]+[>]")
         
-        name = name_regex.findall(email_from)[0]
-        email = email_regex.findall(email_from)[0]
+        try:
+            name = name_regex.findall(email_from)[0]
+            email = email_regex.findall(email_from)[0]
+        except IndexError:
+            # The email has no name information
+            name = email_from
+            email = email_from
+        
         email = re.sub(r'[<>]', "", email)
         
         partner_vals = {}
@@ -99,8 +105,9 @@ class crm_claim(osv.Model):
 
         description = claim.description.replace('\n', '<br /><br />')
 
-        values['body'] = "<p>" + _("Claim received") + "</p>"
-        values['body'] += "<p><div dir='ltr'>" + str(description) + "</div></p>"
+        #values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
+        values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim received") + ":</span></p>"
+        values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(description) + "</div></p>"
         
         values['record_name'] = subject
         values['subject'] = subject
@@ -117,7 +124,6 @@ class crm_claim(osv.Model):
         
         context = {'default_model': 'crm.claim'}
         
-        #res = self.message_post(cr, uid, claim_id, values['body'], values['subject'], type='comment', subtype='mail.mt_comment')
         res = mail_message.create(cr, uid, values, context)
         
         return res
