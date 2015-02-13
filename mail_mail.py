@@ -2,6 +2,8 @@ from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
 import re
+import datetime
+import pytz
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -44,10 +46,16 @@ class mail_mail(osv.Model):
             
             messages_history = '<div dir="ltr" style="color: grey;">'
             
+            # get users timezone
+            user_pool = self.pool.get('res.users')
+            user = user_pool.browse(cr, SUPERUSER_ID, uid)
+            tz = pytz.timezone(user.partner_id.tz) or pytz.utc
+            
             for child_id in message_child_ids:
                 child_message = message_model.browse(cr, uid, [ child_id ])
+                message_date = pytz.utc.localize( datetime.datetime.strptime( child_message.date , '%Y-%m-%d %H:%M:%S' ) ).astimezone(tz)
                 
-                messages_history += "<p>" + child_message.date + ", " + child_message.email_from + " :</p>"
+                messages_history += "<p>" + message_date.strftime('%d.%m.%Y %H:%M:%S') + ", " + child_message.email_from + " :</p>"
                 messages_history += child_message.body
             
             messages_history += '</div>'
