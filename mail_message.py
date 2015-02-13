@@ -36,7 +36,9 @@ class mail_message(osv.Model):
         email = email_regex.findall(email_from)[0]
         email = re.sub(r'[<>]', "", email)
     
-        author = self.pool.get('res.partner').search(cr, uid, [('email','=',email)])[0]
+        author = self.pool.get('res.partner').search(cr, uid, [('email','=',email)])
         
-        return author
+        res = author[0] if author else False
+        
+        return res
         
