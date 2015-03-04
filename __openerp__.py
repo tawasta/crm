@@ -37,6 +37,7 @@ Claims extension
 * Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
 * Adds an automatic disclaimer to all reply messages
 * Overrides notify_email when sending helpdesk messages
+* Saves latest stage changes: start date, settled date, rejected date. These will be overwritten if the same stage is changed again
 """,
     'data': [
         'view/claim_menu.xml',

@@ -2,6 +2,8 @@ from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
 import re
+from datetime import datetime
+
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -56,6 +58,25 @@ class crm_claim(osv.Model):
         self._claim_created_mail(cr, uid, res, context)
         
         return res
+    
+    def write(self, cr, uid, ids, values, context=None):
+        ''' When a claim stage changes, save the date '''
+        
+        if values.get('stage_id'):
+            stage_id = values.get('stage_id')
+            
+            if stage_id == 2:
+                # In progress
+                values['date_start'] = datetime.now().replace(microsecond=0)
+            if stage_id == 3:
+                # Settled
+                values['date_settled'] = datetime.now().replace(microsecond=0)
+            if stage_id == 4:
+                # Rejected
+                values['date_rejected'] = datetime.now().replace(microsecond=0)
+        
+        super(crm_claim, self).write(cr, uid, ids, values, context=context)
+
     
     def _create_partner(self, cr, uid, vals, context=None):
         email_from = vals.get('email_from')
