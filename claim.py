@@ -91,6 +91,11 @@ class crm_claim(osv.Model):
         
         return super(crm_claim, self).action_settled(cr, uid, context)
     
+    # Not working
+    def _onchange_stage_id(self, cr, uid, ids, stage_id, context):
+        _logger.warn(stage_id)
+        return True
+    
     ''' Send a "claim created" mail to the partner '''
     def _claim_created_mail(self, cr, uid, claim_id, context):
         claim = self.browse(cr, uid, claim_id)
@@ -201,6 +206,9 @@ class crm_claim(osv.Model):
         'sla': fields.selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', select=True),
         'email_to': fields.char('Email to', help='Email recipient'),
         'email_cc': fields.char('Email CC', help='Carbon copy message recipients'),
+        'date_start': fields.datetime('Start date'),
+        'date_settled': fields.datetime('Settled date'),
+        'date_rejected': fields.datetime('Rejected date'),
     }
     
     _defaults = {

@@ -8,6 +8,11 @@
             <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
             <field name="arch" type="xml">
 
+				<field name="stage_id" position='attributes'>
+					<attribute name='on_change'>_onchange_stage_id(stage_id)</attribute>
+				</field>
+				
+
 				<field name='name' position='before'>
 					<field name='claim_number' readonly='1'/>
 					<field name='company_id' readonly='1'/>
