@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 09:41+0000\n"
-"PO-Revision-Date: 2015-02-06 10:31+0200\n"
+"POT-Creation-Date: 2015-03-06 12:52+0000\n"
+"PO-Revision-Date: 2015-03-06 14:53+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,12 +56,12 @@ msgstr "Kaikki tukipyynnöt"
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_crm_claim
 msgid "Claim"
-msgstr "Tukipyyntö"
+msgstr "Palaute"
 
 #. module: crm_claim_extension
 #: field:crm.claim,claim_number:0
 msgid "Claim number"
-msgstr "Tukipyynnön numero"
+msgstr "Tiketin numero"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -69,8 +69,7 @@ msgid "Claim owner"
 msgstr "Tukipyynnön omistaja"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:94
-#: code:addons/crm_claim_extension/claim.py:102
+#: code:addons/crm_claim_extension/claim.py:135
 #, python-format
 msgid "Claim received"
 msgstr "Tukipyyntö vastaanotettu"
@@ -89,14 +88,14 @@ msgstr "Tukipyynnön vastausosoite"
 #. module: crm_claim_extension
 #: field:crm.claim,stage:0
 msgid "Claim stage"
-msgstr "Tukipyynnön vaihe"
+msgstr "Tiketin vaihe"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_all
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_my
 msgid "Claims"
-msgstr "Tukipyynnöt"
+msgstr "Palautteet"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
@@ -104,7 +103,7 @@ msgid "Claims with new replies"
 msgstr "Tukipyynnöt joissa on uusia vastauksia"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:192
+#: code:addons/crm_claim_extension/claim.py:224
 #: field:crm_claim.reply,company_id:0 field:fetchmail.server,company_id:0
 #, python-format
 msgid "Company"
@@ -131,6 +130,11 @@ msgid "Digital Lessons claims"
 msgstr "Digital Lessonsin tukipyynnöt"
 
 #. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_mail_followers
+msgid "Document Followers"
+msgstr "Dokumentin seuraajat"
+
+#. module: crm_claim_extension
 #: help:crm.claim,email_to:0
 msgid "Email recipient"
 msgstr "Sähköpostin vastaanottaja"
@@ -154,6 +158,11 @@ msgstr "Futurable"
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Futurable claims"
 msgstr "Futurablen tukipyynnöt"
+
+#. module: crm_claim_extension
+#: field:crm_claim.reply,header:0
+msgid "Header message"
+msgstr "Header-viesti"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,reply_to:0
@@ -261,6 +270,11 @@ msgid "Provide reply to address for message thread."
 msgstr "Anna viestiketjuun vastauosoite"
 
 #. module: crm_claim_extension
+#: field:crm.claim,date_rejected:0
+msgid "Rejected date"
+msgstr "Hylkäämispäivä"
+
+#. module: crm_claim_extension
 #: model:ir.ui.menu,name:crm_claim_extension.menu_claim_reply
 msgid "Reply To"
 msgstr "Vastausosoite"
@@ -276,9 +290,14 @@ msgid "Service level"
 msgstr "Palvelutaso"
 
 #. module: crm_claim_extension
-#: field:crm_claim.reply,signature:0
-msgid "Signature message"
-msgstr "Allekirjoitus"
+#: field:crm.claim,date_settled:0
+msgid "Settled date"
+msgstr "Valmistumispäivä"
+
+#. module: crm_claim_extension
+#: field:crm.claim,date_start:0
+msgid "Start date"
+msgstr "Aloituspäivä"
 
 #. module: crm_claim_extension
 #: selection:crm.claim,sla:0
@@ -313,13 +332,13 @@ msgstr "Tawastan tukipyynnöt"
 #. module: crm_claim_extension
 #: field:crm_claim.settings,next_number:0
 msgid "The next claim number"
-msgstr "Seuraava tukipyynnön numero"
+msgstr "Seuraava tikettinumero"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:207 sql_constraint:crm.claim:0
+#: code:addons/crm_claim_extension/claim.py:242 sql_constraint:crm.claim:0
 #, python-format
 msgid "This claim number is already in use."
-msgstr "Tämä tukipyynnön numero on jo käytössä"
+msgstr "Tämä tikettinumero on jo käytössä"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
