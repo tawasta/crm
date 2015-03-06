@@ -44,19 +44,24 @@ class mail_mail(osv.Model):
             claim_model = self.pool.get('crm.claim')
             claim_instance = claim_model.browse(cr, SUPERUSER_ID, [ message_instance.res_id ])
             
-            messages_history = '<div dir="ltr" style="color: grey; padding-top: 1em;">'
+            messages_history = '<div dir="ltr" style="color: grey;">'
             
             # get users timezone
             user_pool = self.pool.get('res.users')
             user = user_pool.browse(cr, SUPERUSER_ID, uid)
             tz = pytz.timezone(user.partner_id.tz) or pytz.utc
             
+            level = 1
+            
             for child_id in message_child_ids:
                 child_message = message_model.browse(cr, uid, [ child_id ])
                 message_date = pytz.utc.localize( datetime.datetime.strptime( child_message.date , '%Y-%m-%d %H:%M:%S' ) ).astimezone(tz)
                 
+                level += 1
+                messages_history += "<div style='padding-left: %sem;'>" % level
                 messages_history += "<p>" + message_date.strftime('%d.%m.%Y %H:%M:%S') + ", " + child_message.email_from + " :</p>"
                 messages_history += child_message.body
+                messages_history += "</div>"
             
             messages_history += '</div>'
            
