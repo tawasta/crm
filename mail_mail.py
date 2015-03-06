@@ -44,7 +44,7 @@ class mail_mail(osv.Model):
             claim_model = self.pool.get('crm.claim')
             claim_instance = claim_model.browse(cr, SUPERUSER_ID, [ message_instance.res_id ])
             
-            messages_history = '<div dir="ltr" style="color: grey;">'
+            messages_history = '<div dir="ltr" style="color: grey; padding-top: 1em;">'
             
             # get users timezone
             user_pool = self.pool.get('res.users')
@@ -69,13 +69,16 @@ class mail_mail(osv.Model):
 
             # TODO: clean up this mess:
             values['record_name'] = "#" + str(claim_instance.claim_number) + ": " + claim_instance.name
-            values['body_html'] += "<p><small>" + header + "</small></p>"
-            values['body_html'] = re.sub(r'(^<p>)', r'<p>#' + str(claim_instance.claim_number) + ": " + claim_instance.name + "</p><p>", values['body_html'])
+            
+            static_header = "<p><small>" + str( header ) + "</small></p><hr style='margin: 1em 0 1em 0;'/>"
+            static_header += '<p>#' + str(claim_instance.claim_number) + ": " + claim_instance.name + "</p>"
+            static_header += '<p>'
+            
+            values['body_html'] = re.sub(r'(^<p>)', static_header, values['body_html'])
             
             values['body_html'] += messages_history
             
-            values['body_html'] += "<p>--</p>"
-            values['body_html'] += "<p><small>" + footer + "</small></p>"
+            values['body_html'] += "<hr style='margin: 1em 0 1em 0;' /><p><small>" + str( footer ) + "</small></p>"
         
         return super(mail_mail, self).create(cr, uid, values, context=context)
         
