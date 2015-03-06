@@ -9,7 +9,7 @@ class crm_claim_reply(osv.osv):
         'message_received': fields.text('Message to be sent when a claim is created'), # not used
         'message_completed': fields.text('Message to be sent when a claim is completed'), # not used
         'message_rejected': fields.text('Message to be sent when a claim is rejected'), # not used
-        'signature': fields.text('Signature message'),
+        'header': fields.text('Header message'),
         'footer': fields.text('Footer message'),
     }
 

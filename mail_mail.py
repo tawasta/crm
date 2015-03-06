@@ -61,7 +61,7 @@ class mail_mail(osv.Model):
             messages_history += '</div>'
            
             footer = claim_model._default_get_reply_footer(cr, uid, context, claim_instance.company_id.id)
-            signature = claim_model._default_get_reply_signature(cr, uid, context, claim_instance.company_id.id)
+            header = claim_model._default_get_reply_header(cr, uid, context, claim_instance.company_id.id)
 
             values['reply_to'] = claim_instance.reply_to
             values['email_from'] = claim_instance.reply_to
@@ -69,12 +69,12 @@ class mail_mail(osv.Model):
 
             # TODO: clean up this mess:
             values['record_name'] = "#" + str(claim_instance.claim_number) + ": " + claim_instance.name
+            values['body_html'] += "<p><small>" + header + "</small></p>"
             values['body_html'] = re.sub(r'(^<p>)', r'<p>#' + str(claim_instance.claim_number) + ": " + claim_instance.name + "</p><p>", values['body_html'])
             
             values['body_html'] += messages_history
             
             values['body_html'] += "<p>--</p>"
-            values['body_html'] += "<p><small>" + signature + "</small></p>"
             values['body_html'] += "<p><small>" + footer + "</small></p>"
         
         return super(mail_mail, self).create(cr, uid, values, context=context)
