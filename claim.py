@@ -129,7 +129,7 @@ class crm_claim(osv.Model):
         if claim.description == False:
             claim.description = ''
 
-        description = claim.description.replace('\n', '<br /><br />')
+        description = claim.description.replace('\n', '<br />')
 
         #values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim received") + ":</span></p>"
