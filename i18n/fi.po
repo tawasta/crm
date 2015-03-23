@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-06 12:52+0000\n"
-"PO-Revision-Date: 2015-03-06 14:53+0200\n"
+"POT-Creation-Date: 2015-03-23 08:48+0000\n"
+"PO-Revision-Date: 2015-03-23 10:49+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgid "Claim owner"
 msgstr "Tukipyynnön omistaja"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:135
+#: code:addons/crm_claim_extension/claim.py:174
 #, python-format
 msgid "Claim received"
 msgstr "Tukipyyntö vastaanotettu"
@@ -103,7 +103,7 @@ msgid "Claims with new replies"
 msgstr "Tukipyynnöt joissa on uusia vastauksia"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:224
+#: code:addons/crm_claim_extension/claim.py:263
 #: field:crm_claim.reply,company_id:0 field:fetchmail.server,company_id:0
 #, python-format
 msgid "Company"
@@ -133,6 +133,11 @@ msgstr "Digital Lessonsin tukipyynnöt"
 #: model:ir.model,name:crm_claim_extension.model_mail_followers
 msgid "Document Followers"
 msgstr "Dokumentin seuraajat"
+
+#. module: crm_claim_extension
+#: model:ir.model,name:crm_claim_extension.model_mail_thread
+msgid "Email Thread"
+msgstr "Sähköpostiviestit"
 
 #. module: crm_claim_extension
 #: help:crm.claim,email_to:0
@@ -335,10 +340,10 @@ msgid "The next claim number"
 msgstr "Seuraava tikettinumero"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:242 sql_constraint:crm.claim:0
+#: code:addons/crm_claim_extension/claim.py:281 sql_constraint:crm.claim:0
 #, python-format
 msgid "This claim number is already in use."
-msgstr "Tämä tikettinumero on jo käytössä"
+msgstr "Tämä tukipyynnön numero on jo käytössä"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
