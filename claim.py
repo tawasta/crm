@@ -131,6 +131,7 @@ class crm_claim(osv.Model):
             email = email_from
         
         email = re.sub(r'[<>]', "", email)
+        name = re.sub(r'["]', "", name)
         
         partner_vals = {}
         partner_vals['name'] = name
@@ -139,19 +140,19 @@ class crm_claim(osv.Model):
         
         return partner_id
     
-    # Not working
+    # Not implemented
     def action_rejected(self, cr, uid, ids, context=None):
         _logger.warn("Rejected")
         
         return super(crm_claim, self).action_rejected(cr, uid, context)
         
-    # Not working
+    # Not implemented
     def action_settled(self, cr, uid, ids, context=None):
         _logger.warn("Settled")
         
         return super(crm_claim, self).action_settled(cr, uid, context)
     
-    # Not working
+    # Not implemented
     def _onchange_stage_id(self, cr, uid, ids, stage_id, context):
         _logger.warn(stage_id)
         return True
@@ -162,7 +163,7 @@ class crm_claim(osv.Model):
         mail_message = self.pool.get('mail.message')
         values = {}
 
-        subject = "#" + str(claim.claim_number) + ": " + claim.name # + ": " + _("Claim received")
+        subject = "#" + str(claim.claim_number) + ": " + claim.name
         email = claim.reply_to
     
         if claim.description == False:
