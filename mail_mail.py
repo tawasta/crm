@@ -81,12 +81,13 @@ class mail_mail(osv.Model):
             values['body_html'] = re.sub(r'(^<p>)', static_header, values['body_html'])
             
             values['body_html'] += messages_history
+            values['body_html'] += "<br/>"
             values['body_html'] += "<hr style='margin: 1em 0 1em 0;' />"
             values['body_html'] += "<p><small>"
+            
             if message_instance.create_uid.id != SUPERUSER_ID:
                 values['body_html'] += str( message_instance.create_uid.partner_id.name )
-                
-            values['body_html'] += "<br/>"
+                values['body_html'] += "<br/>"
             values['body_html'] += str( footer )
             values['body_html'] += "</small></p>"
         
