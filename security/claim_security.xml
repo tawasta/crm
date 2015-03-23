@@ -6,7 +6,7 @@
        <field name="name">Multicompany claim rule</field>
        <field name="model_id" ref="model_crm_claim"/>
        <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('user_id','=',user.id)]</field>
-       <field name="perm_read" eval="False"/>
+       <field name="perm_read" eval="True"/>
        <field name="perm_write" eval="True"/>
        <field name="perm_unlink" eval="True"/>
        <field name="perm_create" eval="True"/>
