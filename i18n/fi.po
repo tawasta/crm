@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-23 08:48+0000\n"
-"PO-Revision-Date: 2015-03-23 10:49+0200\n"
+"POT-Creation-Date: 2015-03-23 08:56+0000\n"
+"PO-Revision-Date: 2015-03-23 10:56+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,12 +67,6 @@ msgstr "Tiketin numero"
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
 msgid "Claim owner"
 msgstr "Tukipyynnön omistaja"
-
-#. module: crm_claim_extension
-#: code:addons/crm_claim_extension/claim.py:174
-#, python-format
-msgid "Claim received"
-msgstr "Tukipyyntö vastaanotettu"
 
 #. module: crm_claim_extension
 #: model:ir.actions.act_window,name:crm_claim_extension.action_claim_reply
@@ -275,6 +269,12 @@ msgid "Provide reply to address for message thread."
 msgstr "Anna viestiketjuun vastauosoite"
 
 #. module: crm_claim_extension
+#: code:addons/crm_claim_extension/claim.py:174
+#, python-format
+msgid "Received claim"
+msgstr "Vastaanotettu tukipyyntö"
+
+#. module: crm_claim_extension
 #: field:crm.claim,date_rejected:0
 msgid "Rejected date"
 msgstr "Hylkäämispäivä"
@@ -343,7 +343,7 @@ msgstr "Seuraava tikettinumero"
 #: code:addons/crm_claim_extension/claim.py:281 sql_constraint:crm.claim:0
 #, python-format
 msgid "This claim number is already in use."
-msgstr "Tämä tukipyynnön numero on jo käytössä"
+msgstr "Tämä tikettinumero on jo käytössä"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
