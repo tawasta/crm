@@ -56,20 +56,25 @@ class crm_claim(osv.Model):
                 
                 super(crm_claim, self).write(cr, uid, [res], write_vals, context)
 
-        ''' Remove the helpdesk email from cc emails '''
+        ''' Remove the helpdesk email and its aliases from cc emails '''
         try:
             claim_instance = self.browse(cr, uid, res)
             email_list = claim_instance.email_cc.split(',')
-            
+              
             email_regex = re.compile("[<][^>]+[>]")
             email_raw = email_regex.findall(claim_instance.reply_to)[0]
             email_raw = re.sub(r'[<>]', "", email_raw)
             
             reply_to = email_raw
-        
-            match = [s for s in email_list if reply_to in s]
-
-            email_list.pop(email_list.index(match[0]))
+            
+            # TODO: fetch these to reply_alias
+            exclude_list = [reply_to, 'helpdesk@mediamaisteri.com', 'improtuki@mediamaisteri.com', 'loistotuki@mediamaisteri.com', 'mcompasstuki@mediamaisteri.com', 'mol@mediamaisteri.com', 'poptuki@mediamaisteri.com', 'tuki@mediamaisteri.com']
+          
+            for exclude in exclude_list:
+                match = [s for s in email_list if exclude in s]
+    
+                email_list.pop(email_list.index(match[0]))
+                
             email_cc = ','.join(email_list)
             
             self.write(cr, uid, res, {'email_cc': email_cc})
@@ -189,6 +194,7 @@ class crm_claim(osv.Model):
             self.message_subscribe(cr, uid, [claim.id], [claim.partner_id.id])
         
         context = {'default_model': 'crm.claim'}
+        context['pre_header'] = "<strong>" + _("Your claim has been received.") + "</strong>"
         
         res = mail_message.create(cr, uid, values, context)
         

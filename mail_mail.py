@@ -68,6 +68,11 @@ class mail_mail(osv.Model):
             footer = claim_model._default_get_reply_footer(cr, uid, context, claim_instance.company_id.id)
             header = claim_model._default_get_reply_header(cr, uid, context, claim_instance.company_id.id)
 
+            _logger.warn(context)
+
+            if context.get('pre_header'):
+                header = context.get('pre_header') + "<br/>" + header
+
             values['reply_to'] = claim_instance.reply_to
             values['email_from'] = claim_instance.reply_to
             values['email_cc'] = claim_instance.email_cc
@@ -80,16 +85,18 @@ class mail_mail(osv.Model):
             
             values['body_html'] = re.sub(r'(^<p>)', static_header, values['body_html'])
             
-            values['body_html'] += messages_history
-            values['body_html'] += "<br/>"
-            values['body_html'] += "<hr style='margin: 1em 0 1em 0;' />"
             values['body_html'] += "<p><small>"
+            values['body_html'] += "--<br/>"
             
             if message_instance.create_uid.id != SUPERUSER_ID:
                 values['body_html'] += str( message_instance.create_uid.partner_id.name )
                 values['body_html'] += "<br/>"
             values['body_html'] += str( footer )
             values['body_html'] += "</small></p>"
-        
+            
+            values['body_html'] += "<hr style='margin: 1em 0 1em 0;' />"
+            values['body_html'] += messages_history
+            values['body_html'] += "<br/>"
+
         return super(mail_mail, self).create(cr, uid, values, context=context)
         
