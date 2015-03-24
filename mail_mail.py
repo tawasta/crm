@@ -68,8 +68,6 @@ class mail_mail(osv.Model):
             footer = claim_model._default_get_reply_footer(cr, uid, context, claim_instance.company_id.id)
             header = claim_model._default_get_reply_header(cr, uid, context, claim_instance.company_id.id)
 
-            _logger.warn(context)
-
             if context.get('pre_header'):
                 header = context.get('pre_header') + "<br/>" + header
 
