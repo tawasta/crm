@@ -14,6 +14,7 @@
 ##############################################################################
 
 import claim_reply
+import claim_reply_alias
 import claim
 import claim_settings
 import mail_mail
