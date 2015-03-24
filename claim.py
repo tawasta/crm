@@ -69,11 +69,14 @@ class crm_claim(osv.Model):
             
             # TODO: fetch these to reply_alias
             exclude_list = [reply_to, 'helpdesk@mediamaisteri.com', 'improtuki@mediamaisteri.com', 'loistotuki@mediamaisteri.com', 'mcompasstuki@mediamaisteri.com', 'mol@mediamaisteri.com', 'poptuki@mediamaisteri.com', 'tuki@mediamaisteri.com']
-          
+
             for exclude in exclude_list:
                 match = [s for s in email_list if exclude in s]
     
-                email_list.pop(email_list.index(match[0]))
+                if match:
+                    email_list.pop(email_list.index(match[0]))
+                
+                match = False
                 
             email_cc = ','.join(email_list)
             
