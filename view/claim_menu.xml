@@ -15,7 +15,7 @@
             <field name="view_mode">tree,calendar,form</field>
             <field name="auto_refresh">5</field>
             <field name="domain">[('user_id', '=', uid)]</field>
-            <field name="context">{"search_default_active_claims":1, "search_default_new_replies":1}</field>
+            <field name="context">{"search_default_active_claims":1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Record and track your customers' claims. Claims may be linked to a sales order or a lot.You can send emails with attachments and keep the full history for a claim (emails sent, intervention type and so on).Claims may automatically be linked to an email address using the mail gateway module.
@@ -30,7 +30,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,calendar,form</field>
             <field name="auto_refresh">5</field>
-            <field name="context">{"search_default_active_claims":1, "search_default_new_replies":1}</field>
+            <field name="context">{"search_default_active_claims":1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Record and track your customers' claims. Claims may be linked to a sales order or a lot.You can send emails with attachments and keep the full history for a claim (emails sent, intervention type and so on).Claims may automatically be linked to an email address using the mail gateway module.

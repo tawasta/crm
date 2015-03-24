@@ -22,8 +22,16 @@
 		                <group>
 		                     <field name="company_id" required="1"/>   
 		                     <field name="reply_to" required="1"/>   
-		                     <field name="header" required="0"/>   
-		                     <field name="footer" required="0"/>   
+		                     <field name="reply_alias_ids" invisible="1">
+		                     	<form string='Reply alias'>
+		                     		<group>
+			                     		<field name='name' />
+			                     		<field name='description' />
+			                     	</group>
+		                     	</form>
+		                     </field>
+		                     <field name="header" required="1"/>   
+		                     <field name="footer" required="1"/>   
 		                </group>
 	                </sheet>
                 </form>

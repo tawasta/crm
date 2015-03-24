@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
             
             	<search position='inside'>
-            		<filter string="Active claims" name="active_claims" domain="[('stage_id','in',(1,2))]" help="Active claims (new or in progress)"/>
+            		<filter string="Active claims" name="active_claims" domain="[('stage_id','in',[1,2])]" help="Active claims (new or in progress)"/>
             		<filter string="New reply" name="new_replies" domain="[('message_unread','=',True)]" help="Claims with new replies"/>
             	</search>
             	
