@@ -101,7 +101,7 @@ class crm_claim(osv.Model):
                 # Rejected
                 values['date_rejected'] = datetime.now().replace(microsecond=0)
         
-        super(crm_claim, self).write(cr, uid, ids, values, context=context)
+        return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
     def message_new(self, cr, uid, msg, custom_values=None, context=None):
         if custom_values is None:
