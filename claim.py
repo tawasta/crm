@@ -59,20 +59,22 @@ class crm_claim(osv.Model):
                 
                 super(crm_claim, self).write(cr, uid, [res], write_vals, context)
 
-        ''' Remove the helpdesk email and its aliases from cc emails '''
+        ''' Remove the helpdesk email and its aliases from CC emails '''
         try:
             claim_instance = self.browse(cr, uid, res)
             email_list = claim_instance.email_cc.split(',')
-              
+            
+            ''' Trim all extra characters from email for matching to work '''
             email_regex = re.compile("[<][^>]+[>]")
             email_raw = email_regex.findall(claim_instance.reply_to)[0]
             email_raw = re.sub(r'[<>]', "", email_raw)
             
             reply_to = email_raw
             
-            # TODO: fetch these to reply_alias
+            # TODO: fetch these from reply_alias
             exclude_list = [reply_to, 'helpdesk@mediamaisteri.com', 'improtuki@mediamaisteri.com', 'loistotuki@mediamaisteri.com', 'mcompasstuki@mediamaisteri.com', 'mol@mediamaisteri.com', 'poptuki@mediamaisteri.com', 'tuki@mediamaisteri.com']
 
+            ''' Remove excluded addresses from CC recipients '''
             for exclude in exclude_list:
                 match = [s for s in email_list if exclude in s]
     
@@ -114,7 +116,9 @@ class crm_claim(osv.Model):
             custom_values = {}
         
         email_cc = msg.get('to')
-        
+
+        ''' Add all TO-addresses as CC:s, because the claim doesn't handle extra TO-addressess '''
+        ''' The helpdesk address itself will be added here, but removed in create-method (excude_list) '''
         if msg.get('cc'):
             email_cc = email_cc + "," + msg.get('cc')
         
@@ -129,21 +133,27 @@ class crm_claim(osv.Model):
         return res
     
     def _create_partner(self, cr, uid, vals, context=None):
+        ''' Creates a new partner '''
+        
+        ''' Try to split the address into name and email address '''
         email_from = vals.get('email_from')
         name_regex = re.compile("^[^<]+")
         email_regex = re.compile("[<][^>]+[>]")
         
+        ''' Try to use the email name description as partner name '''
         try:
             name = name_regex.findall(email_from)[0]
             email = email_regex.findall(email_from)[0]
         except IndexError:
-            # The email has no name information
+            ''' The email has no name information, just use the whole address as name '''
             name = email_from
             email = email_from
         
+        ''' Trim [<>"] from partner name '''
         email = re.sub(r'[<>]', "", email)
         name = re.sub(r'["]', "", name)
         
+        ''' Create a new partner '''
         partner_vals = {}
         partner_vals['name'] = name
         partner_vals['email'] = email
@@ -153,36 +163,46 @@ class crm_claim(osv.Model):
     
     # Not implemented
     def action_rejected(self, cr, uid, ids, context=None):
-        _logger.warn("Rejected")
+        ''' Actions to do when a claim is rejected. e.g. send an auto message. NOT IMPLEMENTED! '''
+        _logger.info("Claim rejected")
         
         return super(crm_claim, self).action_rejected(cr, uid, context)
         
     # Not implemented
     def action_settled(self, cr, uid, ids, context=None):
-        _logger.warn("Settled")
+        ''' Actions to do when a claim is settled. e.g. send an auto message. NOT IMPLEMENTED! '''
+        _logger.info("Claim settled")
         
         return super(crm_claim, self).action_settled(cr, uid, context)
     
     # Not implemented
     def _onchange_stage_id(self, cr, uid, ids, stage_id, context):
+        ''' Actions to do when a claim stage is changed. e.g. save stage change timestamp. NOT IMPLEMENTED! '''
         _logger.warn(stage_id)
         return True
     
-    ''' Send a "claim created" mail to the partner '''
     def _claim_created_mail(self, cr, uid, claim_id, context):
+        ''' Sends a "claim created" mail to the partner '''
         claim = self.browse(cr, uid, claim_id)
         mail_message = self.pool.get('mail.message')
         values = {}
 
+        '''  Set subject '''
         subject = "#" + str(claim.claim_number) + ": " + claim.name
+        
+        ''' Sender and reply-to is the reply-to address '''
+        ''' TODO: use authenticated outgoing hosts to prevent messages marked as spam '''
         email = claim.reply_to
     
+        ''' Set claim description as empty if its not set so the message itself doesn't have "False" as string in the description.
+        The description should, however, never be empty '''
         if claim.description == False:
             claim.description = ''
 
+        ''' We get descriptions with Line Feeds as newline-characters. Replace them with html accordingly '''
         description = claim.description.replace('\n', '<br />')
-
-        #values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
+    
+        ''' Set some "static" text on top of the message body '''
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Received claim") + ":</span></p>"
         values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(description) + "</div></p>"
         
@@ -196,6 +216,7 @@ class crm_claim(osv.Model):
         values['type'] = 'email'
         values['subtype_id'] = 1
         
+        ''' Set partner (i.e. message sender, i.e. customer) as message follower '''
         if claim.partner_id:
             self.message_subscribe(cr, uid, [claim.id], [claim.partner_id.id])
         
@@ -207,6 +228,8 @@ class crm_claim(osv.Model):
         return res
     
     def _default_get_reply_to(self, cr, uid, context=None, company_id=None):
+        ''' Get default reply-to address by users company '''
+        ''' TODO: get this by CLAIM company, not user company '''
         if not company_id:
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
         
@@ -219,6 +242,8 @@ class crm_claim(osv.Model):
         return False
     
     def _default_get_reply_header(self, cr, uid, context=None, company_id=None,):
+        ''' Get default reply header address by users company '''
+        ''' TODO: get this by CLAIM company, not user company '''
         if not company_id:
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
         
@@ -233,6 +258,8 @@ class crm_claim(osv.Model):
         return False
     
     def _default_get_reply_footer(self, cr, uid, context=None, company_id=None,):
+        ''' Get default reply header address by users company '''
+        ''' TODO: get this by CLAIM company, not user company '''
         if not company_id:
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
         
@@ -247,6 +274,7 @@ class crm_claim(osv.Model):
         return False
         
     def _get_claim_number(self, cr, uid, context=None):
+        ''' Get the next claim number, bump the number by one '''
         settings_model  = self.pool.get('crm_claim.settings')   
         
         claim_number = settings_model.browse(cr, SUPERUSER_ID, [1])[0].next_number
@@ -257,6 +285,7 @@ class crm_claim(osv.Model):
         return claim_number        
     
     def _get_stage_string(self, cr, uid, ids, field_name, arg, context=None):
+        ''' Get the claim stage as string instead of id (int) '''
         records = self.browse(cr, uid, ids)
         result = {}
         
@@ -266,6 +295,7 @@ class crm_claim(osv.Model):
         return result
     
     def _get_company(self, cr, uid, context=None):
+        ''' Get current company id '''
         current_user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
         res = current_user.company_id.id
         
