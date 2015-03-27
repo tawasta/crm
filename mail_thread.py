@@ -6,6 +6,8 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class mail_thread(osv.Model):
+    ''' Experiements on modifying the mail thread process. Nothing here is currently implemented into use '''
+    
     _inherit = 'mail.thread'
 
     '''
@@ -39,6 +41,7 @@ class mail_thread(osv.Model):
         return res
     '''
 
+    '''
     def message_parse(self, cr, uid, message, save_original=False, context=None):
         res = super(mail_thread, self).message_parse(cr, uid, message, save_original, context=context)
         
@@ -46,16 +49,20 @@ class mail_thread(osv.Model):
         _logger.warn(res)
         
         return res
+    '''
 
-    def x_message_new(self, cr, uid, msg_dict, custom_values=None, context=None):
+    '''
+    def message_new(self, cr, uid, msg_dict, custom_values=None, context=None):
         _logger.warn("self: %s" % self)
         _logger.warn("msg: %s" % msg_dict)
         _logger.warn("cust: %s" % custom_values)
         _logger.warn("ctx: %s" % context)
 
         return super(mail_thread, self).message_new(self, cr, uid, msg_dict, custom_values, context)
-
-    def x_message_process(self, cr, uid, model, message, custom_values=None,
+    '''
+        
+    '''
+    def message_process(self, cr, uid, model, message, custom_values=None,
                         save_original=False, strip_attachments=False,
                         thread_id=None, context=None):
         
@@ -65,3 +72,4 @@ class mail_thread(osv.Model):
         _logger.warn("ctx: %s" % context)
     
         return super(mail_thread, self).message_process(cr, uid, model, message, custom_values, save_original, strip_attachments, thread_id, context)
+    '''

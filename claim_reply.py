@@ -1,6 +1,8 @@
 from openerp.osv import osv, fields
 
 class crm_claim_reply(osv.osv):
+    ''' Claim reply settings '''
+    ''' TODO: rename this. It's evolved into a company-spesific claim settings instead of just plain reply-to address '''
     
     _name='crm_claim.reply'
     _columns={
