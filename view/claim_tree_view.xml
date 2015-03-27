@@ -6,6 +6,14 @@
             <field name="model">crm.claim</field>
             <field name="arch" type="xml">
             
+            	<!-- Claims tree view with colorization:
+            		New:			blue
+            		Started: 		black
+            		Settled: 		grey
+            		Rejected: 		grey
+            		Over dealine:	red
+            		New messages:	bold
+            	 -->
 				<tree string='Claims' colors="grey: (stage=='Rejected') or (stage=='Settled');red: date_deadline and (date_deadline&lt;current_date) and stage in ('New','In Progress'); blue: stage=='New';" fonts="bold: (message_unread==True)">
 					<field name="message_unread" invisible="1"/>
 					<field name='claim_number' string='#'/>
