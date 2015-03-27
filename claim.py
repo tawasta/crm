@@ -22,6 +22,7 @@ class crm_claim(osv.Model):
         
         settings_model = self.pool.get('crm_claim.settings')
         
+        ''' Increment the number by one '''
         claim_number = settings_model.browse(cr, SUPERUSER_ID, [1], context)[0].next_number
         for match in self.browse(cr, SUPERUSER_ID, matches, context):
             self.write(cr, SUPERUSER_ID, [match.id], {'claim_number': claim_number }, context)
@@ -46,12 +47,14 @@ class crm_claim(osv.Model):
         res = super(crm_claim, self).create(cr, uid, vals, context)
         
         if self.browse(cr, uid, [res], context)[0]:
+            ''' Get the mail server and use its company info to match the ticket to correct company '''
             fetchmail_server = self.pool.get('fetchmail.server').browse(cr,uid,context.get('fetchmail_server_id'))
             
             if fetchmail_server:
                 company_id = fetchmail_server.company_id.id
                 reply_to = self._default_get_reply_to(cr, uid, company_id=company_id)
                 
+                ''' Update company and reply to address, set responsible to none instead of admin '''
                 write_vals = { 'company_id': company_id, 'reply_to': reply_to, 'user_id': False }
                 
                 super(crm_claim, self).write(cr, uid, [res], write_vals, context)
