@@ -26,18 +26,31 @@ Claims extension
 * Generates account numbers for all existing claims
 * Starts from 10001 by default, can be customized in data XML file
 * Keeps track of assigned numbers internally, and gives a new one each time a new claim is created
+*
 * Removes settled and rejected claims from (default) tree view
 * Extends the claims search to partner names
-* Adds message history to sent mails
+*
+* Adds message history to mails sent by claims module
+* Adds a message header to mails sent by claims module
+* Adds a message footer to mails sent by claims module
+*
 * Adds a company for claims
+* Adds a company for fetchmail servers
 * Adds a company-spesific reply-to option for claims
-* Adds the first-level child partner claims to partner claims-button
-* Adds coloring and bolding for claims depending on their state
+*
+* Adds the first-level child partner claims to partner view claims-button count
+*
+* Adds claim coloring and bolding for claims depending on their state (treeview)
 * Overwrites the claim tree view to colorize claims with new messages and past deadlines
+*
 * Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
-* Adds an automatic disclaimer to all reply messages
-* Overrides notify_email when sending helpdesk messages
-* Saves latest stage changes: start date, settled date, rejected date. These will be overwritten if the same stage is changed again
+*
+* Overrides notify_email when sending helpdesk messages: helpdesk will send mails to partners even if they have receive messages-option disabled
+*
+* Adds stage dates for start date, settled date and rejected date
+* Saves latest stage changes: start date, settled date, rejected date. NOTE: The timestamp only holds the latest stage change. If the stage is reverted, the current timestamp is overwritten 
+*
+* TODO: refactor the email trimming/sanitazion to use openerp tools instead of hardcoding the same thing again
 """,
     'data': [
         'view/claim_menu.xml',
