@@ -22,7 +22,7 @@
 		                <group>
 		                     <field name="company_id" required="1"/>   
 		                     <field name="reply_to" required="1"/>   
-		                     <field name="reply_alias_ids" invisible="1">
+		                     <field name="reply_alias_ids">
 		                     	<form string='Reply alias'>
 		                     		<group>
 			                     		<field name='name' />
