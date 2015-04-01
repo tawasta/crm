@@ -15,7 +15,7 @@ class mail_message(osv.Model):
 
         if model and model=='crm.claim':
             ''' TODO: Get rid of this hack.
-                For some reason the author_id is False if new partner was created
+                For some reason the author_id is False if a new partner was created
             '''
             if values.get('author_id') == False:
                 email_from = values.get('email_from')
@@ -30,6 +30,7 @@ class mail_message(osv.Model):
         return super(mail_message, self).create(cr, uid, values, context=context)
     
     def get_author_by_email(self, cr, uid, values, context=None):
+        ''' Try to get an author (i.e. partner) by email address '''
         email_from = values.get('email_from')
         email_regex = re.compile("[<][^>]+[>]")
         

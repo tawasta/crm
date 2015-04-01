@@ -19,6 +19,7 @@ import claim
 import claim_settings
 import mail_mail
 import mail_message
+#import mail_thread
 import mail_followers
 import mail_notification
 import fetchmail_server

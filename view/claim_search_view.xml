@@ -10,6 +10,7 @@
             
             	<search position='inside'>
             		<filter string="Active claims" name="active_claims" domain="[('stage_id','in',[1,2])]" help="Active claims (new or in progress)"/>
+            		<!-- NOTE: avoid using the new_replies-filter. It's seems to be excluding a lot of results even when used with an OR-condition -->
             		<filter string="New reply" name="new_replies" domain="[('message_unread','=',True)]" help="Claims with new replies"/>
             	</search>
             	

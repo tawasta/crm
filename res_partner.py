@@ -8,10 +8,11 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
     
     def _claim_count(self, cr, uid, ids, field_name, arg, context=None):
+        ''' Add first-level children into claim count '''
         Claim = self.pool['crm.claim']
         
         for partner in self.browse(cr, uid, ids, context=context):  
-            # Get child company partners
+            ''' Get child company partners '''
             child_ids = self.search(cr, uid,[('parent_id', '=', partner.id)], limit=None)
         
         return {
