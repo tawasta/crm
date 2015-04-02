@@ -18,9 +18,17 @@
 				    <attribute name='required'>1</attribute>
 				</field>
 				
+				<field name="email_from" position="attributes">
+					<attribute name='on_change'>onchange_email(email_from,context)</attribute>
+				</field>
+				
             	<field name="email_from" position="after">
              		<field name="email_cc"/>
              		<field name="reply_to"/>
+            	</field>
+            	
+            	<field name="date" position="after">
+            		<field name='attachment_ids' widget="many2many_binary" />
             	</field>
 
             </field>

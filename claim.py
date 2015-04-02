@@ -1,6 +1,6 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-from openerp import SUPERUSER_ID
+from openerp import SUPERUSER_ID, tools
 import re
 from datetime import datetime
 
@@ -83,7 +83,17 @@ class crm_claim(osv.Model):
                 self.write(cr, uid, res, {'email_cc': email_cc})
             except Exception, e:
                 _logger.error('Could not set email CC: %s', e)
-
+        
+        if vals.get('attachment_ids'):
+            ''' Update attachment res_id so inline-added attachments are matched correctly '''
+            attachment_obj = self.pool.get('ir.attachment')
+            try:
+                attachments_list = vals.get('attachment_ids')[0][2]
+                for attachment in attachments_list:
+                    attachment_obj.write(cr, uid, attachment, {'res_id': res})
+            except:
+                pass
+            
         self._claim_created_mail(cr, uid, res, context)
         
         return res
@@ -104,6 +114,18 @@ class crm_claim(osv.Model):
                 # Rejected
                 values['date_rejected'] = datetime.now().replace(microsecond=0)
         
+        if values.get('attachment_ids'):
+            ''' Update attachment res_id so inline-added attachments are matched correctly '''
+            attachment_obj = self.pool.get('ir.attachment')
+            try:
+                attachments_list = values.get('attachment_ids')[0][2]
+            except:
+                attachments_list = []
+
+            for attachment in attachments_list:
+                if not attachment_obj.browse(cr, uid, attachment).res_id:
+                    attachment_obj.write(cr, uid, attachment, {'res_id': self.browse(cr, uid, ids).id})
+                
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
     def message_new(self, cr, uid, msg, custom_values=None, context=None):
@@ -323,6 +345,21 @@ class crm_claim(osv.Model):
         
         return res
     
+    def onchange_email(self, cr, uid, ids, email, context):
+        ''' Validates email '''
+    
+        res = {}
+    
+        if not email:
+            return res
+        
+        valid_email = tools.single_email_re.match(email)
+            
+        if not valid_email:
+            res['warning'] = {'title':'Warning!', 'message':'The email address "%s" is not valid.' % email}
+        
+        return res
+    
     _columns = {
         'claim_number': fields.char('Claim number'),
         'company_id': fields.many2one('res.company', string=_('Company'), required=True),
@@ -334,6 +371,7 @@ class crm_claim(osv.Model):
         'date_start': fields.datetime('Start date'),
         'date_settled': fields.datetime('Settled date'),
         'date_rejected': fields.datetime('Rejected date'),
+        'attachment_ids': fields.many2many('ir.attachment',  string='Attachments'),
     }
     
     _defaults = {
