@@ -206,7 +206,12 @@ class crm_claim(osv.Model):
         
         if claims_count > 3:
             _logger.warn("This partner has more than three claims in last 15 minutes. Autoreply is disabled")
-            #raise osv.except_osv('Error', 'This partner has more than three claims in the last 15 minutes. Please wait before creating a claim.')
+            msg_body = _("<strong>Autoreply was not sent.</strong>") + "<br/>" 
+            msg_body += _('This partner has more than three claims in the last 15 minutes.')
+            msg_body += _('Sending autoreply is disabled for this partner to prevent an autoreply-loop.')
+            self.message_post(cr, uid, [claim.id], body=msg_body)
+            #raise osv.except_osv('Error', 'This partner has more than three claims in the last 15 minutes. Please wait before creating a claim.')    
+
             return False
         
         self._claim_created_mail(cr, uid, claim_id, context)
