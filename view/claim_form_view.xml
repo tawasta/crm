@@ -20,6 +20,7 @@
 				
 				<field name="email_from" position="attributes">
 					<attribute name='on_change'>onchange_email(email_from,context)</attribute>
+					<attribute name='readonly'>1</attribute>
 				</field>
 				
             	<field name="email_from" position="after">
