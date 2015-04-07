@@ -114,6 +114,7 @@ class crm_claim(osv.Model):
             if stage_id == 2:
                 # In progress
                 values['date_start'] = datetime.now().replace(microsecond=0)
+                values['user_id'] = uid
             if stage_id == 3:
                 # Settled
                 values['date_settled'] = datetime.now().replace(microsecond=0)
@@ -131,7 +132,7 @@ class crm_claim(osv.Model):
 
             for attachment in attachments_list:
                 if not attachment_obj.browse(cr, uid, attachment).res_id:
-                    attachment_obj.write(cr, uid, attachment, {'res_id': self.browse(cr, uid, ids).id})
+                    attachment_obj.write(cr, SUPERUSER_ID, attachment, {'res_id': self.browse(cr, uid, ids).id})
                 
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
@@ -244,6 +245,9 @@ class crm_claim(osv.Model):
         values['model'] = claim.__class__.__name__
         values['type'] = 'email'
         values['subtype_id'] = 1
+        
+        #if claim.attachment_ids:
+            #values['attachment_ids'] = [(6, 0, claim.attachment_ids.ids)]
         
         if claim.partner_id:
             self.message_subscribe(cr, uid, [claim.id], [claim.partner_id.id])
