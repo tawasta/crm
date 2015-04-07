@@ -114,7 +114,8 @@ class crm_claim(osv.Model):
             if stage_id == 2:
                 # In progress
                 values['date_start'] = datetime.now().replace(microsecond=0)
-                values['user_id'] = uid
+                if not self.browse(cr,uid,ids)[0].user_id:
+                    values['user_id'] = uid
             if stage_id == 3:
                 # Settled
                 values['date_settled'] = datetime.now().replace(microsecond=0)
