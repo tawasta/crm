@@ -20,10 +20,11 @@
 				
 				<field name="email_from" position="attributes">
 					<attribute name='on_change'>onchange_email(email_from,context)</attribute>
-					<attribute name='readonly'>0</attribute>
+					<attribute name='invisible'>1</attribute>
 				</field>
 				
             	<field name="email_from" position="after">
+             		<field name="email_from_readonly"/>
              		<field name="email_cc"/>
              		<field name="reply_to"/>
             	</field>

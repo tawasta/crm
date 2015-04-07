@@ -3,6 +3,7 @@ from openerp.tools.translate import _
 from openerp import SUPERUSER_ID, tools
 import re
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -36,6 +37,9 @@ class crm_claim(osv.Model):
     def create(self, cr, uid, vals, context=None):
         if not context:
             context = {}
+
+        if vals.get('email_from'):
+            vals['email_from_readonly'] = vals.get('email_from')
 
         ''' If partner doesn't exist, we need to create one '''
         if vals.get('partner_id') == False:
@@ -94,12 +98,15 @@ class crm_claim(osv.Model):
             except:
                 pass
             
-        self._claim_created_mail(cr, uid, res, context)
+        self._claim_send_autoreply(cr, uid, res, context)
         
         return res
     
     def write(self, cr, uid, ids, values, context=None):
         ''' When a claim stage changes, save the date '''
+        
+        if values.get('email_from'):
+            values['email_from_readonly'] = values.get('email_from')
         
         if values.get('stage_id'):
             stage_id = values.get('stage_id')
@@ -188,8 +195,25 @@ class crm_claim(osv.Model):
         _logger.warn(stage_id)
         return True
     
-    ''' Send a "claim created" mail to the partner '''
-    def _claim_created_mail(self, cr, uid, claim_id, context):
+    def _claim_send_autoreply(self, cr, uid, claim_id, context):
+        ''' Checks if a partner is applicable for sending a mail '''
+        claim = self.browse(cr, uid, claim_id)
+        partner = claim.partner_id
+
+        ''' All claims for the partner within the last 15 minutes '''
+        timestamp_search = datetime.strftime(datetime.now() - relativedelta(minutes=15), '%Y-%m-%d %H:%M:%S')
+        claims_count = self.search(cr, SUPERUSER_ID, [('partner_id', '=', partner.id), ('create_date', '>=', timestamp_search)], count=True)
+        
+        if claims_count > 3:
+            _logger.warn("This partner has more than three claims in last 15 minutes. Autoreply is disabled")
+            #raise osv.except_osv('Error', 'This partner has more than three claims in the last 15 minutes. Please wait before creating a claim.')
+            return False
+        
+        self._claim_created_mail(cr, uid, claim_id, context)
+        return True
+    
+    def _claim_created_mail(self, cr, uid, claim_id, context, disabled=False):
+        ''' Creates and sends a "claim created" mail to the partner '''
         claim = self.browse(cr, uid, claim_id)
         mail_message = self.pool.get('mail.message')
         values = {}
@@ -358,6 +382,8 @@ class crm_claim(osv.Model):
         if not valid_email:
             res['warning'] = {'title':'Warning!', 'message':'The email address "%s" is not valid.' % email}
         
+        res['value'] = {'email_from_readonly': email}
+        
         return res
     
     _columns = {
@@ -368,6 +394,7 @@ class crm_claim(osv.Model):
         'sla': fields.selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', select=True),
         'email_to': fields.char('Email to', help='Email recipient'),
         'email_cc': fields.char('Email CC', help='Carbon copy message recipients'),
+        'email_from_readonly': fields.char('Recipient email', readonly=True),
         'date_start': fields.datetime('Start date'),
         'date_settled': fields.datetime('Settled date'),
         'date_rejected': fields.datetime('Rejected date'),
