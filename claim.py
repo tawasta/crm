@@ -147,6 +147,11 @@ class crm_claim(osv.Model):
                 msg_body = _("Re-opening claim due a new message.")
                 self.message_post(cr, uid, ids, body=msg_body)
                 
+        if values.get('partner_id'):
+            ''' Partner id is changed. Set the new partner as a follower '''
+            ''' TODO: should the previous partner stay as a follower? '''
+            self.message_subscribe(cr, uid, ids, [values.get('partner_id')], context=context)
+                
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
     def message_new(self, cr, uid, msg, custom_values=None, context=None):
