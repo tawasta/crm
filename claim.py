@@ -275,7 +275,7 @@ class crm_claim(osv.Model):
         if claim.partner_id:
             self.message_subscribe(cr, uid, [claim.id], [claim.partner_id.id])
         
-        context = {'default_model': 'crm.claim'}
+        context = {'default_model': 'crm.claim', 'default_res_id': claim_id}
         context['pre_header'] = "<strong>" + _("Your claim has been received.") + "</strong>"
         
         res = mail_message.create(cr, uid, values, context)

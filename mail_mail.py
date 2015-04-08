@@ -48,7 +48,7 @@ class mail_mail(osv.Model):
 
             claim_model = self.pool.get('crm.claim')
             claim_instance = claim_model.browse(cr, SUPERUSER_ID, [ res_id ])
-        
+
             ''' Get message header from reply_to settings '''
             header = claim_model._default_get_reply_header(cr, uid, context, claim_instance.company_id.id)
            
