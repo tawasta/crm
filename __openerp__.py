@@ -61,6 +61,7 @@ Claims extension
         'view/res_partner_form_view.xml',
         'view/fetchmail_server_form_view.xml',
         'data/claim_number_init.xml',
+        'data/crm_claim_data.xml',
         'security/claim_security.xml',
         'security/ir.model.access.csv',
     ],
