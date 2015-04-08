@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#   Copyright (c) 2014- Vizucom Oy (http://www.vizucom.com)
+#   Copyright (c) 2015- Vizucom Oy (http://www.vizucom.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -13,15 +13,4 @@
 #
 ##############################################################################
 
-import claim_reply
-import claim_reply_alias
-import claim
-import claim_settings
-import mail_mail
-import mail_message
-import mail_thread
-import mail_followers
-import mail_notification
-import fetchmail_server
-import res_partner
-import wizard
+import invite_wizard
