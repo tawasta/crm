@@ -435,7 +435,8 @@ class crm_claim(osv.Model):
     }
     
     _defaults = {
-        'sla': '1',
+        'sla': "1",
+        'stage_id': 1,
         'reply_to': _default_get_reply_to,
         'company_id': _get_company
     }
