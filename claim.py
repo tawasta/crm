@@ -209,13 +209,14 @@ class crm_claim(osv.Model):
 
         ''' All claims for the partner within the last 15 minutes '''
         timestamp_search = datetime.strftime(datetime.now() - relativedelta(minutes=15), '%Y-%m-%d %H:%M:%S')
-        claims_count = self.search(cr, SUPERUSER_ID, [('partner_id', '=', partner.id), ('create_date', '>=', timestamp_search)], count=True)
+        claims_count = self.search(cr, SUPERUSER_ID, [('partner_id', '=', partner.id),('stage_id', '=', 1), ('create_date', '>=', timestamp_search)], count=True)
         
         if claims_count > 3:
-            _logger.warn("This partner has more than three claims in last 15 minutes. Autoreply is disabled")
+            _logger.warn("This partner has more than three new claims in last 15 minutes. Autoreply is disabled")
             msg_body = _("<strong>Autoreply was not sent.</strong>") + "<br/>" 
             msg_body += _('This partner has more than three claims in the last 15 minutes.')
             msg_body += _('Sending autoreply is disabled for this partner to prevent an autoreply-loop.')
+            msg_body += _('Please wait a while before creating new ticket, or mark some tickets as started.')
             self.message_post(cr, uid, [claim.id], body=msg_body)
             #raise osv.except_osv('Error', 'This partner has more than three claims in the last 15 minutes. Please wait before creating a claim.')    
 
