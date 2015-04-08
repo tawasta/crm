@@ -140,6 +140,13 @@ class crm_claim(osv.Model):
                 if not attachment_obj.browse(cr, uid, attachment).res_id:
                     attachment_obj.write(cr, SUPERUSER_ID, attachment, {'res_id': self.browse(cr, uid, ids).id})
                 
+        if values.get('message_last_post'):
+            ''' Check if a closed ticket gets a message. If so, mark the ticket as new '''
+            if self.browse(cr, uid, ids).stage_id.id in [3,4]:
+                values['stage_id'] = 1
+                msg_body = _("Re-opening claim due a new message.")
+                self.message_post(cr, uid, ids, body=msg_body)
+                
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
     def message_new(self, cr, uid, msg, custom_values=None, context=None):
