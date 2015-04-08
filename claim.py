@@ -96,7 +96,12 @@ class crm_claim(osv.Model):
                 for attachment in attachments_list:
                     attachment_obj.write(cr, uid, attachment, {'res_id': res})
             except:
-                pass
+                attachments_list = []
+            
+            ''' Check if attachments are removed '''
+            for attachment_id in attachment_obj.search(cr, SUPERUSER_ID, [('res_id','=',res),('res_model','=','crm.claim')]):
+                if attachment_id not in attachments_list:
+                    attachment_obj.unlink(cr, uid, res)
             
         self._claim_send_autoreply(cr, uid, res, context)
         
@@ -122,6 +127,8 @@ class crm_claim(osv.Model):
             if stage_id == 4:
                 # Rejected
                 values['date_rejected'] = datetime.now().replace(microsecond=0)
+        
+        _logger.warn(values)
         
         if values.get('attachment_ids'):
             ''' Update attachment res_id so inline-added attachments are matched correctly '''
