@@ -15,7 +15,7 @@
 {
     'name': 'CRM Claims extension',
     'category': 'Sales',
-    'version': '0.5',
+    'version': '0.6',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': ['crm_claim', 'fetchmail'],
@@ -47,8 +47,19 @@ Claims extension
 *
 * Overrides notify_email when sending helpdesk messages: helpdesk will send mails to partners even if they have receive messages-option disabled
 *
-* Adds stage dates for start date, settled date and rejected date
-* Saves latest stage changes: start date, settled date, rejected date. NOTE: The timestamp only holds the latest stage change. If the stage is reverted, the current timestamp is overwritten 
+* Adds stage dates for start date, waiting date, settled date and rejected date
+* Saves latest stage changes: start date, waiting date, settled date, rejected date. NOTE: The timestamp only holds the latest stage change. If the stage is reverted, the current timestamp is overwritten 
+*
+* Has a fallback claims matching by claim number in the subject
+* Reopens a claim if a new message is received on a closed claim
+* 
+* Adds inline attachments
+* 
+* Marks stage changer new->started as responsible if not set
+* 
+* Updates followers on partner change
+*
+* Adds partner email validation
 *
 * TODO: refactor the email trimming/sanitazion to use openerp tools instead of hardcoding the same thing again
 """,
