@@ -127,6 +127,9 @@ class crm_claim(osv.Model):
             if stage_id == 4:
                 # Rejected
                 values['date_rejected'] = datetime.now().replace(microsecond=0)
+            if stage_id == 5:
+                # Waiting
+                values['date_waiting'] = datetime.now().replace(microsecond=0)
                 
         if values.get('attachment_ids'):
             ''' Update attachment res_id so inline-added attachments are matched correctly '''
@@ -424,6 +427,7 @@ class crm_claim(osv.Model):
         'email_cc': fields.char('Email CC', help='Carbon copy message recipients'),
         'email_from_readonly': fields.char('Recipient email', readonly=True),
         'date_start': fields.datetime('Start date'),
+        'date_waiting': fields.datetime('Waiting date'),
         'date_settled': fields.datetime('Settled date'),
         'date_rejected': fields.datetime('Rejected date'),
         'attachment_ids': fields.many2many('ir.attachment',  string='Attachments'),
