@@ -65,12 +65,12 @@ class mail_mail(osv.Model):
             values['email_cc'] = claim_instance.email_cc
             
             ''' Message subject '''
-            values['record_name'] = "#" + str(claim_instance.claim_number) + ": " + claim_instance.name
+            values['record_name'] = "#" + str(claim_instance.claim_number) + ": " + str(claim_instance.name)
             values['subject'] = values['record_name']
         
             ''' A "static" header that's fetched from company-spesific settings '''
             static_header = "<p><small>" + str( header ) + "</small></p><hr style='margin: 1em 0 1em 0;'/>"
-            static_header += '<p>#' + str(claim_instance.claim_number) + ": " + claim_instance.name + "</p>"
+            static_header += '<p>#' + str(claim_instance.claim_number) + ": " + str(claim_instance.name) + "</p>"
             static_header += '<p>'
             
             ''' The body_html is in html-format. We'll replace the heading <p>-tag with our own header '''
