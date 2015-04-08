@@ -127,9 +127,7 @@ class crm_claim(osv.Model):
             if stage_id == 4:
                 # Rejected
                 values['date_rejected'] = datetime.now().replace(microsecond=0)
-        
-        _logger.warn(values)
-        
+                
         if values.get('attachment_ids'):
             ''' Update attachment res_id so inline-added attachments are matched correctly '''
             attachment_obj = self.pool.get('ir.attachment')
@@ -254,8 +252,8 @@ class crm_claim(osv.Model):
         values['type'] = 'email'
         values['subtype_id'] = 1
         
-        #if claim.attachment_ids:
-            #values['attachment_ids'] = [(6, 0, claim.attachment_ids.ids)]
+        if claim.attachment_ids:
+            values['attachment_ids'] = [(6, 0, claim.attachment_ids.ids)]
         
         if claim.partner_id:
             self.message_subscribe(cr, uid, [claim.id], [claim.partner_id.id])
