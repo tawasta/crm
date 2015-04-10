@@ -40,7 +40,7 @@ class mail_thread(osv.Model):
                 lst = list(res[0])
                 lst[1] = claim_id[0]
                 res[0] = tuple(lst)
-            _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
+                _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
                 
         except Exception, e:
             _logger.warn('Error while matching a claim: %s', e)
