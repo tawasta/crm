@@ -1,0 +1,94 @@
+<openerp>
+    <data>
+        <record id="res_partner_custom_form_view" model="ir.ui.view">
+                <field name="name">Partner form view</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                
+                <div class='oe_edit_only' position='attributes'>
+                	<attribute name='invisible'>1</attribute>
+                </div>
+                
+                <field name='is_company' position='attributes'>
+                	<attribute name='invisible'>1</attribute>
+                </field>
+                
+                <label for='is_company' position='replace' />
+                
+    			<!--  Contacts -->
+     			<xpath expr="//page[@string='Contacts']" position="attributes">
+     				<attribute name='invisible'>1</attribute>
+     			</xpath>
+    			
+                <xpath expr="//page[@string='Contacts']" position="after">
+                    <page string="Contacts" attrs="{'invisible': [('is_company','=',False)]}">
+                    
+                        <field name="address_contact_recursive_ids"
+                        		context="{
+                        			'form_view_ref': 'res_partner_address_customizations.view_partner_simple_contact_form',
+		                        	'default_parent_id': active_id, 
+		                        	'default_type': 'contact', 
+		                        	'default_is_company': False, 
+		                        	'default_use_parent_address': True,
+		                        	'default_street': street,
+		                        	'default_street2': street2,
+		                        	'default_city': city,
+		                        	'default_state_id': state_id,
+		                        	'default_zip': zip,
+		                        	'default_contry_id': country_id,
+                        		}"
+                        	>
+                        	
+                        	<tree delete="false">
+                        		<field name='customer_number' string='#' />
+                        		<field name='name' />
+                        		<field name='phone' />
+                        		<field name='email' />
+                        		<field name='parent_id'/>
+                        	</tree>
+                        </field>
+                        
+                    </page>
+
+                    <page string="Affiliates" attrs="{'invisible': [('is_company','=',False)]}">
+                    
+                        <field name="address_delivery_ids" context="{
+                        		'default_parent_id': active_id, 
+                        		'default_type': 'delivery', 
+                        		'default_is_company': True, 
+                        		'default_use_parent_address': True,
+                  			  	'default_street': street,
+	                        	'default_street2': street2,
+	                        	'default_city': city,
+	                        	'default_state_id': state_id,
+	                        	'default_zip': zip,
+	                        	'default_contry_id': country_id,
+                       		}">
+                	   		<tree delete="false">
+                	   			<field name='customer_number' string='#' />
+	                       		<field name='name' />
+	                       		<field name='phone' />
+	                       		<field name='email' />
+	                       		<field name='businessid' />
+                       		</tree>
+                        </field>
+                    </page>
+
+					<!-- eInvoice addresses -->
+                    <page string="eInvoice" attrs="{'invisible': [('is_company','=',False)]}">
+                        <field name="address_einvoice_ids" context="{'default_parent_id': active_id, 'default_name': 'Verkkolaskuosoite', 'default_type': 'einvoice', 'default_is_company': True, 'default_use_parent_address': False}">
+                        	<tree delete="false">
+	                       		<field name='name' />
+	                       		<field name='edicode' />
+	                       		<field name='einvoice_operator' />
+                       		</tree>
+                        </field>
+                    </page>
+                    
+     			</xpath>
+                    
+                </field>
+        </record>
+    </data>
+</openerp>

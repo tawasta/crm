@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Contact simple form view -->
+		<record model="ir.ui.view" id="view_partner_simple_contact_form">
+			<field name="name">Contact simplified form view</field>
+			<field name="model">res.partner</field>
+			<field eval="20" name="priority"/>
+			
+			<field name="arch" type="xml">
+				<form string="Contact">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+								<field name="is_company" invisible='0'/>
+								<field name="company_id" invisible='0'/>
+								<field name="type" invisible='0'/>
+								
+								<field name="phone" />
+								<field name="email" />
+								<field name="title" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>
