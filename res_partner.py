@@ -69,3 +69,5 @@ class ResPartner(models.Model):
     edicode = fields.Char(string='Edicode')
     einvoice_operator = fields.Char(string='eInvoice operator')
     
+    is_company = fields.Boolean(default=True)
+    
