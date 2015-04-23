@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                         
             	<field name="display_name" position="replace">
-            		<field name='full_name' />
+            		<field name='display_name' />
             	</field>
             	
 			</field>
