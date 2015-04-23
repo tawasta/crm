@@ -11,18 +11,23 @@ class ResPartner(models.Model):
 
     TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Shipping')), ('einvoice', _('eInvoice')))
     
-    '''
-    def _get_full_name(self, cr, uid, ids, field_name, arg, context=None):
-        records = self.browse(cr, uid, ids)
-        result = {}
-        for record in records:
-            if hasattr(record, 'lvl2_name') and hasattr(record, 'lvl3_name'):
-                result[record.id] = record.lvl2_name + " / " + record.lvl3_name + " / " + record.name
-            else:
-                result[record.id] = record.name
+    def _get_full_name(self):
+        ''' Returns a name with a complete hierarchy '''
         
-        return result
+        for record in self:
+            record.full_name = self._get_recursive_name(record)
     
+    def _get_recursive_name(self, record):
+        ''' Returns a recursive partner name '''
+        
+        if not record.parent_id:
+            record.full_name = record.name
+        else:
+            record.full_name = "%s, %s" % (self._get_recursive_name(record.parent_id), record.name)
+        
+        return record.full_name
+    
+    '''
     def _get_contacts(self, cr, uid, ids, name, arg, context=None):
         record = self.browse(cr, uid, ids, context=context)[0]
         
@@ -60,6 +65,7 @@ class ResPartner(models.Model):
 
     ''' Columns '''
     type = fields.Selection(TYPES_ARRAY, 'Address Type')
+    full_name = fields.Char(string='Name', compute='_get_full_name')
                 
     #'address_contact_recursive_ids': fields.One2many(_get_contacts, fnct_inv=_set_contacts, relation="res.partner", method=True, type="one2many", string=_("Contacts")),
     address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'contact')])
