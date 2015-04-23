@@ -27,6 +27,7 @@
 ''',
     'data': [
         'view/res_partner_form.xml',
+        'view/res_partner_tree.xml',
         'view/res_partner_menu.xml',
         'view/res_partner_contact_form.xml',
     ],
