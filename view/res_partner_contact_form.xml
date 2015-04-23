@@ -11,11 +11,12 @@
 				<form string="Contact">
 					<sheet>
 						<group>
-							<group>
+							<group style="width: 60%;">
 								<field name="name" />
-								<field name="is_company" invisible='0'/>
-								<field name="company_id" invisible='0'/>
-								<field name="type" invisible='0'/>
+								<field name="is_company" invisible='1'/>
+								<field name="company_id" invisible='1'/>
+								<field name="type" invisible='1'/>
+								<field name="use_parent_address" invisible='1'/>
 								
 								<field name="phone" />
 								<field name="email" />
