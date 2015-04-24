@@ -11,15 +11,13 @@ class ResPartner(models.Model):
 
     TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Shipping')), ('einvoice', _('eInvoice')))
     
+    @api.one
     def _get_display_name(self):
         ''' Returns a name with a complete hierarchy '''
         
         for record in self:
-            record.display_name = self._get_recursive_name(record)
-    
-    def _set_display_name(self):
-        for record in self:
-            record.display_name = self._get_recursive_name(record)
+            display_name = self._get_recursive_name(record)
+            record.write({'display_name': display_name, 'full_name': display_name})
     
     def _get_recursive_name(self, record):
         ''' Returns a recursive partner name '''
@@ -36,7 +34,8 @@ class ResPartner(models.Model):
             child_ids = self._get_recursive_child_ids(record)
             record.address_contact_recursive_ids = self.search(['&',('id','in', child_ids ), ('type','=', 'contact')])
 
-    ''' TODO: this function might be very heavy with large customer bases '''
+    ''' NOTE: this function might be pretty heavy to run with large customer bases '''
+    ''' TODO: optimization '''
     def _get_recursive_child_ids(self, record):
         child_ids = []
         
@@ -57,7 +56,10 @@ class ResPartner(models.Model):
 
     ''' Columns '''
     type = fields.Selection(TYPES_ARRAY, 'Address Type')
-    display_name = fields.Char(string='Name', compute='_get_display_name', inverse='_set_display_name')
+    
+    ''' TODO: For some reason the display_name isn't being overridden '''
+    display_name = fields.Char(string='Name', compute='_get_display_name')
+    full_name = fields.Char(string='Name', compute='_get_display_name')
                 
     address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id', string=_('Contact'), compute='_get_contacts', inverse='_set_contacts')
     address_einvoice_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'einvoice')])
