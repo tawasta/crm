@@ -47,12 +47,23 @@ class ResPartner(models.Model):
 
         return child_ids
 
+    @api.model
     def _set_contacts(self):
         for record in self:
             for contact in record.address_contact_recursive_ids:
                 if isinstance(contact.id, models.NewId):
-                    contact_id = self.create({'name': contact.name})
-                    #record.address_contact_recursive_ids = {(4, record.id, contact_id.id)}
+                    ''' TODO: there must be a smarter way to do this '''
+                    contact_values = {
+                        'name': contact.name,
+                        'phone': contact.phone, 
+                        'email': contact.email, 
+                        'title': contact.title.id, 
+                        'parent_id': record.id,
+                        'type': contact.type, 
+                        'is_company': contact.is_company,
+                        'use_parent_address': contact.use_parent_address,
+                    }
+                    self.create(contact_values)
 
     ''' Columns '''
     type = fields.Selection(TYPES_ARRAY, 'Address Type')
