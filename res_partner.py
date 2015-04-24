@@ -9,7 +9,7 @@ class ResPartner(models.Model):
     
     _inherit = 'res.partner'
 
-    TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Shipping')), ('einvoice', _('eInvoice')))
+    TYPES_ARRAY = ( ('contact', _('Contact')), ('affiliate', _('Affiliate')), ('einvoice', _('e-Invoice')))
     
     @api.one
     def _get_display_name(self):
@@ -74,10 +74,10 @@ class ResPartner(models.Model):
                 
     address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id', string=_('Contact'), compute='_get_contacts', inverse='_set_contacts')
     address_einvoice_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'einvoice')])
-    address_delivery_ids = fields.One2many('res.partner', 'parent_id', string=_('Delivery'), domain=[('type', '=', 'delivery')])
+    address_affiliate_ids = fields.One2many('res.partner', 'parent_id', string=_('Affiliate'), domain=[('type', '=', 'afiiliate')])
         
     edicode = fields.Char(string='Edicode')
-    einvoice_operator = fields.Char(string='eInvoice operator')
+    einvoice_operator = fields.Char(string='e-Invoice operator')
     
     is_company = fields.Boolean(default=True)
     

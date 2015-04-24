@@ -46,9 +46,9 @@
 
                     <page string="Affiliates" attrs="{'invisible': [('is_company','=',False)]}">
                     
-                        <field name="address_delivery_ids" context="{
+                        <field name="address_affiliate_ids" context="{
                         		'default_parent_id': active_id, 
-                        		'default_type': 'delivery', 
+                        		'default_type': 'affiliate', 
                         		'default_is_company': True, 
                         		'default_use_parent_address': True,
                   			  	'default_street': street,
