@@ -20,10 +20,11 @@
     'website': 'http://www.vizucom.com',    
     'depends': ['crm', 'sale_business_id', 'crm_customer_account_number_gen'],
     'description': '''
-* Simplifies res_partner address types
-* Simplifies adding addresses
-* Breaks res_partner addresses to multiple notebook pages
-* Changes res_partner address views from kanban to row
+* Simplifies partner types to 'contact', 'delivery' and 'invoice'
+* Adds notebook pages for each partner type
+* Simpilfies adding partners by type directly from according notebook pages
+* Changes default partner views from kanban to row
+* Adds full name hierarchy to display name
 ''',
     'data': [
         'view/res_partner_form.xml',
