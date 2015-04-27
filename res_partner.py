@@ -23,6 +23,10 @@ class ResPartner(models.Model):
     TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
     
     @api.one
+    def name_get(self):
+        return (self.id, self._get_recursive_name(self))
+    
+    @api.one
     def _get_display_name(self):
         ''' Returns a name with a complete hierarchy '''
         
