@@ -2,20 +2,19 @@
 <openerp>
 	<data>
 		<!-- Contact simple form view -->
-		<record model="ir.ui.view" id="view_partner_simple_contact_form">
-			<field name="name">Contact simplified form view</field>
+		<record model="ir.ui.view" id="view_partner_simple_einvoice_form">
+			<field name="name">eInvoice simplified form view</field>
 			<field name="model">res.partner</field>
 			<field eval="20" name="priority"/>
 			
 			<field name="arch" type="xml">
-				<form string="Contact">
+				<form string="e-Invoice">
 					<sheet>
 						<group>
 							<group style="width: 60%;">
 								<field name="name" />
-								<field name="phone" />
-								<field name="email" />
-								<field name="title" />
+								<field name="edicode" />
+								<field name="einvoice_operator" />
 								
 								<field name="is_company" invisible='1'/>
 								<field name="company_id" invisible='1'/>
