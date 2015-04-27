@@ -29,7 +29,7 @@
         'view/res_partner_form.xml',
         'view/res_partner_form_contact.xml',
         'view/res_partner_form_einvoice.xml',
-        'view/res_partner_tree.xml',
+        #'view/res_partner_tree.xml',
         'view/res_partner_menu.xml',
     ],
 }

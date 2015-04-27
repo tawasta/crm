@@ -82,10 +82,8 @@ class ResPartner(models.Model):
     ''' Columns '''
     type = fields.Selection(TYPES_ARRAY, 'Address Type')
     
-    ''' TODO: For some reason the display_name isn't being overridden '''
     display_name = fields.Char(string='Name', compute='_get_display_name')
-    full_name = fields.Char(string='Name', compute='_get_display_name')
-                
+                    
     address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id', string=_('Contact'), compute='_get_contacts', inverse='_set_contacts')
     address_einvoice_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'invoice')])
     address_affiliate_ids = fields.One2many('res.partner', 'parent_id', string=_('Affiliate'), domain=[('type', '=', 'delivery')])
