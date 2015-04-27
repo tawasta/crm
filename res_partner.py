@@ -9,7 +9,7 @@ class ResPartner(models.Model):
     
     _inherit = 'res.partner'
 
-    TYPES_ARRAY = ( ('contact', _('Contact')), ('affiliate', _('Affiliate')), ('einvoice', _('e-Invoice')))
+    TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
     
     @api.one
     def _get_display_name(self):
@@ -73,8 +73,8 @@ class ResPartner(models.Model):
     full_name = fields.Char(string='Name', compute='_get_display_name')
                 
     address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id', string=_('Contact'), compute='_get_contacts', inverse='_set_contacts')
-    address_einvoice_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'einvoice')])
-    address_affiliate_ids = fields.One2many('res.partner', 'parent_id', string=_('Affiliate'), domain=[('type', '=', 'afiiliate')])
+    address_einvoice_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'invoice')])
+    address_affiliate_ids = fields.One2many('res.partner', 'parent_id', string=_('Affiliate'), domain=[('type', '=', 'delivery')])
         
     edicode = fields.Char(string='Edicode')
     einvoice_operator = fields.Char(string='e-Invoice operator')
