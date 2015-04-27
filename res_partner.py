@@ -8,6 +8,7 @@ _logger = logging.getLogger(__name__)
 class ResPartner(models.Model):
     
     _inherit = 'res.partner'
+    _order = 'display_name ASC'
 
     TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
     
@@ -16,8 +17,7 @@ class ResPartner(models.Model):
         ''' Returns a name with a complete hierarchy '''
         
         for record in self:
-            display_name = self._get_recursive_name(record)
-            record.write({'display_name': display_name, 'full_name': display_name})
+            record.display_name = self._get_recursive_name(record)
     
     def _get_recursive_name(self, record):
         ''' Returns a recursive partner name '''
