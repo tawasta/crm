@@ -8,6 +8,16 @@ _logger = logging.getLogger(__name__)
 class ResPartner(models.Model):
     
     _inherit = 'res.partner'
+    
+    ''' TODO
+        ORDER BY:
+            parent
+                parent contacts
+            child
+                child contacts
+            child2
+                child2 contact
+    '''
     _order = 'display_name ASC'
 
     TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
