@@ -10,21 +10,21 @@ Claims extension
     * Extends the claims search to partner names, claim number and claim description
     * Adds the first-level child partner claims to partner view claims-button count
         * TODO: Add a recursive claims count for all children
-    * Adds claim coloring and bolding for claims depending on their state (treeview)
+    * Adds claim row coloring and bolding for claims depending on their state (list view)
     * Overwrites the claim tree view to colorize claims with new messages and past deadlines
-    * Splits the 'Claims' submenu element to 'My claims' and 'All claims' for easier access
+    * Splits the 'Claims' sub menu element to 'My claims' and 'All claims' for easier access
 
 * **Email and Messaging**
     * Adds message history to mails sent by claims module
-    * Adds a company-spesific message header to mails sent by claims module
-    * Adds a company-spesific message footer to mails sent by claims module
+    * Adds a company-specific message header to mails sent by claims module
+    * Adds a company-specific message footer to mails sent by claims module
     * Overrides notify_email when sending helpdesk-messages: helpdesk will send mails to partners even if they have receive messages-option disabled
     * Has a fallback claims matching by claim number in the subject
 
 * **Multi-company**
     * Adds a company for claims
     * Adds a company for fetchmail servers
-    * Adds a company-spesific options for claims
+    * Adds a company-specific options for claims
 
 * **Workflow and Stages**
     * Adds stage dates for start date, waiting date, settled date and rejected date
@@ -36,4 +36,4 @@ Claims extension
 * **Other**
     * Adds a possibility for inline attachments
     * Adds a partner email format validation
-    * Adds a "killswitch" for sending autoreplies: autoreply won't be sent if a partner has three open claims within the last 15 minutes
+    * Adds a "kill switch" for sending auto-replies: auto-reply won't be sent if a partner has three open claims within the last 15 minutes
