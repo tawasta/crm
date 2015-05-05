@@ -1,7 +1,7 @@
 Claims extension
 =========================================
 * **Claim numbers**
-   * Generates claim numbers for all existing claims
+    * Generates claim numbers for all existing claims
   * Tracks the current claim number and assigns an unique claim number for all new claims
   * Starts from 10001 by default, can be customized in data XML file
 
