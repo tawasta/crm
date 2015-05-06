@@ -44,6 +44,8 @@ class mail_thread(osv.Model):
                 _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
                 
         except Exception, e:
+            ''' TODO: FIX "Error while matching a claim: expected string or buffer" '''
+
             _logger.warn('Error while matching a claim: %s', e)
             
         return res
