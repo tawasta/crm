@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 11:27+0000\n"
-"PO-Revision-Date: 2015-04-08 14:33+0200\n"
+"PO-Revision-Date: 2015-05-06 10:12+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
+"Language: fi\n"
 
 #. module: crm_claim_extension
 #: code:addons/crm_claim_extension/wizard/invite_wizard.py:18
@@ -315,7 +316,7 @@ msgid ""
 "started."
 msgstr ""
 "Ole hyvä ja odota hetki ennen tiketin lisäämistä, tai merkkaa tikettejä "
-"tilaan \"käynnissä\""
+"tilaan \"käynnissä\"."
 
 #. module: crm_claim_extension
 #: help:crm.claim,reply_to:0
@@ -375,8 +376,8 @@ msgstr "Vastausosoite"
 msgid ""
 "Sending autoreply is disabled for this partner to prevent an autoreply-loop."
 msgstr ""
-"Automaattivastauksen lähetys on estetty tälle partnerille vastausloopin "
-"estämiseksi"
+"Vastausloopin estämiseksi automaattivastauksen lähetys tälle partnerille on "
+"estetty."
 
 #. module: crm_claim_extension
 #: field:crm.claim,sla:0
@@ -440,7 +441,7 @@ msgstr "Tämä tikettinumero on jo käytössä"
 msgid "This partner has more than three claims in the last 15 minutes."
 msgstr ""
 "Tällä partnerilla on enemmän kuin kolme tukipyyntöä viimeisen 15 minuutin "
-"aikana"
+"aikana."
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
