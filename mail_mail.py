@@ -133,8 +133,5 @@ class mail_mail(osv.Model):
                 values['body_html'] += str( footer )
                 values['body_html'] += "</small></p>"
 
-        _logger.warn(context)
-        _logger.warn(values)
-
         return super(mail_mail, self).create(cr, uid, values, context=context)
         

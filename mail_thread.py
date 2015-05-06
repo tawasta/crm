@@ -22,6 +22,7 @@ class mail_thread(osv.Model):
         ''' Try matching by the claim number '''
         try:
             ''' A try-block if res is empty for some reason '''
+            _logger.warn(res)
             if res[0][0] == 'crm.claim' and res[0][1] == False:
                 ''' Could not match the claim with header information. Trying to match by subject '''
                 claim_number_re = re.compile("[#][0-9]{5}[^0-9]", re.UNICODE)

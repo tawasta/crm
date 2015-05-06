@@ -152,7 +152,6 @@ class crm_claim(osv.Model):
                 
         if values.get('partner_id'):
             ''' Partner id is changed. Set the new partner as a follower '''
-            _logger.warn(self.browse(cr,uid,ids).partner_id)
             self.message_unsubscribe(cr, uid, ids, [self.browse(cr,uid,ids).partner_id.id], context=context)
             self.message_subscribe(cr, uid, ids, [values.get('partner_id')], context=context)
                 
