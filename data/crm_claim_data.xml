@@ -1,14 +1,26 @@
 <?xml version="1.0"?>
 <openerp>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <!--
         Case Stage
         -->
         
         <record model="crm.claim.stage" id="stage_claim30">
-            <field name="name">Waiting</field>
+            <field name="name">Assigned</field>
             <field name="sequence">30</field>
+            <field name="case_default" eval="True"/>
+        </record>
+        
+        <record model="crm.claim.stage" id="stage_claim40">
+            <field name="name">Waiting Customer</field>
+            <field name="sequence">40</field>
+            <field name="case_default" eval="True"/>
+        </record>
+        
+        <record model="crm.claim.stage" id="stage_claim50">
+            <field name="name">Waiting</field>
+            <field name="sequence">50</field>
             <field name="case_default" eval="True"/>
         </record>
 
