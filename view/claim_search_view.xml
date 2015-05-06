@@ -21,7 +21,6 @@
                 <search position='inside'>
 	                <group expand="0" string="Claim owner">
 	                    <filter string="Digital Lessons" name="owner_digital_lessons" domain="[('company_id','ilike','Digital Lessons')]" help="Digital Lessons claims"/>
-	                    <filter string="Futurable" name="owner_futurable" domain="[('company_id','ilike','Futurable')]" help="Futurable claims"/>
 	                    <filter string="Kuusela" name="owner_kuusela" domain="[('company_id','ilike','Kuusela')]" help="Kuusela Com claims"/>
 	                    <filter string="Mediamaisteri" name="owners_mediamaisteri" domain="[('company_id','ilike','Mediamaisteri')]" help="Mediamaisteri claims"/>
 	                    <filter string="Open Trainers" name="owner_open_trainers" domain="[('company_id','ilike','Open Trainers')]" help="Open Trainers claims"/>
