@@ -51,11 +51,11 @@ Claims extension
 
 * **Workflow and Stages**
   * Adds stage dates for start date, waiting date, settled date and rejected date
-  * Saves latest stage changes: start date, waiting date, settled date, rejected date.
-    * NOTE: The timestamp only holds the latest stage change. If the stage is reverted, the current timestamp is overwritten
+  * Saves stage changes
   * Reopens a claim if a new message is received on a closed claim
   * Marks stage changer new->started as responsible if not set
   * Updates followers on partner change
+  
 * **Other**
   * Adds a possibility for inline attachments
   * Adds a partner email format validation

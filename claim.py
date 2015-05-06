@@ -116,6 +116,9 @@ class crm_claim(osv.Model):
         if values.get('stage_id'):
             stage_id = values.get('stage_id')
             
+            if stage_id:
+                values['stage_change_ids'] = [(0, _, {'stage': stage_id})]
+            
             if stage_id == 2:
                 # In progress
                 values['date_start'] = datetime.now().replace(microsecond=0)
@@ -431,6 +434,8 @@ class crm_claim(osv.Model):
         'date_settled': fields.datetime('Settled date'),
         'date_rejected': fields.datetime('Rejected date'),
         'attachment_ids': fields.many2many('ir.attachment',  string='Attachments'),
+        'stage_change_ids':  fields.one2many('crm.claim.stage.change', 'claim_id', string=_('Stage changes'), readonly=True),
+
     }
     
     _defaults = {

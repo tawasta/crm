@@ -1,4 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 "access_crm_claim","access_crm_claim","model_crm_claim","base.group_user",1,1,1,0
-"access_crm_claim_reply_perm","access_crm_claim_reply_perm","model_crm_claim_reply","base.group_user",1,0,0,0
-"access_crm_claim_settings_perm","access_crm_claim_settings_perm","model_crm_claim_settings","base.group_system",1,1,1,1
+"access_crm_claim_reply","access_crm_claim_reply","model_crm_claim_reply","base.group_user",1,0,0,0
+"access_crm_claim_settings","access_crm_claim_settings","model_crm_claim_settings","base.group_system",1,1,1,1
+"access_crm_claim_stage_change","access_crm_claim_stage_change","model_crm_claim_stage_change","base.group_user",1,1,1,0
