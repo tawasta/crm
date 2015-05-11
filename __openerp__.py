@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#   Copyright (c) 2015- Vizucom Oy (http://www.vizucom.com)
+#   Copyright (c) 2015- Oy Tawasta Technologies Ltd. (http://www.tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,8 +16,8 @@
     'name': 'Partner Address Customizations',
     'category': 'CRM',
     'version': '0.1',
-    'author': 'Vizucom Oy',
-    'website': 'http://www.vizucom.com',    
+    'author': 'Oy Tawasta Technologies Ltd.',
+    'website': 'http://www.tawasta.fi',
     'depends': ['crm', 'sale_business_id', 'crm_customer_account_number_gen'],
     'description': '''
 * Simplifies partner types to 'contact', 'delivery' and 'invoice'
