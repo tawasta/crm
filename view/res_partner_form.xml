@@ -8,7 +8,7 @@
                 
                     <!-- Hide obsolete fields -->
                     <field name='fax' position='attributes'>
-                    	<attribute name='invisible'>1</attribute>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
                     </field>
                     
                     <field name='mobile' position='attributes'>
@@ -57,6 +57,7 @@
                     
                     <!-- Add a 'show all' checkbox -->
                     <field name='title' position='after'>
+                   		<field name='is_company' attrs="{'invisible':[('show_all','=',False)]}" />
                     	<field name='show_all' />
                     </field>
                     
