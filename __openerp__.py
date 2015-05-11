@@ -23,5 +23,6 @@
 * Hides obsolete fields
 ''',
     'data': [
+        'view/res_partner_form.xml',
     ],
 }

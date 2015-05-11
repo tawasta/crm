@@ -1,0 +1,66 @@
+<openerp>
+    <data>
+        <record id="res_partner_simplified_form_view" model="ir.ui.view">
+                <field name="name">Partner form view</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                
+                    <!-- Hide obsolete fields -->
+                    <field name='fax' position='attributes'>
+                    	<attribute name='invisible'>1</attribute>
+                    </field>
+                    
+                    <field name='mobile' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+                    <field name='title' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+                    <label for='vat' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </label>
+                    
+                    <div name='vat_info' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </div>
+                    
+                    <!-- Fix city and zip width -->
+                 	<field name='city' position='attributes'>
+                    	<attribute name='style'>width: 60%</attribute>
+                    </field>
+                 	<field name='zip' position='attributes'>
+                    	<attribute name='style'>width: 40%</attribute>
+                    </field>
+                    
+                    <!-- Set some placeholders -->
+                    <field name='phone' position='attributes'>
+                    	<attribute name='placeholder'>Phone</attribute>
+                    </field>
+                    <field name='email' position='attributes'>
+                    	<attribute name='placeholder'>Email</attribute>
+                    </field>
+                    
+                    <!-- Move website field to the right col -->
+                    <field name='website' position='replace' />
+                    <field name='email' position='after'>
+                    	<field name='website' placeholder='Website'/>
+                    </field>
+                    
+                    <!-- Move the state field after zip code and hide it -->
+                    <field name='state_id' position='replace' />
+                    <field name='country_id' position='before'>
+                    	<field name='state_id' attrs="{'invisible':[('show_all','=',False)]}" placeholder='State' />
+                    </field>
+                    
+                    <!-- Add a 'show all' checkbox -->
+                    <field name='title' position='after'>
+                    	<field name='show_all' />
+                    </field>
+                    
+                </field>
+        </record>
+    </data>
+</openerp>
