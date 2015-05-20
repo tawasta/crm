@@ -26,7 +26,7 @@ class res_partner(osv.osv):
     
         res = {}
     
-        if not email:
+        if not email or email == '-':
             return res
         
         valid_email = tools.single_email_re.match(email)
