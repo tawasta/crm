@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Supplier purchase order tree view -->
+		<record model="ir.ui.view" id="crm_tokenkey_tree_view">
+			<field name="name">Tokenkey tree</field>
+			<field name="model">crm.tokenkey</field>
+			<field name="arch" type="xml">
+				<tree string="Token keys">
+					<field name="name" />
+					<field name="company_name" />
+					<field name="email" />
+					<field name="date_reclaim" widget='boolean' string='Key reclaimed'/>
+					<field name="date_database_created" string='Database created' widget='boolean'/>
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

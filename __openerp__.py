@@ -24,5 +24,7 @@
 ''',
     'data': [
         'view/crm_tokenkey_menu.xml',
+        'view/crm_tokenkey_form.xml',
+        'view/crm_tokenkey_tree.xml',
     ],
 }
