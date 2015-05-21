@@ -17,6 +17,7 @@
 							
 							<group>
 								<field name='key' />
+								<field name='create_date' />
 								<field name='date_reclaim' />
 								<field name='date_expiration' />
 								<field name='date_database_created' />

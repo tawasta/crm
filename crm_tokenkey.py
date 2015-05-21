@@ -5,6 +5,7 @@ from openerp.tools.translate import _
 class TokenKey(models.Model):
     
     _name = 'crm.tokenkey'
+    _order = 'create_date DESC'
 
     ''' Columns '''
     name = fields.Char("Name / description")
