@@ -16,8 +16,8 @@
     'name': 'CRM Token key management',
     'category': 'CRM',
     'version': '0.1',
-    'author': 'Futurable Oy',
-    'website': 'http://futurable.fi',
+    'author': 'Oy Tawasta Technologies Ltd',
+    'website': 'http://www.tawasta.fi',
     'depends': ['crm'],
     'description': '''
 * A simple token key management
