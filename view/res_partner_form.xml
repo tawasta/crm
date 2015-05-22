@@ -61,7 +61,53 @@
                     	<field name='show_all' />
                     </field>
                     
+                    <!-- Clean up the 'Sales & Purchases'-page -->
+                    <field name='ref' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+                    <field name='date' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+                    <field name='active' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+                    <field name='lang' position='replace' />
+                  	
+                  	<field name='user_id' position='after'>
+                  		<field name='lang' />
+                  	</field>
+                    
                 </field>
         </record>
+        
+        <record id="res_partner_simplified_form_view_opt_out" model="ir.ui.view">
+                <field name="name">Partner form view</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="email_template.res_partner_opt_out_form"/>
+                <field name="arch" type="xml">
+                    
+                    <field name='opt_out' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+              	</field>
+		</record>
+		
+        <record id="res_partner_simplified_form_view_notify_email" model="ir.ui.view">
+                <field name="name">Partner form view</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="mail.view_emails_partner_info_form"/>
+                <field name="arch" type="xml">
+                    
+                    <field name='notify_email' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    </field>
+                    
+            	</field>
+		</record>
+        
     </data>
 </openerp>
