@@ -12,6 +12,8 @@ class TokenKey(models.Model):
     company_name = fields.Char("Company name")
     email = fields.Char("Email")
     key = fields.Char("Token key")
+    database_name = fields.Char("Database name")
+    
     date_reclaim = fields.Datetime("Key reclaim date")
     date_expiration = fields.Datetime("Key expiration date")
     date_database_created = fields.Datetime("Database create date")

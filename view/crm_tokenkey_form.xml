@@ -13,10 +13,11 @@
 							<group>
 								<field name='company_name' />
 								<field name='email' />
+								<field name='key' />
+								<field name='database_name' />
 							</group>
 							
 							<group>
-								<field name='key' />
 								<field name='create_date' />
 								<field name='date_reclaim' />
 								<field name='date_expiration' />
