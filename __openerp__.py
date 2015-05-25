@@ -13,7 +13,7 @@
 #
 ##############################################################################
 {
-    'name': 'Partner Simplification',
+    'name': 'CRM Simplification',
     'category': 'CRM',
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',
