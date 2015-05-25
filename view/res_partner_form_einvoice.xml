@@ -13,7 +13,7 @@
 						<group>
 							<group style="width: 60%;">
 								<field name="name" />
-								<field name="edicode" />
+								<field name="edicode" required='1'/>
 								<field name="einvoice_operator" />
 								
 								<field name="is_company" invisible='1'/>
