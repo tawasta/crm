@@ -15,6 +15,18 @@
                 	<attribute name='invisible'>1</attribute>
                 </field>
                 
+                <field name='use_parent_address' position='attributes'>
+					<attribute name='attrs'>{'invisible': [('parent_id', '=', False)]}</attribute>
+                </field>
+                
+                <label for="use_parent_address" position='attributes'>
+					<attribute name='attrs'>{'invisible': [('parent_id', '=', False)]}</attribute>
+                </label>
+                
+                <button name="open_parent" position='attributes'>
+                	<attribute name='invisible'>1</attribute>
+                </button>
+                
     			<!--  Contacts -->
      			<xpath expr="//page[@string='Contacts']" position="attributes">
      				<attribute name='invisible'>1</attribute>
