@@ -13,7 +13,7 @@
 #
 ##############################################################################
 {
-    'name': 'Partner Address Customizations',
+    'name': 'CRM Address Simplification',
     'category': 'CRM',
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',
