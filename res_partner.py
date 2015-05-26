@@ -5,8 +5,9 @@ from openerp.tools.translate import _
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class ResPartner(models.Model):
-    
+
     _inherit = 'res.partner'
     
     ''' TODO
@@ -20,21 +21,21 @@ class ResPartner(models.Model):
     '''
     _order = 'display_name ASC'
 
-    TYPES_ARRAY = ( ('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
+    TYPES_ARRAY = (('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
     
     @api.one
     def name_get(self):
-        return (self.id, self._get_recursive_name(self))
+        return self.id, self._get_recursive_name(self)
     
     @api.one
     def _get_display_name(self):
-        ''' Returns a name with a complete hierarchy '''
+        # Returns a name with a complete hierarchy
         
         for record in self:
             record.display_name = self._get_recursive_name(record)
     
     def _get_recursive_name(self, record):
-        ''' Returns a recursive partner name '''
+        # Returns a recursive partner name
         
         if not record.parent_id:
             record.display_name = record.name
@@ -46,17 +47,17 @@ class ResPartner(models.Model):
     def _get_contacts(self):
         for record in self:
             child_ids = self._get_recursive_child_ids(record)
-            record.address_contact_recursive_ids = self.search(['&',('id','in', child_ids ), ('type','=', 'contact')])
+            record.address_contact_recursive_ids = self.search(['&', ('id', 'in', child_ids), ('type', '=', 'contact')])
 
     ''' NOTE: this function might be pretty heavy to run with large customer bases '''
     ''' TODO: optimization '''
     def _get_recursive_child_ids(self, record):
         child_ids = []
         
-        for child in self.search([('parent_id','=', record.id )]):
+        for child in self.search([('parent_id', '=', record.id )]):
             child_ids.append(child.id)
         
-            if self.search([('parent_id','=', child.id )]):
+            if self.search([('parent_id', '=', child.id)]):
                 child_ids += self._get_recursive_child_ids(child)
 
         return child_ids
@@ -92,4 +93,3 @@ class ResPartner(models.Model):
     einvoice_operator = fields.Char(string='e-Invoice operator')
     
     is_company = fields.Boolean(default=True)
-    
