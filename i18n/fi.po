@@ -1,98 +1,106 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* res_partner_address_customizations
+# 	* crm_address_simplification
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-24 07:56+0000\n"
-"PO-Revision-Date: 2015-04-24 10:58+0200\n"
-"Last-Translator: Jarmo Kortetjarvi <jarmo@futurable.fi>\n"
+"POT-Creation-Date: 2015-05-29 07:30+0000\n"
+"PO-Revision-Date: 2015-05-29 10:31+0200\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Language: fi\n"
+"X-Generator: Poedit 1.7.5\n"
 
-#. module: res_partner_address_customizations
-#: model:ir.actions.act_window,help:res_partner_address_customizations.action_partner_form
+#. module: crm_address_simplification
+#: model:ir.actions.act_window,help:crm_address_simplification.action_partner_form
 msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
-"\t\t\t\t\tClick to add a contact in your address book.\n"
-"\t\t\t\t</p>\n"
-"\t\t\t\t<p>\n"
-"\t\t\t\t\tOpenERP helps you easily track all activities related to\n"
-"\t\t\t\t\ta customer; discussions, history of business opportunities,\n"
-"\t\t\t\t\tdocuments, etc.\n"
-"\t\t\t\t</p>\n"
+"Click to add a contact in your address book.\n"
+"</p>\n"
+"<p>\n"
+"OpenERP helps you easily track all activities related to\n"
+"a customer; discussions, history of business opportunities,\n"
+"documents, etc.\n"
+"</p>\n"
 "            "
 msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
-"\t\t\t\t\tClick to add a contact in your address book.\n"
-"\t\t\t\t</p>\n"
-"\t\t\t\t<p>\n"
-"\t\t\t\t\tOpenERP helps you easily track all activities related to\n"
-"\t\t\t\t\ta customer; discussions, history of business opportunities,\n"
-"\t\t\t\t\tdocuments, etc.\n"
-"\t\t\t\t</p>\n"
+"Click to add a contact in your address book.\n"
+"</p>\n"
+"<p>\n"
+"OpenERP helps you easily track all activities related to\n"
+"a customer; discussions, history of business opportunities,\n"
+"documents, etc.\n"
+"</p>\n"
 "            "
 
-#. module: res_partner_address_customizations
-#: code:addons/res_partner_address_customizations/res_partner.py:12
-#: code:addons/res_partner_address_customizations/res_partner.py:77
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:24
+#: code:addons/crm_address_simplification/res_partner.py:90
+#: field:res.partner,address_affiliate_ids:0
 #, python-format
 msgid "Affiliate"
-msgstr "Toimipaikka"
+msgstr "Kumppani"
 
-#. module: res_partner_address_customizations
-#: view:res.partner:res_partner_address_customizations.res_partner_custom_form_view
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.res_partner_custom_form_view
 msgid "Affiliates"
 msgstr "Toimipaikat"
 
-#. module: res_partner_address_customizations
-#: code:addons/res_partner_address_customizations/res_partner.py:12
-#: code:addons/res_partner_address_customizations/res_partner.py:75
-#: view:res.partner:res_partner_address_customizations.view_partner_simple_contact_form
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:24
+#: code:addons/crm_address_simplification/res_partner.py:88
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
 #, python-format
 msgid "Contact"
 msgstr "Yhteyshenkilö"
 
-#. module: res_partner_address_customizations
-#: view:res.partner:res_partner_address_customizations.res_partner_custom_form_view
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.res_partner_custom_form_view
 msgid "Contacts"
 msgstr "Yhteyshenkilöt"
 
-#. module: res_partner_address_customizations
-#: model:ir.actions.act_window,name:res_partner_address_customizations.action_partner_form
+#. module: crm_address_simplification
+#: model:ir.actions.act_window,name:crm_address_simplification.action_partner_form
 msgid "Customers"
 msgstr "Asiakkaat"
 
-#. module: res_partner_address_customizations
+#. module: crm_address_simplification
 #: field:res.partner,edicode:0
 msgid "Edicode"
 msgstr "OVT-koodi"
 
-#. module: res_partner_address_customizations
-#: model:ir.model,name:res_partner_address_customizations.model_res_partner
+#. module: crm_address_simplification
+#: model:ir.model,name:crm_address_simplification.model_res_partner
 msgid "Partner"
 msgstr "Kumppani"
 
-#. module: res_partner_address_customizations
-#: code:addons/res_partner_address_customizations/res_partner.py:12
-#: code:addons/res_partner_address_customizations/res_partner.py:76
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:24
+#: code:addons/crm_address_simplification/res_partner.py:89
+#: view:res.partner:crm_address_simplification.view_partner_simple_einvoice_form
 #: field:res.partner,address_einvoice_ids:0
 #, python-format
 msgid "e-Invoice"
 msgstr "Verkkolasku"
 
-#. module: res_partner_address_customizations
+#. module: crm_address_simplification
 #: field:res.partner,einvoice_operator:0
 msgid "e-Invoice operator"
 msgstr "Verkkolaskuoperaattori"
 
-#. module: res_partner_address_customizations
-#: view:res.partner:res_partner_address_customizations.res_partner_custom_form_view
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.res_partner_custom_form_view
 msgid "eInvoice"
 msgstr "Verkkolasku"
+
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.res_partner_custom_form_view
+msgid "{'invisible': [('parent_id', '=', False)]}"
+msgstr "{'invisible': [('parent_id', '=', False)]}"
