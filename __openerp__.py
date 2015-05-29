@@ -18,7 +18,7 @@
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',    
-    'depends': ['res_partner_address_customizations'],
+    'depends': ['crm_address_simplification'],
     'description': '''
 * Hides obsolete fields
 ''',

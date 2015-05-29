@@ -6,8 +6,6 @@
                 <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
                 
-
-                
                     <!-- Hide obsolete fields -->
                     <field name='type' position='attributes'>
                     	<attribute name='invisible'>1</attribute>
@@ -24,14 +22,6 @@
                     <field name='title' position='attributes'>
                     	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
                     </field>
-                    
-                    <label for='vat' position='attributes'>
-                    	<attribute name='attrs'>{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}</attribute>
-                    </label>
-                    
-                    <div name='vat_info' position='attributes'>
-                    	<attribute name='attrs'>{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}</attribute>
-                    </div>
                     
                     <!-- Fix city and zip width -->
                  	<field name='city' position='attributes'>
@@ -89,8 +79,26 @@
                 </field>
         </record>
         
+        <record id="res_partner_simplified_form_view_vat" model="ir.ui.view">
+                <field name="name">Hide vat fields</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="sale_business_id.view_partner_form_add_affiliate"/>
+                <field name="priority" eval="2"/>
+                <field name="arch" type="xml">
+                    
+                    <label for='vat' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}</attribute>
+                    </label>
+                    
+                    <div name='vat_info' position='attributes'>
+                    	<attribute name='attrs'>{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}</attribute>
+                    </div>
+
+              	</field>
+		</record>
+		
         <record id="res_partner_simplified_form_view_opt_out" model="ir.ui.view">
-                <field name="name">Partner form view</field>
+                <field name="name">Hide opt out</field>
                 <field name="model">res.partner</field>
                 <field name="inherit_id" ref="email_template.res_partner_opt_out_form"/>
                 <field name="arch" type="xml">
@@ -103,7 +111,7 @@
 		</record>
 		
         <record id="res_partner_simplified_form_view_notify_email" model="ir.ui.view">
-                <field name="name">Partner form view</field>
+                <field name="name">Hide notify email</field>
                 <field name="model">res.partner</field>
                 <field name="inherit_id" ref="mail.view_emails_partner_info_form"/>
                 <field name="arch" type="xml">
