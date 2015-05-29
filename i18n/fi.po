@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_tokenkey
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-29 07:46+0000\n"
+"PO-Revision-Date: 2015-05-29 10:49+0200\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fi\n"
+"X-Generator: Poedit 1.7.5\n"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,company_name:0
+msgid "Company name"
+msgstr "Yrityksen nimi"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,create_uid:0
+msgid "Created by"
+msgstr "Luonut"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,create_date:0
+msgid "Created on"
+msgstr "Luotu"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,date_database_created:0
+msgid "Database create date"
+msgstr "Tietokannan luontipäivä"
+
+#. module: crm_tokenkey
+#: view:crm.tokenkey:crm_tokenkey.crm_tokenkey_tree_view
+msgid "Database created"
+msgstr "Tietokanta luotu"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,database_name:0
+msgid "Database name"
+msgstr "Tietokannan nimi"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,email:0
+msgid "Email"
+msgstr "Sähköposti"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,date_expiration:0
+msgid "Key expiration date"
+msgstr "Avaimen vanhenemispäivä"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,date_reclaim:0
+msgid "Key reclaim date"
+msgstr "Avaimen käyttöpäivä"
+
+#. module: crm_tokenkey
+#: view:crm.tokenkey:crm_tokenkey.crm_tokenkey_tree_view
+msgid "Key reclaimed"
+msgstr "Avain käytetty"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,write_uid:0
+msgid "Last Updated by"
+msgstr "Viimeksi päivittänyt"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,write_date:0
+msgid "Last Updated on"
+msgstr "Viimeksi päivitetty"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,name:0
+msgid "Name / description"
+msgstr "Nimi / kuvaus"
+
+#. module: crm_tokenkey
+#: field:crm.tokenkey,key:0
+msgid "Token key"
+msgstr "Perustamisavain"
+
+#. module: crm_tokenkey
+#: view:crm.tokenkey:crm_tokenkey.crm_tokenkey_form_view
+msgid "Token key form view"
+msgstr "Perustamisavainten lomakenäkymä"
+
+#. module: crm_tokenkey
+#: view:crm.tokenkey:crm_tokenkey.crm_tokenkey_tree_view
+#: model:ir.actions.act_window,name:crm_tokenkey.token_key_action
+#: model:ir.ui.menu,name:crm_tokenkey.token_key_menu
+msgid "Token keys"
+msgstr "Perustamisavaimet"
