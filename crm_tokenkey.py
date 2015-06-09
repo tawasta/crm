@@ -24,3 +24,8 @@ class TokenKey(models.Model):
     date_reclaim = fields.Datetime("Key reclaim date")
     date_expiration = fields.Datetime("Key expiration date")
     date_database_created = fields.Datetime("Database create date")
+    
+    @api.onchange('partner_id')
+    def partner_onchange(self):
+        self.company_name = self.partner_id.name
+        self.email = self.partner_id.email
