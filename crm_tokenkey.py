@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from openerp import models, fields, api, _
-from openerp.tools.translate import _
 
 class TokenKey(models.Model):
     
@@ -11,6 +10,8 @@ class TokenKey(models.Model):
     name = fields.Char("Key name", required=True)
     company_name = fields.Char("Company name", required=True)
     email = fields.Char("Email", required=True)
+    partner_id = fields.Many2one('res.partner', domain=[('customer','=',True)])
+    
     key = fields.Char("Token key", required=True)
     database_name = fields.Char("Database name")
     type = fields.Selection( 
