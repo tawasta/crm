@@ -54,6 +54,7 @@
                     <!-- Add a 'show all' checkbox -->
                     <field name='title' position='after'>
                    		<field name='is_company' attrs="{'invisible':[('show_all','=',False)]}" />
+                    	<field name='retail_customer' />
                     	<field name='show_all' />
                     </field>
                     
