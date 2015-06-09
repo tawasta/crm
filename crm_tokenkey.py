@@ -13,6 +13,7 @@ class TokenKey(models.Model):
     email = fields.Char("Email")
     key = fields.Char("Token key")
     database_name = fields.Char("Database name")
+    type = fields.Selection( selection=[('demo', 'Demo'), ('game', 'Game'), ('production', 'Production')], string='Type', default='demo')
     
     date_reclaim = fields.Datetime("Key reclaim date")
     date_expiration = fields.Datetime("Key expiration date")
