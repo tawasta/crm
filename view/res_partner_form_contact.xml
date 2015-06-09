@@ -15,7 +15,7 @@
 								<field name="name" />
 								<field name="phone" />
 								<field name="email" />
-								<field name="title" />
+								<field name="function" />
 								
 								<field name="is_company" invisible='1'/>
 								<field name="company_id" invisible='1'/>
