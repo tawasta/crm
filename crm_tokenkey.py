@@ -9,11 +9,16 @@ class TokenKey(models.Model):
 
     ''' Columns '''
     name = fields.Char("Name / description")
-    company_name = fields.Char("Company name")
-    email = fields.Char("Email")
-    key = fields.Char("Token key")
+    company_name = fields.Char("Company name", required=True)
+    email = fields.Char("Email", required=True)
+    key = fields.Char("Token key", required=True)
     database_name = fields.Char("Database name")
-    type = fields.Selection( selection=[('demo', 'Demo'), ('game', 'Game'), ('production', 'Production')], string='Type', default='demo')
+    type = fields.Selection( 
+        selection=[('demo', 'Demo'), ('game', 'Game'), ('production', 'Production')], 
+        string='Type', 
+        default='demo', 
+        required=True
+    )
     
     date_reclaim = fields.Datetime("Key reclaim date")
     date_expiration = fields.Datetime("Key expiration date")
