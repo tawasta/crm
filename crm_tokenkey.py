@@ -8,7 +8,7 @@ class TokenKey(models.Model):
     _order = 'create_date DESC'
 
     ''' Columns '''
-    name = fields.Char("Name / description")
+    name = fields.Char("Key name", required=True)
     company_name = fields.Char("Company name", required=True)
     email = fields.Char("Email", required=True)
     key = fields.Char("Token key", required=True)
