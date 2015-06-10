@@ -63,6 +63,7 @@
                     <page string="Affiliates" attrs="{'invisible': [('is_company','=',False)]}">
                     
                         <field name="address_affiliate_ids" context="{
+								'form_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_form',
 	                       		'default_parent_id': active_id, 
 	                       		'default_type': 'delivery', 
 	                       		'default_is_company': True, 

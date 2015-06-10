@@ -21,7 +21,7 @@ class ResPartner(models.Model):
     '''
     _order = 'display_name ASC'
 
-    TYPES_ARRAY = (('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice')))
+    TYPES_ARRAY = (('contact', _('Contact')), ('delivery', _('Affiliate')), ('invoice', _('e-Invoice address')))
     
     @api.one
     def name_get(self):
