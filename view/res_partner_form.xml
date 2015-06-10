@@ -41,7 +41,7 @@
                     
                         <field name="address_contact_recursive_ids"
                         		context="{
-                        			'form_view_ref': 'res_partner_address_customizations.view_partner_simple_contact_form',
+                        			'form_view_ref': 'crm_address_simplification.view_partner_simple_contact_form',
 		                        	'default_parent_id': active_id, 
 		                        	'default_type': 'contact', 
 		                        	'default_is_company': False, 
@@ -87,7 +87,7 @@
 					<!-- eInvoice addresses -->
                     <page string="eInvoice" attrs="{'invisible': [('is_company','=',False)]}">
                         <field name="address_einvoice_ids" context="{
-                        		'form_view_ref': 'res_partner_address_customizations.view_partner_simple_einvoice_form',
+                        		'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
 	                        	'default_parent_id': active_id,
 	                        	'default_name': 'Verkkolaskuosoite', 
 	                        	'default_type': 'invoice', 
