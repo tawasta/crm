@@ -8,7 +8,7 @@
 			<field eval="20" name="priority"/>
 			
 			<field name="arch" type="xml">
-				<form string="e-Invoice">
+				<form string="e-Invoice address">
 					<sheet>
 						<group>
 							<group style="width: 60%;">

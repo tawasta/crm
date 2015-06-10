@@ -85,7 +85,7 @@
                     </page>
 
 					<!-- eInvoice addresses -->
-                    <page string="eInvoice" attrs="{'invisible': [('is_company','=',False)]}">
+                    <page string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
                         <field name="address_einvoice_ids" context="{
                         		'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
 	                        	'default_parent_id': active_id,
