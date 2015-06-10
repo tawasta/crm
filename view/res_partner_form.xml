@@ -64,6 +64,7 @@
                     
                         <field name="address_affiliate_ids" context="{
 								'form_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_form',
+								'tree_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_tree',
 	                       		'default_parent_id': active_id, 
 	                       		'default_type': 'delivery', 
 	                       		'default_is_company': True, 
@@ -75,13 +76,6 @@
 	                        	'default_zip': zip,
 	                        	'default_contry_id': country_id,
                        		}">
-                	   		<tree delete="false">
-                	   			<field name='customer_number' string='#' />
-	                       		<field name='name' />
-	                       		<field name='phone' />
-	                       		<field name='email' />
-	                       		<field name='businessid' />
-                       		</tree>
                         </field>
                     </page>
 
