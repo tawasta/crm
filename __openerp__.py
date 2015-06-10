@@ -20,6 +20,15 @@
     'website': 'http://www.tawasta.fi',
     'depends': ['crm', 'sale_business_id', 'crm_customer_account_number_gen'],
     'description': '''
+CRM Address Simplification
+--------------------------
+
+Simplifies address types and improves CRM readibility and usability
+
+
+Features
+--------
+
 * Simplifies partner types to 'contact', 'delivery' and 'invoice'
 * Adds notebook pages for each partner type
 * Simpilfies adding partners by type directly from according notebook pages
