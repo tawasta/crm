@@ -18,11 +18,15 @@ class mail_message(osv.Model):
                 For some reason the author_id is False if a new partner was created
             '''
             if values.get('author_id') == False:
+                ''' TODO: This doesn't seem to do anything? '''
                 email_from = values.get('email_from')
                 email_regex = re.compile("[<][^>]+[>]")
                 
-                email = email_regex.findall(email_from)[0]
-                email = re.sub(r'[<>]', "", email)
+                try:
+                    email = email_regex.findall(email_from)[0]
+                    email = re.sub(r'[<>]', "", email)
+                except IndexError, e:
+                    _logger.warn(e)
 
                 values['author_id'] = self.get_author_by_email(cr, uid, values, context)
                 
@@ -34,8 +38,12 @@ class mail_message(osv.Model):
         email_from = values.get('email_from')
         email_regex = re.compile("[<][^>]+[>]")
         
-        email = email_regex.findall(email_from)[0]
-        email = re.sub(r'[<>]', "", email)
+        try:
+            email = email_regex.findall(email_from)[0]
+            email = re.sub(r'[<>]', "", email)
+        except IndexError, e:
+            _logger.warn(e)
+            email = False
     
         author = self.pool.get('res.partner').search(cr, uid, [('email','=',email)])
         
