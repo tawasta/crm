@@ -8,7 +8,7 @@ class ResPartner(models.Model):
     show_all = fields.Boolean('Show all fields')
     
     # This field is only a helper for "is company"
-    personal_customer = fields.Boolean('Personal Customer', domain={('invisible','=',True)}, help="A customer that's not a company")
+    personal_customer = fields.Boolean('Personal Customer', help="A customer that's not a company")
     
     @api.onchange('personal_customer')
     def personal_customer_onchange(self):
