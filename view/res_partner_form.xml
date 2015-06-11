@@ -42,6 +42,7 @@
                         <field name="address_contact_recursive_ids"
                         		context="{
                         			'form_view_ref': 'crm_address_simplification.view_partner_simple_contact_form',
+                        			'tree_view_ref': 'crm_address_simplification.view_partner_simple_contact_tree',
 		                        	'default_parent_id': active_id, 
 		                        	'default_type': 'contact', 
 		                        	'default_is_company': False, 
@@ -56,26 +57,20 @@
 		                        	'default_customer': customer,
                         		}"
                         	>
-                        	
-                        	<tree delete="false">
-                        		<field name='customer_number' string='#' />
-                        		<field name='name' />
-                        		<field name='phone' />
-                        		<field name='email' />
-                        		<field name='parent_id'/>
-                        	</tree>
+
                         </field>
                         
                     </page>
 
                     <page string="Affiliates" attrs="{'invisible': [('is_company','=',False)]}">
                     
-                        <field name="address_affiliate_ids" context="{
+                        <field name="address_affiliate_ids" 
+                        	context="{
 								'form_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_form',
 								'tree_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_tree',
-	                       		'default_parent_id': id, 
+	                       		'default_parent_id': id,
 	                       		'default_type': 'delivery', 
-	                       		'default_is_company': True, 
+	                       		'default_is_company': True,
 	                       		'default_use_parent_address': True,
                  			  	'default_street': street,
 	                        	'default_street2': street2,
@@ -91,19 +86,16 @@
 
 					<!-- eInvoice addresses -->
                     <page string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
-                        <field name="address_einvoice_ids" context="{
+                        <field name="address_einvoice_ids" 
+                        	context="{
                         		'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
+                        		'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
 	                        	'default_parent_id': active_id,
 	                        	'default_name': 'Verkkolaskuosoite', 
 	                        	'default_type': 'invoice', 
 	                        	'default_is_company': True, 
 	                        	'default_use_parent_address': False
                         	}">
-                        	<tree delete="false">
-	                       		<field name='name' />
-	                       		<field name='edicode' />
-	                       		<field name='einvoice_operator' />
-                       		</tree>
                         </field>
                     </page>
                     
