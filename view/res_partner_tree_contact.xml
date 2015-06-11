@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Affiliate simple tree view -->
+		<record model="ir.ui.view" id="view_partner_simple_affiliate_tree">
+			<field name="name">Affiliate simplified form view</field>
+			<field name="model">res.partner</field>
+			<field eval="20" name="priority"/>
+			
+			<field name="arch" type="xml">
+   	
+               	<tree delete="false">
+               		<field name='customer_number' string='#' />
+               		<field name='name' />
+               		<field name='phone' />
+               		<field name='email' />
+               		<field name='parent_id'/>
+               	</tree>
+
+			</field>
+		</record>
+	</data>
+</openerp>
