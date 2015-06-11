@@ -1,16 +1,18 @@
 <?xml version="1.0"?>
 <openerp>
 	<data>
-		<!-- Contact simple form view -->
+		<!-- Affiliate simple form view -->
 		<record model="ir.ui.view" id="view_partner_simple_affiliate_form">
 			<field name="name">Affiliate simplified form view</field>
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form"/>
-			<field eval="20" name="priority"/>
+			<field eval="30" name="priority"/>
 			
 			<field name="arch" type="xml">
-
-				<notebook position='replace' />
+			
+				<field name="name" position="after>
+					<!-- A placeholder field -->
+				</field>
 
 			</field>
 		</record>
