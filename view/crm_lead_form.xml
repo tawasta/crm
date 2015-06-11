@@ -68,7 +68,7 @@
 						</div>
 					</div>
                  	
-                 	<div id='lead'>
+                 	<div id='lead' style='margin-left: 2em;'>
 			            <div id="contact_info" style='margin-bottom: 2em;'>
 			            	<h2>Contact</h2>
 		                    <group>
@@ -104,6 +104,7 @@
 							        domain="[('object_id.model','=','crm.lead')]"
 							        context="{'object_name': 'crm.lead'}"
 							    />
+							    <field name="probability" />
 							    
 							    <field name="show_all" />
 							</group>
@@ -118,7 +119,7 @@
 	                        <field name="description"/>
 	                    </page>
 	                    
-	                    <page string="Extra Info">
+	                    <page string="Extra Info" invisible='1'>
 	                        <group>
 	                            <group string="Categorization" groups="base.group_multi_company,base.group_no_one" name="categorization">
 	                                <field name="company_id"
@@ -130,7 +131,6 @@
 	                                <field name="message_bounce"/>
 	                            </group>
 	                            <group string="Misc">
-	                                <field name="probability" groups="base.group_no_one"/>
 	                                <field name="active"/>
 	                                <field name="referred"/>
 	                            </group>
@@ -146,7 +146,7 @@
 	                    
 			</sheet>
 			</sheet>
-			        
+			      
 			</field>
         </record>
         
