@@ -19,8 +19,8 @@
                 	<attribute name='invisible'>1</attribute>
                 </div>
                 
-                <field name='use_parent_address' position='attributes'>
-					<attribute name='attrs'>{'invisible': [('parent_id', '=', False)]}</attribute>
+                <field name='use_parent_address' position='replace'>
+					<field name='use_parent_address' attrs="{'invisible': [('parent_id', '=', False)]}" />
                 </field>
                 
                 <label for="use_parent_address" position='attributes'>

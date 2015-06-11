@@ -5,7 +5,6 @@ from openerp.tools.translate import _
 import logging
 _logger = logging.getLogger(__name__)
 
-
 class ResPartner(models.Model):
 
     _inherit = 'res.partner'
@@ -79,6 +78,25 @@ class ResPartner(models.Model):
                         'use_parent_address': contact.use_parent_address,
                     }
                     self.create(contact_values)
+    
+    @api.one
+    @api.onchange('use_parent_address')
+    def onchange_use_parent_address(self):
+        ''' Updates address values from the parent '''
+           
+        def value_or_id(val):
+            """ return val or val.id if val is a browse record """
+            return val if isinstance(val, (bool, int, long, float, basestring)) else val.id
+        
+        if self.parent_id and self.use_parent_address:
+            values = dict((key, value_or_id(self.parent_id[key])) for key in self._address_fields())
+            
+            ''' Can't use self.write, as it doesn't update the fields '''
+            # self.write(values)
+            
+            ''' Set the address fields from the parent '''
+            for key, value in values.iteritems():
+                setattr(self, key, value)
 
     ''' Columns '''
     type = fields.Selection(TYPES_ARRAY, 'Address Type')
