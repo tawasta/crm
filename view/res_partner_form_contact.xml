@@ -10,19 +10,45 @@
 			<field name="arch" type="xml">
 				<form string="Contact">
 					<sheet>
-						<group>
-							<group style="width: 60%;">
-								<field name="name" />
-								<field name="phone" />
-								<field name="email" />
-								<field name="function" />
-								
-								<field name="is_company" invisible='1'/>
-								<field name="company_id" invisible='1'/>
-								<field name="type" invisible='1'/>
-								<field name="use_parent_address" invisible='1'/>
-							</group>
-						</group>
+						<field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+						
+	                   	<div class="oe_title" style="margin-bottom: 2em;">
+	                        <label for="name" class="oe_edit_only"/>
+	                        <h1><field name="name" style="width: 100%%"/></h1>
+	                        <field name="category_id" widget="many2many_tags" placeholder="Tags..." style="width: 100%%"/>
+	                    </div>
+	                    
+	                    <div id='info' style="width: 70%%; margin-bottom: 2em;">
+		                    <group>
+		                        <field name="function" placeholder="e.g. Sales Director"/>
+		                        <field name="email"/>
+		                        <field name="phone"/>	                    
+		                    </group>
+		                </div>
+	                    
+	                    <div id='use_parent_address'>
+	                        <field name="use_parent_address"/>
+	                        <label for="use_parent_address"/>
+	                    </div>
+	                    
+	                    <div id='parent_address' style="width: 70%%">
+		                    <group>
+		                        <label for="street" string="Address" attrs="{'invisible': [('use_parent_address','=', True)]}"/>
+		                        
+		                        <div attrs="{'invisible': [('use_parent_address','=', True)]}" name="div_address">
+		                            <field name="street" placeholder="Street..."/>
+		                            <field name="street2" />
+		                            <div class="address_format">
+		                                <field name="city" placeholder="City" style="width: 40%%" />
+		                                <field name="zip" placeholder="ZIP" style="width: 25%%" />
+		                                <field name="country_id" placeholder="Country" style="width: 35%%" class="oe_no_button" options='{"no_open": True, "no_create": True}'/>
+		                            </div>
+		                        </div>
+		                    </group>
+		             	</div>
+	                    
+	                    <field name="supplier" invisible="True"/>
+	                    <field name="customer" invisible="True"/>
 					</sheet>
 				</form>
 			</field>
