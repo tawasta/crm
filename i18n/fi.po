@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-11 09:15+0000\n"
-"PO-Revision-Date: 2015-06-11 12:15+0200\n"
+"PO-Revision-Date: 2015-06-11 12:19+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Näytä kaikki kentät"
 #. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
 msgid "State"
-msgstr "Valtio"
+msgstr "Osavaltio"
 
 #. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
