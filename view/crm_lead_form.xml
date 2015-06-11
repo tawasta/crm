@@ -36,7 +36,7 @@
                 
                 <group>
 	                
-                 	<div id='lead' style='margin-left: 2em;'>
+                 	<div id='lead'>
 			            <div id="contact_info" style='margin-bottom: 2em;'>
 			            	<h2>Contact</h2>
 		                    <group>
@@ -79,7 +79,7 @@
 	                 	</div>
 	                 </div>
                  	
-					<div id='customer'>
+					<div id='customer' style='margin-left: 2em;'>
 	                
 						<div id='customer_info' style='margin-bottom: 2em;'>
 							<h2>Customer</h2>
