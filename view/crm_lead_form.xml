@@ -35,39 +35,7 @@
                 </div>
                 
                 <group>
-	                <div id='customer'>
 	                
-						<div id='customer_info' style='margin-bottom: 2em;'>
-							<h2>Customer</h2>
-								                	
-							<group>
-								<!-- Preload all the partner's information -->
-							    <field name="partner_id" string="Customer" options='{"no_open": True, "no_create": True}' />
-							   	
-								<field name="partner_name" string="Company Name"/>
-							</group>
-						</div>
-						
-						<div id='customer_address'>
-							<h2>Address</h2>
-							
-							<group>
-								<label for="street" string="Address"/>
-							   	<div id='address'>
-							        <field name="street" placeholder="Street..."/>
-							        <field name="street2"/>
-							        <div class="address_format">
-							            <field name="city" placeholder="City" style="width: 60%%"/>
-							            <field name="zip" placeholder="ZIP" style="width: 40%%"/>
-							        </div>
-							        
-							        <field name='state_id' placeholder='State' attrs="{'invisible':[('show_all','=',False)]}" on_change="onchange_state(state_id)" options='{"no_open": True}'/>
-							        <field name="country_id" placeholder="Country" options='{"no_open": True, "no_create": True}'/>
-							    </div>
-							</group>
-						</div>
-					</div>
-                 	
                  	<div id='lead' style='margin-left: 2em;'>
 			            <div id="contact_info" style='margin-bottom: 2em;'>
 			            	<h2>Contact</h2>
@@ -110,6 +78,39 @@
 							</group>
 	                 	</div>
 	                 </div>
+                 	
+					<div id='customer'>
+	                
+						<div id='customer_info' style='margin-bottom: 2em;'>
+							<h2>Customer</h2>
+								                	
+							<group>
+								<!-- Preload all the partner's information -->
+							    <field name="partner_id" string="Customer" options='{"no_open": True, "no_create": True}' />
+							   	
+								<field name="partner_name" string="Company Name"/>
+							</group>
+						</div>
+						
+						<div id='customer_address'>
+							<h2>Address</h2>
+							
+							<group>
+								<label for="street" string="Address"/>
+							   	<div id='address'>
+							        <field name="street" placeholder="Street..."/>
+							        <field name="street2"/>
+							        <div class="address_format">
+							            <field name="city" placeholder="City" style="width: 60%%"/>
+							            <field name="zip" placeholder="ZIP" style="width: 40%%"/>
+							        </div>
+							        
+							        <field name='state_id' placeholder='State' attrs="{'invisible':[('show_all','=',False)]}" on_change="onchange_state(state_id)" options='{"no_open": True}'/>
+							        <field name="country_id" placeholder="Country" options='{"no_open": True, "no_create": True}'/>
+							    </div>
+							</group>
+						</div>
+					</div>
                  	
              	</group>
 	
