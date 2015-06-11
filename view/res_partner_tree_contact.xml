@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <openerp>
 	<data>
-		<!-- Affiliate simple tree view -->
-		<record model="ir.ui.view" id="view_partner_simple_affiliate_tree">
-			<field name="name">Affiliate simplified form view</field>
+		<!-- Contact simple tree view -->
+		<record model="ir.ui.view" id="view_partner_simple_contact_tree">
+			<field name="name">Contact simplified form view</field>
 			<field name="model">res.partner</field>
 			<field eval="20" name="priority"/>
 			
