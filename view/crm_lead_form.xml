@@ -1,0 +1,170 @@
+<openerp>
+    <data>
+        <record id="crm_lead_simplified_form_view" model="ir.ui.view">
+			<field name="name">CRM Lead form view</field>
+			<field name="model">crm.lead</field>
+			<field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+			<field name="arch" type="xml">
+            
+            <!-- 
+            	Replace the whole sheet for easier customization.
+				We are not creating a new form with different id to allow inheriting 
+				with the original id, i.e. for compatibility with other modules.
+				
+				We are also not overriding the whole id (crm.crm_case_form_view_leads)
+				As the header is fine as it is.
+            -->
+            
+			<sheet position='replace'>
+        	<sheet>
+        	
+        		<!-- No modifications to this div -->
+	            <div class="oe_right oe_button_box" name="buttons">
+	                <button class="oe_inline oe_stat_button" type="action"
+	                    context="{'default_opportunity_id': active_id, 'search_default_opportunity_id': active_id, 'default_partner_id': partner_id, 'default_duration': 1.0}"
+	                    name="%(crm.crm_case_categ_phone_incoming0)d" icon="fa-phone">
+	                    <div>Schedule/Log<br/>Calls</div>
+	                </button>
+	            </div>
+	            
+	            <!-- No modifications to this div -->
+                <div class="oe_title" style='margin-bottom: 2em;'>
+                    <h2><label for="name" class="oe_edit_only"/></h2>
+                    <h1><field name="name" placeholder="Describe the lead..."/></h1>
+                </div>
+                
+                <group>
+	                <div id='customer'>
+	                
+						<div id='customer_info' style='margin-bottom: 2em;'>
+							<h2>Customer</h2>
+								                	
+							<group>
+								<!-- Preload all the partner's information -->
+							    <field name="partner_id" string="Customer"
+							        on_change="on_change_partner_id(partner_id)"
+							        options='{"create_name_field": "name"}'
+							        context="{
+							        	'default_name': contact_name,
+							        	'default_street': street, 
+							        	'default_city': city, 
+							        	'default_state_id': state_id, 
+							        	'default_zip': zip, 
+							        	'default_country_id': country_id, 
+							        	'default_function': function, 
+							        	'default_phone': phone, 
+							        	'default_mobile': mobile, 
+							        	'default_fax': fax, 
+							        	'default_email': email_from, 
+							        	'default_user_id': user_id, 
+							        	'default_section_id': section_id}"
+							   	/>
+							   	
+								<field name="partner_name" string="Company Name"/>
+							</group>
+						</div>
+						
+						<div id='customer_address'>
+							<h2>Address</h2>
+							
+							<group>
+								<label for="street" string="Address"/>
+							   	<div id='address'>
+							        <field name="street" placeholder="Street..."/>
+							        <field name="street2"/>
+							        <div class="address_format">
+							            <field name="city" placeholder="City" style="width: 60%%"/>
+							            <field name="zip" placeholder="ZIP" style="width: 40%%"/>
+							        </div>
+							        
+							        <field name='state_id' placeholder='State' attrs="{'invisible':[('show_all','=',False)]}" on_change="onchange_state(state_id)" options='{"no_open": True}'/>
+							        <field name="country_id" placeholder="Country" options='{"no_open": True, "no_create": True}'/>
+							    </div>
+							</group>
+						</div>
+					</div>
+                 	
+                 	<div id='lead'>
+			            <div id="contact_info" style='margin-bottom: 2em;'>
+			            	<h2>Contact</h2>
+		                    <group>
+								<field name="contact_name" />
+								<field name="email_from" widget="email"/>
+			                    <field name="phone"/>
+			                    <field name="mobile" attrs="{'invisible':[('show_all','=',False)]}"/>
+			                    <field name="fax" attrs="{'invisible':[('show_all','=',False)]}"/>
+			                    <field name="function" placeholder="e.g. Sales Director" string="Function"/>
+		                    </group>
+			            </div>
+			               
+			            <div id='lead_info'>
+			            	<h2>Lead</h2>
+	
+	                        <group>
+	                        	<field name="priority" widget="priority"/>
+	                        
+	                            <field name="user_id" on_change="on_change_user(user_id, context)" options='{"no_open": True, "no_create": True}'
+	                                context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'base.group_sale_salesman_all_leads'] }"/>
+	                            
+	                            <label for="section_id" groups="base.group_multi_salesteams"/>
+	                            <div groups="base.group_multi_salesteams">
+	                                <field name="section_id"/>
+	                                <button name="case_escalate" string="Escalate"
+	                                        type="object" class="oe_link"
+	                                        attrs="{'invisible': ['|', ('section_id','=',False), ('probability', '=', 100)]}"/>
+	                            </div>
+	                            
+	                            <field name="type" invisible="1"/>
+							    <field name="categ_ids"
+							        widget="many2many_tags"
+							        domain="[('object_id.model','=','crm.lead')]"
+							        context="{'object_name': 'crm.lead'}"
+							    />
+							    
+							    <field name="show_all" />
+							</group>
+	                 	</div>
+	                 </div>
+                 	
+             	</group>
+	
+				<div id='notebook' >
+                    <notebook colspan="4">
+	                    <page string="Internal Notes">
+	                        <field name="description"/>
+	                    </page>
+	                    
+	                    <page string="Extra Info">
+	                        <group>
+	                            <group string="Categorization" groups="base.group_multi_company,base.group_no_one" name="categorization">
+	                                <field name="company_id"
+	                                    groups="base.group_multi_company"
+	                                    widget="selection"/>
+	                            </group>
+	                            <group string="Mailings">
+	                                <field name="opt_out"/>
+	                                <field name="message_bounce"/>
+	                            </group>
+	                            <group string="Misc">
+	                                <field name="probability" groups="base.group_no_one"/>
+	                                <field name="active"/>
+	                                <field name="referred"/>
+	                            </group>
+	                            <group>
+	                                <field name="date_open" groups="base.group_no_one"/>
+	                                <field name="date_closed" groups="base.group_no_one"/>
+	                            </group>
+	                        </group>
+	                    </page>
+	                    
+                    </notebook>
+	            </div>
+	                    
+			</sheet>
+			</sheet>
+			        
+			</field>
+        </record>
+        
+    </data>
+</openerp>

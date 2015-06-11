@@ -25,10 +25,10 @@
                     
                     <!-- Fix city and zip width -->
                  	<field name='city' position='attributes'>
-                    	<attribute name='style'>width: 60%</attribute>
+                    	<attribute name='style'>width: 60%%</attribute>
                     </field>
                  	<field name='zip' position='attributes'>
-                    	<attribute name='style'>width: 40%</attribute>
+                    	<attribute name='style'>width: 40%%</attribute>
                     </field>
                     
                     <!-- Set some placeholders -->
@@ -48,7 +48,7 @@
                     <!-- Move the state field after zip code and hide it -->
                     <field name='state_id' position='replace' />
                     <field name='country_id' position='before'>
-                    	<field name='state_id' attrs="{'invisible':[('show_all','=',False)]}" placeholder='State' />
+                    	<field name='state_id' attrs="{'invisible':[('show_all','=',False)]}" placeholder='State' on_change="onchange_state(state_id)" options='{"no_open": True}'/>
                     </field>
                     
                     <!-- Add a 'show all' checkbox -->

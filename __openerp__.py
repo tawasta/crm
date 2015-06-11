@@ -24,5 +24,6 @@
 ''',
     'data': [
         'view/res_partner_form.xml',
+        'view/crm_lead_form.xml',
     ],
 }
