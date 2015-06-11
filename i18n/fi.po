@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 07:39+0000\n"
-"PO-Revision-Date: 2015-05-29 10:41+0200\n"
+"POT-Creation-Date: 2015-06-11 09:15+0000\n"
+"PO-Revision-Date: 2015-06-11 12:15+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,11 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 
 #. module: crm_simplification
+#: help:res.partner,personal_customer:0
+msgid "A customer that's not a company"
+msgstr "Asiakas, joka ei ole yritys"
+
+#. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
 msgid "Email"
 msgstr "Sähköposti"
@@ -26,6 +31,11 @@ msgstr "Sähköposti"
 #: model:ir.model,name:crm_simplification.model_res_partner
 msgid "Partner"
 msgstr "Kumppani"
+
+#. module: crm_simplification
+#: field:res.partner,personal_customer:0
+msgid "Personal Customer"
+msgstr "Henkilöasiakas"
 
 #. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
