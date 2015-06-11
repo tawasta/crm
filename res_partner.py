@@ -8,11 +8,11 @@ class ResPartner(models.Model):
     show_all = fields.Boolean('Show all fields')
     
     # This field is only a helper for "is company"
-    retail_customer = fields.Boolean('Retail Customer')
+    personal_customer = fields.Boolean('Personal Customer', domain={('invisible','=',True)}, help="A customer that's not a company")
     
-    @api.onchange('retail_customer')
-    def retail_customer_onchange(self):
-        if self.retail_customer:
+    @api.onchange('personal_customer')
+    def personal_customer_onchange(self):
+        if self.personal_customer:
             self.is_company = False
         else:
             self.is_company = True
@@ -20,6 +20,6 @@ class ResPartner(models.Model):
     @api.onchange('is_company')
     def is_company_onchange(self):
         if self.is_company:
-            self.retail_customer = False
+            self.personal_customer = False
         else:
-            self.retail_customer = True
+            self.personal_customer = True
