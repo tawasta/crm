@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 07:30+0000\n"
-"PO-Revision-Date: 2015-06-10 13:23+0200\n"
+"POT-Creation-Date: 2015-06-11 08:45+0000\n"
+"PO-Revision-Date: 2015-06-11 11:49+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,17 +31,22 @@ msgid ""
 "            "
 msgstr ""
 "<p class=\"oe_view_nocontent_create\">\n"
-"Klikkaa lisätäksesi kontaktin osoitekirjaasi.\n"
+"Klikkaa lisätäksesi uuden kumppanin osoitekirjaan.\n"
 "</p>\n"
 "<p>\n"
-"Odoo auttaa seuraamaan kaikkia asiakkaaseen liittyviä toimintoja:\n"
+"Odoo auttaa seuraamaan kaikkia asiakkaaseen liittyvää:\n"
 "keskusteluja, mahdollisuuksia, myyntejä, dokumentteja yms.\n"
 "</p>\n"
 "            "
 
 #. module: crm_address_simplification
-#: code:addons/crm_address_simplification/res_partner.py:24
-#: code:addons/crm_address_simplification/res_partner.py:90
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "Address"
+msgstr "Osoite"
+
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:23
+#: code:addons/crm_address_simplification/res_partner.py:108
 #: field:res.partner,address_affiliate_ids:0
 #, python-format
 msgid "Affiliate"
@@ -53,8 +58,13 @@ msgid "Affiliates"
 msgstr "Toimipaikat"
 
 #. module: crm_address_simplification
-#: code:addons/crm_address_simplification/res_partner.py:24
-#: code:addons/crm_address_simplification/res_partner.py:88
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "City"
+msgstr "Kaupunki"
+
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:23
+#: code:addons/crm_address_simplification/res_partner.py:106
 #: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
 #, python-format
 msgid "Contact"
@@ -64,6 +74,11 @@ msgstr "Yhteyshenkilö"
 #: view:res.partner:crm_address_simplification.res_partner_custom_form_view
 msgid "Contacts"
 msgstr "Yhteyshenkilöt"
+
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "Country"
+msgstr "Maa"
 
 #. module: crm_address_simplification
 #: model:ir.actions.act_window,name:crm_address_simplification.action_partner_form
@@ -76,18 +91,44 @@ msgid "Edicode"
 msgstr "OVT-koodi"
 
 #. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.view_partner_simple_einvoice_form
+msgid "Name"
+msgstr "Nimi"
+
+#. module: crm_address_simplification
 #: model:ir.model,name:crm_address_simplification.model_res_partner
 msgid "Partner"
 msgstr "Kumppani"
 
 #. module: crm_address_simplification
-#: code:addons/crm_address_simplification/res_partner.py:24
-#: code:addons/crm_address_simplification/res_partner.py:89
-#: view:res.partner:crm_address_simplification.view_partner_simple_einvoice_form
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "Street..."
+msgstr "Katu..."
+
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "Tags..."
+msgstr "Tunnisteet..."
+
+#. module: crm_address_simplification
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "ZIP"
+msgstr "Postinumero"
+
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:107
+#: view:res.partner:crm_address_simplification.res_partner_custom_form_view
 #: field:res.partner,address_einvoice_ids:0
 #, python-format
 msgid "e-Invoice"
 msgstr "Verkkolasku"
+
+#. module: crm_address_simplification
+#: code:addons/crm_address_simplification/res_partner.py:23
+#: view:res.partner:crm_address_simplification.view_partner_simple_einvoice_form
+#, python-format
+msgid "e-Invoice address"
+msgstr "Verkkolaskuosoite"
 
 #. module: crm_address_simplification
 #: field:res.partner,einvoice_operator:0
@@ -95,9 +136,9 @@ msgid "e-Invoice operator"
 msgstr "Verkkolaskuoperaattori"
 
 #. module: crm_address_simplification
-#: view:res.partner:crm_address_simplification.res_partner_custom_form_view
-msgid "eInvoice"
-msgstr "Verkkolasku"
+#: view:res.partner:crm_address_simplification.view_partner_simple_contact_form
+msgid "e.g. Sales Director"
+msgstr "esim. Myyntijohtaja"
 
 #. module: crm_address_simplification
 #: view:res.partner:crm_address_simplification.res_partner_custom_form_view
