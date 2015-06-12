@@ -82,8 +82,7 @@
 							<h2>Customer</h2>
 								                	
 							<group>
-								<!-- Preload all the partner's information -->
-							    <field name="partner_id" string="Customer" options='{"no_open": True, "no_create": True}' />
+							    <field name="partner_id" string="Customer" options='{"no_create": True}' />
 							   	
 								<field name="partner_name" string="Company Name" attrs="{'readonly': [('partner_id', '!=', False)]}"/>
 							</group>
