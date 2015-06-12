@@ -84,7 +84,7 @@
 							<group>
 							    <field name="partner_id" string="Customer" options='{"no_create": True}' />
 							   	
-								<field name="partner_name" string="Company Name" attrs="{'readonly': [('partner_id', '!=', False)]}"/>
+								<field name="partner_name" string="Company Name" attrs="{'invisible': [('partner_id', '!=', False)]}"/>
 							</group>
 						</div>
 						
