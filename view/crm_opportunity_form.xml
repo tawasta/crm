@@ -7,6 +7,15 @@
 			<field name="priority" eval="19" />
 			<field name="arch" type="xml">
             
+            
+            <field name='stage_id' position='replace'>
+	            <field name="stage_id"
+	            	widget="statusbar"
+	            	clickable="True"
+	            	domain="['|', ('type', '=', type), ('type', '=', 'both')]"
+	            />
+            </field>
+            
             <!-- 
             	Replace the whole sheet for easier customization.
 				We are not creating a new form with different id to allow inheriting 
