@@ -70,7 +70,7 @@
 							        domain="[('object_id.model','=','crm.lead')]"
 							        context="{'object_name': 'crm.lead'}"
 							    />
-							    <field name="probability" />
+							    <field name="probability" widget="integer"/>
 							    
 							</group>
 	                 	</div>
