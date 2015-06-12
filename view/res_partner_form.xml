@@ -51,12 +51,19 @@
                     	<field name='state_id' attrs="{'invisible':[('show_all','=',False)]}" placeholder='State' on_change="onchange_state(state_id)" options='{"no_open": True}'/>
                     </field>
                     
-                    <!-- Add a 'show all' checkbox -->
+                    <!-- Add a 'personal_customer' helper checkbox -->
                     <field name='title' position='after'>
                    		<field name='is_company' invisible='1' />
                     	<field name='personal_customer' attrs="{'invisible':[('type','!=','contact')]}"/>
-                    	<field name='show_all' />
                     </field>
+                    
+                    <!-- Add a 'show all' checkbox after the main group -->
+                    <xpath expr="//group[1]" position="after">
+		             	<div id='show_all' class="oe_right">
+		             		<label for="show_all" />
+		             		<field name="show_all" />
+		             	</div>
+		            </xpath>
                     
                     <!-- Clean up the 'Sales & Purchases'-page -->
                     <field name='ref' position='attributes'>
