@@ -20,12 +20,27 @@
     'website': 'http://www.tawasta.fi',    
     'depends': ['crm_address_simplification'],
     'description': '''
-* Hides obsolete fields
+CRM Simplification
+==================
+
+Simplifies CRM views and pipeline
+
+
+Features
+========
+* Adds 'My leads' as a default filter for leads
+* Cleans up the customer form
+* Cleans up the lead form
+* Cleans up the opportunity form
+* Unifies lead and opportunity form syntax
 ''',
     'data': [
         'view/res_partner_form.xml',
+        
         'view/crm_lead_form.xml',
         'view/crm_lead_menu.xml',
         'view/crm_lead_search.xml',
+        
+        'view/crm_opportunity_form.xml',
     ],
 }
