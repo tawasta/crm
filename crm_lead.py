@@ -9,17 +9,17 @@ class CrmLead(models.Model):
     
     LEAD_FIELDS = {
         'name': 'partner_name',
-        'title': 'title', 
         'street': 'street', 
         'city': 'city', 
         'zip': 'zip', 
         'state_id': 'state_id', 
         'country_id': 'country_id',
-        'email': 'email_from', 
-        'phone': 'phone', 
-        'mobile': 'mobile', 
-        'fax': 'fax',
-        'function': 'function'
+        #'email': 'email_from', 
+        #'phone': 'phone', 
+        #'mobile': 'mobile', 
+        #'fax': 'fax',
+        #'function': 'function'
+        #'title': 'title', 
     }
     
     @api.one
