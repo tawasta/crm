@@ -74,7 +74,6 @@
 							    />
 							    <field name="probability" />
 							    
-							    <field name="show_all" />
 							</group>
 	                 	</div>
 	                 </div>
@@ -113,6 +112,11 @@
 					</div>
                  	
              	</group>
+             	
+             	<div id='show_all' class="oe_right">
+             		<label for="show_all" />
+             		<field name="show_all" />
+             	</div>
 	
 				<div id='notebook' >
                     <notebook colspan="4">
