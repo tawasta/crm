@@ -10,7 +10,7 @@
 			
 			<field name="arch" type="xml">
 			
-				<field name="name" position="after>
+				<field name="name" position="after">
 					<!-- A placeholder field -->
 				</field>
 
