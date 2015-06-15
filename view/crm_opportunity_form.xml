@@ -91,8 +91,8 @@
 								<group>
 								    <field name="title_action" />
 								    <field name="date_deadline" />
-	                                <field name="day_open" groups="base.group_no_one"/>
-	                                <field name="day_close" groups="base.group_no_one"/>
+	                                <field name="day_open" groups="base.group_no_one" string="Days to assign" />
+	                                <field name="day_close" groups="base.group_no_one" string="Days to close" />
 								</group>
 							</div>
 	                 	</div>

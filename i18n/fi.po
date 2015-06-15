@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-15 12:23+0000\n"
-"PO-Revision-Date: 2015-06-15 15:25+0200\n"
+"POT-Creation-Date: 2015-06-15 12:28+0000\n"
+"PO-Revision-Date: 2015-06-15 15:33+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,16 @@ msgstr "Maa"
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 msgid "Customer"
 msgstr "Asiakas"
+
+#. module: crm_simplification
+#: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
+msgid "Days to assign"
+msgstr "Liidi avoinna"
+
+#. module: crm_simplification
+#: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
+msgid "Days to close"
+msgstr "Sulkemisen kesto"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
@@ -142,7 +152,7 @@ msgstr "Sekalaiset"
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.view_crm_case_leads_filter_addition
 msgid "My Leads"
-msgstr "Omat liidit"
+msgstr "My Leads"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
@@ -168,7 +178,7 @@ msgstr "Puhelin"
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 msgid "Schedule/Log"
-msgstr "Aikataulu/Loki"
+msgstr "Aikatalu/loki"
 
 #. module: crm_simplification
 #: field:crm.lead,show_all:0 field:res.partner,show_all:0
