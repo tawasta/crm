@@ -56,18 +56,7 @@
                 
                 <group>
                  	<div id='opportunity'>
-			            <div id="contact_info" style='margin-bottom: 2em;'>
-			            	<h2>Contact</h2>
-		                    <group>
-								<field name="contact_name" />
-								<field name="email_from" widget="email"/>
-			                    <field name="phone"/>
-			                    <field name="mobile" attrs="{'invisible':[('show_all','=',False)]}"/>
-			                    <field name="fax" attrs="{'invisible':[('show_all','=',False)]}"/>
-			                    <field name="function" placeholder="e.g. Sales Director" string="Function"/>
-		                    </group>
-			            </div>
-			               
+                 				               
 			            <div id='opportunity_info'>
 			            	<h2>Opportunity</h2>
 	
@@ -76,7 +65,7 @@
 	                        
 	                            <field name="user_id" on_change="on_change_user(user_id, context)" options='{"no_open": True, "no_create": True}'
 	                                context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'base.group_sale_salesman_all_leads'] }"/>
-	                            
+
 	                            <label for="section_id" groups="base.group_multi_salesteams"/>
 	                            <div groups="base.group_multi_salesteams">
 	                                <field name="section_id"/>
@@ -91,11 +80,13 @@
 							        domain="[('object_id.model','=','crm.lead')]"
 							        context="{'object_name': 'crm.lead'}"
 							    />
+							</group>
+							
+							<group>
 							    <field name="title_action" />
 							    <field name="date_deadline" />
                                 <field name="day_open" groups="base.group_no_one"/>
                                 <field name="day_close" groups="base.group_no_one"/>
-							    
 							</group>
 	                 	</div>
 	                 </div>
@@ -107,6 +98,11 @@
 								                	
 							<group>
 							    <field name="partner_id" string="Customer" options='{"no_create": True}' />
+								<field name="email_from" widget="email"/>
+			                    <field name="phone"/>
+			                    <field name="mobile" attrs="{'invisible':[('show_all','=',False)]}"/>
+			                    <field name="fax" attrs="{'invisible':[('show_all','=',False)]}"/>
+			                    <field name="function" placeholder="e.g. Sales Director" string="Function"/>
 							</group>
 						</div>
 						
