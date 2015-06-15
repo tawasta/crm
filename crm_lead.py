@@ -23,14 +23,25 @@ class CrmLead(models.Model):
     }
     
     @api.one
+    def write(self, vals):
+        if vals.get('partner_id'):
+            partner = self.partner_id
+            
+            vals['street'] = partner.street
+            vals['street2'] = partner.street2
+            vals['city'] = partner.city
+            vals['zip'] = partner.zip
+            vals['country_id'] = partner.country_id.id
+        
+        return super(CrmLead, self).write(vals)
+    
+    @api.one
     @api.onchange('partner_id')
     def partner_id_onchange(self):        
         def value_or_id(val):
             return val if isinstance(val, (bool, int, long, float, basestring)) else val.id
         
         values = dict((value, value_or_id(self.partner_id[key])) for key, value in self.LEAD_FIELDS.iteritems())
-
-        print values
 
         for key, value in values.iteritems():
             setattr(self, key, value)
