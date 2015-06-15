@@ -34,3 +34,37 @@ class CrmLead(models.Model):
 
         for key, value in values.iteritems():
             setattr(self, key, value)
+            
+    @api.multi
+    @api.depends('action', 'partner_id')
+    def handle_partner_assignation(self, action, context):                     
+        partner_ids = {}
+        
+        for lead in self:
+            if lead.partner_id and not lead.contact_name:
+                partner_ids[lead.id] = lead.partner_id.id
+                continue
+            
+            if lead.partner_id and lead.contact_name:
+                partner_id = self._create_lead_partner(lead)
+                
+            if not lead.partner_id and action == 'create':
+                partner_id = self._create_lead_partner(lead)
+                self.env.res_partner.write({'section_id': lead.section_id and lead.section_id.id or False})
+                
+            if partner_id:
+                lead.write({'partner_id': partner_id[0]})
+            partner_ids[lead.id] = partner_id
+        
+        return partner_ids
+    
+    @api.one
+    def _create_lead_partner(self, lead):
+        partner_id = False
+        
+        if self.partner_id and self.contact_name:
+            partner_id = self._lead_create_contact(lead, self.contact_name, False, self.partner_id.id)
+        else:
+            partner_id = super(CrmLead, self)._create_lead_partner()
+            
+        return partner_id
