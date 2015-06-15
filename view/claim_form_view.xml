@@ -46,6 +46,10 @@
 					</page>
 				</notebook>
 
+				<div class='oe_chatter' position='attributes'>
+					<attribute name='class'>oe_chatter oe_read_only</attribute>
+				</div>
+
             </field>
             
 		</record>
