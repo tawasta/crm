@@ -10,10 +10,13 @@ class CrmMakeSale(models.TransientModel):
     
     @api.multi
     def makeOrder(self):
-        _logger.warn(self)
-        
         res = super(CrmMakeSale, self).makeOrder()
         
-        _logger.warn(res)
+        if res['res_model'] == 'sale.order':
+            sale_order = self.env['sale.order'].browse( res['res_id'] )
+            lead = self.env['sale.order'].browse(self._context['active_id'])
+            
+            sale_order.lead_id = lead.id
+            lead.sale_order_id = sale_order.id
         
         return res
