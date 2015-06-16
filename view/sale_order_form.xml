@@ -7,7 +7,7 @@
 			<field name="arch" type="xml">
             
             	<field name="origin" position="after">
-            		<field name="lead_id" />
+            		<field name="lead_id" readonly="1"/>
             	</field>
             
 			</field>
