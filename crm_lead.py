@@ -61,7 +61,7 @@ class CrmLead(models.Model):
                 
             if not lead.partner_id and action == 'create':
                 partner_id = self._create_lead_partner(lead)
-                self.env.res_partner.write({'section_id': lead.section_id and lead.section_id.id or False})
+                self.env['res.partner'].write({'section_id': lead.section_id and lead.section_id.id or False})
                 
             if partner_id:
                 lead.write({'partner_id': partner_id[0]})
@@ -76,6 +76,6 @@ class CrmLead(models.Model):
         if self.partner_id and self.contact_name:
             partner_id = self._lead_create_contact(lead, self.contact_name, False, self.partner_id.id)
         else:
-            partner_id = super(CrmLead, self)._create_lead_partner()
+            partner_id = super(CrmLead, self)._create_lead_partner(lead)
             
         return partner_id
