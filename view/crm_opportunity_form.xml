@@ -82,7 +82,7 @@
 								        domain="[('object_id.model','=','crm.lead')]"
 								        context="{'object_name': 'crm.lead'}"
 								    />
-								    <field name="ref" />
+								    <field name="ref" attrs="{'invisible':[('ref','=',False)]}" />
 								</group>
 							</div>
 							
