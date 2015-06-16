@@ -18,7 +18,7 @@
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
-    'depends': ['crm', 'sale'],
+    'depends': ['sale_crm'],
     'description': '''
 Lead to Sale
 --------------------------
@@ -27,5 +27,7 @@ Adds a relation between lead and sale
 
 ''',
     'data': [
+        'view/crm_lead_form.xml',
+        'view/sale_order_form.xml',
     ],
 }
