@@ -27,11 +27,11 @@ class ResPartner(models.Model):
         return self.id, self._get_recursive_name(self)
     
     @api.one
+    @api.depends('name', 'parent_id.name')
     def _get_display_name(self):
         # Returns a name with a complete hierarchy
-        
-        for record in self:
-            record.display_name = self._get_recursive_name(record)
+
+        self.display_name = self._get_recursive_name(self)
     
     def _get_recursive_name(self, record):
         # Returns a recursive partner name
