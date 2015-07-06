@@ -6,9 +6,15 @@
                 <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
                 
+                    <!-- Always show parent id -->
+                    <field name='parent_id' position='attributes'>
+                    	<attribute name='attrs'>{}</attribute>
+                    	<attribute name='options'>{"no_create": True}</attribute>
+                    </field>
+                    
                     <!-- Hide obsolete fields -->
                     <field name='type' position='attributes'>
-                    	<attribute name='invisible'>1</attribute>
+                    	<attribute name='invisible'>0</attribute>
                     </field>
                     
                     <field name='fax' position='attributes'>
@@ -54,7 +60,7 @@
                     <!-- Add a 'personal_customer' helper checkbox -->
                     <field name='title' position='after'>
                    		<field name='is_company' invisible='1' />
-                    	<field name='personal_customer' attrs="{'invisible':[('type','!=','contact')]}"/>
+                    	<field name='personal_customer'/>
                     </field>
                     
                     <!-- Add a 'show all' checkbox after the main group -->
