@@ -42,5 +42,6 @@ Features
         'view/crm_lead_search.xml',
         
         'view/crm_opportunity_form.xml',
+        'view/crm_make_sale_form.xml',
     ],
 }
