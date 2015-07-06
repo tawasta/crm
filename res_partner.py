@@ -101,7 +101,7 @@ class ResPartner(models.Model):
     ''' Columns '''
     type = fields.Selection(TYPES_ARRAY, 'Address Type')
     
-    display_name = fields.Char(string='Name', compute='_get_display_name')
+    display_name = fields.Char(compute='_get_display_name')
                     
     address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id', string=_('Contact'), compute='_get_contacts', inverse='_set_contacts')
     address_einvoice_ids = fields.One2many('res.partner', 'parent_id', string=_('e-Invoice'), domain=[('type', '=', 'invoice')])
