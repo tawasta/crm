@@ -12,11 +12,11 @@
                 </div>
                 
                 <label for='type' position='attributes'>
-                	<attribute name='invisible'>true</attribute>
+                	<attribute name='invisible'>1</attribute>
                 </label>
                 
                 <div name='div_type' position='attributes'>
-                	<attribute name='invisible'>true</attribute>
+                	<attribute name='invisible'>1</attribute>
                 </div>
                 
                 <field name='use_parent_address' position='replace'>
