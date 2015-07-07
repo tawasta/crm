@@ -33,6 +33,6 @@ Features
 ''',
     'data': [
         'report/crm_claim_report.xml',
-        'report/crm_claim_search.xml',
+        'report/crm_claim_report_search.xml',
     ],
 }

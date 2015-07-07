@@ -3,6 +3,8 @@
 <openerp>
     <data>
     
+    	<!-- CRM Claim Report Action -->
+    	
         <record id="crm_claim.action_report_crm_claim" model="ir.actions.act_window">
             <field name="name">Claims Analysis</field>
             <field name="res_model">crm.claim.report</field>
@@ -10,12 +12,28 @@
             <field name="view_mode">graph</field>
             <field name="context">
             {
-            	'search_default_Stage': 1, 
+            	'search_default_Stage': 1,
+            	'search_default_claim_date_column_group_month':1,
             }
             </field>
             <field name="view_id" ref="crm_claim.view_report_crm_claim_graph"/>
             <field name="search_view_id" ref="crm_claim.view_report_crm_claim_filter"/>
             <field name="help">Have a general overview of all claims processed in the system by sorting them with specific criteria.</field>
+        </record>
+        
+        
+		<!-- CRM Claim Report Graph View -->
+
+        <record id="crm_claim.view_report_crm_claim_graph" model="ir.ui.view">
+            <field name="name">crm.claim.report.graph</field>
+            <field name="model">crm.claim.report</field>
+            <field name="arch" type="xml">
+                <graph string="Claims" type="pivot" stacked="True">
+                    <field name="stage_id" type="row"/>
+                    <field name="section_id" type="col"/>
+                    <field name="nbr_claims" type="measure"/>
+                </graph>
+            </field>
         </record>
         
     </data>
