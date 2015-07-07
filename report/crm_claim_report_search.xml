@@ -8,14 +8,24 @@
             <field name="arch" type="xml">
 
 				<search position='inside'>
+				                  
+                    <group string='Stages'>
+                        <filter string="New"    			name="stage_new" domain="[('stage_id.name','=','New')]"/>
+                        <filter string="Assigned"			name="stage_assigned" domain="[('stage_id.name','=','Assigned')]"/>
+                        <filter string="Waiting Customer"	name="stage_waiting_customer" domain="[('stage_id.name','=','Waiting Customer')]"/>
+                        <filter string="Waiting"			name="stage_waiting" domain="[('stage_id.name','=','Waiting')]"/>
+                        <filter string="Settled"			name="stage_settled" domain="[('stage_id.name','=','Settled')]"/>
+                        <filter string="Rejected"			name="stage_rejected" domain="[('stage_id.name','=','Rejected')]"/>
+                    </group>
+				
 					<group string='Measures'>
 						<filter string='Claims' name="measure_claim" context="{'measures': ['nbr_claims']}" />
 						<filter string='Emails' name="measure_email" context="{'measures': ['email']}" />
 					</group>
 				
 		            <group string='Date grouping'>
-		                <filter string="Week" name="claim_date_column_group_week" help="Group weekly by claim date" 
-		                	context="{'col_group_by': ['claim_date:week']}"/>
+			                <filter string="Week" name="claim_date_column_group_week" help="Group weekly by claim date" 
+			                	context="{'col_group_by': ['claim_date:week']}"/>
 		                <filter string="Month" name="claim_date_column_group_month" help="Group monthly by claim date" 
 		                	context="{'col_group_by': ['claim_date:month']}"/>
 		                <filter string="Year" name="claim_date_column_group_year" help="Group yearly by claim date" 
@@ -41,6 +51,7 @@
                         <filter string="November"   name="month_11" domain="[('month_claim','=','11')]"/>
                         <filter string="December"   name="month_12" domain="[('month_claim','=','12')]"/>
                     </group>
+
 		        </search>
 		        
 		        <!-- Remove obsolete filters -->
@@ -54,6 +65,10 @@
             	
             	<filter string='My Company' position='attributes'>
             		<attribute name='name'>my_company</attribute>
+            	</filter>
+            	
+            	<filter string='Stage' position='attributes'>
+            		<attribute name='name'>stage</attribute>
             	</filter>
             	
             </field>

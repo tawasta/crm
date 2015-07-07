@@ -67,7 +67,8 @@ class CrmClaimReport(models.Model):
         select_str += ",c.priority as priority"
         select_str += ",c.type_action as type_action"
         select_str += ",c.create_date as create_date"
-        select_str += ",avg(extract('epoch' from (c.date_closed-c.create_date)))/(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE model='crm.claim' AND res_id=c.id) AS email,extract('epoch' from (c.date_deadline - c.date_closed))/(3600*24) as delay_expected"
+        select_str += ",avg(extract('epoch' from (c.date_closed-c.create_date)))/(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE model='crm.claim' AND res_id=c.id) AS email"
+        select_str += ",extract('epoch' from (c.date_deadline - c.date_closed))/(3600*24) as delay_expected"
         
         select_str += ",EXTRACT(YEAR FROM c.create_date) as year_claim"
         select_str += ",EXTRACT(MONTH FROM c.create_date) as month_claim"
