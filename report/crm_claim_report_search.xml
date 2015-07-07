@@ -8,13 +8,18 @@
             <field name="arch" type="xml">
 
 				<search position='inside'>
+					<group string='Measures'>
+						<filter string='Claims' name="measure_claim" context="{'measures': ['nbr_claims']}" />
+						<filter string='Emails' name="measure_email" context="{'measures': ['email']}" />
+					</group>
+				
 		            <group string='Date grouping'>
 		                <filter string="Week" name="claim_date_column_group_week" help="Group weekly by claim date" 
-		                	context="{'col_group_by': ['claim_date:week'], 'measures': ['nbr_claims', 'email']}"/>
+		                	context="{'col_group_by': ['claim_date:week']}"/>
 		                <filter string="Month" name="claim_date_column_group_month" help="Group monthly by claim date" 
-		                	context="{'col_group_by': ['claim_date:month']}, 'measures': ['nbr_claims', 'email']"/>
+		                	context="{'col_group_by': ['claim_date:month']}"/>
 		                <filter string="Year" name="claim_date_column_group_year" help="Group yearly by claim date" 
-		                	context="{'col_group_by': ['claim_date:year']}, 'measures': ['nbr_claims', 'email']"/>
+		                	context="{'col_group_by': ['claim_date:year']}"/>
 		            </group>
 		            
 					<group string='Order Year' icon="terp-calendar">
