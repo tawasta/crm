@@ -17,7 +17,7 @@ class CrmClaimReport(models.Model):
     
     user_id = fields.Many2one('res.users', 'User', readonly=True)
     section_id = fields.Many2one('crm.case.section', 'Section', readonly=True)
-    nbr_claims = fields.Integer('# of Claims', readonly=True)
+    nbr = fields.Integer('# of Claims', readonly=True)
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
     create_date = fields.Datetime('Create Date', readonly=True, select=True)
     claim_date = fields.Datetime('Claim Date', readonly=True)
@@ -38,7 +38,7 @@ class CrmClaimReport(models.Model):
     
     def _select(self):
         select_str = "SELECT "
-        select_str += "min(l.id) as id,"
+        select_str += "min(c.id) as id,"
         select_str += "c.date as claim_date,"
         select_str += "c.date_closed as date_closed,"
         select_str += "c.date_deadline as date_deadline,"
@@ -49,7 +49,7 @@ class CrmClaimReport(models.Model):
         select_str += "c.company_id,"
         select_str += "c.categ_id,"
         select_str += "c.name as subject,"
-        select_str += "count(*) as nbr_claims,"
+        select_str += "count(*) as nbr,"
         select_str += "c.priority as priority,"
         select_str += "c.type_action as type_action,"
         select_str += "c.create_date as create_date,"
@@ -63,7 +63,7 @@ class CrmClaimReport(models.Model):
         return from_string
     
     def _group_by(self):
-        _group_by = "GROUP BY"
+        _group_by = "GROUP BY "
         _group_by += "c.date,"
         _group_by += "c.user_id,"
         _group_by += "c.section_id,"
@@ -86,6 +86,6 @@ class CrmClaimReport(models.Model):
         
         cr.execute("""CREATE or REPLACE VIEW %s as (
             %s
-            FROM ( %s )
+            FROM %s
             %s
             )""" % (self._table, self._select(), self._from(), self._group_by()))
