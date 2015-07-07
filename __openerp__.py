@@ -18,7 +18,7 @@
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
-    'depends': ['crm', 'sale_business_id', 'crm_customer_account_number_gen'],
+    'depends': ['crm_claim_extension'],
     'description': '''
 CRM Claim Extension Reports
 --------------------------
