@@ -41,7 +41,6 @@
 		        <!-- Remove obsolete filters -->
 		        <filter string='Sales Team' position='replace' />
 		        <filter string='Claim Month' position='replace' />
-		        <filter string='Category' position='replace' />
             	
             </field>
       	</record>
