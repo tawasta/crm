@@ -17,43 +17,53 @@ class CrmClaimReport(models.Model):
     
     user_id = fields.Many2one('res.users', 'User', readonly=True)
     section_id = fields.Many2one('crm.case.section', 'Section', readonly=True)
-    nbr = fields.Integer('# of Claims', readonly=True)
-    company_id = fields.Many2one('res.company', 'Company', readonly=True)
+    nbr_claims = fields.Integer('# of Claims', readonly=True)
+    email = fields.Integer('# Emails', size=128, readonly=True)
+    
     create_date = fields.Datetime('Create Date', readonly=True, select=True)
     claim_date = fields.Datetime('Claim Date', readonly=True)
     delay_close = fields.Float('Delay to close', digits=(16,2),readonly=True, group_operator="avg",help="Number of Days to close the case")
+    date_closed = fields.Datetime('Close Date', readonly=True, select=True)
+    date_deadline = fields.Date('Deadline', readonly=True, select=True)
+    delay_expected = fields.Float('Overpassed Deadline',digits=(16,2),readonly=True, group_operator="avg")
+    
+    company_id = fields.Many2one('res.company', 'Company', readonly=True)
     stage_id = fields.Many2one ('crm.case.stage', 'Stage', readonly=True,domain="[('section_ids','=',section_id)]")
     categ_id = fields.Many2one('crm.case.categ', 'Category',\
                      domain="[('section_id','=',section_id),\
                     ('object_id.model', '=', 'crm.claim')]", readonly=True)
     partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
+    
     priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority')
+    
     type_action = fields.Selection([('correction','Corrective Action'),('prevention','Preventive Action')], 'Action Type')
-    date_closed = fields.Datetime('Close Date', readonly=True, select=True)
-    date_deadline = fields.Date('Deadline', readonly=True, select=True)
-    delay_expected = fields.Float('Overpassed Deadline',digits=(16,2),readonly=True, group_operator="avg")
-    email = fields.Integer('# Emails', size=128, readonly=True)
     subject = fields.Char('Claim Subject', readonly=True)
+    
+    year_claim = fields.Integer('Claim year')
+    month_claim = fields.Integer('Claim month')
     
     def _select(self):
         select_str = "SELECT "
-        select_str += "min(c.id) as id,"
-        select_str += "c.date as claim_date,"
-        select_str += "c.date_closed as date_closed,"
-        select_str += "c.date_deadline as date_deadline,"
-        select_str += "c.user_id,"
-        select_str += "c.stage_id,"
-        select_str += "c.section_id,"
-        select_str += "c.partner_id,"
-        select_str += "c.company_id,"
-        select_str += "c.categ_id,"
-        select_str += "c.name as subject,"
-        select_str += "count(*) as nbr,"
-        select_str += "c.priority as priority,"
-        select_str += "c.type_action as type_action,"
-        select_str += "c.create_date as create_date,"
-        select_str += "avg(extract('epoch' from (c.date_closed-c.create_date)))/(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE model='crm.claim' AND res_id=c.id) AS email,extract('epoch' from (c.date_deadline - c.date_closed))/(3600*24) as  delay_expected"
+        select_str += "min(c.id) as id"
+        select_str += ",c.date as claim_date"
+        select_str += ",c.date_closed as date_closed"
+        select_str += ",c.date_deadline as date_deadline"
+        select_str += ",c.user_id"
+        select_str += ",c.stage_id"
+        select_str += ",c.section_id"
+        select_str += ",c.partner_id"
+        select_str += ",c.company_id"
+        select_str += ",c.categ_id"
+        select_str += ",c.name as subject"
+        select_str += ",count(*) as nbr_claims"
+        select_str += ",c.priority as priority"
+        select_str += ",c.type_action as type_action"
+        select_str += ",c.create_date as create_date"
+        select_str += ",avg(extract('epoch' from (c.date_closed-c.create_date)))/(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE model='crm.claim' AND res_id=c.id) AS email,extract('epoch' from (c.date_deadline - c.date_closed))/(3600*24) as delay_expected"
+        
+        select_str += ",EXTRACT(YEAR FROM c.date) as year_claim"
+        select_str += ",EXTRACT(MONTH FROM c.date) as month_claim"
         
         return select_str
     
