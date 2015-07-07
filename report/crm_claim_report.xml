@@ -16,7 +16,6 @@
             	'search_default_measure_email': 1,
             	
             	'search_default_responsible': 1,
-            	'search_default_my_company': 1,
             	'search_default_Stage': 1,
             	
             	'search_default_claim_date_column_group_month':1,
