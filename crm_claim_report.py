@@ -15,25 +15,25 @@ class CrmClaimReport(models.Model):
     
     _inherit = 'crm.claim.report'
     
-    user_id = fields.Many2one('res.users', 'User', readonly=True),
-    section_id = fields.Many2one('crm.case.section', 'Section', readonly=True),
-    nbr_claims = fields.Integer('# of Claims', readonly=True),
-    company_id = fields.Many2one('res.company', 'Company', readonly=True),
-    create_date = fields.Datetime('Create Date', readonly=True, select=True),
-    claim_date = fields.Datetime('Claim Date', readonly=True),
-    delay_close = fields.Float('Delay to close', digits=(16,2),readonly=True, group_operator="avg",help="Number of Days to close the case"),
-    stage_id = fields.Many2one ('crm.case.stage', 'Stage', readonly=True,domain="[('section_ids','=',section_id)]"),
+    user_id = fields.Many2one('res.users', 'User', readonly=True)
+    section_id = fields.Many2one('crm.case.section', 'Section', readonly=True)
+    nbr_claims = fields.Integer('# of Claims', readonly=True)
+    company_id = fields.Many2one('res.company', 'Company', readonly=True)
+    create_date = fields.Datetime('Create Date', readonly=True, select=True)
+    claim_date = fields.Datetime('Claim Date', readonly=True)
+    delay_close = fields.Float('Delay to close', digits=(16,2),readonly=True, group_operator="avg",help="Number of Days to close the case")
+    stage_id = fields.Many2one ('crm.case.stage', 'Stage', readonly=True,domain="[('section_ids','=',section_id)]")
     categ_id = fields.Many2one('crm.case.categ', 'Category',\
                      domain="[('section_id','=',section_id),\
-                    ('object_id.model', '=', 'crm.claim')]", readonly=True),
-    partner_id = fields.Many2one('res.partner', 'Partner', readonly=True),
-    company_id = fields.Many2one('res.company', 'Company', readonly=True),
-    priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority'),
-    type_action = fields.Selection([('correction','Corrective Action'),('prevention','Preventive Action')], 'Action Type'),
-    date_closed = fields.Datetime('Close Date', readonly=True, select=True),
-    date_deadline = fields.Date('Deadline', readonly=True, select=True),
-    delay_expected = fields.Float('Overpassed Deadline',digits=(16,2),readonly=True, group_operator="avg"),
-    email = fields.Integer('# Emails', size=128, readonly=True),
+                    ('object_id.model', '=', 'crm.claim')]", readonly=True)
+    partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
+    company_id = fields.Many2one('res.company', 'Company', readonly=True)
+    priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority')
+    type_action = fields.Selection([('correction','Corrective Action'),('prevention','Preventive Action')], 'Action Type')
+    date_closed = fields.Datetime('Close Date', readonly=True, select=True)
+    date_deadline = fields.Date('Deadline', readonly=True, select=True)
+    delay_expected = fields.Float('Overpassed Deadline',digits=(16,2),readonly=True, group_operator="avg")
+    email = fields.Integer('# Emails', size=128, readonly=True)
     subject = fields.Char('Claim Subject', readonly=True)
     
     def _select(self):
