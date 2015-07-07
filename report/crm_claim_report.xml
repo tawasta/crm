@@ -12,6 +12,8 @@
             <field name="view_mode">graph</field>
             <field name="context">
             {
+            	'search_default_responsible': 1,
+            	'search_default_my_company': 1,
             	'search_default_Stage': 1,
             	'search_default_claim_date_column_group_month':1,
             }

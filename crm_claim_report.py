@@ -13,12 +13,14 @@ AVAILABLE_PRIORITIES = [
 
 class CrmClaimReport(models.Model):
     
-    _inherit = 'crm.claim.report'
+    _name = "crm.claim.report"
+    _auto = False
+    _description = "CRM Claim Report"
     
     user_id = fields.Many2one('res.users', 'User', readonly=True)
     section_id = fields.Many2one('crm.case.section', 'Section', readonly=True)
-    nbr_claims = fields.Integer('# of Claims', readonly=True)
-    email = fields.Integer('# Emails', size=128, readonly=True)
+    nbr_claims = fields.Integer('Claims', readonly=True)
+    email = fields.Integer('Emails', size=128, readonly=True)
     
     create_date = fields.Datetime('Create Date', readonly=True, select=True)
     claim_date = fields.Datetime('Claim Date', readonly=True)
@@ -36,7 +38,7 @@ class CrmClaimReport(models.Model):
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
     
     priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority')
-    sla = fields.Selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', readonly=True),
+    sla = fields.Selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', readonly=True)
 
     
     type_action = fields.Selection([('correction','Corrective Action'),('prevention','Preventive Action')], 'Action Type')

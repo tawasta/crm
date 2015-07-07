@@ -42,6 +42,15 @@
 		        <filter string='Sales Team' position='replace' />
 		        <filter string='Claim Month' position='replace' />
             	
+            	<!-- Modify existing filters -->
+            	<filter name="Salesperson" position='replace'>
+            		<filter string="Responsible" name="responsible" context="{'group_by':'user_id'}" />
+            	</filter>
+            	
+            	<filter string='My Company' position='attributes'>
+            		<attribute name='name'>my_company</attribute>
+            	</filter>
+            	
             </field>
       	</record>
     </data>
