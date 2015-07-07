@@ -33,5 +33,6 @@ Features
 ''',
     'data': [
         'report/crm_claim_report.xml',
+        'report/crm_claim_search.xml',
     ],
 }
