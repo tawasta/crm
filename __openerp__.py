@@ -18,7 +18,10 @@
     'version': '0.6',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
-    'depends': ['crm_claim', 'fetchmail'],
+    'depends': [
+        'crm_claim',
+        'fetchmail',
+    ],
 
     'description': """
 Claims extension
