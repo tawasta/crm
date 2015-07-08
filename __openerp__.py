@@ -15,10 +15,13 @@
 {
     'name': 'Lead to Sale',
     'category': 'CRM',
-    'version': '0.1',
+    'version': '0.2',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
-    'depends': ['sale_crm'],
+    'depends': [
+        'sale_crm',
+        'sale_order_description',
+    ],
     'description': '''
 Lead to Sale
 --------------------------
