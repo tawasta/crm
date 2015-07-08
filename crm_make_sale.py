@@ -16,7 +16,11 @@ class CrmMakeSale(models.TransientModel):
             sale_order = self.env['sale.order'].browse(res['res_id'])
             lead = self.env['crm.lead'].browse(self._context['active_id'])
 
+            # Create references
             sale_order.lead_id = lead.id
             lead.sale_order_id = sale_order.id
+
+            # Move the description
+            sale_order.description = lead.description
 
         return res
