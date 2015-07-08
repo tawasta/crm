@@ -6,48 +6,58 @@ import logging
 _logger = logging.getLogger(__name__)
 
 AVAILABLE_PRIORITIES = [
-   ('0', 'Low'),
-   ('1', 'Normal'),
-   ('2', 'High')
+    ('0', 'Low'),
+    ('1', 'Normal'),
+    ('2', 'High')
 ]
 
+
 class CrmClaimReport(models.Model):
-    
+
     _name = "crm.claim.report"
     _auto = False
     _description = "CRM Claim Report"
-    
+
     user_id = fields.Many2one('res.users', 'User', readonly=True)
     section_id = fields.Many2one('crm.case.section', 'Section', readonly=True)
     nbr_claims = fields.Integer('Claims', readonly=True)
     email = fields.Integer('Emails', size=128, readonly=True)
-    
+
     create_date = fields.Datetime('Create Date', readonly=True, select=True)
     claim_date = fields.Datetime('Claim Date', readonly=True)
-    delay_close = fields.Float('Delay to close', digits=(16,2),readonly=True, group_operator="avg",help="Number of Days to close the case")
+    delay_close = fields.Float('Delay to close',
+                               digits=(16, 2), readonly=True,
+                               group_operator="avg",
+                               help="Number of Days to close the case")
     date_closed = fields.Datetime('Close Date', readonly=True, select=True)
     date_deadline = fields.Date('Deadline', readonly=True, select=True)
-    delay_expected = fields.Float('Overpassed Deadline',digits=(16,2),readonly=True, group_operator="avg")
-    
+    delay_expected = fields.Float('Overpassed Deadline',
+                                  digits=(16, 2), readonly=True,
+                                  group_operator="avg")
+
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
-    stage_id = fields.Many2one ('crm.claim.stage', 'Stage', readonly=True)
-    categ_id = fields.Many2one('crm.case.categ', 'Category',\
-        domain="[('section_id','=',section_id),\
-        ('object_id.model', '=', 'crm.claim')]", readonly=True)
+    stage_id = fields.Many2one('crm.claim.stage', 'Stage', readonly=True)
+    categ_id = fields.Many2one('crm.case.categ', 'Category',
+                               domain="[('section_id','=',section_id),\
+                               ('object_id.model', '=', 'crm.claim')]",
+                               readonly=True)
     partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
-    
-    priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority')
-    sla = fields.Selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', readonly=True)
 
-    
-    type_action = fields.Selection([('correction','Corrective Action'),('prevention','Preventive Action')], 'Action Type')
+    priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority')
+    sla = fields.Selection([('0', '-'), ('1', 'Taso 1'), ('2', 'Taso 2'),
+                            ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level',
+                           readonly=True)
+
+    type_action = fields.Selection([('correction', 'Corrective Action'),
+                                    ('prevention', 'Preventive Action')],
+                                   'Action Type')
     subject = fields.Char('Claim Subject', readonly=True)
     claim_number = fields.Char('Claim number', readonly=True)
-    
+
     year_claim = fields.Integer('Claim year')
     month_claim = fields.Integer('Claim month')
-    
+
     def _select(self):
         select_str = "SELECT "
         select_str += "min(c.id) as id"
@@ -67,19 +77,22 @@ class CrmClaimReport(models.Model):
         select_str += ",c.priority as priority"
         select_str += ",c.type_action as type_action"
         select_str += ",c.create_date as create_date"
-        select_str += ",avg(extract('epoch' from (c.date_closed-c.create_date)))/(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE model='crm.claim' AND res_id=c.id) AS email"
-        select_str += ",extract('epoch' from (c.date_deadline - c.date_closed))/(3600*24) as delay_expected"
-        
+        select_str += ",avg(extract('epoch' from (c.date_closed-c.create_date)))\
+        /(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE\
+        model='crm.claim' AND res_id=c.id) AS email"
+        select_str += ",extract('epoch' from (c.date_deadline - c.date_closed))\
+        /(3600*24) as delay_expected"
+
         select_str += ",EXTRACT(YEAR FROM c.create_date) as year_claim"
         select_str += ",EXTRACT(MONTH FROM c.create_date) as month_claim"
-        
+
         return select_str
-    
+
     def _from(self):
         from_string = "crm_claim c"
-        
+
         return from_string
-    
+
     def _group_by(self):
         _group_by = "GROUP BY "
         _group_by += "c.date,"
@@ -97,15 +110,16 @@ class CrmClaimReport(models.Model):
         _group_by += "c.date_deadline,"
         _group_by += "c.date_closed,"
         _group_by += "c.id"
-        
+
         return _group_by
-    
+
     def init(self, cr):
         # self._table = sale_report
         tools.drop_view_if_exists(cr, self._table)
-        
+
         cr.execute("""CREATE or REPLACE VIEW %s as (
             %s
             FROM %s
             %s
-            )""" % (self._table, self._select(), self._from(), self._group_by()))
+            )""" % (self._table, self._select(),
+                    self._from(), self._group_by()))
