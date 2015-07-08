@@ -49,16 +49,18 @@
                     </button>
                 </div>
 	            
-	            <!-- No modifications to this div -->
-                <div class="oe_title" style='margin-bottom: 2em;'>
-                    <h1><field name="name"/></h1>
-                    <label for="planned_revenue" class="oe_edit_only"/>
-                    <h2>
-                        <field name="company_currency" invisible="1"/>
-                        <field name="planned_revenue" class="oe_inline" widget='monetary' options="{'currency_field': 'company_currency'}"/>
-                        <span class="oe_grey"> at </span>
-                        <field name="probability" class="oe_inline" widget="integer"/>%%
-                    </h2>
+                <div class="oe_title">
+                    <h1><field name="name" placeholder="Describe the opportunity..."/></h1>
+                </div>
+                
+                <group />
+                
+               	<div style='margin-bottom: 2em;'>
+                    <h2><label for="planned_revenue" class="oe_edit_only"/></h2>
+                    <field name="company_currency" invisible="1"/>
+                    <field name="planned_revenue" class="oe_inline" widget='monetary' options="{'currency_field': 'company_currency'}"/>
+                    <span class="oe_grey"> at </span>
+                    <field name="probability" class="oe_inline" widget="integer"/>%%
                 </div>
                 
                 <group>
