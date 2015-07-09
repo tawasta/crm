@@ -8,8 +8,13 @@ class Partner(models.Model):
 
     @api.multi
     def unlink(self):
-        ''' Deactivates the partner instead of deleting '''
+        ''' Deactivates the partner instead of deleting,
+        unless the partner is alredy unactive '''
 
-        self.write({'active': False})
+        for record in self:
+            if record.active:
+                record.active = False
+            else:
+                super(Partner, self).unlink()
 
         return True
