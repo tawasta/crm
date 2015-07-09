@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, _
-from openerp.tools.translate import _
+from openerp import models, api
 
 
 class Partner(models.Model):
@@ -11,6 +10,6 @@ class Partner(models.Model):
     def unlink(self):
         ''' Deactivates the partner instead of deleting '''
 
-        self.active = False
+        self.write({'active': False})
 
         return True
