@@ -51,7 +51,7 @@ class CrmLead(models.Model):
 
     @api.multi
     @api.depends('action', 'partner_id')
-    def handle_partner_assignation(self, action, context):
+    def handle_partner_assignation(self, action, partner_id=False):
         partner_ids = {}
 
         for lead in self:
@@ -60,16 +60,17 @@ class CrmLead(models.Model):
                 continue
 
             if lead.partner_id and lead.contact_name:
-                partner_id = self._create_lead_partner(lead)
+                partner_id = self._create_lead_partner(lead)[0]
 
             if not lead.partner_id and action == 'create':
-                partner_id = self._create_lead_partner(lead)
+                partner_id = self._create_lead_partner(lead)[0]
                 self.env['res.partner'].write({'section_id': lead.section_id
                                                and lead.section_id.id
                                                or False})
 
             if partner_id:
-                lead.write({'partner_id': partner_id[0]})
+                lead.write({'partner_id': partner_id})
+
             partner_ids[lead.id] = partner_id
 
         return partner_ids
