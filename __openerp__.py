@@ -17,7 +17,7 @@
     'category': 'CRM',
     'version': '0.3',
     'author': 'Oy Tawasta Technologies Ltd.',
-    'website': 'http://www.tawasta.fi',    
+    'website': 'http://www.tawasta.fi',
     'depends': ['crm_address_simplification'],
     'description': '''
 CRM Simplification
@@ -36,12 +36,14 @@ Features
 ''',
     'data': [
         'view/res_partner_form.xml',
-        
+
         'view/crm_lead_form.xml',
         'view/crm_lead_menu.xml',
         'view/crm_lead_search.xml',
-        
+
         'view/crm_opportunity_form.xml',
         'view/crm_make_sale_form.xml',
+
+        'view/crm_lead_convert_to_opportunity_form.xml',
     ],
 }

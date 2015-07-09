@@ -15,3 +15,4 @@
 
 import res_partner
 import crm_lead
+import crm_lead_to_opportunity
