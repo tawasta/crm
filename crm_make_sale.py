@@ -12,7 +12,7 @@ class CrmMakeSale(models.TransientModel):
     def makeOrder(self):
         res = super(CrmMakeSale, self).makeOrder()
 
-        if res['res_model'] == 'sale.order':
+        if res and res['res_model'] == 'sale.order':
             sale_order = self.env['sale.order'].browse(res['res_id'])
             lead = self.env['crm.lead'].browse(self._context['active_id'])
 
