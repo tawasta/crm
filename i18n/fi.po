@@ -1,0 +1,259 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_claim_extension_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-10 10:33+0000\n"
+"PO-Revision-Date: 2015-07-10 13:37+0200\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fi\n"
+"X-Generator: Poedit 1.7.5\n"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "April"
+msgstr "Huhti"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Assigned"
+msgstr "Tukihenkilöllä"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "August"
+msgstr "Elo"
+
+#. module: crm_claim_extension_reports
+#: model:ir.model,name:crm_claim_extension_reports.model_crm_claim_report
+msgid "CRM Claim Report"
+msgstr "CRM Palauteraportti"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Claim Month"
+msgstr "Kuukausi"
+
+#. module: crm_claim_extension_reports
+#: field:crm.claim.report,month_claim:0
+msgid "Claim month"
+msgstr "Kuukausi"
+
+#. module: crm_claim_extension_reports
+#: field:crm.claim.report,claim_number:0
+msgid "Claim number"
+msgstr "Numero"
+
+#. module: crm_claim_extension_reports
+#: field:crm.claim.report,year_claim:0
+msgid "Claim year"
+msgstr "Vuosi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+#: field:crm.claim.report,nbr_claims:0
+msgid "Claims"
+msgstr "Palautteet"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Date grouping"
+msgstr "Päivämääräryhmittely"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "December"
+msgstr "Joulu"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Emails"
+msgstr "Sähköpostit"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "February"
+msgstr "Helmi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Group monthly by claim date"
+msgstr "Ryhmittele kuukausittain tukipyynnön päivämäärän mukaan"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Group weekly by claim date"
+msgstr "Ryhmittele viikottain tukipyynnön päivämäärän mukaan"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Group yearly by claim date"
+msgstr "Ryhmittele vuosittain tukipyynnön päivämäärän mukaan"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "In Progress"
+msgstr "Käynnissä"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "January"
+msgstr "Tammi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "July"
+msgstr "Kesä"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "June"
+msgstr "Heinä"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "March"
+msgstr "Maalis"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "May"
+msgstr "Touko"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Measures"
+msgstr "Määreet"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Month"
+msgstr "Kuukausi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "My Company"
+msgstr "Oma yritykseni"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "New"
+msgstr "Uusi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "November"
+msgstr "Marras"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "October"
+msgstr "Syys"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Order Month"
+msgstr "Tilauskuukausi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Order Year"
+msgstr "Tilausvuosi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Rejected"
+msgstr "Peruttu"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Responsible"
+msgstr "Vastuullinen"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Sales Team"
+msgstr "Myyntitiimi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "September"
+msgstr "Syys"
+
+#. module: crm_claim_extension_reports
+#: field:crm.claim.report,sla:0
+msgid "Service level"
+msgstr "Palvelutaso"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Settled"
+msgstr "Ratkaistu"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Stage"
+msgstr "Vaihe"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Stages"
+msgstr "Vaiheet"
+
+#. module: crm_claim_extension_reports
+#: selection:crm.claim.report,sla:0
+msgid "Taso 1"
+msgstr "Taso 1"
+
+#. module: crm_claim_extension_reports
+#: selection:crm.claim.report,sla:0
+msgid "Taso 2"
+msgstr "Taso 2"
+
+#. module: crm_claim_extension_reports
+#: selection:crm.claim.report,sla:0
+msgid "Taso 3"
+msgstr "Taso 3"
+
+#. module: crm_claim_extension_reports
+#: selection:crm.claim.report,sla:0
+msgid "Taso 4"
+msgstr "Taso 4"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Waiting"
+msgstr "Odottaa"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Waiting Customer"
+msgstr "Odottaa asiakasta"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Week"
+msgstr "Viikko"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "Year"
+msgstr "Vuosi"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "my_company"
+msgstr "my_company"
+
+#. module: crm_claim_extension_reports
+#: view:crm.claim.report:crm_claim_extension_reports.view_report_crm_claim_filter_extended
+msgid "stage"
+msgstr "stage"
