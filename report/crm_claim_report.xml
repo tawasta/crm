@@ -20,6 +20,7 @@
             	'search_default_claim_date_column_group_month':1,
             	
             	'search_default_stage_new': 1,
+            	'search_default_stage_progress': 1,
             	'search_default_stage_assigned': 1,
             	'search_default_stage_waiting_customer': 1,
             	'search_default_stage_waiting': 1,

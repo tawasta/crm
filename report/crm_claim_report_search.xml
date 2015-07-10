@@ -10,12 +10,13 @@
 				<search position='inside'>
 				                  
                     <group string='Stages'>
-                        <filter string="New"    			name="stage_new" domain="[('stage_id.name','=','New')]"/>
-                        <filter string="Assigned"			name="stage_assigned" domain="[('stage_id.name','=','Assigned')]"/>
-                        <filter string="Waiting Customer"	name="stage_waiting_customer" domain="[('stage_id.name','=','Waiting Customer')]"/>
-                        <filter string="Waiting"			name="stage_waiting" domain="[('stage_id.name','=','Waiting')]"/>
-                        <filter string="Settled"			name="stage_settled" domain="[('stage_id.name','=','Settled')]"/>
-                        <filter string="Rejected"			name="stage_rejected" domain="[('stage_id.name','=','Rejected')]"/>
+                        <filter string="New"    			name="stage_new" domain="[('stage_id','=',1)]"/>
+                        <filter string="In Progress"    	name="stage_progress" domain="[('stage_id','=',2)]"/>
+                        <filter string="Assigned"			name="stage_assigned" domain="[('stage_id','=',5)]"/>
+                        <filter string="Waiting Customer"	name="stage_waiting_customer" domain="[('stage_id','=',6)]"/>
+                        <filter string="Waiting"			name="stage_waiting" domain="[('stage_id','=',7)]"/>
+                        <filter string="Settled"			name="stage_settled" domain="[('stage_id','=',3)]"/>
+                        <filter string="Rejected"			name="stage_rejected" domain="[('stage_id','=',4)]"/>
                     </group>
 				
 					<group string='Measures'>
