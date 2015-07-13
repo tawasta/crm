@@ -21,7 +21,7 @@
             
             <button string="Create Quotation" position="attributes">
             	<attribute name='class'>oe_highlight</attribute>
-            	<attribute name='attrs'>{'invisible': [('sale_order', '!=', False)]}</attribute>
+            	<attribute name='attrs'>{'invisible': ['|',('sale_order', '!=', False),('probability', '&lt;', 100)]}</attribute>
             </button>
             
             <!-- 
