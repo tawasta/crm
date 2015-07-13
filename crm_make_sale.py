@@ -18,7 +18,7 @@ class CrmMakeSale(models.TransientModel):
 
             # Create references
             sale_order.lead_id = lead.id
-            lead.sale_order_id = sale_order.id
+            lead.sale_order = sale_order.id
 
             # Move the description
             sale_order.description = lead.description

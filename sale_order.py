@@ -14,10 +14,10 @@ class SaleOrder(models.Model):
         lead_object = self.pool.get('crm.lead')
 
         lead_ids = lead_object.search(cr, SUPERUSER_ID,
-                                      [('sale_order_id', '=', False)])
+                                      [('sale_order', '=', False)])
         leads = lead_object.browse(cr, SUPERUSER_ID, lead_ids)
 
         for lead in leads:
             if lead.ref:
-                lead.sale_order_id = lead.ref
+                lead.sale_order = lead.ref
                 lead.ref.lead_id = lead.id
