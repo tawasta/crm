@@ -43,11 +43,12 @@ class CrmLead(models.Model):
             return val if isinstance(val, (bool, int, long, float, basestring)) \
                 else val.id
 
-        values = dict((value, value_or_id(self.partner_id[key]))
-                      for key, value in self.LEAD_FIELDS.iteritems())
+        if self.partner_id:
+            values = dict((value, value_or_id(self.partner_id[key]))
+                          for key, value in self.LEAD_FIELDS.iteritems())
 
-        for key, value in values.iteritems():
-            setattr(self, key, value)
+            for key, value in values.iteritems():
+                setattr(self, key, value)
 
     @api.multi
     @api.depends('action', 'partner_id')
