@@ -38,7 +38,7 @@ class CrmLead(models.Model):
 
     @api.one
     @api.onchange('partner_id')
-    def partner_id_onchange(self):
+    def onchange_partner_id(self):
         def value_or_id(val):
             return val if isinstance(val, (bool, int, long, float, basestring)) \
                 else val.id
@@ -86,3 +86,18 @@ class CrmLead(models.Model):
             partner_id = super(CrmLead, self)._create_lead_partner(lead)
 
         return partner_id
+
+    @api.one
+    def action_view_quotation(self):
+        return self.env.ref('sale.view_order_form')
+
+        return {
+            'name': 'Sale order',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'sale.order',
+            'res_id': self.id,
+            'view_id': False,
+            'views': [(1, 'form')],
+            'type': 'ir.actions.act_window',
+        }
