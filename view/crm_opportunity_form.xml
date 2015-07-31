@@ -16,14 +16,6 @@
 	            />
             </field>
             
-            <!-- Only show "Create Quotation"-button when opportunity is marked as won -->
-            <button string="Convert to Quotation" position="replace" />
-            
-            <button string="Create Quotation" position="attributes">
-            	<attribute name='class'>oe_highlight</attribute>
-            	<attribute name='attrs'>{'invisible': ['|',('sale_order', '!=', False),('probability', '&lt;', 100)]}</attribute>
-            </button>
-            
             <!-- 
             	Replace the whole sheet for easier customization.
 				We are not creating a new form with different id to allow inheriting 
