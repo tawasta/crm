@@ -11,11 +11,6 @@
             		<field name="sale_order" readonly="1"/>
             	</field>
 
-				<button string="Create Quotation" position="attributes">
-					<attribute name='class'>oe_highlight</attribute>
-					<attribute name='attrs'>{'invisible': ['|',('sale_order', '!=', False),('probability', '&lt;', 100)]}</attribute>
-				</button>
-
 			</field>
         </record>
         
