@@ -119,16 +119,25 @@ class ResPartner(models.Model):
     name = fields.Char(inverse='_set_name')
     display_name = fields.Char(compute='_get_display_name')
 
-    address_contact_recursive_ids = fields.One2many('res.partner', 'parent_id',
-                                                    string='Contact',
-                                                    compute='_get_contacts',
-                                                    inverse='_set_contacts')
-    address_einvoice_ids = fields.One2many('res.partner', 'parent_id',
-                                           string='e-Invoice',
-                                           domain=[('type', '=', 'invoice')])
-    address_affiliate_ids = fields.One2many('res.partner', 'parent_id',
-                                            string='Affiliate',
-                                            domain=[('type', '=', 'delivery')])
+    address_contact_recursive_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='Contact',
+        compute='_get_contacts',
+        inverse='_set_contacts'
+    )
+    address_einvoice_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='e-Invoice',
+        domain=[('type', '=', 'invoice')]
+    )
+    address_affiliate_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='Affiliate',
+        domain=[('type', '=', 'delivery')]
+    )
 
     edicode = fields.Char(string='Edicode')
     einvoice_operator = fields.Char(string='e-Invoice operator')
