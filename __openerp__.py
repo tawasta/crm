@@ -18,7 +18,11 @@
     'version': '0.3',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
-    'depends': ['crm_address_simplification'],
+    'depends': [
+        'crm',
+        'sale_crm',
+        'crm_address_simplification'
+    ],
     'description': '''
 CRM Simplification
 ==================
