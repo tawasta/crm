@@ -11,17 +11,21 @@ _logger = logging.getLogger(__name__)
 class ir_mail_server(osv.Model):
     _inherit = 'ir.mail_server'
 
-    def send_email(self, cr, uid, message, mail_server_id=None, smtp_server=None, smtp_port=None,
-                   smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False,
-                   context=None):
-        ''' Send a BCC message to an address every time a mail is sent. This is for debugging purposes only. '''
+    def send_email(
+        self, cr, uid, message, mail_server_id=None, smtp_server=None,
+        smtp_port=None, smtp_user=None, smtp_password=None,
+        smtp_encryption=None, smtp_debug=False, context=None):
+        ''' Send a BCC message to an address every time a mail is sent.
+        This is for debugging purposes only. '''
 
         ''' Set a BCC recipient. This only works if one is not already set '''
         message['Bcc'] = "odoo@tawasta.fi"
 
-        return super(ir_mail_server, self).send_email(cr, uid, message, mail_server_id, smtp_server, smtp_port,
-                   smtp_user, smtp_password, smtp_encryption, smtp_debug,
-                   context=context)
+        return super(ir_mail_server, self).send_email(
+            cr, uid, message, mail_server_id, smtp_server, smtp_port,
+            smtp_user, smtp_password, smtp_encryption, smtp_debug,
+            context=context)
+
 
 class mail_mail(osv.Model):
     _inherit = 'mail.mail'
@@ -38,10 +42,10 @@ class mail_mail(osv.Model):
             model = context.get('default_res_model')
 
         if model and model == 'crm.claim':
-            ''' Only send these kind of messages for claim model message instances '''
+            ''' Only send custom messages for claim model message instances '''
 
             ''' Always "send" a notification '''
-            ''' TODO: Why is this necessary'''
+            ''' TODO: Why is this necessary? '''
             if 'notification' not in values and values.get('mail_message_id'):
                 values['notification'] = True
 
@@ -51,12 +55,18 @@ class mail_mail(osv.Model):
             claim_instance = claim_model.browse(cr, SUPERUSER_ID, [res_id])
 
             ''' Get message header from reply_to settings '''
-            header = claim_model._default_get_reply_header(cr, uid, context, claim_instance.company_id.id)
+            header = claim_model._default_get_reply_header(
+                cr, uid, context, claim_instance.company_id.id
+            )
 
             ''' Get message footer from reply_to settings '''
-            footer = claim_model._default_get_reply_footer(cr, uid, context, claim_instance.company_id.id)
+            footer = claim_model._default_get_reply_footer(
+                cr, uid, context, claim_instance.company_id.id
+            )
 
-            ''' If we have a message to show before header, it can be set in context. e.g. "Your claim has been received" before header '''
+            ''' If we have a message to show before header,
+            it can be set in context.
+            E.g. "Your claim has been received" before header '''
             if context.get('pre_header'):
                 header = context.get('pre_header') + "<br/>" + header
 
@@ -118,14 +128,16 @@ class mail_mail(osv.Model):
 
                 messages_history += '</div>'
 
-                ''' Don't sign the message with sender name, if the message was sent by admin (e.g. automatic messages) '''
+                ''' Don't sign the message with sender name,
+                if the message was sent by admin (e.g. automatic messages) '''
                 if message_instance.create_uid.id != SUPERUSER_ID:
                     values['body_html'] += str(message_instance.create_uid.partner_id.name)
                     values['body_html'] += "<br/>"
                 values['body_html'] += str(footer)
                 values['body_html'] += "</small></p>"
 
-                ''' Include messages history on the bottom of the message, under a horizontal line '''
+                ''' Include messages history on the bottom of the message,
+                under a horizontal line '''
                 values['body_html'] += "<hr style='margin: 1em 0 1em 0;' />"
                 values['body_html'] += messages_history
                 values['body_html'] += "<br/>"
