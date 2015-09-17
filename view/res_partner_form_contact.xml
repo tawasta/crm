@@ -52,6 +52,7 @@
 						<field name="is_company" invisible='True'/>
 						<field name="company_id" invisible='True'/>
 						<field name="type" invisible='True'/>
+						<field name="state_id" invisible='True'/>
 					</sheet>
 				</form>
 			</field>
