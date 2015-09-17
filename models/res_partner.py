@@ -19,8 +19,10 @@ class ResPartner(models.Model):
     def personal_customer_onchange(self):
         if self.personal_customer:
             self.is_company = False
+            self.businessid_shown = False
         else:
             self.is_company = True
+            self.businessid_shown = True
 
     @api.onchange('is_company')
     def is_company_onchange(self):
