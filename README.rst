@@ -1,11 +1,11 @@
 CRM Address Simplification
---------------------------
+==========================
 
 Simplifies address types and improves CRM readibility and usability
 
 
 Features
---------
+========
 
 * Simplifies partner types to 'contact', 'delivery' and 'invoice'
 * Adds notebook pages for each partner type
