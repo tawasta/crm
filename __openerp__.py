@@ -15,19 +15,19 @@
 {
     'name': 'CRM Address Simplification',
     'category': 'CRM',
-    'version': '8.0.0.2.0',
+    'version': '8.0.0.3.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': ['crm', 'sale_business_id', 'crm_customer_account_number_gen'],
     'data': [
         'views/res_partner_form.xml',
         'views/res_partner_form_contact.xml',
-        #'views/res_partner_form_affiliate.xml',
+        # 'views/res_partner_form_affiliate.xml',
         'views/res_partner_form_einvoice.xml',
         'views/res_partner_tree_contact.xml',
         'views/res_partner_tree_affiliate.xml',
         'views/res_partner_tree_einvoice.xml',
-        #'views/res_partner_tree.xml',
+        # 'views/res_partner_tree.xml',
         'views/res_partner_menu.xml',
     ],
 }
