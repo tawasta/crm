@@ -2,7 +2,7 @@
 <openerp>
 	<data>
 		<!-- Contact simple form view -->
-		<record id="view_partner_simple_contact_form" model="ir.ui.view">
+		<record model="ir.ui.view" id="view_partner_simple_contact_form">
 			<field name="name">Contact simplified form view</field>
 			<field name="model">res.partner</field>
 			<field eval="20" name="priority"/>
@@ -47,12 +47,14 @@
 		                    </group>
 		             	</div>
 	                    
-	                    <field name="supplier" invisible='True'/>
-	                    <field name="customer" invisible='True'/>
-						<field name="is_company" invisible='True'/>
-						<field name="company_id" invisible='True'/>
-						<field name="type" invisible='True'/>
-						<field name="state_id" invisible='True'/>
+	                    <group id='invisible_fields' invisible='True'>
+		                    <field name="supplier" />
+		                    <field name="customer" />
+							<field name="is_company" />
+							<field name="company_id" />
+							<field name="type" />
+							<field name="state_id" />
+						</group>
 					</sheet>
 				</form>
 			</field>
