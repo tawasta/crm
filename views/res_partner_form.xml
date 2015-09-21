@@ -11,14 +11,21 @@
                 	<attribute name='invisible'>1</attribute>
                 </div>
                 
-                <label for='type' position='attributes'>
-                	<attribute name='invisible'>0</attribute>
-                </label>
+                <!-- Hide type field -->
+                <xpath expr="//label[@for='type']" position="attributes">
+                	<attribute name='invisible'>1</attribute>
+                </xpath>
+                
+                <field name='type' position='attributes'>
+                	<attribute name='readonly'>1</attribute>
+                	<attribute name='invisible'>1</attribute>
+                </field>
                 
                 <div name='div_type' position='attributes'>
-                	<attribute name='invisible'>0</attribute>
+                	<attribute name='invisible'>1</attribute>
                 </div>
-                
+
+                <!-- Hide parent address field -->
                 <field name='use_parent_address' position='replace'>
 					<field name='use_parent_address' attrs="{'invisible': [('parent_id', '=', False)]}" />
                 </field>
