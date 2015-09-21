@@ -15,7 +15,7 @@
 {
     'name': 'CRM Simplification',
     'category': 'CRM',
-    'version': '8.0.0.4.0',
+    'version': '8.0.0.4.1',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': [
@@ -39,16 +39,16 @@ Features
 * Unifies lead and opportunity form syntax
 ''',
     'data': [
-        'view/res_partner_form.xml',
-        'view/res_partner_form_contact.xml',
+        'views/res_partner_form.xml',
+        'views/res_partner_form_contact.xml',
 
-        'view/crm_lead_form.xml',
-        'view/crm_lead_menu.xml',
-        'view/crm_lead_search.xml',
+        'views/crm_lead_form.xml',
+        'views/crm_lead_menu.xml',
+        'views/crm_lead_search.xml',
 
-        'view/crm_opportunity_form.xml',
-        'view/crm_make_sale_form.xml',
+        'views/crm_opportunity_form.xml',
+        'views/crm_make_sale_form.xml',
 
-        'view/crm_lead_convert_to_opportunity_form.xml',
+        'views/crm_lead_convert_to_opportunity_form.xml',
     ],
 }
