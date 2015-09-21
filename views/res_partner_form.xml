@@ -12,11 +12,7 @@
                     	<attribute name='options'>{"no_create": True}</attribute>
                     </field>
                     
-                    <!-- Hide obsolete fields -->
-                    <field name='type' position='attributes'>
-                    	<attribute name='invisible'>1</attribute>
-                    </field>
-                    
+                    <!-- Hide obsolete fields -->                    
                     <field name='fax' position='attributes'>
                     	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
                     </field>
