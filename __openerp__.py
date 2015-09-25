@@ -21,22 +21,10 @@
 {
     'name': 'CRM Claim Extension Reports',
     'category': 'CRM',
-    'version': '8.0.0.1.3',
+    'version': '8.0.0.1.4',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': ['crm_claim_extension'],
-    'description': '''
-CRM Claim Extension Reports
---------------------------
-
-Overwrites the default claim reports, as they are just plain wrong with exteneded claims
-
-
-Features
---------
-* None Yet
-
-''',
     'data': [
         'report/crm_claim_report.xml',
         'report/crm_claim_report_search.xml',
