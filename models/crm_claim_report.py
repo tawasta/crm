@@ -68,39 +68,39 @@ class CrmClaimReport(models.Model):
     month_claim = fields.Integer('Claim month')
 
     def _select(self):
-        select_str = "SELECT "
-        select_str += "min(c.id) as id"
-        select_str += ",c.claim_number as claim_number"
-        select_str += ",c.date as claim_date"
-        select_str += ",c.date_closed as date_closed"
-        select_str += ",c.date_deadline as date_deadline"
-        select_str += ",c.user_id"
-        select_str += ",c.stage_id"
-        select_str += ",c.section_id"
-        select_str += ",c.partner_id"
-        select_str += ",c.company_id"
-        select_str += ",c.categ_id"
-        select_str += ",c.name as subject"
-        select_str += ",count(*) as nbr_claims"
-        select_str += ",c.sla as sla"
-        select_str += ",c.priority as priority"
-        select_str += ",c.type_action as type_action"
-        select_str += ",c.create_date as create_date"
-        select_str += ",avg(extract('epoch' from (c.date_closed-c.create_date)))\
+        _select = "SELECT "
+        _select += "min(c.id) as id,"
+        _select += "c.claim_number as claim_number,"
+        _select += "c.date as claim_date,"
+        _select += "c.date_closed as date_closed,"
+        _select += "c.date_deadline as date_deadline,"
+        _select += "c.user_id,"
+        _select += "c.stage_id,"
+        _select += "c.section_id,"
+        _select += "c.partner_id,"
+        _select += "c.company_id,"
+        _select += "c.categ_id,"
+        _select += "c.name as subject,"
+        _select += "count(*) as nbr_claims,"
+        _select += "c.sla as sla,"
+        _select += "c.priority as priority,"
+        _select += "c.type_action as type_action,"
+        _select += "c.create_date as create_date,"
+        _select += "avg(extract('epoch' from (c.date_closed-c.create_date)))\
         /(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE\
-        model='crm.claim' AND res_id=c.id) AS email"
-        select_str += ",extract('epoch' from (c.date_deadline - c.date_closed))\
-        /(3600*24) as delay_expected"
+        model='crm.claim' AND res_id=c.id) AS email,"
+        _select += "extract('epoch' from (c.date_deadline - c.date_closed))\
+        /(3600*24) as delay_expected,"
 
-        select_str += ",EXTRACT(YEAR FROM c.create_date) as year_claim"
-        select_str += ",EXTRACT(MONTH FROM c.create_date) as month_claim"
+        _select += "EXTRACT(YEAR FROM c.create_date) as year_claim,"
+        _select += "EXTRACT(MONTH FROM c.create_date) as month_claim"
 
-        return select_str
+        return _select
 
     def _from(self):
-        from_string = "crm_claim c"
+        _from = "crm_claim c"
 
-        return from_string
+        return _from
 
     def _group_by(self):
         _group_by = "GROUP BY "
@@ -123,12 +123,12 @@ class CrmClaimReport(models.Model):
         return _group_by
 
     def init(self, cr):
-        # self._table = sale_report
         tools.drop_view_if_exists(cr, self._table)
 
-        cr.execute("""CREATE or REPLACE VIEW %s as (
-            %s
-            FROM %s
-            %s
-            )""" % (self._table, self._select(),
-                    self._from(), self._group_by()))
+        cr.execute(
+            "CREATE or REPLACE VIEW %s as (%s FROM %s %s)" % (
+                self._table,
+                self._select(),
+                self._from(),
+                self._group_by())
+        )
