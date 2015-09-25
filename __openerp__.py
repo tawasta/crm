@@ -21,7 +21,7 @@
 {
     'name': 'CRM Claim Extension Reports',
     'category': 'CRM',
-    'version': '8.0.0.1.2',
+    'version': '8.0.0.1.3',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': ['crm_claim_extension'],
