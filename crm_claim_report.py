@@ -25,33 +25,42 @@ class CrmClaimReport(models.Model):
 
     create_date = fields.Datetime('Create Date', readonly=True, select=True)
     claim_date = fields.Datetime('Claim Date', readonly=True)
-    delay_close = fields.Float('Delay to close',
-                               digits=(16, 2), readonly=True,
-                               group_operator="avg",
-                               help="Number of Days to close the case")
+    delay_close = fields.Float(
+        'Delay to close',
+        digits=(16, 2), readonly=True,
+        group_operator="avg",
+        help="Number of Days to close the case"
+    )
     date_closed = fields.Datetime('Close Date', readonly=True, select=True)
     date_deadline = fields.Date('Deadline', readonly=True, select=True)
-    delay_expected = fields.Float('Overpassed Deadline',
-                                  digits=(16, 2), readonly=True,
-                                  group_operator="avg")
+    delay_expected = fields.Float(
+        'Overpassed Deadline',
+        digits=(16, 2), readonly=True,
+        group_operator="avg"
+    )
 
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
     stage_id = fields.Many2one('crm.claim.stage', 'Stage', readonly=True)
-    categ_id = fields.Many2one('crm.case.categ', 'Category',
-                               domain="[('section_id','=',section_id),\
-                               ('object_id.model', '=', 'crm.claim')]",
-                               readonly=True)
+    categ_id = fields.Many2one(
+        'crm.case.categ', 'Category',
+        domain="[('section_id','=',section_id),\
+        ('object_id.model', '=', 'crm.claim')]",
+        readonly=True
+    )
     partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
 
     priority = fields.Selection(AVAILABLE_PRIORITIES, 'Priority')
-    sla = fields.Selection([('0', '-'), ('1', 'Taso 1'), ('2', 'Taso 2'),
-                            ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level',
-                           readonly=True)
+    sla = fields.Selection(
+        [('0', '-'), ('1', 'Taso 1'), ('2', 'Taso 2'),
+         ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level',
+        readonly=True
+    )
 
-    type_action = fields.Selection([('correction', 'Corrective Action'),
-                                    ('prevention', 'Preventive Action')],
-                                   'Action Type')
+    type_action = fields.Selection(
+        [('correction', 'Corrective Action'),
+         ('prevention', 'Preventive Action')],
+        'Action Type')
     subject = fields.Char('Claim Subject', readonly=True)
     claim_number = fields.Char('Claim number', readonly=True)
 
