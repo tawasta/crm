@@ -6,7 +6,7 @@
 			<field name="name">Affiliate simplified form view</field>
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_form"/>
-			<field eval="30" name="priority"/>
+			<field name="priority" eval="30" />
 			
 			<field name="arch" type="xml">
 			
