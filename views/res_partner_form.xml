@@ -17,7 +17,6 @@
                 </xpath>
                 
                 <field name='type' position='attributes'>
-                	<attribute name='readonly'>1</attribute>
                 	<attribute name='invisible'>1</attribute>
                 </field>
                 
