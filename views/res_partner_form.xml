@@ -22,7 +22,7 @@
                     </field>
                     
                     <field name='title' position='attributes'>
-                    	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
+                    	<attribute name='attrs'>{'invisible':['|',('show_all','=',False),('is_company','=',True)]}</attribute>
                     </field>
                     
                     <!-- Fix city and zip width -->
