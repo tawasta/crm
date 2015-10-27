@@ -21,7 +21,7 @@
 {
     'name': 'CRM Simplification',
     'category': 'CRM',
-    'version': '8.0.0.4.4',
+    'version': '8.0.0.4.5',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': [
