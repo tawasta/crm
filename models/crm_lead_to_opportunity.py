@@ -2,7 +2,7 @@
 from openerp import models, api, fields
 
 
-class CrmLead2Opportunity(models.Model):
+class CrmLead2Opportunity(models.TransientModel):
     _inherit = 'crm.lead2opportunity.partner'
 
     opportunity_ids = fields.Many2many(readonly=True)
