@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-15 12:28+0000\n"
-"PO-Revision-Date: 2015-06-15 15:33+0200\n"
+"POT-Creation-Date: 2015-10-30 13:20+0000\n"
+"PO-Revision-Date: 2015-10-30 15:21+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -89,6 +89,11 @@ msgid "Describe the lead..."
 msgstr "Kuvaile liidiä..."
 
 #. module: crm_simplification
+#: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
+msgid "Describe the opportunity..."
+msgstr "Kuvaile mahdollisuutta..."
+
+#. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
 msgid "Email"
 msgstr "Sähköposti"
@@ -128,6 +133,11 @@ msgid "Lead"
 msgstr "Liidi"
 
 #. module: crm_simplification
+#: model:ir.model,name:crm_simplification.model_crm_lead2opportunity_partner
+msgid "Lead To Opportunity Partner"
+msgstr "Liidistä mahdolliseksi kumppaniksi"
+
+#. module: crm_simplification
 #: model:ir.model,name:crm_simplification.model_crm_lead
 msgid "Lead/Opportunity"
 msgstr "Liidi/mahdollisuus"
@@ -152,7 +162,7 @@ msgstr "Sekalaiset"
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.view_crm_case_leads_filter_addition
 msgid "My Leads"
-msgstr "My Leads"
+msgstr "Omat liidit"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
@@ -178,7 +188,7 @@ msgstr "Puhelin"
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 msgid "Schedule/Log"
-msgstr "Aikatalu/loki"
+msgstr "Schedule/Log"
 
 #. module: crm_simplification
 #: field:crm.lead,show_all:0 field:res.partner,show_all:0
@@ -186,11 +196,16 @@ msgid "Show all fields"
 msgstr "Näytä kaikki kentät"
 
 #. module: crm_simplification
+#: help:res.partner,show_all:0
+msgid "Some of the lesser used fields are hidden by default"
+msgstr "Joitain vähemmän käytettyjä kenttiä on piilotettu oletuksena"
+
+#. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
 msgid "State"
-msgstr "Osavaltio"
+msgstr "Maakunta"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
@@ -217,7 +232,7 @@ msgstr "assigned_to_me"
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 msgid "at"
-msgstr "mahdollisuudella"
+msgstr "sijainnissa"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
@@ -236,9 +251,24 @@ msgid "width: 60%"
 msgstr "width: 60%"
 
 #. module: crm_simplification
+#: view:crm.lead2opportunity.partner:crm_simplification.view_crm_lead2opportunity_partner
+msgid "{\"no_create\": True, \"no_open\": True}"
+msgstr "{\"no_create\": True, \"no_open\": True}"
+
+#. module: crm_simplification
+#: view:res.partner:crm_simplification.res_partner_simplified_form_view
+msgid "{\"no_create\": True}"
+msgstr "{\"no_create\": True}"
+
+#. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view_vat
 msgid "{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}"
 msgstr "{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}"
+
+#. module: crm_simplification
+#: view:res.partner:crm_simplification.res_partner_simplified_form_view
+msgid "{'invisible':[('parent_id', '=', False),('show_all','=',False)]}"
+msgstr "{'invisible':[('parent_id', '=', False),('show_all','=',False)]}"
 
 #. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view
