@@ -23,7 +23,7 @@
 	            <div class="oe_right oe_button_box" name="buttons">
 	                <button class="oe_inline oe_stat_button" type="action"
 	                    context="{'default_opportunity_id': active_id, 'search_default_opportunity_id': active_id, 'default_partner_id': partner_id, 'default_duration': 1.0}"
-	                    name="%(crm.crm_case_categ_phone_incoming0)d" icon="fa-phone">
+	                    name="%(crm.crm_case_categ_phone_incoming0)d" >
 	                    <div>Schedule/Log<br/>Calls</div>
 	                </button>
 	            </div>
@@ -109,7 +109,7 @@
                  	
              	</group>
              	
-             	<div id='show_all' class="oe_right">
+             	<div id='show_all' class="oe_right oe_edit_only">
              		<label for="show_all" />
              		<field name="show_all" />
              	</div>

@@ -9,7 +9,7 @@ class ResPartner(models.Model):
     show_all = fields.Boolean(
         'Show all fields',
         help="Some of the lesser used fields are hidden by default"
-        )
+    )
 
     # This field is only a helper for "is company"
     personal_customer = fields.Boolean('Personal Customer',

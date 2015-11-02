@@ -140,7 +140,7 @@
                  	
              	</group>
              	
-             	<div id='show_all' class="oe_right">
+             	<div id='show_all' class="oe_right oe_edit_only">
              		<label for="show_all" />
              		<field name="show_all" />
              	</div>
