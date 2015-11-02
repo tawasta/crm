@@ -78,7 +78,7 @@ class ResPartner(models.Model):
     def _set_contacts(self):
         # There's probably a smarter way to do this
 
-        new_contacts =[]
+        new_contacts = []
 
         for contact in self.address_contact_recursive_ids:
             if isinstance(contact.id, models.NewId):
