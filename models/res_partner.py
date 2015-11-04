@@ -12,8 +12,17 @@ class ResPartner(models.Model):
     )
 
     # This field is only a helper for "is company"
-    personal_customer = fields.Boolean('Personal Customer',
-                                       help="A customer that's not a company")
+    personal_customer = fields.Boolean(
+        'Personal Customer',
+        help="A customer that's not a company"
+    )
+
+    @api.model
+    def create(self, vals):
+        if 'personal_customer' in vals and vals['personal_customer']:
+            vals['is_company'] = False
+
+        return super(ResPartner, self).create(vals)
 
     @api.onchange('personal_customer')
     def personal_customer_onchange(self):
