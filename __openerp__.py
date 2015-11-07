@@ -29,7 +29,6 @@
     'installable': True,
     'depends': [
         'crm',
-        'sale_business_id',
     ],
     'data': [
         'views/res_partner_form.xml',
