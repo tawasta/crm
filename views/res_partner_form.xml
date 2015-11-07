@@ -6,89 +6,91 @@
                 <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
                 
-                <!-- Hide 'is a company'-div -->
-                <div class='oe_edit_only' position='attributes'>
-                	<attribute name='invisible'>1</attribute>
-                </div>
-                
-                <!-- Hide type field -->
-                <xpath expr="//label[@for='type']" position="attributes">
-                	<attribute name='invisible'>1</attribute>
-                </xpath>
-                
-                <field name='type' position='attributes'>
-                	<attribute name='invisible'>1</attribute>
-                </field>
-                
-                <div name='div_type' position='attributes'>
-                	<attribute name='invisible'>1</attribute>
-                </div>
+                    <!-- Hide 'is a company'-div -->
+                    <div class='oe_edit_only' position='attributes'>
+                        <attribute name='invisible'>1</attribute>
+                    </div>
 
-                <!-- Hide parent address field -->
-                <field name='use_parent_address' position='replace'>
-					<field name='use_parent_address' attrs="{'invisible': [('parent_id', '=', False)]}" />
-                </field>
-                
-                <label for="use_parent_address" position='attributes'>
-					<attribute name='attrs'>{'invisible': [('parent_id', '=', False)]}</attribute>
-                </label>
-                
-                <button name="open_parent" position='attributes'>
-                	<attribute name='invisible'>1</attribute>
-                </button>
-                
-    			<!--  Contacts -->
-     			<xpath expr="//page[@string='Contacts']" position="attributes">
-     				<attribute name='invisible'>1</attribute>
-     			</xpath>
-    			
-                <xpath expr="//page[@string='Contacts']" position="after">
-                    <page string="Contacts" attrs="{'invisible': [('is_company','=',False)]}">
-                    
-                        <field name="address_contact_recursive_ids"
-                       		context="{
-                       			'form_view_ref': 'crm_address_simplification.view_partner_simple_contact_form',
-                       			'tree_view_ref': 'crm_address_simplification.view_partner_simple_contact_tree',
-	                        	'default_parent_id': active_id, 
-	                        	'default_type': 'contact', 
-	                        	'default_is_company': False, 
-	                        	'default_use_parent_address': True,
-	                        	'default_supplier': supplier,
-	                        	'default_customer': customer,
-                       		}" />
-                        
-                    </page>
+                    <!-- Hide type field -->
+                    <xpath expr="//label[@for='type']" position="attributes">
+                        <attribute name='invisible'>1</attribute>
+                    </xpath>
 
-                    <page string="Affiliates" attrs="{'invisible': [('is_company','=',False)]}">
-                    
-                        <field name="address_affiliate_ids" 
-                        	context="{
-								'form_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_form',
-								'tree_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_tree',
-	                       		'default_parent_id': id,
-	                       		'default_type': 'delivery', 
-	                       		'default_is_company': True,
-	                       		'default_use_parent_address': True,
-	                        	'default_supplier': supplier,
-	                        	'default_customer': customer,
-                       		}" />
-                    </page>
+                    <field name='type' position='attributes'>
+                        <attribute name='invisible'>1</attribute>
+                    </field>
 
-					<!-- eInvoice addresses -->
-                    <page string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
-                        <field name="address_einvoice_ids" 
-                        	context="{
-                        		'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
-                        		'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
-	                        	'default_parent_id': active_id,
-	                        	'default_name': 'Verkkolaskuosoite', 
-	                        	'default_type': 'invoice', 
-	                        	'default_is_company': True, 
-	                        	'default_use_parent_address': False
-                        	}" />
+                    <div name='div_type' position='attributes'>
+                        <attribute name='invisible'>1</attribute>
+                    </div>
+
+                    <!-- Hide parent address field -->
+                    <field name='use_parent_address' position='replace'>
+                        <field name='use_parent_address' attrs="{'invisible': [('parent_id', '=', False)]}" />
+                    </field>
+
+                    <label for="use_parent_address" position='attributes'>
+                        <attribute name='attrs'>{'invisible': [('parent_id', '=', False)]}</attribute>
+                    </label>
+
+                    <button name="open_parent" position='attributes'>
+                        <attribute name='invisible'>1</attribute>
+                    </button>
+
+                    <!--  Contacts -->
+                    <xpath expr="//page[@string='Contacts']" position="attributes">
+                        <attribute name='invisible'>1</attribute>
+                    </xpath>
+
+                    <xpath expr="//page[@string='Contacts']" position="after">
+                        <page string="Contacts" attrs="{'invisible': [('is_company','=',False)]}">
+
+                            <field name="address_contact_recursive_ids"
+                                context="{
+                                    'form_view_ref': 'crm_address_simplification.view_partner_simple_contact_form',
+                                    'tree_view_ref': 'crm_address_simplification.view_partner_simple_contact_tree',
+                                    'default_parent_id': active_id,
+                                    'default_type': 'contact',
+                                    'default_is_company': False,
+                                    'default_use_parent_address': True,
+                                    'default_supplier': supplier,
+                                    'default_customer': customer,
+                                }" />
+
+                        </page>
+
+                        <page string="Affiliates" attrs="{'invisible': [('is_company','=',False)]}">
+
+                            <field name="address_affiliate_ids"
+                                context="{
+                                    'form_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_form',
+                                    'tree_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_tree',
+                                    'default_parent_id': id,
+                                    'default_type': 'delivery',
+                                    'default_is_company': True,
+                                    'default_use_parent_address': True,
+                                    'default_supplier': supplier,
+                                    'default_customer': customer,
+                                }" />
+                        </page>
+
+                    </xpath>
+
+                    <!-- eInvoice addresses -->
+                    <page name="sales_purchases" position="inside">
+                        <group string="e-Invoice">
+                            <field name="address_einvoice_ids" nolabel="1"
+                                context="{
+                                    'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
+                                    'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
+                                    'default_parent_id': active_id,
+                                    'default_name': 'Verkkolaskuosoite',
+                                    'default_type': 'invoice',
+                                    'default_is_company': True,
+                                    'default_use_parent_address': False
+                                }" />
+                        </group>
                     </page>
-                    
-     			</xpath>
                     
                 </field>
         </record>
