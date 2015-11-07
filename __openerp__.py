@@ -21,7 +21,7 @@
 
 {
     'name': 'CRM Simplification',
-    'version': '8.0.0.4.11',
+    'version': '8.0.0.4.12',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -30,9 +30,11 @@
     'installable': True,
     'depends': [
         'crm',
-        'sale_crm',
         'crm_address_simplification',
         'crm_customer_account_number_gen',
+        'sale_business_id',
+        'sale_business_id_extension',
+        'sale_crm',
     ],
     'data': [
         'views/res_partner_form.xml',
