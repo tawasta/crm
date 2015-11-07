@@ -13,9 +13,12 @@
                     </field>
 
                     <!-- Add customer number -->
-                    <field name="category_id" position="after">
-                        <field name="customer_number" readonly="1"/>
-                    </field>
+                    <h1 position="after">
+                        <h2>
+                            <label for="customer_number" string="#" class="oe_inline"/>
+                            <field name="customer_number" readonly="1" class="oe_inline"/>
+                        </h2>
+                    </h1>
 
                     <!-- Hide obsolete fields -->                    
                     <field name='fax' position='attributes'>
