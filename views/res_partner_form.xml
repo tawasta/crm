@@ -12,10 +12,10 @@
                     	<attribute name='options'>{"no_create": True}</attribute>
                     </field>
 
-                    <!-- Add customer number -->
+                    <!-- Add customer number
                     <field name="category_id" position="after">
                         <field name="customer_number" readonly="1"/>
-                    </field>
+                    </field>-->
 
                     <!-- Hide obsolete fields -->                    
                     <field name='fax' position='attributes'>
