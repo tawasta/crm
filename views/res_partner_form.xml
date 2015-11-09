@@ -11,18 +11,14 @@
                 	<attribute name='invisible'>1</attribute>
                 </div>
                 
-                <!-- Hide type field -->
-                <xpath expr="//label[@for='type']" position="attributes">
-                	<attribute name='invisible'>1</attribute>
-                </xpath>
+                <!-- Hide type field -->                
+                <label for="type" position='replace' />
+                <field name="type" position='replace' />
+                <div name="div_type" position='replace' />
                 
-                <field name='type' position='attributes'>
-                	<attribute name='invisible'>1</attribute>
+                <field name='email' position='after'>
+                	<field name='type' invisible='1' />
                 </field>
-                
-                <div name='div_type' position='attributes'>
-                	<attribute name='invisible'>1</attribute>
-                </div>
 
                 <!-- Hide parent address field -->
                 <field name='use_parent_address' position='replace'>
@@ -47,14 +43,14 @@
                     
                         <field name="address_contact_recursive_ids"
                        		context="{
-                       			'form_view_ref': 'crm_address_simplification.view_partner_simple_contact_form',
-                       			'tree_view_ref': 'crm_address_simplification.view_partner_simple_contact_tree',
 	                        	'default_parent_id': active_id, 
 	                        	'default_type': 'contact', 
 	                        	'default_is_company': False, 
 	                        	'default_use_parent_address': True,
 	                        	'default_supplier': supplier,
 	                        	'default_customer': customer,
+	                        	'default_is_company': False,
+	                        	'default_personal_customer': True,
                        		}" />
                         
                     </page>
@@ -63,8 +59,6 @@
                     
                         <field name="address_affiliate_ids" 
                         	context="{
-								'form_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_form',
-								'tree_view_ref': 'crm_address_simplification.view_partner_simple_affiliate_tree',
 	                       		'default_parent_id': id,
 	                       		'default_type': 'delivery', 
 	                       		'default_is_company': True,
