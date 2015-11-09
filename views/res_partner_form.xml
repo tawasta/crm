@@ -11,7 +11,15 @@
                     	<attribute name='attrs'>{'invisible':[('parent_id', '=', False),('show_all','=',False)]}</attribute>
                     	<attribute name='options'>{"no_create": True}</attribute>
                     </field>
-                    
+
+                    <!-- Add customer number -->
+                    <h1 position="after">
+                        <h2>
+                            <label for="customer_number" string="#" class="oe_inline"/>
+                            <field name="customer_number" readonly="1" class="oe_inline"/>
+                        </h2>
+                    </h1>
+
                     <!-- Hide obsolete fields -->                    
                     <field name='fax' position='attributes'>
                     	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
