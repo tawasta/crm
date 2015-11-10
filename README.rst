@@ -16,6 +16,7 @@ Features
 * Simpilfies adding partners by type directly from according notebook pages
 * Changes default partner views from kanban to row
 * Adds full name hierarchy to display name
+* Adds a street address for partner
 
 Installation
 ============
