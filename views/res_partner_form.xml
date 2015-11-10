@@ -72,25 +72,24 @@
 	                        	'default_customer': customer,
                        		}" />
                     </page>
-
-                    <!-- eInvoice addresses -->
-                    <page name="sales_purchases" position="inside">
-                        <group string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
-                            <field name="address_einvoice_ids"
-                                context="{
-                                    'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
-                                    'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
-                                    'default_parent_id': active_id,
-                                    'default_name': 'Verkkolaskuosoite',
-                                    'default_type': 'invoice',
-                                    'default_is_company': True,
-                                    'default_use_parent_address': False
-                                }" />
-                        </group>
-                    </page>
-                    
      			</xpath>
-                    
+
+                <!-- eInvoice addresses -->
+                <page name="sales_purchases" position="inside">
+                    <group string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
+                        <field name="address_einvoice_ids" nolabel="1"
+                            context="{
+                                'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
+                                'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
+                                'default_parent_id': active_id,
+                                'default_name': 'Verkkolaskuosoite',
+                                'default_type': 'invoice',
+                                'default_is_company': True,
+                                'default_use_parent_address': False
+                            }" />
+                    </group>
+                </page>
+
                 </field>
         </record>
     </data>
