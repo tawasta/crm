@@ -24,7 +24,7 @@ class ResPartner(models.Model):
                    ('delivery', 'Affiliate'),
                    ('invoice', 'e-Invoice address'))
 
-    # street_address = fields.Char('Street address')
+    street_address = fields.Char('Street address')
 
     @api.one
     @api.depends('name', 'parent_id.name')

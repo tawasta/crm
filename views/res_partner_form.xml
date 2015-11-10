@@ -32,7 +32,12 @@
                 <button name="open_parent" position='attributes'>
                 	<attribute name='invisible'>1</attribute>
                 </button>
-                
+
+                <!-- Add a street address -->
+                <field name="website" position="before">
+					<field name="street_address" placeholder="Street address" />
+				</field>
+
     			<!--  Contacts -->
      			<xpath expr="//page[@string='Contacts']" position="attributes">
      				<attribute name='invisible'>1</attribute>
@@ -68,18 +73,20 @@
                        		}" />
                     </page>
 
-					<!-- eInvoice addresses -->
-                    <page string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
-                        <field name="address_einvoice_ids" 
-                        	context="{
-                        		'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
-                        		'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
-	                        	'default_parent_id': active_id,
-	                        	'default_name': 'Verkkolaskuosoite', 
-	                        	'default_type': 'invoice', 
-	                        	'default_is_company': True, 
-	                        	'default_use_parent_address': False
-                        	}" />
+                    <!-- eInvoice addresses -->
+                    <page name="sales_purchases" position="inside">
+                        <group string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
+                            <field name="address_einvoice_ids"
+                                context="{
+                                    'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
+                                    'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
+                                    'default_parent_id': active_id,
+                                    'default_name': 'Verkkolaskuosoite',
+                                    'default_type': 'invoice',
+                                    'default_is_company': True,
+                                    'default_use_parent_address': False
+                                }" />
+                        </group>
                     </page>
                     
      			</xpath>
