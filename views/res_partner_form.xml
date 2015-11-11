@@ -55,11 +55,13 @@
                     	<field name='website' placeholder='Website'/>
                     </field>
                     
-                    <!-- Move the state field after zip code and hide it -->
+                    <!-- Move the state field after zip code and hide it
+                    <!--
                     <field name='state_id' position='replace' />
                     <field name='country_id' position='before'>
                     	<field name='state_id' attrs="{'invisible':[('show_all','=',False)]}" placeholder='State' on_change="onchange_state(state_id)" options='{"no_open": True}'/>
                     </field>
+                    -->
                     
                     <!-- Add a 'personal_customer' helper checkbox -->
                     <field name='title' position='after'>
