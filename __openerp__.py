@@ -21,7 +21,7 @@
 {
     'name': 'CRM Address Simplification',
     'category': 'Customer Relationship Management',
-    'version': '8.0.0.3.14',
+    'version': '8.0.0.3.15',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',

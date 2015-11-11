@@ -48,9 +48,10 @@
                     
                         <field name="address_contact_recursive_ids"
                        		context="{
-	                        	'default_parent_id': active_id, 
-	                        	'default_type': 'contact', 
-	                        	'default_is_company': False, 
+                       		    'tree_view_ref': 'crm_address_simplification.view_partner_simple_contact_tree',
+	                        	'default_parent_id': active_id,
+	                        	'default_type': 'contact',
+	                        	'default_is_company': False,
 	                        	'default_use_parent_address': True,
 	                        	'default_supplier': supplier,
 	                        	'default_customer': customer,
