@@ -55,7 +55,7 @@
                     	<field name='website' placeholder='Website'/>
                     </field>
                     
-                    <!-- Move the state field after zip code and hide it
+                    <!-- Move the state field after zip code and hide it -->
                     <!--
                     <field name='state_id' position='replace' />
                     <field name='country_id' position='before'>
