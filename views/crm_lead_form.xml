@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+        <record id="crm_lead_so_relation_form_view" model="ir.ui.view">
+			<field name="name">CRM Lead SO Relation</field>
+			<field name="model">crm.lead</field>
+			<field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+
+            	<field name="date_deadline" position="after">
+            		<field name="sale_order" readonly="1" attrs="{'invisible': [('sale_order', '=', False)]}"/>
+            	</field>
+
+			</field>
+        </record>
+        
+    </data>
+</openerp>
