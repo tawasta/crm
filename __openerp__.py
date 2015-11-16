@@ -21,7 +21,7 @@
 {
     'name': 'Lead to Sale',
     'category': 'CRM',
-    'version': '8.0.0.3.2',
+    'version': '8.0.0.3.3',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': [
@@ -38,6 +38,7 @@ Adds a relation between lead and sale
 ''',
     'data': [
         'views/crm_lead_form.xml',
+        'views/crm_lead_kanban.xml',
         'views/sale_order_form.xml',
     ],
 }
