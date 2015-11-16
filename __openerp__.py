@@ -21,7 +21,7 @@
 {
     'name': 'Lead to Sale',
     'category': 'CRM',
-    'version': '8.0.0.2.2',
+    'version': '8.0.0.3.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': [
