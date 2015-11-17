@@ -33,6 +33,11 @@
                     	<attribute name='attrs'>{'invisible':['|',('show_all','=',False),('is_company','=',True)]}</attribute>
                     </field>
                     
+                    <!-- Remove the address_format class so the fields wont' get overridden -->
+                    <div class="address_format" position="attributes">
+                        <attribute name="class"></attribute>
+                    </div>
+
                     <!-- Fix city and zip width -->
                  	<field name='city' position='attributes'>
                     	<attribute name='style'>width: 60%%</attribute>
@@ -57,7 +62,7 @@
                     
                     <!-- Move the state field after zip code and hide it -->
                     <field name='state_id' position='replace' />
-                    <field name='city' position='after'>
+                    <field name='zip' position='after'>
                     	<field name='state_id' attrs="{'invisible':[('show_all','=',False)]}" placeholder='State' on_change="onchange_state(state_id)" options='{"no_open": True}'/>
                     </field>
                     
