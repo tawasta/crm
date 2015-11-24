@@ -15,7 +15,7 @@
 {
     'name': 'CRM Claims extension',
     'category': 'Sales',
-    'version': '8.0.0.6.1',
+    'version': '8.0.0.6.2',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': [
@@ -64,13 +64,13 @@ Claims extension
   * Adds a "kill switch" for sending auto-replies: auto-reply won't be sent if a partner has three open claims within the last 15 minutes
 """,
     'data': [
-        'view/claim_menu.xml',
-        'view/claim_form_view.xml',
-        'view/claim_tree_view.xml',
-        'view/claim_reply_view.xml',
-        'view/claim_search_view.xml',
-        'view/res_partner_form_view.xml',
-        'view/fetchmail_server_form_view.xml',
+        'views/claim_menu.xml',
+        'views/claim_form_view.xml',
+        'views/claim_tree_view.xml',
+        'views/claim_reply_view.xml',
+        'views/claim_search_view.xml',
+        'views/res_partner_form_view.xml',
+        'views/fetchmail_server_form_view.xml',
         'data/claim_number_init.xml',
         'data/crm_claim_data.xml',
         'security/claim_security.xml',
