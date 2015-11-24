@@ -1,68 +1,36 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#   Copyright (c) 2014- Vizucom Oy (http://www.vizucom.com)
+#    Author: Jarmo Kortetjärvi
+#    Copyright 2015 Oy Tawasta OS Technologies Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
 #    License, or (at your option) any later version.
 #
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#    GNU Affero General Public License for more details.
+#
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 {
     'name': 'CRM Claims extension',
     'category': 'Sales',
     'version': '8.0.0.6.2',
-    'author': 'Vizucom Oy',
-    'website': 'http://www.vizucom.com',
+    'author': 'Oy Tawasta Technologies Ltd.',
+    'website': 'http://www.tawasta.fi',
+    'license': 'AGPL-3',
+    'application': False,
+    'installable': True,
     'depends': [
         'crm_claim',
         'fetchmail',
     ],
-
-    'description': """
-Claims extension
-=========================================
-* **Claim numbers**
-  * Generates claim numbers for all existing claims
-  * Tracks the current claim number and assigns an unique claim number for all new claims
-  * Starts from 10001 by default, can be customized in data XML file
-
-* **Views and Visualization**
-  * Removes settled and rejected claims from (default) tree view
-  * Extends the claims search to partner names, claim number and claim description
-  * Adds the first-level child partner claims to partner view claims-button count
-    * TODO: Add a recursive claims count for all children
-  * Adds claim row coloring and bolding for claims depending on their state (list view)
-  * Overwrites the claim tree view to colorize claims with new messages and past deadlines
-  * Splits the 'Claims' sub menu element to 'My claims' and 'All claims' for easier access
-
-* **Email and Messaging**
-  * Adds message history to mails sent by claims module
-  * Adds a company-specific message header to mails sent by claims module
-  * Adds a company-specific message footer to mails sent by claims module
-  * Overrides notify_email when sending helpdesk-messages: helpdesk will send mails to partners even if they have receive messages-option disabled
-  * Has a fallback claims matching by claim number in the subject
-
-* **Multi-company**
-  * Adds a company for claims
-  * Adds a company for fetchmail servers
-  * Adds a company-specific options for claims
-
-* **Workflow and Stages**
-  * Adds stage dates for start date, waiting date, settled date and rejected date
-  * Saves latest stage changes: start date, waiting date, settled date, rejected date.
-  * Reopens a claim if a new message is received on a closed claim
-  * Marks stage changer new->started as responsible if not set
-  * Updates followers on partner change
-* **Other**
-  * Adds a possibility for inline attachments
-  * Adds a partner email format validation
-  * Adds a "kill switch" for sending auto-replies: auto-reply won't be sent if a partner has three open claims within the last 15 minutes
-""",
     'data': [
         'views/claim_menu.xml',
         'views/claim_form_view.xml',
