@@ -1,37 +1,82 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
 
+# 1. Standard library imports:
+
+# 2. Known third party imports:
+
+# 3. Odoo imports (openerp):
+from openerp import api, fields, models
+
+# 4. Imports from Odoo modules:
+
+# 5. Local imports in the relative form:
+
+# 6. Unknown third party imports:
 import logging
 _logger = logging.getLogger(__name__)
 
 
 class ResPartner(models.Model):
 
+    # 1. Private attributes
     _inherit = 'res.partner'
+    _order = 'name_order'
 
-    ''' TODO
-        ORDER BY:
-            parent
-                parent contacts
-            child
-                child contacts
-            child2
-                child2 contact
-    '''
-    _order = 'display_name ASC'
+    TYPES_ARRAY = (
+        ('contact', 'Contact'),
+        ('delivery', 'Affiliate'),
+        ('invoice', 'e-Invoice address')
+    )
 
-    TYPES_ARRAY = (('contact', 'Contact'),
-                   ('delivery', 'Affiliate'),
-                   ('invoice', 'e-Invoice address'))
+    # 2. Fields declaration
+    type = fields.Selection(TYPES_ARRAY, 'Address Type')
+
+    name = fields.Char(inverse='_set_name')
+    display_name = fields.Char(compute='_get_display_name')
+    name_order = fields.Char(compute='_get_name_order', store=True)
 
     street_address = fields.Char('Street address')
 
+    address_contact_recursive_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='Contact',
+        compute='_get_contacts',
+        inverse='_set_contacts'
+    )
+    address_einvoice_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='e-Invoice',
+        domain=[('type', '=', 'invoice')]
+    )
+    address_affiliate_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='Affiliate',
+        domain=[('type', '=', 'delivery')]
+    )
+
+    edicode = fields.Char(string='Edicode')
+    einvoice_operator = fields.Char(string='e-Invoice operator')
+
+    is_company = fields.Boolean(default=True)
+    parent_left = fields.Integer('Parent Left')
+    parent_right = fields.Integer('Parent Right')
+
+    # 3. Default methods
+
+    # 4. Compute and search fields, in the same order that fields declaration
     @api.one
     @api.depends('name', 'parent_id.name')
     def _get_display_name(self):
         # Returns a name with a complete hierarchy
-
         self.display_name = self._get_recursive_name(self)
+
+    @api.one
+    @api.depends('name', 'display_name')
+    def _get_name_order(self):
+        self.name_order = self._get_recursive_name_order(self)
 
     @api.one
     def _set_name(self):
@@ -53,6 +98,20 @@ class ResPartner(models.Model):
             record.display_name = record.name
 
         return record.display_name
+
+    def _get_recursive_name_order(self, record):
+        if record.parent_id:
+            ordering_type = record.type if record.type == 'contact' else ''
+
+            record.name_order = "%s, %s %s" % (
+                self._get_recursive_name_order(record.parent_id),
+                record.type,
+                record.name
+            )
+        else:
+            record.name_order = record.name
+
+        return record.name_order
 
     def _get_contacts(self):
         for record in self:
@@ -106,33 +165,8 @@ class ResPartner(models.Model):
             for key, value in values.iteritems():
                 setattr(self, key, value)
 
-    ''' Columns '''
-    type = fields.Selection(TYPES_ARRAY, 'Address Type')
+    # 6. CRUD methods
 
-    name = fields.Char(inverse='_set_name')
-    display_name = fields.Char(compute='_get_display_name')
+    # 7. Action methods
 
-    address_contact_recursive_ids = fields.One2many(
-        'res.partner',
-        'parent_id',
-        string='Contact',
-        compute='_get_contacts',
-        inverse='_set_contacts'
-    )
-    address_einvoice_ids = fields.One2many(
-        'res.partner',
-        'parent_id',
-        string='e-Invoice',
-        domain=[('type', '=', 'invoice')]
-    )
-    address_affiliate_ids = fields.One2many(
-        'res.partner',
-        'parent_id',
-        string='Affiliate',
-        domain=[('type', '=', 'delivery')]
-    )
-
-    edicode = fields.Char(string='Edicode')
-    einvoice_operator = fields.Char(string='e-Invoice operator')
-
-    is_company = fields.Boolean(default=True)
+    # 8. Business methods
