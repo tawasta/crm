@@ -65,6 +65,17 @@ class ResPartner(models.Model):
     parent_right = fields.Integer('Parent Right')
 
     # 3. Default methods
+    @api.multi
+    @api.depends('name', 'parent_id')
+    def name_get(self):
+        # Use display name instead of name
+        res = []
+
+        for record in self:
+            name = record.display_name
+            res.append((record.id, name))
+
+        return res
 
     # 4. Compute and search fields, in the same order that fields declaration
     @api.one
@@ -144,6 +155,7 @@ class ResPartner(models.Model):
         for new_contact in new_contacts:
             self.create(new_contact)
 
+    # 5. Constraints and onchanges
     @api.one
     @api.onchange('use_parent_address')
     def onchange_use_parent_address(self):
