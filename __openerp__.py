@@ -15,7 +15,7 @@
 {
     'name': 'CRM Claims extension',
     'category': 'Sales',
-    'version': '0.6',
+    'version': '8.0.0.6.1',
     'author': 'Vizucom Oy',
     'website': 'http://www.vizucom.com',
     'depends': [
