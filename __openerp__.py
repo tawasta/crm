@@ -20,8 +20,8 @@
 ##############################################################################
 {
     'name': 'CRM Address Simplification',
-    'category': 'Customer Relationship Management',
-    'version': '8.0.0.4.1',
+    'category': 'CRM',
+    'version': '8.0.0.4.2',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',
