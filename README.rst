@@ -63,7 +63,7 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+- Add a recursive claims count for all the children
 
 Credits
 =======
