@@ -159,10 +159,10 @@ class ResPartner(models.Model):
     @api.one
     @api.onchange('use_parent_address')
     def onchange_use_parent_address(self):
-        ''' Updates address values from the parent '''
+        # Updates address values from the parent
 
         def value_or_id(val):
-            """ return val or val.id if val is a browse record """
+            # return val or val.id if val is a browse record
             return val if isinstance(val, (bool, int, long, float, basestring))\
                 else val.id
 
