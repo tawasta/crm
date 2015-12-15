@@ -60,9 +60,6 @@ class ResPartner(models.Model):
         domain=[('type', '=', 'delivery')]
     )
 
-    edicode = fields.Char(string='Edicode')
-    einvoice_operator = fields.Char(string='e-Invoice operator')
-
     is_company = fields.Boolean(default=True)
 
     # 3. Default methods
