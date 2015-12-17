@@ -60,32 +60,23 @@
                         </page>
                     </xpath>
 
-                </field>
+                <!-- eInvoice addresses -->
+                <page name="sales_purchases" position="inside">
+                    <group string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
+                        <field name="address_einvoice_ids" nolabel="1"
+                            context="{
+                                'form_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_form',
+                                'tree_view_ref': 'crm_address_simplification.view_partner_simple_einvoice_tree',
+                                'default_parent_id': active_id,
+                                'default_name': 'Verkkolaskuosoite',
+                                'default_type': 'invoice',
+                                'default_is_company': True,
+                                'default_use_parent_address': False
+                            }" />
+                    </group>
+                </page>
 
-        </record>
-
-        <record id="res_partner_form_view" model="ir.ui.view">
-                <field name="name">Partner form view</field>
-                <field name="model">res.partner</field>
-                <field name="inherit_id" ref="res_partner_edicode.res_partner_form_view"/>
-                <field name="arch" type="xml">
-                    <field name="edicode" position="replace"/>
-                    <field name="einvoice_operator" position="replace"/>
-                    <field name="einvoice_operator_identifier" position="replace"/>
-
-                    <!-- eInvoice addresses -->
-                    <page name="sales_purchases" position="inside">
-                        <group string="e-Invoice" attrs="{'invisible': [('is_company','=',False)]}">
-                            <group>
-                                <field name="edicode"/>
-                                <field name="einvoice_operator"/>
-                                <field name="einvoice_operator_identifier"/>
-                            </group>
-                            <group />
-                        </group>
-                    </page>
                 </field>
         </record>
-
     </data>
 </openerp>
