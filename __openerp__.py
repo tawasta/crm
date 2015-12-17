@@ -30,6 +30,7 @@
     'depends': [
         'crm',
         'crm_customer_account_number_gen',
+        'res_partner_edicode',
         'res_partner_recursion',
         'sale_business_id',
     ],
