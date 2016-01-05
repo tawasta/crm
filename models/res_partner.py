@@ -37,7 +37,6 @@ class ResPartner(models.Model):
 
     street_address = fields.Char('Street address')
 
-    ''' DEPRECATED
     address_contact_recursive_ids = fields.One2many(
         'res.partner',
         'parent_id',
@@ -45,7 +44,6 @@ class ResPartner(models.Model):
         compute='_get_contacts',
         inverse='_set_contacts'
     )
-    '''
 
     address_einvoice_ids = fields.One2many(
         'res.partner',
@@ -122,7 +120,6 @@ class ResPartner(models.Model):
 
         return record.name_order
 
-    ''' DEPRECATED
     def _get_contacts(self):
         for record in self:
             child_ids = self._get_recursive_child_ids(record)
@@ -153,7 +150,6 @@ class ResPartner(models.Model):
 
         for new_contact in new_contacts:
             self.create(new_contact)
-    '''
 
     # 5. Constraints and onchanges
     @api.one
