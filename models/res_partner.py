@@ -26,7 +26,7 @@ class ResPartner(models.Model):
         'parent_partners',
         'child_partners',
         string="Belongs to",
-        domain=[('is_company', '=', True)],
+        #domain=[('is_company', '=', True)],
     )
     child_partners = fields.Many2many(
         'res.partner',

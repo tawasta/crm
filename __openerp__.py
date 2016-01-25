@@ -22,7 +22,7 @@
 {
     'name': 'CRM Contact M2M',
     'summary': 'Allow contacts to belong to multiple companies',
-    'version': '8.0.0.2.1',
+    'version': '8.0.0.2.2',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
