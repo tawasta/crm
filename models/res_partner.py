@@ -20,6 +20,22 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     # 2. Fields declaration
+    parent_partners = fields.Many2many(
+        'res.partner',
+        'res_partner_contacts_relation',
+        'parent_partners',
+        'child_partners',
+        string="Belongs to",
+        domain=[('is_company', '=', True)],
+    )
+    child_partners = fields.Many2many(
+        'res.partner',
+        'res_partner_contacts_relation',
+        'child_partners',
+        'parent_partners',
+        string="Contacts",
+        domain=[('is_company', '=', False),('customer', '=', True)]
+    )
 
     # 3. Default methods
 

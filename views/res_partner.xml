@@ -2,13 +2,27 @@
 <openerp>
 	<data>
 
-		<record id="model_name_view_id" model="ir.ui.view">
-			<field name="name">view.name</field>
+		<record id="view_partner_form" model="ir.ui.view">
+			<field name="name">Contacts m2m</field>
 			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="model.referenced_view_name" />
+			<field name="inherit_id" ref="base.view_partner_form" />
 			<field name="arch" type="xml">
-				
-				<!-- Content goes here-->
+
+                <field name="parent_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="parent_id" position="after">
+                    <field name="parent_partners"
+                           widget="many2many_tags"
+                           placeholder="Belongs to..." />
+                </field>
+
+				<page string="Contacts" position="after">
+                    <page string="Contacts">
+                        <field name="child_partners" />
+                    </page>
+				</page>
 
 			</field>
 		</record> 
