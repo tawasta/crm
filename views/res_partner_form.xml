@@ -5,7 +5,7 @@
 		<record id="view_partner_form" model="ir.ui.view">
 			<field name="name">Contacts m2m</field>
 			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="inherit_id" ref="crm_address_simplification.res_partner_custom_form_view" />
 			<field name="arch" type="xml">
 
                 <field name="parent_id" position="attributes">
@@ -18,11 +18,9 @@
                            placeholder="Belongs to..." />
                 </field>
 
-				<page string="Contacts" position="after">
-                    <page string="Contacts">
-                        <field name="child_partners" />
-                    </page>
-				</page>
+                <field name="address_contact_recursive_ids" position="replace">
+                    <field name="child_partners" />
+                </field>
 
 			</field>
 		</record> 
