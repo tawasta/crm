@@ -10,3 +10,4 @@ import mail_followers
 import mail_notification
 import fetchmail_server
 import res_partner
+import ir_mail_server

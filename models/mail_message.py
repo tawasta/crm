@@ -1,56 +1,84 @@
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-from openerp import SUPERUSER_ID
+# -*- coding: utf-8 -*-
+
+# 1. Standard library imports:
 import re
+
+# 2. Known third party imports:
+
+# 3. Odoo imports (openerp):
+from openerp import api, fields, models
+
+# 4. Imports from Odoo modules:
+
+# 5. Local imports in the relative form:
+
+# 6. Unknown third party imports:
 import logging
-_logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
-class mail_message(osv.Model):
+class MailMessage(models.Model):
+
+    # 1. Private attributes
     _inherit = 'mail.message'
 
-    def create(self, cr, uid, values, context=None):
-        if context is None:
-            context = {}
-        model = context.get('thread_model')
+    # 2. Fields declaration
+
+    # 3. Default methods
+
+    # 4. Compute and search fields, in the same order that fields declaration
+
+    # 5. Constraints and onchanges
+
+    # 6. CRUD methods
+    @api.model
+    def create(self, vals):
+        if self._context is None:
+            self._context = {}
+        model = self._context.get('thread_model')
 
         if model and model == 'crm.claim':
-            ''' TODO: Get rid of this hack.
-                For some reason the author_id is False
-                if a new partner was created
-            '''
-            if not values.get('author_id'):
-                ''' TODO: This doesn't seem to do anything? '''
-                email_from = values.get('email_from')
+            # TODO: Get rid of this hack.
+            # For some reason the author_id is False
+            # if a new partner was created
+
+            if not vals.get('author_id'):
+                # TODO: This doesn't seem to do anything?
+                email_from = vals.get('email_from')
                 email_regex = re.compile("[<][^>]+[>]")
 
                 try:
                     email = email_regex.findall(email_from)[0]
                     email = re.sub(r'[<>]', "", email)
                 except IndexError, e:
-                    _logger.warn(e)
+                    logger.warn(e)
 
-                values['author_id'] = self.get_author_by_email(cr, uid, values,
-                                                               context)
+                vals['author_id'] = self.get_author_by_email(vals)
 
-        return super(mail_message, self).create(cr, uid, values,
-                                                context=context)
+        return super(MailMessage, self).create(vals)
 
-    def get_author_by_email(self, cr, uid, values, context=None):
-        ''' Try to get an author (i.e. partner) by email address '''
-        email_from = values.get('email_from')
+    # 7. Action methods
+
+    # 8. Business methods
+    @api.model
+    def get_author_by_email(self, vals):
+        # Try to get an author (i.e. partner) by email address
+        email_from = vals.get('email_from')
         email_regex = re.compile("[<][^>]+[>]")
 
         try:
             email = email_regex.findall(email_from)[0]
             email = re.sub(r'[<>]', "", email)
         except IndexError, e:
-            _logger.warn(e)
+            logger.warn(e)
             email = False
 
-        author = self.pool.get('res.partner').search(cr, uid,
-                                                     [('email', '=', email)])
+        author = self.env['res.partner'].search(
+            [('email', '=', email)]
+        )
 
         res = author[0] if author else False
 
         return res
+
+

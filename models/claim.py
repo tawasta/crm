@@ -66,7 +66,7 @@ class crm_claim(osv.Model):
                         email_list.pop(email_list.index(match[0]))
 
                     match = False
-
+                _logger.info("Email CC: %s", email_list)
                 email_cc = ','.join(email_list)
 
                 self.write(cr, uid, res, {'email_cc': email_cc})
@@ -97,7 +97,7 @@ class crm_claim(osv.Model):
         return res
 
     def write(self, cr, uid, ids, values, context=None):
-        ''' When a claim stage changes, save the date '''
+        # When a claim stage changes, save the date
 
         if values.get('email_from'):
             values['email_from_readonly'] = values.get('email_from')
@@ -140,15 +140,15 @@ class crm_claim(osv.Model):
                     )
 
         if values.get('message_last_post'):
-            ''' Check if a closed ticket gets a message.
-            If so, mark the ticket as new '''
+            # Check if a closed ticket gets a new message.
+            # If so, mark the ticket as new
             if self.browse(cr, uid, ids).stage_id.id in [3, 4]:
                 values['stage_id'] = 1
                 msg_body = _("Re-opening claim due a new message.")
                 self.message_post(cr, uid, ids, body=msg_body)
 
         if values.get('partner_id'):
-            ''' Partner id is changed. Set the new partner as a follower '''
+            # Partner id is changed. Set the new partner as a follower
             self.message_unsubscribe(
                 cr, uid, ids, [self.browse(cr, uid, ids).partner_id.id],
                 context=context
