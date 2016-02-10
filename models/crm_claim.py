@@ -15,6 +15,7 @@ from openerp import api, fields, models
 import logging
 logger = logging.getLogger(__name__)
 
+
 class CrmClaim(models.Model):
 
     # 1. Private attributes

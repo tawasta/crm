@@ -29,7 +29,7 @@ class res_partner(osv.osv):
         }
 
     def onchange_email(self, cr, uid, ids, email, context):
-        ''' Validates email '''
+        # Validates email
 
         res = {}
 
