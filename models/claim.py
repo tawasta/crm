@@ -377,15 +377,6 @@ class crm_claim(osv.Model):
 
         return False
 
-    def _get_stage_string(self, cr, uid, ids, field_name, arg, context=None):
-        records = self.browse(cr, uid, ids)
-        result = {}
-
-        for rec in records:
-            result[rec.id] = rec.stage_id.name
-
-        return result
-
     def _get_company(self, cr, uid, context=None):
         current_user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
         res = current_user.company_id.id
@@ -408,23 +399,6 @@ class crm_claim(osv.Model):
         res['value'] = {'email_from_readonly': email}
 
         return res
-
-    _columns = {
-        'company_id': fields.many2one('res.company', string=_('Company'), required=True),
-        'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
-        'reply_to': fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
-        'sla': fields.selection([('0', '-'),('1', 'Taso 1'), ('2', 'Taso 2'), ('3', 'Taso 3'), ('4', 'Taso 4')], 'Service level', select=True),
-        'email_to': fields.char('Email to', help='Email recipient'),
-        'email_cc': fields.char('Email CC', help='Carbon copy message recipients'),
-        'email_from_readonly': fields.char('Recipient email', readonly=True),
-        'date_start': fields.datetime('Start date'),
-        'date_waiting': fields.datetime('Waiting date'),
-        'date_settled': fields.datetime('Settled date'),
-        'date_rejected': fields.datetime('Rejected date'),
-        'attachment_ids': fields.many2many('ir.attachment',  string='Attachments'),
-        'stage_change_ids':  fields.one2many('crm.claim.stage.change', 'claim_id', string=_('Stage changes'), readonly=True),
-
-    }
 
     _defaults = {
         'sla': "1",

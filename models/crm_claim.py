@@ -22,10 +22,41 @@ class CrmClaim(models.Model):
 
     # 2. Fields declaration
     claim_number = fields.Char('Claim number')
+    company_id = fields.Many2one('res.company', string='Company', required=True)
+    stage = fields.Char('Claim Stage', function='_get_stage_string')
+    reply_to = fields.Char('Reply to', size=128, help="Provide reply to address for message thread.")
+    sla = fields.Selection(
+        [
+            ('0', '-'),
+            ('1', 'Taso 1'),
+            ('2', 'Taso 2'),
+            ('3', 'Taso 3'),
+            ('4', 'Taso 4'),
+        ],
+        'Service level',
+        select=True
+    )
+    email_to = fields.Char('Email to', help='Email recipient')
+    email_cc = fields.Char('Email CC', help='Carbon copy message recipients')
+    email_from_readonly =fields.Char('Recipient email', readonly=True)
+    date_start = fields.Datetime('Start date')
+    date_waiting = fields.Datetime('Waiting date')
+    date_settled = fields.Datetime('Settled date')
+    date_rejected = fields.Datetime('Rejected date')
+    attachment_ids = fields.Many2many('ir.attachment',  string='Attachments')
+    stage_change_ids = fields.One2many('crm.claim.stage.change', 'claim_id', string='Stage changes', readonly=True)
 
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
+    def _get_stage_string(self, cr, uid, ids, field_name, arg, context=None):
+        records = self.browse(cr, uid, ids)
+        result = {}
+
+        for rec in records:
+            result[rec.id] = rec.stage_id.name
+
+        return result
 
     # 5. Constraints and onchanges
 
