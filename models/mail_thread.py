@@ -24,12 +24,12 @@ class mail_thread(osv.Model):
             thread_id, custom_values, context
         )
 
-        ''' Try matching by the claim number '''
+        # Try matching by the claim number
         try:
-            ''' A try-block if res is empty for some reason '''
+            # A try-block if res is empty for some reason 
             if res[0][0] == 'crm.claim' and not res[0][1]:
-                ''' Could not match the claim with header information.
-                Trying to match by subject '''
+                # Could not match the claim with header information.
+                # Trying to match by subject
                 claim_number_re = re.compile("[#][0-9]{5,6}[: ]", re.UNICODE)
                 number_re = re.compile("[0-9]+", re.UNICODE)
 
@@ -37,29 +37,30 @@ class mail_thread(osv.Model):
                 match = claim_number_re.search(message_subject)
 
                 claim_number = match and match.group(0)
-                ''' Strip all but numbers'''
+                # Strip all but numbers
                 claim_number = number_re.search(claim_number).group(0)
 
                 claim_id = self.pool.get('crm.claim').search(
                     cr, SUPERUSER_ID, [('claim_number', '=', claim_number)]
                 )
 
-                ''' Rewrite the res tuple '''
+                # Rewrite the res tuple 
                 lst = list(res[0])
                 lst[1] = claim_id[0]
                 res[0] = tuple(lst)
                 _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
 
         except Exception, e:
-            ''' TODO: FIX "Error while matching a claim: expected string or buffer" '''
+            # TODO: FIX "Error while matching a claim: expected string or buffer" 
 
             _logger.warn('Error while matching a claim: %s', e)
 
         return res
-
-    '''
+    
     def _find_partner_from_emails(self, cr, uid, id, emails, model=None, context=None, check_followers=True):
-        res = super(mail_thread, self)._find_partner_from_emails(cr, uid, id, emails, model, context=context, check_followers=check_followers)
+        res = super(mail_thread, self)._find_partner_from_emails(
+            cr, uid, id, emails, model, context=context, check_followers=check_followers
+        )
 
         for email in emails:
             partner_obj = self.pool.get('res.partner')
@@ -67,18 +68,29 @@ class mail_thread(osv.Model):
             # Escape special SQL characters in email_address to avoid invalid matches
             email_address = (email.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_'))
             email_brackets = "<%s>" % email_address
-            # exact, case-insensitive match
-            ids = partner_obj.search(cr, SUPERUSER_ID,
-                                     [('email', '=ilike', email_address),
-                                      ('user_ids', '!=', False)],
-                                     limit=1, context=context)
+
+            _logger.warn("Using '%s' for partner matching", email_address)
+
+            # Skip empty emails
+            if not email_address:
+                continue
+
+            # Exact, case-insensitive match
+            ids = partner_obj.search(
+                cr, SUPERUSER_ID,
+                [('email', '=ilike', email_address),
+                 ('user_ids', '!=', False)],
+                limit=1, context=context
+            )
 
             if not ids:
-                # if no match with addr-spec, attempt substring match within name-addr pair
-                ids = partner_obj.search(cr, SUPERUSER_ID,
-                                         [('email', 'ilike', email_brackets),
-                                          ('user_ids', '!=', False)],
-                                         limit=1, context=context)
+                # If no match with addr-spec, attempt substring match within name-addr pair
+                ids = partner_obj.search(
+                    cr, SUPERUSER_ID,
+                    [('email', '=ilike', email_brackets),
+                     ('user_ids', '!=', False)],
+                    limit=1, context=context
+                )
 
             if not ids:
                 _logger.warn("%s not found. Creating", email)
@@ -86,9 +98,7 @@ class mail_thread(osv.Model):
                 res.append(partner_id)
 
         return res
-    '''
 
-    '''
     def message_parse(self, cr, uid, message, save_original=False, context=None):
         res = super(mail_thread, self).message_parse(cr, uid, message, save_original, context=context)
 
@@ -96,9 +106,7 @@ class mail_thread(osv.Model):
         _logger.warn(res)
 
         return res
-    '''
-
-    '''
+    
     def message_new(self, cr, uid, msg_dict, custom_values=None, context=None):
         _logger.warn("self: %s" % self)
         _logger.warn("msg: %s" % msg_dict)
@@ -106,9 +114,7 @@ class mail_thread(osv.Model):
         _logger.warn("ctx: %s" % context)
 
         return super(mail_thread, self).message_new(self, cr, uid, msg_dict, custom_values, context)
-    '''
-
-    '''
+    
     def message_process(self, cr, uid, model, message, custom_values=None,
                         save_original=False, strip_attachments=False,
                         thread_id=None, context=None):
@@ -119,4 +125,3 @@ class mail_thread(osv.Model):
         _logger.warn("ctx: %s" % context)
 
         return super(mail_thread, self).message_process(cr, uid, model, message, custom_values, save_original, strip_attachments, thread_id, context)
-    '''

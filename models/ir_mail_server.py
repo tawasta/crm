@@ -17,7 +17,7 @@ from openerp import api, fields, models
 class IrMailServer(models.Model):
 
     # 1. Private attributes
-    _inherit = 'ir.mail_serverl'
+    _inherit = 'ir.mail_server'
 
     # 2. Fields declaration
 
