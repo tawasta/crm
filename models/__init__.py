@@ -1,3 +1,4 @@
+import crm_claim
 import claim_reply
 import claim_reply_alias
 import claim

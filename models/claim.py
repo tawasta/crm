@@ -14,27 +14,6 @@ class crm_claim(osv.Model):
     _inherit = 'crm.claim'
     _order = "stage_id, date DESC, write_date DESC"
 
-    ''' When the module is installed, fetch all claims without a number and assign them one '''
-    def _init_claim_numbers(self, cr, uid, ids=None, context=None):
-
-        search_filter = [('claim_number', '=', False)]
-
-        matches = self.search(cr, SUPERUSER_ID, args=search_filter, order='id')
-
-        settings_model = self.pool.get('crm_claim.settings')
-
-        claim_number = settings_model.browse(cr, SUPERUSER_ID, [1], context)[0]\
-            .next_number
-        for match in self.browse(cr, SUPERUSER_ID, matches, context):
-            self.write(cr, SUPERUSER_ID, [match.id],
-                       {'claim_number': claim_number}, context)
-            claim_number += 1
-
-        ''' Update the highest number in the settings '''
-        settings_model.write(cr, SUPERUSER_ID, [1],
-                             {'next_number': claim_number}, context)
-        return True
-
     ''' When a claim is created, assign it a new claim number '''
     def create(self, cr, uid, vals, context=None):
         if not context:
@@ -444,7 +423,6 @@ class crm_claim(osv.Model):
         return res
 
     _columns = {
-        'claim_number': fields.char('Claim number'),
         'company_id': fields.many2one('res.company', string=_('Company'), required=True),
         'stage': fields.function(_get_stage_string, type='char', obj='crm.claim', string='Claim stage'),
         'reply_to': fields.char('Reply to', size=128, help="Provide reply to address for message thread."),
@@ -471,5 +449,3 @@ class crm_claim(osv.Model):
     _sql_constraints = [
         ('claim_number', 'unique(claim_number)', _('This claim number is already in use.'))
     ]
-
-crm_claim()
