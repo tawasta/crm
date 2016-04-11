@@ -148,7 +148,7 @@
 				<div id='notebook' >
                     <notebook colspan="4">
 	                    <page string="Internal Notes">
-	                        <field name="description"/>
+	                        <field name="description" widget="bootstrap_markdown" />
 	                    </page>
 	                    
 	                    <page string="Extra Info" invisible='1'>
