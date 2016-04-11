@@ -31,7 +31,7 @@
     'depends': [
         'crm',
         'crm_address_simplification',
-        'crm_customer_account_number_gen',
+        'crm_customer_number_autogenerate',
         'sale_business_id',
         'sale_business_id_extension',
         'sale_crm',
