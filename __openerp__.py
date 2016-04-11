@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Jarmo Kortetjärvi
+#    Author: Oy Tawasta OS Technologies Ltd.
 #    Copyright 2015 Oy Tawasta OS Technologies Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
     'installable': True,
     'depends': [
         'crm',
-        'crm_customer_account_number_gen',
+        'crm_customer_number',
         'res_partner_edicode',
         'res_partner_recursion',
         'sale_business_id',
