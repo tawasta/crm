@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<record model="ir.ui.view" id="crm_tokenkey_form_view">
+			<field name="name">Token key form view</field>
+			<field name="model">crm.tokenkey</field>
+			<field name="arch" type="xml">
+				<form string="Token key form view">
+					<sheet>
+						<h1><field name='name' placeholder='Name'/></h1>
+						<group>
+							<group>
+								<field name='company_name' />
+								<field name='partner_id' />
+								<field name='email' />
+								<field name='key' />
+								<field name='type' />
+							</group>
+							
+							<group>
+								<field name='database_name' />
+								<field name='create_date' />
+								<field name='date_reclaim' />
+								<field name='date_expiration' />
+								<field name='date_database_created' />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+    </data>
+</openerp>
