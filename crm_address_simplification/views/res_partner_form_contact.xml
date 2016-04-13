@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- Contact simple form view -->
+		<record model="ir.ui.view" id="view_partner_simple_contact_form">
+			<field name="name">Contact simplified form view</field>
+			<field name="model">res.partner</field>
+			<field name="priority" eval="20" />
+			
+			<field name="arch" type="xml">
+				<form string="Contact">
+					<sheet>
+						<field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+						
+	                   	<div class="oe_title" style="margin-bottom: 2em;">
+	                        <label for="name" class="oe_edit_only"/>
+	                        <h1><field name="name" style="width: 100%%"/></h1>
+	                        <field name="category_id" widget="many2many_tags" placeholder="Tags..." style="width: 100%%"/>
+	                    </div>
+	                    
+	                    <div id='info' style="width: 70%%; margin-bottom: 2em;">
+		                    <group>
+		                        <field name="function" placeholder="e.g. Sales Director"/>
+		                        <field name="email"/>
+		                        <field name="phone"/>	                    
+		                    </group>
+		                </div>
+	                    
+	                    <div id='use_parent_address'>
+	                        <field name="use_parent_address"/>
+	                        <label for="use_parent_address"/>
+	                    </div>
+	                    
+	                    <div id='parent_address' style="width: 70%%">
+		                    <group>
+		                        <label for="street" string="Address" attrs="{'invisible': [('use_parent_address','=', True)]}"/>
+		                        
+		                        <div attrs="{'invisible': [('use_parent_address','=', True)]}" name="div_address">
+		                            <field name="street" placeholder="Street..."/>
+		                            <field name="street2" />
+		                            <div class="address_format">
+		                                <field name="city" placeholder="City" style="width: 40%%" />
+		                                <field name="zip" placeholder="ZIP" style="width: 25%%" />
+		                                <field name="country_id" placeholder="Country" style="width: 35%%" class="oe_no_button" options='{"no_open": True, "no_create": True}'/>
+		                            </div>
+		                        </div>
+		                    </group>
+		             	</div>
+	                    
+	                    <group id='invisible_fields' invisible='True'>
+		                    <field name="supplier" />
+		                    <field name="customer" />
+							<field name="is_company" />
+							<field name="company_id" />
+							<field name="type" />
+							<field name="state_id" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

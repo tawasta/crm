@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!-- eInvoice simple tree view -->
+		<record model="ir.ui.view" id="view_partner_simple_einvoice_tree">
+			<field name="name">eInvoice simplified form view</field>
+			<field name="model">res.partner</field>
+			<field eval="20" name="priority"/>
+			
+			<field name="arch" type="xml">
+   	
+             	<tree delete="false">
+             		<field name='name' />
+             		<field name='edicode' />
+             		<field name='einvoice_operator' />
+            	</tree>
+
+			</field>
+		</record>
+	</data>
+</openerp>
