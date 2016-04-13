@@ -1,0 +1,13 @@
+import crm_claim
+import claim_reply
+import claim_reply_alias
+import claim
+import claim_stage_change
+import mail_mail
+import mail_message
+import mail_thread
+import mail_followers
+import mail_notification
+import fetchmail_server
+import res_partner
+import ir_mail_server

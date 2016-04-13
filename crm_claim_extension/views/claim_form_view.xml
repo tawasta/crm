@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+ 	<record model="ir.ui.view" id="crm_claim_form_view_extension">
+            <field name="name">Claims form view</field>
+            <field name="model">crm.claim</field>
+            <field name="inherit_id" ref="crm_claim.crm_case_claims_form_view"/>
+            <field name="arch" type="xml">
+
+				<field name='name' position='before'>
+					<field name='claim_number' readonly='1'/>
+					<field name='company_id' readonly='1'/>
+					<field name='sla' widget='priority'/>
+				</field>
+				
+				<field name='partner_id' position='attributes'>
+				    <attribute name='required'>1</attribute>
+				</field>
+				
+				<field name="email_from" position="attributes">
+					<attribute name='on_change'>onchange_email(email_from,context)</attribute>
+					<attribute name='invisible'>1</attribute>
+					<attribute name='required'>1</attribute>
+				</field>
+				
+            	<field name="email_from" position="after">
+             		<field name="email_from_readonly"/>
+             		<field name="email_cc"/>
+             		<field name="reply_to"/>
+            	</field>
+            	
+            	<field name="date" position="after">
+            		<field name='attachment_ids' widget="many2many_binary" />
+            	</field>
+
+				<notebook position='inside'>
+					<page string='Stage changes'>
+						<field name='stage_change_ids'>
+							<tree>
+								<field name='create_uid' />
+								<field name='create_date' />
+								<field name='stage' />
+							</tree>
+						</field>
+					</page>
+				</notebook>
+
+				<div class='oe_chatter' position='attributes'>
+					<attribute name='class'>oe_chatter oe_read_only</attribute>
+				</div>
+
+            </field>
+            
+		</record>
+    
+    </data>
+</openerp>

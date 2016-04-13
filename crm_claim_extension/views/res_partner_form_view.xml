@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+        <record id="res_partner_email_validation" model="ir.ui.view">
+                <field name="name">Partner email validation</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                    
+                    <field name='email' position='attributes'>
+                        <attribute name='on_change'>onchange_email(email,context)</attribute>
+                    </field>
+                    
+                </field>
+        </record>
+    </data>
+</openerp>

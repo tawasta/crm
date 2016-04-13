@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>	
+		<!-- Filters view -->
+      	<record id="view_crm_case_claims_filter_extension" model="ir.ui.view">
+            <field name="name">crm.claim.filters</field>
+            <field name="model">crm.claim</field>
+            <field name="inherit_id" ref="crm_claim.view_crm_case_claims_filter"/>
+            <field name="arch" type="xml">
+            
+            	<search position='inside'>
+            		<filter string="Active claims" name="active_claims" domain="[('stage_id','not in',[3,4])]" help="Active claims"/>
+            		<!-- NOTE: avoid using the new_replies-filter. It's seems to be excluding a lot of results even when used with an OR-condition -->
+            		<filter string="New reply" name="new_replies" domain="[('message_unread','=',True)]" help="Claims with new replies"/>
+            	</search>
+            	
+            	<field name="name" position='replace'>
+            		<field name="name" string="Claims" filter_domain="['|', '|', ('name','ilike',self), ('partner_id.name', 'ilike', self), ('claim_number','ilike',self)]"/>
+            	</field>
+                
+                <search position='inside'>
+	                <group expand="0" string="Claim owner">
+	                    <filter string="Digital Lessons" name="owner_digital_lessons" domain="[('company_id','ilike','Digital Lessons')]" help="Digital Lessons claims"/>
+	                    <filter string="Mediamaisteri" name="owners_mediamaisteri" domain="[('company_id','ilike','Mediamaisteri')]" help="Mediamaisteri claims"/>
+	                    <filter string="Open Trainers" name="owner_open_trainers" domain="[('company_id','ilike','Open Trainers')]" help="Open Trainers claims"/>
+	                    <filter string="Tawasta" name="owner_tawasta" domain="[('company_id','ilike','Tawasta')]" help="Tawasta claims"/>
+	                    <filter string="Vizucom" name="owner_vizucom" domain="[('company_id','ilike','Vizucom')]" help="Vizucom claims"/>
+                    </group>
+                </search>
+            </field>
+
+      	</record> 
+	</data>
+</openerp>

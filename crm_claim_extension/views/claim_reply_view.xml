@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+		
+		<!-- Claim reply-to (i.e. claim company-spesific settings) tree view -->
+        <record id="claim_reply_tree" model="ir.ui.view">
+			<field name="name">Claim reply address tree</field>
+            <field name="model">crm_claim.reply</field>
+            <field name="arch" type="xml">
+                <tree string="Claim reply to address">
+                     <field name="company_id"/>   
+                     <field name="reply_to"/>   
+                </tree>
+           </field>                         
+		</record>
+		
+		<!-- Claim reply-to (i.e. claim company-spesific settings) form view -->
+		<record id="claim_reply_form" model="ir.ui.view">
+			<field name="name">Claim reply address from</field>
+            <field name="model">crm_claim.reply</field>
+            <field name="arch" type="xml">
+                <form string="Claim reply to address">
+	                <sheet>
+		                <group>
+		                     <field name="company_id" required="1"/>   
+		                     <field name="reply_to" required="1"/>   
+		                     <field name="reply_alias_ids">
+		                     	<form string='Reply alias'>
+		                     		<group>
+			                     		<field name='name' />
+			                     		<field name='description' />
+			                     	</group>
+		                     	</form>
+		                     </field>
+		                     <field name="header" required="1"/>   
+		                     <field name="footer" required="1"/>   
+		                </group>
+	                </sheet>
+                </form>
+           </field>                         
+		</record>
+		
+	    <record id="action_claim_reply" model ="ir.actions.act_window"> 
+             <field name="name">Claim reply address</field>
+            <field name="res_model">crm_claim.reply</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="claim_reply_tree"/>
+        </record> 
+      
+        <menuitem  id="menu_claim_reply" name="Reply To" parent="crm_claim.menu_config_claim" action="action_claim_reply" sequence="2" />
+			 
+    </data>
+</openerp>
+    	        

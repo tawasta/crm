@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+ 	<record model="ir.ui.view" id="fetchmail_server_form_view">
+            <field name="name">Fetchmail server form</field>
+            <field name="model">fetchmail.server</field>
+            <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+            <field name="arch" type="xml">
+
+				<field name='date' position='after'>
+					<field name='company_id' required='1'/>
+				</field>
+
+            </field>
+            
+		</record>
+    
+    </data>
+</openerp>

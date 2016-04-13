@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="sequence_type_claim" model="ir.sequence.type">
+            <field name="name">Claim number type</field>
+            <field name="code">crm.claim</field>
+        </record>
+        <record id="sequence_claim" model="ir.sequence">
+            <field name="name">Claim number</field>
+            <field name="code">crm.claim</field>
+            <field eval="5" name="padding" />
+        </record>
+
+        <!-- Initialize claim numbers for all existing claims upon module installation -->
+        <function model="crm.claim" name="_init_claim_numbers"/>
+
+    </data>
+
+</openerp>
