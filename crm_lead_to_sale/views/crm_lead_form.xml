@@ -1,0 +1,27 @@
+<openerp>
+    <data>
+        <record id="crm_case_form_view_oppor" model="ir.ui.view">
+			<field name="name">CRM Opportunity SO Relation</field>
+			<field name="model">crm.lead</field>
+			<field name="inherit_id" ref="crm_simplification.crm_opportunity_simplified_form_view"/>
+            <field name="priority" eval="20" />
+			<field name="arch" type="xml">
+
+            	<field name="categ_ids" position="after">
+                    <field name="sale_order" readonly="1" attrs="{'invisible': [('sale_order', '=', False)]}" />
+                    <field name="sale_order_state" readonly="1" attrs="{'invisible': [('sale_order', '=', False)]}" />
+                    <field name="sale_order_sent" readonly="1" attrs="{'invisible': [('sale_order_sent', '=', False)]}" widget="datetime"/>
+            	</field>
+
+                <button name="case_mark_lost" position="after">
+                    <button name="action_quotation_send"
+                            string="Send Quotation"
+                            type="object"
+                            attrs="{'invisible': ['|',('probability', '=', 0),('probability', '=', 0)]}" />
+                </button>
+
+			</field>
+        </record>
+        
+    </data>
+</openerp>
