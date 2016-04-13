@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+		<!-- Tree view -->
+        <record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">Partner m2m Contacts</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                        
+            	<field name="display_name" position="after">
+            		<field name='child_partners' />
+            	</field>
+            	
+			</field>
+		</record>
+	
+    </data>
+</openerp>
+
