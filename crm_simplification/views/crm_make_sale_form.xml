@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+        <record id="view_crm_make_sale_hide_close" model="ir.ui.view">
+			<field name="name">CRM make sale form view</field>
+			<field name="model">crm.make.sale</field>
+			<field name="inherit_id" ref="sale_crm.view_crm_make_sale"/>
+			<field name="arch" type="xml">
+            
+            <field name='close' position='attributes'>
+				<attribute name='invisible'>1</attribute>
+            </field>
+            
+            </field>  
+		</record>        
+    </data>
+</openerp>
