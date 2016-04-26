@@ -12,7 +12,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="partner_contact_tree_view"/>
             <field name="domain">
-                [('is_company', '=', False)]
+                [('is_company', '=', False),('customer', '=', True)]
             </field>
         </record>
 

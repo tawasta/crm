@@ -17,6 +17,7 @@
                     <field name='city' />
 
                     <field name='parent_id' />
+                    <field name='last_salesperson' />
               	</tree>
 
 			</field>

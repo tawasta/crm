@@ -22,7 +22,7 @@
 {
     'name': 'CRM contact list',
     'summary': 'A simple list for quick exports',
-    'version': '8.0.0.2.0',
+    'version': '8.0.0.3.0',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -35,10 +35,12 @@
     },
     'depends': [
         'crm',
+        'sale',
+        'res_partner_recursion',
     ],
     'data': [
-        'views/res_partner_menu.xml',
         'views/res_partner_tree.xml',
+        'views/res_partner_menu.xml',
     ],
     'demo': [
     ],
