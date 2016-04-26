@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record id="Contacts tree view" model="ir.ui.view">
+			<field name="name">Contacts tree view</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+
+				<!-- Content goes here-->
+
+			</field>
+		</record> 
+
+	</data>
+</openerp>
