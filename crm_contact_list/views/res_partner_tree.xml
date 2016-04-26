@@ -2,12 +2,22 @@
 <openerp>
 	<data>
 
-		<record id="Contacts tree view" model="ir.ui.view">
-			<field name="name">Contacts tree view</field>
+		<record id="partner_contact_tree_view" model="ir.ui.view">
+			<field name="name">contact_tree_view</field>
 			<field name="model">res.partner</field>
+			<field eval="30" name="priority"/>
 			<field name="arch" type="xml">
+       	   		<tree string="Contacts">
+               		<field name='display_name' />
+               		<field name='email' />
+               		<field name='phone' />
 
-				<!-- Content goes here-->
+                    <field name='street' />
+                    <field name='zip' />
+                    <field name='city' />
+
+                    <field name='parent_id' />
+              	</tree>
 
 			</field>
 		</record> 

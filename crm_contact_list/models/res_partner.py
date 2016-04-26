@@ -14,11 +14,10 @@ from openerp import api, fields, models
 # 6. Unknown third party imports:
 
 
-class PlainModel(models.Model):
+class ResPartner(models.Model):
     
     # 1. Private attributes
-    _name = 'plain.model'
-    _inherit = 'plain.model'
+    _inherit = 'res.partner'
 
     # 2. Fields declaration
 
