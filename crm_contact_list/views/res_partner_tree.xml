@@ -7,8 +7,9 @@
 			<field name="model">res.partner</field>
 			<field eval="30" name="priority"/>
 			<field name="arch" type="xml">
-       	   		<tree string="Contacts">
-               		<field name='display_name' />
+       	   		<tree string="Contacts" default_order='parent_id'>
+                    <field name='parent_id' />
+               		<field name='name' />
                		<field name='email' />
                		<field name='phone' />
 
@@ -16,7 +17,6 @@
                     <field name='zip' />
                     <field name='city' />
 
-                    <field name='parent_id' />
                     <field name='last_salesperson' />
               	</tree>
 
