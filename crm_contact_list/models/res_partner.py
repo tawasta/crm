@@ -33,16 +33,20 @@ class ResPartner(models.Model):
         sale_order = self.env['sale.order']
 
         for record in self:
-            parent = record._get_recursive_parent()
+            partner_ids = list()
 
-            if not parent:
-                parent = record
-            else:
-                parent = record[0]
+            partner_ids.append(record.id)
+
+            if record.parent_id:
+                partner_ids.append(record.parent_id.id)
+
+            top_parent = record._get_recursive_parent()
+            if top_parent:
+                partner_ids.append(top_parent[0].id)
 
             # Search latest saleperson
             last_saleorder = sale_order.search(
-                [('partner_id', 'in', (parent.id, record.id))],
+                [('partner_id', 'in', partner_ids)],
                 order='date_order DESC',
                 limit=1,
             )
