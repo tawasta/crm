@@ -20,6 +20,7 @@
 ##############################################################################
 {
     'name': 'Lead to Sale',
+    'summary': 'Improved lead to sale functionality',
     'category': 'CRM',
     'version': '8.0.0.4.0',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -29,13 +30,6 @@
         'sale_crm',
         'sale_order_description',
     ],
-    'description': '''
-Lead to Sale
---------------------------
-
-Adds a relation between lead and sale
-
-''',
     'data': [
         'views/crm_lead_form.xml',
         'views/crm_lead_kanban.xml',

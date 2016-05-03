@@ -20,6 +20,7 @@
 ##############################################################################
 {
     'name': 'CRM Claim Extension Reports',
+    'summary': 'Reports for crm_claim_extension',
     'category': 'CRM',
     'version': '8.0.0.1.6',
     'author': 'Oy Tawasta Technologies Ltd.',

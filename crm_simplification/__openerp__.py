@@ -21,6 +21,7 @@
 
 {
     'name': 'CRM Simplification',
+    'summary': 'Generic CRM simplifications',
     'version': '8.0.0.4.22',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',

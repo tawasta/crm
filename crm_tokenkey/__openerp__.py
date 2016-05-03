@@ -14,6 +14,7 @@
 ##############################################################################
 {
     'name': 'CRM Token key management',
+    'summary': 'Simple token key management',
     'category': 'CRM',
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd',

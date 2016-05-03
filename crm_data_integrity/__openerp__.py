@@ -14,6 +14,7 @@
 ##############################################################################
 {
     'name': 'CRM Data Integrity',
+    'summary': 'Prevents accidentally deleting partner data',
     'category': 'CRM',
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',

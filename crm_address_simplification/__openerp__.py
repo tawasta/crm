@@ -20,6 +20,7 @@
 ##############################################################################
 {
     'name': 'CRM Address Simplification',
+    'summary': 'Partner address modifications (simplification)',
     'category': 'CRM',
     'version': '8.0.0.6.4',
     'author': 'Oy Tawasta Technologies Ltd.',
