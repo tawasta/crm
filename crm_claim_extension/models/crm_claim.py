@@ -6,7 +6,7 @@
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
-from openerp import tools
+from openerp import tools, _
 
 # 4. Imports from Odoo modules:
 
@@ -106,3 +106,15 @@ class CrmClaim(models.Model):
         for claim in claims:
             claim.claim_number = self.env['ir.sequence'].get('crm.claim')
             logger.debug("Setting claim number for #%s", claim.claim_number)
+
+    @api.multi
+    def message_post(self, **kwargs):
+        res = super(CrmClaim, self).message_post(**kwargs)
+
+        if 'type' in kwargs and kwargs['type'] == 'comment' and self.email_cc:
+            # Make a message about cc-recipients
+
+            msg = _("Previous message was sent to '%s' as a copy.") % self.email_cc
+            self.message_post(body=msg)
+
+        return res
