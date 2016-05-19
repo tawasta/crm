@@ -383,23 +383,6 @@ class crm_claim(osv.Model):
 
         return res
 
-    def onchange_email(self, cr, uid, ids, email, context):
-        # Validates email
-
-        res = {}
-
-        if not email:
-            return res
-
-        valid_email = tools.single_email_re.match(email)
-
-        if not valid_email:
-            res['warning'] = {'title':'Warning!', 'message':'The email address "%s" is not valid.' % email}
-
-        res['value'] = {'email_from_readonly': email}
-
-        return res
-
     _defaults = {
         'sla': "1",
         'stage_id': 1,

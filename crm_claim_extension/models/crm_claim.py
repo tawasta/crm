@@ -6,6 +6,7 @@
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
+from openerp import tools
 
 # 4. Imports from Odoo modules:
 
@@ -39,7 +40,7 @@ class CrmClaim(models.Model):
     )
     email_to = fields.Char('Email to', help='Email recipient')
     email_cc = fields.Char('Email CC', help='Carbon copy message recipients')
-    email_from_readonly =fields.Char('Recipient email', readonly=True)
+    email_from_readonly = fields.Char('Recipient email', readonly=True)
     date_start = fields.Datetime('Start date')
     date_waiting = fields.Datetime('Waiting date')
     date_settled = fields.Datetime('Settled date')
@@ -60,6 +61,24 @@ class CrmClaim(models.Model):
         return result
 
     # 5. Constraints and onchanges
+    @api.onchange('email_from')
+    def onchange_email(self):
+        # Validates email
+
+        if self.email_from:
+            valid_email = tools.single_email_re.match(self.email_from)
+
+            result = dict()
+
+            if not valid_email:
+                result['warning'] = {
+                    'title': 'Warning!',
+                    'message': 'The email address "%s" is not valid.' % self.email_from
+                }
+
+            self.email_from_readonly = self.email_from
+
+        return result
 
     # 6. CRUD methods
     @api.model
