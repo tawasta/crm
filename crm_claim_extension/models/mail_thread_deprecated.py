@@ -1,61 +1,14 @@
 from openerp.osv import osv
 from openerp import tools
 from openerp import SUPERUSER_ID
-import re
-from openerp.addons.mail.mail_message import decode
 
 import logging
 _logger = logging.getLogger(__name__)
 
 
-def decode_header(message, header, separator=' '):
-    return separator.join(map(decode, filter(None, message.get_all(header, []))))
-
-
 class mail_thread(osv.Model):
 
     _inherit = 'mail.thread'
-
-    def message_route(self, cr, uid, message, message_dict, model=None,
-                      thread_id=None, custom_values=None, context=None):
-
-        res = super(mail_thread, self).message_route(
-            cr, uid, message, message_dict, model,
-            thread_id, custom_values, context
-        )
-
-        # Try matching by the claim number
-        try:
-            # A try-block if res is empty for some reason 
-            if res[0][0] == 'crm.claim' and not res[0][1]:
-                # Could not match the claim with header information.
-                # Trying to match by subject
-                claim_number_re = re.compile("[#][0-9]{5,6}[: ]", re.UNICODE)
-                number_re = re.compile("[0-9]+", re.UNICODE)
-
-                message_subject = decode_header(message, 'Subject')
-                match = claim_number_re.search(message_subject)
-
-                claim_number = match and match.group(0)
-                # Strip all but numbers
-                claim_number = number_re.search(claim_number).group(0)
-
-                claim_id = self.pool.get('crm.claim').search(
-                    cr, SUPERUSER_ID, [('claim_number', '=', claim_number)]
-                )
-
-                # Rewrite the res tuple 
-                lst = list(res[0])
-                lst[1] = claim_id[0]
-                res[0] = tuple(lst)
-                _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
-
-        except Exception, e:
-            # TODO: FIX "Error while matching a claim: expected string or buffer" 
-
-            _logger.warn('Error while matching a claim: %s', e)
-
-        return res
     
     def _find_partner_from_emails(self, cr, uid, id, emails, model=None, context=None, check_followers=True):
         res = super(mail_thread, self)._find_partner_from_emails(
