@@ -13,6 +13,7 @@ Available addons
 [crm_contact_list](crm_contact_list/) | A simple list for quick exports
 [crm_contact_m2m](crm_contact_m2m/) | Allow contacts to belong to multiple companies
 [crm_data_integrity](crm_data_integrity/) | Prevents accidentally deleting partner data
+[crm_helpdesk_extension](crm_helpdesk_extension/) | Extended functionality for helpdesk
 [crm_lead_to_sale](crm_lead_to_sale/) | Improved lead to sale functionality
 [crm_simplification](crm_simplification/) | Generic CRM simplifications
 [crm_tokenkey](crm_tokenkey/) | Simple token key management
