@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* crm_claim_extension
+#	* crm_claim_extension
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-20 05:24+0000\n"
-"PO-Revision-Date: 2016-05-20 08:27+0200\n"
-"Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
+"POT-Creation-Date: 2016-05-25 09:00+0000\n"
+"PO-Revision-Date: 2016-05-25 09:00+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: fi\n"
-"X-Generator: Poedit 1.7.5\n"
 
 #. module: crm_claim_extension
 #: code:addons/crm_claim_extension/wizard/invite_wizard.py:22
@@ -24,39 +22,15 @@ msgid "%s has invited you to follow claim #%s"
 msgstr "%s on kutsunut sinut seuraamaan tukipyyntöä #%s"
 
 #. module: crm_claim_extension
-#: model:ir.actions.act_window,help:crm_claim_extension.crm_case_categ_claim_all
-#: model:ir.actions.act_window,help:crm_claim_extension.crm_case_categ_claim_my
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                    Record and track your customers' claims. Claims may be linked to a sales order or a lot.You can send emails with attachments and keep the full history for a claim (emails sent, intervention type and so on).Claims may automatically be linked to an email address using the mail gateway module.\n"
-"                </p>\n"
-"            "
-msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"Kirjaa ja seuraa asiakaspalautteita. Palautteet voidaan yhdistää myyntitilauksiin tai -eriin.  Voit lähettää sähköposteja liitteineen ja säilyttää palautteen käsittelyn koko historian (lähetetyt sähköpostit, toimenpidetyypin jne.). Palautteet voidaan automaattisesti yhdistää sähköpostiosoitteisiin sähköpostin välityspalvelin -moduulissa.\n"
-"            </p>\n"
-"            "
-
-#. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:236
+#: code:addons/crm_claim_extension/models/claim.py:215
 #, python-format
 msgid "<strong>Autoreply was not sent.</strong>"
 msgstr "<strong>Automaattivastausta ei lähetetty.</strong>"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Active claims"
-msgstr "Aktiiviset tukipyynnöt"
-
-#. module: crm_claim_extension
 #: field:crm_claim.reply.alias,name:0
 msgid "Address"
 msgstr "Osoite"
-
-#. module: crm_claim_extension
-#: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_all
-msgid "All Claims"
-msgstr "Kaikki tukipyynnöt"
 
 #. module: crm_claim_extension
 #: model:crm.claim.stage,name:crm_claim_extension.stage_claim30
@@ -74,15 +48,9 @@ msgid "Auto-generated from claims"
 msgstr "Helpesk on generoinut partnerin automaattisesti"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.crm_claim_form_view_extension
 #: model:ir.model,name:crm_claim_extension.model_crm_claim
 msgid "Claim"
 msgstr "Tukipyyntö"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.crm_claim_form_view_extension
-msgid "Claim #"
-msgstr "Tukipyyntö #"
 
 #. module: crm_claim_extension
 #: field:crm.claim,stage:0
@@ -100,49 +68,22 @@ msgid "Claim number"
 msgstr "Tiketin numero"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Claim owner"
-msgstr "Tukipyynnön omistaja"
-
-#. module: crm_claim_extension
-#: model:ir.actions.act_window,name:crm_claim_extension.action_claim_reply
-msgid "Claim reply address"
-msgstr "Tukipyynnön vastausosoite"
-
-#. module: crm_claim_extension
-#: view:crm_claim.reply:crm_claim_extension.claim_reply_form
-#: view:crm_claim.reply:crm_claim_extension.claim_reply_tree
-msgid "Claim reply to address"
-msgstr "Tukipyynnön vastausosoite"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-#: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_all
-#: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_my
-msgid "Claims"
-msgstr "Tukipyynnöt"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Claims with new replies"
-msgstr "Tukipyynnöt joissa on uusia vastauksia"
-
-#. module: crm_claim_extension
-#: field:crm_claim.reply,company_id:0 field:fetchmail.server,company_id:0
+#: field:crm_claim.reply,company_id:0
+#: field:fetchmail.server,company_id:0
 msgid "Company"
 msgstr "Yritys"
 
 #. module: crm_claim_extension
 #: field:crm.claim.stage.change,create_uid:0
-#: field:crm_claim.reply,create_uid:0 field:crm_claim.reply.alias,create_uid:0
-#: field:mail.thread,create_uid:0
+#: field:crm_claim.reply,create_uid:0
+#: field:crm_claim.reply.alias,create_uid:0
 msgid "Created by"
 msgstr "Luonut"
 
 #. module: crm_claim_extension
 #: field:crm.claim.stage.change,create_date:0
 #: field:crm_claim.reply,create_date:0
-#: field:crm_claim.reply.alias,create_date:0 field:mail.thread,create_date:0
+#: field:crm_claim.reply.alias,create_date:0
 msgid "Created on"
 msgstr "Luotu"
 
@@ -150,16 +91,6 @@ msgstr "Luotu"
 #: field:crm_claim.reply.alias,description:0
 msgid "Description"
 msgstr "Kuvaus"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Digital Lessons"
-msgstr "Digital Lessons"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Digital Lessons claims"
-msgstr "Digital Lessonsin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: field:crm.claim.stage.change,display_name:0
@@ -215,15 +146,11 @@ msgid "Hours"
 msgstr "Hours"
 
 #. module: crm_claim_extension
-#: field:crm.claim.stage.change,id:0 field:crm_claim.reply,id:0
+#: field:crm.claim.stage.change,id:0
+#: field:crm_claim.reply,id:0
 #: field:crm_claim.reply.alias,id:0
 msgid "ID"
 msgstr "ID"
-
-#. module: crm_claim_extension
-#: model:ir.model,name:crm_claim_extension.model_mail_wizard_invite
-msgid "Invite wizard"
-msgstr "Kutsuavustaja"
 
 #. module: crm_claim_extension
 #: field:crm.claim.stage.change,__last_update:0
@@ -233,27 +160,18 @@ msgid "Last Modified on"
 msgstr "Viimeksi muokattu"
 
 #. module: crm_claim_extension
-#: field:crm.claim.stage.change,write_uid:0 field:crm_claim.reply,write_uid:0
-#: field:crm_claim.reply.alias,write_uid:0 field:mail.thread,write_uid:0
+#: field:crm.claim.stage.change,write_uid:0
+#: field:crm_claim.reply,write_uid:0
+#: field:crm_claim.reply.alias,write_uid:0
 msgid "Last Updated by"
 msgstr "Viimeksi päivittänyt"
 
 #. module: crm_claim_extension
 #: field:crm.claim.stage.change,write_date:0
-#: field:crm_claim.reply,write_date:0 field:crm_claim.reply.alias,write_date:0
-#: field:mail.thread,write_date:0
+#: field:crm_claim.reply,write_date:0
+#: field:crm_claim.reply.alias,write_date:0
 msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Mediamaisteri"
-msgstr "Mediamaisteri"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Mediamaisteri claims"
-msgstr "Mediamaisterin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_mail_message
@@ -276,16 +194,6 @@ msgid "Message to be sent when a claim is rejected"
 msgstr "Viesti joka lähetetään kun tukipyyntö on hylätty"
 
 #. module: crm_claim_extension
-#: model:ir.ui.menu,name:crm_claim_extension.menu_crm_case_claims_my
-msgid "My Claims"
-msgstr "Omat tukipyynnöt"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "New reply"
-msgstr "Uusi vastaus"
-
-#. module: crm_claim_extension
 #: field:crm.claim.stage.change,stage:0
 msgid "New stage"
 msgstr "Uusi vaihe"
@@ -301,16 +209,6 @@ msgid "Notifications"
 msgstr "Ilmoitukset"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Open Trainers"
-msgstr "Open Trainers"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Open Trainers claims"
-msgstr "Open Trainersin tukipyynnöt"
-
-#. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_mail_mail
 msgid "Outgoing Mails"
 msgstr "Lähtevät sähköpostit"
@@ -321,13 +219,12 @@ msgid "POP/IMAP Server"
 msgstr "POP/IMAP-palvelin"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.crm_claim_form_view_extension
 #: model:ir.model,name:crm_claim_extension.model_res_partner
 msgid "Partner"
 msgstr "Kumppani"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:239
+#: code:addons/crm_claim_extension/models/claim.py:218
 #, python-format
 msgid "Please wait a while before creating new ticket, or mark some tickets as started."
 msgstr "Ole hyvä ja odota hetki ennen tiketin lisäämistä, tai merkkaa tikettejä tilaan \"käynnissä\""
@@ -350,7 +247,7 @@ msgid "Re-opening claim due a new message."
 msgstr "Avataan tiketti saapuneen viestin takia"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:262
+#: code:addons/crm_claim_extension/models/claim.py:241
 #, python-format
 msgid "Received claim"
 msgstr "Vastaanotettu tukipyyntö"
@@ -364,16 +261,6 @@ msgstr "Vastaanottajan sähköposti"
 #: field:crm.claim,date_rejected:0
 msgid "Rejected date"
 msgstr "Hylkäämispäivä"
-
-#. module: crm_claim_extension
-#: model:ir.ui.menu,name:crm_claim_extension.menu_claim_reply
-msgid "Reply To"
-msgstr "Vastausosoite"
-
-#. module: crm_claim_extension
-#: view:crm_claim.reply:crm_claim_extension.claim_reply_form
-msgid "Reply alias"
-msgstr "Vastausalias"
 
 #. module: crm_claim_extension
 #: field:crm_claim.reply,reply_alias_ids:0
@@ -391,7 +278,7 @@ msgid "Reply to"
 msgstr "Vastausosoite"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:238
+#: code:addons/crm_claim_extension/models/claim.py:217
 #, python-format
 msgid "Sending autoreply is disabled for this partner to prevent an autoreply-loop."
 msgstr "Automaattivastauksen lähetys on estetty tälle partnerille vastausloopin estämiseksi"
@@ -407,7 +294,6 @@ msgid "Settled date"
 msgstr "Valmistumispäivä"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.crm_claim_form_view_extension
 #: field:crm.claim,stage_change_ids:0
 msgid "Stage changes"
 msgstr "Vaiheiden muutokset"
@@ -438,37 +324,17 @@ msgid "Taso 4"
 msgstr "Taso 4"
 
 #. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Tawasta"
-msgstr "Tawasta"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Tawasta claims"
-msgstr "Tawastan tukipyynnöt"
-
-#. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:394
+#: code:addons/crm_claim_extension/models/claim.py:373
 #: sql_constraint:crm.claim:0
 #, python-format
 msgid "This claim number is already in use."
 msgstr "Tämä tikettinumero on jo käytössä"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:237
+#: code:addons/crm_claim_extension/models/claim.py:216
 #, python-format
 msgid "This partner has more than three claims in the last 15 minutes."
 msgstr "Tällä partnerilla on enemmän kuin kolme tukipyyntöä viimeisen 15 minuutin aikana"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Vizucom"
-msgstr "Vizucom"
-
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
-msgid "Vizucom claims"
-msgstr "Vizucomin tukipyynnöt"
 
 #. module: crm_claim_extension
 #: model:crm.claim.stage,name:crm_claim_extension.stage_claim50
@@ -486,17 +352,8 @@ msgid "Waiting date"
 msgstr "Siirretty odottamaan"
 
 #. module: crm_claim_extension
-#: code:addons/crm_claim_extension/models/claim.py:282
+#: code:addons/crm_claim_extension/models/claim.py:261
 #, python-format
 msgid "Your claim has been received."
 msgstr "Tukipyyntösi on vastaanotettu."
 
-#. module: crm_claim_extension
-#: view:crm.claim:crm_claim_extension.crm_claim_form_view_extension
-msgid "oe_chatter oe_read_only"
-msgstr "oe_chatter oe_read_only"
-
-#. module: crm_claim_extension
-#: view:res.partner:crm_claim_extension.res_partner_email_validation
-msgid "onchange_email(email,context)"
-msgstr "onchange_email(email,context)"
