@@ -49,6 +49,8 @@ class mail_mail(osv.Model):
             # it can be set in context.
             # E.g. "Your claim has been received" before header
             if context.get('pre_header'):
+                if not header:
+                    header = ''
                 header = context.get('pre_header') + "<br/>" + header
 
             # Get message recipients from claim

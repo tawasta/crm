@@ -41,22 +41,20 @@ class MailThread(models.Model):
 
     # 8. Business methods
 
-    @api.multi
-    def message_route(self, **kwargs):
-        res = super(MailThread, self).message_route(**kwargs)
+    @api.model
+    def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
+
+        res = super(MailThread, self).message_route(message, message_dict, model, thread_id, custom_values)
 
         # Try matching by the claim number
         try:
             # A try-block if res is empty for some reason
             if res[0][0] == 'crm.claim' and not res[0][1]:
-                message = kwargs['message'] or False
 
                 # Could not match the claim with header information.
                 # Trying to match by subject
                 claim_number_re = re.compile("[#][0-9]{5,6}[: ]", re.UNICODE)
                 number_re = re.compile("[0-9]+", re.UNICODE)
-
-                print message
 
                 message_subject = decode_header(message, 'Subject')
                 match = claim_number_re.search(message_subject)

@@ -78,14 +78,14 @@ class CrmClaim(models.Model):
 
             self.email_from_readonly = self.email_from
 
-        return result
+            return result
 
     # 6. CRUD methods
     @api.model
-    def create(self, vals):
-        if not vals.get('claim_number'):
-            vals['claim_number'] = self.env['ir.sequence'].get('crm.claim')
-        return super(CrmClaim, self).create(vals)
+    def create(self, values):
+        if not values.get('claim_number'):
+            values['claim_number'] = self.env['ir.sequence'].get('crm.claim')
+        return super(CrmClaim, self).create(values)
 
     @api.one
     def copy(self, default=None):
@@ -118,3 +118,27 @@ class CrmClaim(models.Model):
             self.message_post(body=msg)
 
         return res
+
+    @api.multi
+    def xmessage_new(self, **kwargs):
+
+        print dict(kwargs)
+
+        msg = False
+        if 'msg' in kwargs:
+            msg = kwargs['msg']
+
+
+
+        email_cc = msg.get('to')
+
+        if msg.get('cc'):
+            email_cc = email_cc + "," + msg.get('cc')
+
+        defaults = {
+            'email_cc': email_cc
+        }
+
+        result = super(CrmClaim, self).message_new(**kwargs)
+
+        return result

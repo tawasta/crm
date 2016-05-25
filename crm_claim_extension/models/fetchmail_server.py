@@ -14,7 +14,7 @@ from openerp import api, fields, models
 # 6. Unknown third party imports:
 
 
-class MailThread(models.Model):
+class FetchmailServer(models.Model):
 
     # 1. Private attributes
     _inherit = 'fetchmail.server'

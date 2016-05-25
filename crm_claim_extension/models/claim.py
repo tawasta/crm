@@ -160,27 +160,6 @@ class crm_claim(osv.Model):
 
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
-    def message_new(self, cr, uid, msg, custom_values=None, context=None):
-        if custom_values is None:
-            custom_values = {}
-
-        email_cc = msg.get('to')
-
-        if msg.get('cc'):
-            email_cc = email_cc + "," + msg.get('cc')
-
-        defaults = {
-            'email_cc': email_cc
-        }
-
-        defaults.update(custom_values)
-
-        res = super(crm_claim, self).message_new(
-            cr, uid, msg, custom_values=defaults, context=context
-        )
-
-        return res
-
     def _create_partner(self, cr, uid, vals, context=None):
         email_from = vals.get('email_from')
         name_regex = re.compile("^[^<]+")
@@ -354,10 +333,10 @@ class crm_claim(osv.Model):
 
         reply_object = self.pool.get('crm_claim.reply')
 
-        reply_settings_id = reply_object.search(cr,uid,[('company_id', '=', company_id)])[0]
+        reply_settings_id = reply_object.search(cr, uid, [('company_id', '=', company_id)])
 
         if reply_settings_id:
-            result = reply_object.browse(cr,uid,reply_settings_id).header
+            result = reply_object.browse(cr, uid, reply_settings_id[0]).header
 
             return result
 
@@ -368,10 +347,10 @@ class crm_claim(osv.Model):
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
 
         reply_object = self.pool.get('crm_claim.reply')
-        reply_settings_id = reply_object.search(cr,uid,[('company_id', '=', company_id)])[0]
+        reply_settings_id = reply_object.search(cr,uid,[('company_id', '=', company_id)])
 
         if reply_settings_id:
-            result = reply_object.browse(cr,uid,reply_settings_id).footer
+            result = reply_object.browse(cr, uid, reply_settings_id[0]).footer
 
             return result
 
