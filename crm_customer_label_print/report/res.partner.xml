@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <report
+                id="report_invoice_finnish"
+                string="Address Labels"
+                model="res.partner"
+                report_type="qweb-pdf"
+                name="res_partner.address_labels"
+                file="res_partner.address_labels"
+                />
+
+	</data>
+</openerp>
