@@ -4,10 +4,16 @@
         <template id="partner_address_labels">
             <t t-call="report.html_container">
                 <div class="page">
+                    <style type="text/css">
+                        td{
+                            border: 0 !important;
+                        }
+                    </style>
+
                     <t t-foreach="docs" t-as="o">
                         <t>
                             <div class="oe_structure"/>
-                            <div class="col-xs-6">
+                            <div class="col-xs-4" style="margin; 0; padding: 0; border: 1px solid #000; width: 70mm; height: 37.125mm">
                                 <table class="table">
                                     <tbody>
                                         <tr>

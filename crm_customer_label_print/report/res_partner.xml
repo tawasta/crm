@@ -11,5 +11,9 @@
                 file="crm_customer_label_print.partner_address_labels"
         />
 
+        <record id="report_invoice_finnish" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_euro_normargin"/>
+        </record>
+
 	</data>
 </openerp>
