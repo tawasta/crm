@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="partner_address_labels">
+            <t t-call="report.html_container">
+                <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <t>
+                            <div class="oe_structure"/>
+                            <div class="col-xs-6">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><span t-field="o.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span t-field="o.street"/> <span t-field="o.street2"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span t-field="o.zip"/> <span t-field="o.city"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span t-field="o.country_id"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </t>
+    </template>
+
+    </data>
+</openerp>

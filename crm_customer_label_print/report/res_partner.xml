@@ -7,9 +7,9 @@
                 string="Address Labels"
                 model="res.partner"
                 report_type="qweb-pdf"
-                name="res_partner.address_labels"
-                file="res_partner.address_labels"
-                />
+                name="crm_customer_label_print.partner_address_labels"
+                file="crm_customer_label_print.partner_address_labels"
+        />
 
 	</data>
 </openerp>

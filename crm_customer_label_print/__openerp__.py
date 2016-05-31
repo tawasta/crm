@@ -22,7 +22,7 @@
 {
     'name': 'Customer address labels',
     'summary': 'Customer address labels print 3x8 without margins',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -37,6 +37,8 @@
         'base',
     ],
     'data': [
+        'report/res_partner.xml',
+        'report/res_partner_address_labels.xml',
     ],
     'demo': [
     ],
