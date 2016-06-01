@@ -23,7 +23,8 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+No working line break and the "column" height doesn't match page height, so printing tens of pages
+will break the formatting.
 
 Credits
 =======

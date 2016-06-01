@@ -8,19 +8,23 @@
                         td{
                             border: 0 !important;
                         }
+                        .address-label{
+                            margin: 0;
+                            padding: 0;
+                            height: 42.85mm;
+                        }
                     </style>
 
                     <t t-foreach="docs" t-as="o">
                         <t>
-                            <div class="oe_structure"/>
-                            <div class="col-xs-4" style="margin; 0; padding: 0; border: 1px solid #000; width: 70mm; height: 37.125mm">
-                                <table class="table">
+                            <div class="col-xs-4 address-label page-break-inside: avoid;">
+                                <table class="" style="margin: 5mm 10mm;">
                                     <tbody>
                                         <tr>
                                             <td><span t-field="o.name"/></td>
                                         </tr>
                                         <tr>
-                                            <td><span t-field="o.street"/> <span t-field="o.street2"/></td>
+                                            <td><span t-field="o.street"/><br/><span t-field="o.street2"/></td>
                                         </tr>
                                         <tr>
                                             <td><span t-field="o.zip"/> <span t-field="o.city"/></td>
@@ -32,6 +36,14 @@
                                 </table>
                             </div>
                         </t>
+
+                        <!-- TODO: working line break -->
+                        <!--
+                        <t t-if="o_index % 23 == 0 and o_index != 0">
+                            <p style="page-break-after: always;"> </p>
+                        </t>
+                        -->
+
                     </t>
                 </div>
             </t>
