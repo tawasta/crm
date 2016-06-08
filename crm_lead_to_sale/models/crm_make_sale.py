@@ -23,6 +23,9 @@ class CrmMakeSale(models.TransientModel):
             # Move the description
             sale_order.description = lead.description
 
+            # Move the header
+            sale_order.header_text = lead.name
+
             # Fix the partners, if necessary
             sale_order.onchange_partner()
 
