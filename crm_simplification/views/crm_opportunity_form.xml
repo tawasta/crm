@@ -110,11 +110,11 @@
 								                	
 							<group>
 							    <field name="partner_id" string="Customer" options='{"no_create": True}' />
-								<field name="email_from" widget="email"/>
-			                    <field name="phone"/>
-			                    <field name="mobile" attrs="{'invisible':[('show_all','=',False)]}"/>
-			                    <field name="fax" attrs="{'invisible':[('show_all','=',False)]}"/>
-			                    <field name="function" placeholder="e.g. Sales Director" string="Function"/>
+								<field name="email_from" widget="email" attrs="{'readonly': [('partner_id', '!=', False)]}" />
+			                    <field name="phone" attrs="{'readonly': [('partner_id', '!=', False)]}" />
+			                    <field name="mobile" attrs="{'invisible':[('show_all','=',False)], 'readonly': [('partner_id', '!=', False)]}"/>
+			                    <field name="fax" attrs="{'invisible':[('show_all','=',False)], 'readonly': [('partner_id', '!=', False)]}" />
+			                    <field name="function" placeholder="e.g. Sales Director" string="Function" attrs="{'readonly': [('partner_id', '!=', False)]}" />
 							</group>
 						</div>
 						
@@ -131,7 +131,7 @@
 							            <field name="zip" placeholder="ZIP" style="width: 40%%" attrs="{'readonly': [('partner_id', '!=', False)]}"/>
 							        </div>
 							        
-							        <field name='state_id' placeholder='State' attrs="{'invisible':[('show_all','=',False)], 'readonly': [('partner_id', '!=', False)]}" on_change="onchange_state(state_id)" options='{"no_open": True}'/>
+							        <field name='state_id' placeholder='State' invisible="1" on_change="onchange_state(state_id)" options='{"no_open": True}'/>
 							        <field name="country_id" placeholder="Country" options='{"no_open": True, "no_create": True}' attrs="{'readonly': [('partner_id', '!=', False)]}"/>
 							    </div>
 							</group>

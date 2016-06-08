@@ -50,6 +50,12 @@ class CrmLead(models.Model):
             for key, value in values.iteritems():
                 setattr(self, key, value)
 
+            self.email_from = self.partner_id.email
+            self.phone = self.partner_id.phone
+            self.mobile = self.partner_id.mobile
+            self.fax = self.partner_id.fax
+            self.function = self.partner_id.function
+
     @api.multi
     @api.depends('action', 'partner_id')
     def handle_partner_assignation(self, action, partner_id=False):
