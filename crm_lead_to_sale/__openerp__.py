@@ -22,13 +22,14 @@
     'name': 'Lead to Sale',
     'summary': 'Improved lead to sale functionality',
     'category': 'CRM',
-    'version': '8.0.0.4.0',
+    'version': '8.0.0.4.1',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'depends': [
         'crm_simplification',
         'sale_crm',
         'sale_order_description',
+        'sale_simplification',
     ],
     'data': [
         'views/crm_lead_form.xml',
