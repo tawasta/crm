@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-08 09:59+0000\n"
-"PO-Revision-Date: 2016-06-08 13:00+0300\n"
+"POT-Creation-Date: 2016-06-08 10:12+0000\n"
+"PO-Revision-Date: 2016-06-08 13:13+0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: crm_lead_to_sale
-#: code:addons/crm_lead_to_sale/models/crm_lead.py:52
+#: code:addons/crm_lead_to_sale/models/crm_lead.py:53
 #, python-format
 msgid "Email for quotation"
 msgstr "Sähköposti tarjoukselle"
@@ -44,6 +44,17 @@ msgid "Order state"
 msgstr "Tilauksen vaihe"
 
 #. module: crm_lead_to_sale
+#: view:crm.lead:crm_lead_to_sale.crm_case_form_view_oppor
+msgid "Print Quotation"
+msgstr "Tulosta tarjous"
+
+#. module: crm_lead_to_sale
+#: code:addons/crm_lead_to_sale/models/crm_lead.py:65
+#, python-format
+msgid "Quotation"
+msgstr "Tarjous"
+
+#. module: crm_lead_to_sale
 #: field:sale.order,lead:0
 msgid "Related case"
 msgstr "Liittyvä tapaus"
@@ -64,7 +75,13 @@ msgid "Send Quotation"
 msgstr "Lähetä tarjous"
 
 #. module: crm_lead_to_sale
-#: code:addons/crm_lead_to_sale/models/crm_lead.py:54
+#: code:addons/crm_lead_to_sale/models/crm_lead.py:67
+#, python-format
+msgid "printed"
+msgstr "tulostettu"
+
+#. module: crm_lead_to_sale
+#: code:addons/crm_lead_to_sale/models/crm_lead.py:55
 #, python-format
 msgid "sent"
-msgstr "sent"
+msgstr "lähetetty"

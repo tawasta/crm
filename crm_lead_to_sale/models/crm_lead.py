@@ -47,11 +47,24 @@ class CrmLead(models.Model):
     # 7. Action methods
     @api.multi
     def action_quotation_send(self):
+        self.ensure_one()
         res = self.sale_order.action_quotation_send()
 
         msg = _("Email for quotation")
         msg += " <b>%s</b> " % self.sale_order.name
         msg += _("sent")
+        self.message_post(msg)
+
+        return res
+
+    @api.multi
+    def action_quotation_print(self):
+        self.ensure_one()
+        res = self.sale_order.print_quotation()
+
+        msg = _("Quotation")
+        msg += " <b>%s</b> " % self.sale_order.name
+        msg += _("printed")
         self.message_post(msg)
 
         return res

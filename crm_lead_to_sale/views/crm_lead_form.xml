@@ -18,6 +18,11 @@
                             string="Send Quotation"
                             type="object"
                             attrs="{'invisible': ['|',('probability', '=', 0),('probability', '=', 0)]}" />
+
+                    <button name="action_quotation_print"
+                            string="Print Quotation"
+                            type="object"
+                            attrs="{'invisible': ['|',('probability', '=', 0),('probability', '=', 0)]}" />
                 </button>
 
 			</field>
