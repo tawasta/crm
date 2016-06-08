@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Jarmo Kortetjärvi
+#    Author: Oy Tawasta OS Technologies Ltd.
 #    Copyright 2015 Oy Tawasta OS Technologies Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
