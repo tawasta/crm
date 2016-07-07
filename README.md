@@ -15,6 +15,7 @@ Available addons
 [crm_customer_label_print](crm_customer_label_print/) | Customer address labels print 3x8 without margins
 [crm_data_integrity](crm_data_integrity/) | Prevents accidentally deleting partner data
 [crm_helpdesk_extension](crm_helpdesk_extension/) | Extended functionality for helpdesk
+[crm_hide_opportunities](crm_hide_opportunities/) | Hides lead and opportunity menus
 [crm_lead_to_sale](crm_lead_to_sale/) | Improved lead to sale functionality
 [crm_simplification](crm_simplification/) | Generic CRM simplifications
 [crm_tokenkey](crm_tokenkey/) | Simple token key management
