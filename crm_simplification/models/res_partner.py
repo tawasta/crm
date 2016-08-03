@@ -13,7 +13,7 @@ class ResPartner(models.Model):
 
     # This field is only a helper for "is company"
     personal_customer = fields.Boolean(
-        'Personal Customer',
+        'Private Customer',
         help="A customer that's not a company"
     )
 
