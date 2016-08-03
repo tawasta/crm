@@ -22,7 +22,7 @@
     'name': 'CRM Address Simplification',
     'summary': 'Partner address modifications (simplification)',
     'category': 'CRM',
-    'version': '8.0.0.6.5',
+    'version': '8.0.0.6.6',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',

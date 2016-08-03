@@ -81,7 +81,7 @@ class ResPartner(models.Model):
         self.display_name = self._get_recursive_name(self)
 
     @api.one
-    @api.depends('name', 'display_name')
+    @api.depends('name', 'display_name', 'type')
     def _get_name_order(self):
         self.name_order = self._get_recursive_name_order(self)
 
