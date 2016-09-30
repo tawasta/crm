@@ -11,30 +11,50 @@ class CrmLead(models.Model):
     LEAD_FIELDS = {
         'name': 'partner_name',
         'street': 'street',
+        'street2': 'street2',
         'city': 'city',
         'zip': 'zip',
         'state_id': 'state_id',
         'country_id': 'country_id',
-        # 'email': 'email_from',
-        # 'phone': 'phone',
+        'email': 'email_from',
+        'phone': 'phone',
         # 'mobile': 'mobile',
         # 'fax': 'fax',
-        # 'function': 'function'
+        'function': 'function'
         # 'title': 'title',
     }
 
+    @api.model
+    def create(self, values):
+        if 'partner_id' in values:
+            partner = self.env['res.partner'].browse(values['partner_id'])
+
+            values['email_from'] = partner.email
+            values['phone'] = partner.phone
+            values['function'] = partner.function
+            values['street'] = partner.street
+            values['street2'] = partner.street2
+            values['city'] = partner.city
+            values['zip'] = partner.zip
+            values['country_id'] = partner.country_id.id
+
+        return super(CrmLead, self).create(values)
+
     @api.one
-    def write(self, vals):
-        if vals.get('partner_id'):
-            partner = self.partner_id
+    def write(self, values):
+        if 'partner_id' in values:
+            partner = self.env['res.partner'].browse(values['partner_id'])
 
-            vals['street'] = partner.street
-            vals['street2'] = partner.street2
-            vals['city'] = partner.city
-            vals['zip'] = partner.zip
-            vals['country_id'] = partner.country_id.id
+            values['email_from'] = partner.email
+            values['phone'] = partner.phone
+            values['function'] = partner.function
+            values['street'] = partner.street
+            values['street2'] = partner.street2
+            values['city'] = partner.city
+            values['zip'] = partner.zip
+            values['country_id'] = partner.country_id.id
 
-        return super(CrmLead, self).write(vals)
+        return super(CrmLead, self).write(values)
 
     @api.one
     @api.onchange('partner_id')
