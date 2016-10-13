@@ -3,7 +3,7 @@
 	<data>
 
         <report
-                id="report_invoice_finnish"
+                id="report_address_labels"
                 string="Address Labels"
                 model="res.partner"
                 report_type="qweb-pdf"
