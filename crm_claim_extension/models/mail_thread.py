@@ -57,8 +57,6 @@ class MailThread(models.Model):
 
                 message_subject = decode_header(message, 'Subject')
 
-                print message_subject
-
                 match = claim_number_re.search(message_subject)
 
                 claim_number = match and match.group(0)

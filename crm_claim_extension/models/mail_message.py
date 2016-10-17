@@ -65,10 +65,11 @@ class MailMessage(models.Model):
         author = False
         if email_from:
             author = self.env['res.partner'].search(
-                [('email', '=', email_from)]
+                [('email', '=', email_from)],
+                limit=1,
             )
 
-        res = author[0].id if author else False
+        res = author.id if author else False
 
         return res
 

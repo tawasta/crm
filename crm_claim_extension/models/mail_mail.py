@@ -13,6 +13,7 @@ _logger = logging.getLogger(__name__)
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
+from openerp import SUPERUSER_ID
 
 # 4. Imports from Odoo modules:
 
@@ -139,7 +140,7 @@ class MailMail(models.Model):
                 messages_history += '</div>'
 
                 # Don't sign the message with sender name, if the message was sent by admin (e.g. automatic messages)
-                if message_instance.create_uid.id != 1:
+                if message_instance.create_uid.id != SUPERUSER_ID:
                     values['body_html'] += str(message_instance.create_uid.partner_id.name)
                     values['body_html'] += "<br/>"
                 values['body_html'] += str(footer)
