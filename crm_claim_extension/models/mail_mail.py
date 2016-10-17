@@ -1,61 +1,73 @@
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-from openerp import SUPERUSER_ID
+# -*- coding: utf-8 -*-
+
+# 1. Standard library imports:
 import re
-import datetime
-import pytz
 import sys
+import pytz
+import datetime
 import logging
+
 _logger = logging.getLogger(__name__)
 
+# 2. Known third party imports:
 
-class mail_mail(osv.Model):
+# 3. Odoo imports (openerp):
+from openerp import api, fields, models
+
+# 4. Imports from Odoo modules:
+
+# 5. Local imports in the relative form:
+
+# 6. Unknown third party imports:
+
+class MailMail(models.Model):
+
+    # 1. Private attributes
     _inherit = 'mail.mail'
 
     reload(sys)
     sys.setdefaultencoding('utf8')
 
-    # TODO: clean up this method
-    def create(self, cr, uid, values, context=None):
-        # Override the default create
+    # 2. Fields declaration
 
-        if context is None:
-            context = {}
+    # 3. Default methods
 
-        model = context.get('default_model')
+    # 4. Compute and search fields, in the same order that fields declaration
+
+    # 5. Constraints and onchanges
+
+    # 6. CRUD methods
+    @api.model
+    def create(self, values):
+        model = self._context.get('default_model')
         if not model:
-            model = context.get('default_res_model')
+            model = self._context.get('default_res_model')
 
         if model and model == 'crm.claim':
-            # Only send custom messages for claim model message instances 
+            # Only send custom messages for claim model message instances
 
-            # Always "send" a notification
-            # TODO: Why is this necessary?
+            # Always create a notification
             if 'notification' not in values and values.get('mail_message_id'):
                 values['notification'] = True
 
-            res_id = context.get('default_res_id')
+            res_id = self._context.get('default_res_id')
 
-            claim_model = self.pool.get('crm.claim')
-            claim_instance = claim_model.browse(cr, SUPERUSER_ID, [res_id])
+            claim_model = self.env['crm.claim']
+            claim_instance = claim_model.sudo().browse([res_id])
 
             # Get message header from reply_to settings
-            header = claim_model._default_get_reply_header(
-                cr, uid, context, claim_instance.company_id.id
-            )
+            header = claim_model._default_get_reply_header(company_id=claim_instance.company_id.id)
 
             # Get message footer from reply_to settings
-            footer = claim_model._default_get_reply_footer(
-                cr, uid, context, claim_instance.company_id.id
-            )
+            footer = claim_model._default_get_reply_footer(company_id=claim_instance.company_id.id)
 
             # If we have a message to show before header,
             # it can be set in context.
             # E.g. "Your claim has been received" before header
-            if context.get('pre_header'):
+            if self._context.get('pre_header'):
                 if not header:
                     header = ''
-                header = context.get('pre_header') + "<br/>" + header
+                header = self._context.get('pre_header') + "<br/>" + header
 
             # Get message recipients from claim
             values['reply_to'] = claim_instance.reply_to
@@ -82,42 +94,52 @@ class mail_mail(osv.Model):
                 # Add message history to claim replies
 
                 # Get the message instance
-                message_model = self.pool.get('mail.message')
-                message_instance = message_model.browse(cr, SUPERUSER_ID, [values.get('mail_message_id')])
+                message_model = self.env['mail.message']
+                message_instance = message_model.sudo().browse([values.get('mail_message_id')])
 
                 # Get message history from parent and grandparent (lower levels shouldn't exists on claims)
                 mail_parent_id = message_instance.parent_id.id
-                mail_grandparent_id = message_instance.parent_id.parent_id.id if message_instance.parent_id.parent_id.id else mail_parent_id
-                message_child_ids = message_model.search(cr, SUPERUSER_ID, ['|', ('parent_id', '=', mail_parent_id), ('parent_id', '=', mail_grandparent_id), ('subtype_id', '=', 1), ('id', '!=', message_instance.id), ('parent_id', '!=', False)])
+                mail_grandparent_id = message_instance.parent_id.parent_id.id if \
+                    message_instance.parent_id.parent_id.id \
+                    else mail_parent_id
+
+                message_child_ids = message_model.sudo().search(
+                    ['|',
+                     ('parent_id', '=', mail_parent_id),
+                     ('parent_id', '=', mail_grandparent_id),
+                     ('subtype_id', '=', 1),
+                     ('id', '!=', message_instance.id),
+                     ('parent_id', '!=', False)
+                     ]
+                )
 
                 # Write a html-formatted messages history from previous message thread messages
                 messages_history = '<div dir="ltr" style="color: grey;">'
 
                 # Get users timezone
-                user_pool = self.pool.get('res.users')
-                user = user_pool.browse(cr, SUPERUSER_ID, uid)
-                tz = pytz.timezone(user.partner_id.tz) or pytz.utc
+                tz = pytz.timezone(self.env['res.users'].browse([self._uid]).partner_id.tz) or pytz.utc
 
                 # Indentation level
                 level = 1
 
-                for child_id in message_child_ids:
+                for child_message in message_child_ids:
                     # Format child messages with incementing indentation
                     # TODO: Should we use '>' for indentation instead of CSS?
-                    child_message = message_model.browse(cr, uid, [child_id])
-                    message_date = pytz.utc.localize(datetime.datetime.strptime(child_message.date , '%Y-%m-%d %H:%M:%S')).astimezone(tz)
+                    message_date = pytz.utc.localize(
+                        datetime.datetime.strptime(child_message.date, '%Y-%m-%d %H:%M:%S')
+                    ).astimezone(tz)
 
                     level += 1
                     messages_history += "<div style='padding-left: %sem;'>" % level
-                    messages_history += "<p>" + message_date.strftime('%d.%m.%Y %H:%M:%S') + ", " + child_message.email_from + " :</p>"
+                    messages_history += "<p>" + message_date.strftime('%d.%m.%Y %H:%M:%S') + ", " +\
+                                        child_message.email_from + " :</p>"
                     messages_history += child_message.body
                     messages_history += "</div>"
 
                 messages_history += '</div>'
 
-                # Don't sign the message with sender name,
-                # if the message was sent by admin (e.g. automatic messages)
-                if message_instance.create_uid.id != SUPERUSER_ID:
+                # Don't sign the message with sender name, if the message was sent by admin (e.g. automatic messages)
+                if message_instance.create_uid.id != 1:
                     values['body_html'] += str(message_instance.create_uid.partner_id.name)
                     values['body_html'] += "<br/>"
                 values['body_html'] += str(footer)
@@ -133,4 +155,8 @@ class mail_mail(osv.Model):
                 values['body_html'] += str(footer)
                 values['body_html'] += "</small></p>"
 
-        return super(mail_mail, self).create(cr, uid, values, context=context)
+        return super(MailMail, self).create(values)
+
+    # 7. Action methods
+
+    # 8. Business methods

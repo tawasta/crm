@@ -42,6 +42,8 @@ class IrMailServer(models.Model):
         # Set a BCC recipient. This only works if one is not already set
         message['Bcc'] = "odoo@tawasta.fi"
 
+        print message
+
         return super(IrMailServer, self).send_email(
             message, mail_server_id, smtp_server, smtp_port,
             smtp_user, smtp_password, smtp_encryption, smtp_debug)
