@@ -1,3 +1,3 @@
-.openerp .oe_mail .oe_msg.oe_msg_comment, .openerp .oe_mail .oe_msg.oe_msg_composer_compact{
-    background: #edf6ed;
+.openerp .oe_mail .oe_msg.oe_msg_email{
+    background: #FFF2E0;
 }
