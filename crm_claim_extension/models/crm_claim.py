@@ -85,6 +85,7 @@ class CrmClaim(models.Model):
     def create(self, values):
         if not values.get('claim_number'):
             values['claim_number'] = self.env['ir.sequence'].get('crm.claim')
+
         return super(CrmClaim, self).create(values)
 
     @api.one
@@ -127,8 +128,6 @@ class CrmClaim(models.Model):
         msg = False
         if 'msg' in kwargs:
             msg = kwargs['msg']
-
-
 
         email_cc = msg.get('to')
 

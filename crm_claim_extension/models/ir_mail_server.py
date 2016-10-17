@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # 1. Standard library imports:
+import re
 
 # 2. Known third party imports:
 
@@ -42,7 +43,9 @@ class IrMailServer(models.Model):
         # Set a BCC recipient. This only works if one is not already set
         message['Bcc'] = "odoo@tawasta.fi"
 
-        print message
+        #msg_from = message['From']
+        #msg_from = re.sub('^[^@]+', 'noreply', re.sub('[<>]', '', msg_from))
+        #message = re.sub('(From:)', msg_from, message)
 
         return super(IrMailServer, self).send_email(
             message, mail_server_id, smtp_server, smtp_port,

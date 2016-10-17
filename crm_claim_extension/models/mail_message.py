@@ -33,15 +33,12 @@ class MailMessage(models.Model):
     # 6. CRUD methods
     @api.model
     def create(self, vals):
-        if self._context is None:
-            self._context = {}
-        model = self._context.get('thread_model')
+        model = vals.get('model')
 
         if model and model == 'crm.claim':
             # TODO: Get rid of this hack.
             # For some reason the author_id is False
             # if a new partner was created
-
             if not vals.get('author_id'):
                 # TODO: This doesn't seem to do anything?
                 email_from = vals.get('email_from')
@@ -54,6 +51,10 @@ class MailMessage(models.Model):
                     logger.warn(e)
 
                 vals['author_id'] = self.get_author_by_email(vals)
+
+            # Add claim number to the first post
+            if 'subject' in vals and vals['subject'] and not re.match('[#][0-9]+', vals['subject']):
+                vals['subject'] = "#" + self.env[model].browse([vals['res_id']]).claim_number + ": " + vals['subject']
 
         return super(MailMessage, self).create(vals)
 

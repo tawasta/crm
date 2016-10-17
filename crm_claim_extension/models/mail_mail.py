@@ -160,3 +160,7 @@ class MailMail(models.Model):
     # 7. Action methods
 
     # 8. Business methods
+    # @api.multi
+    # def send(self, auto_commit=False, raise_exception=False):
+    #     for record in self:
+    #         super(MailMail, self).send(auto_commit=auto_commit, raise_exception=raise_exception)
