@@ -40,7 +40,7 @@ class MailMessage(models.Model):
                 vals['author_id'] = self.get_author_by_email(vals)
 
             # Add claim number to the first post
-            if 'subject' in vals and vals['subject'] and not re.match('[#][0-9]+', vals['subject']):
+            if 'subject' in vals and vals['subject'] and not re.match('.*[#][0-9]{5,6}.*', vals['subject']):
                 vals['subject'] = "#" + self.env[model].browse([vals['res_id']]).claim_number + ": " + vals['subject']
 
         return super(MailMessage, self).create(vals)
