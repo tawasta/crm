@@ -62,7 +62,7 @@
 								<field name='create_uid' />
 								<field name='create_date' />
 								<field name='stage' />
-								<field name='hours' widget="float_time"/>
+								<field name='hours' widget="float_time" sum='Total'/>
 							</tree>
 						</field>
 					</page>
