@@ -36,20 +36,7 @@ class MailMessage(models.Model):
         model = vals.get('model')
 
         if model and model == 'crm.claim':
-            # TODO: Get rid of this hack.
-            # For some reason the author_id is False
-            # if a new partner was created
             if not vals.get('author_id'):
-                # TODO: This doesn't seem to do anything?
-                email_from = vals.get('email_from')
-                email_regex = re.compile("[<][^>]+[>]")
-
-                try:
-                    email = email_regex.findall(email_from)[0]
-                    email = re.sub(r'[<>]', "", email)
-                except IndexError, e:
-                    logger.warn(e)
-
                 vals['author_id'] = self.get_author_by_email(vals)
 
             # Add claim number to the first post
@@ -68,17 +55,20 @@ class MailMessage(models.Model):
         email_regex = re.compile("[<][^>]+[>]")
 
         try:
-            email = email_regex.findall(email_from)[0]
-            email = re.sub(r'[<>]', "", email)
+            email_match = email_regex.findall(email_from)
+            if email_match:
+                email_from = email_match[0]
+                email_from = re.sub(r'[<>]', "", email_from)
         except IndexError, e:
             logger.warn(e)
-            email = False
 
-        author = self.env['res.partner'].search(
-            [('email', '=', email)]
-        )
+        author = False
+        if email_from:
+            author = self.env['res.partner'].search(
+                [('email', '=', email_from)]
+            )
 
-        res = author[0] if author else False
+        res = author[0].id if author else False
 
         return res
 

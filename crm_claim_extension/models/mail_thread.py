@@ -49,15 +49,16 @@ class MailThread(models.Model):
         # Try matching by the claim number
         try:
             # A try-block if res is empty for some reason
-            print res
             if res[0][0] == 'crm.claim' and not res[0][1]:
-
                 # Could not match the claim with header information.
                 # Trying to match by subject
                 claim_number_re = re.compile("[#][0-9]{5,6}[: ]", re.UNICODE)
                 number_re = re.compile("[0-9]+", re.UNICODE)
 
                 message_subject = decode_header(message, 'Subject')
+
+                print message_subject
+
                 match = claim_number_re.search(message_subject)
 
                 claim_number = match and match.group(0)
@@ -98,7 +99,7 @@ class MailThread(models.Model):
             email_address = (email_address.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_'))
             email_brackets = "<%s>" % email_address
 
-            _logger.warn("Using '%s' for partner matching", email_address)
+            _logger.info("Using '%s' for partner matching", email_address)
 
             # Skip empty emails
             if not email_address:
