@@ -235,7 +235,7 @@ class crm_claim(osv.Model):
         if not claim.description:
             claim.description = ''
 
-        description = claim.description.replace('\n', '<br />')
+        description = claim.description.replace('\n', '<br />').encode('ascii', 'ignore')
 
         # values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Received claim") + ":</span></p>"

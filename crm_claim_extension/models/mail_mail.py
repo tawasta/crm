@@ -4,12 +4,16 @@ from openerp import SUPERUSER_ID
 import re
 import datetime
 import pytz
+import sys
 import logging
 _logger = logging.getLogger(__name__)
 
 
 class mail_mail(osv.Model):
     _inherit = 'mail.mail'
+
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
     # TODO: clean up this method
     def create(self, cr, uid, values, context=None):
@@ -67,7 +71,7 @@ class mail_mail(osv.Model):
             static_header += '<p>#' + str(claim_instance.claim_number) + ": " + str(claim_instance.name) + "</p>"
             static_header += '<p>'
 
-            #The body_html is in html-format. We'll replace the heading <p>-tag with our own header 
+            # The body_html is in html-format. We'll replace the heading <p>-tag with our own header
             values['body_html'] = re.sub(r'(^<p>)', static_header, values['body_html'])
 
             # Start the footer
@@ -79,7 +83,7 @@ class mail_mail(osv.Model):
 
                 # Get the message instance
                 message_model = self.pool.get('mail.message')
-                message_instance = message_model.browse(cr, SUPERUSER_ID, [ values.get('mail_message_id') ])
+                message_instance = message_model.browse(cr, SUPERUSER_ID, [values.get('mail_message_id')])
 
                 # Get message history from parent and grandparent (lower levels shouldn't exists on claims)
                 mail_parent_id = message_instance.parent_id.id

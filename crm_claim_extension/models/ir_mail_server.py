@@ -32,10 +32,10 @@ class IrMailServer(models.Model):
     # 7. Action methods
 
     # 8. Business methods
-    @api.v7
-    def send_email(self, cr, uid, message, mail_server_id=None, smtp_server=None,
+    @api.model
+    def send_email(self, message, mail_server_id=None, smtp_server=None,
         smtp_port=None, smtp_user=None, smtp_password=None,
-        smtp_encryption=None, smtp_debug=False, context=None):
+        smtp_encryption=None, smtp_debug=False):
         # Send a BCC message to an address every time a mail is sent.
         # This is for debugging purposes
 
@@ -43,6 +43,5 @@ class IrMailServer(models.Model):
         message['Bcc'] = "odoo@tawasta.fi"
 
         return super(IrMailServer, self).send_email(
-            cr, uid, message, mail_server_id, smtp_server, smtp_port,
-            smtp_user, smtp_password, smtp_encryption, smtp_debug,
-            context=context)
+            message, mail_server_id, smtp_server, smtp_port,
+            smtp_user, smtp_password, smtp_encryption, smtp_debug)
