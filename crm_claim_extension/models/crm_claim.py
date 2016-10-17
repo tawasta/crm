@@ -122,8 +122,6 @@ class CrmClaim(models.Model):
 
     @api.model
     def message_new(self, msg, custom_values):
-        #print msg
-        #print custom_values
 
         result = super(CrmClaim, self).message_new(msg=msg, custom_values=custom_values)
 

@@ -105,14 +105,14 @@ class MailThread(models.Model):
 
             # Exact, case-insensitive match
             ids = partner_object.sudo().search(
-                [('email', '=ilike', email_address)],
+                [('email', 'ilike', email_address)],
                 limit=1
             )
 
             if not ids:
                 # If no match with addr-spec, attempt substring match within name-addr pair
                 ids = partner_object.search(
-                    [('email', '=ilike', email_brackets)],
+                    [('email', 'ilike', email_brackets)],
                     limit=1
                 )
 
