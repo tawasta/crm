@@ -10,6 +10,7 @@ from openerp import api, fields, models
 
 # 4. Imports from Odoo modules:
 from openerp.addons.mail.mail_message import decode
+from openerp import tools
 
 # 5. Local imports in the relative form:
 
@@ -40,7 +41,6 @@ class MailThread(models.Model):
     # 7. Action methods
 
     # 8. Business methods
-
     @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
 
@@ -49,6 +49,7 @@ class MailThread(models.Model):
         # Try matching by the claim number
         try:
             # A try-block if res is empty for some reason
+            print res
             if res[0][0] == 'crm.claim' and not res[0][1]:
 
                 # Could not match the claim with header information.
@@ -79,3 +80,73 @@ class MailThread(models.Model):
             _logger.warn('Error while matching a claim: %s', e)
 
         return res
+
+    @api.model
+    def _find_partner_from_emails(self, id, emails, model=None, check_followers=True):
+        res = super(MailThread, self)._find_partner_from_emails(
+            id=id,
+            emails=emails,
+            model=model,
+            check_followers=check_followers,
+        )
+
+        for email in emails:
+            partner_object = self.env['res.partner']
+            email_address = tools.email_split(email)[0]
+
+            # Escape special SQL characters in email_address to avoid invalid matches
+            email_address = (email_address.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_'))
+            email_brackets = "<%s>" % email_address
+
+            _logger.warn("Using '%s' for partner matching", email_address)
+
+            # Skip empty emails
+            if not email_address:
+                continue
+
+            # Exact, case-insensitive match
+            ids = partner_object.sudo().search(
+                [('email', '=ilike', email_address)],
+                limit=1
+            )
+
+            if not ids:
+                # If no match with addr-spec, attempt substring match within name-addr pair
+                ids = partner_object.search(
+                    [('email', '=ilike', email_brackets)],
+                    limit=1
+                )
+
+            if not ids:
+                _logger.warn("%s not found. Creating", email_address)
+                partner_id = partner_object.create({'name': email_address, 'email': email})
+                res.append(partner_id.id)
+
+        return res
+
+    # def message_parse(self, cr, uid, message, save_original=False, context=None):
+    #     res = super(MailThread, self).message_parse(cr, uid, message, save_original, context=context)
+    #
+    #     _logger.debug(res)
+    #
+    #     return res
+    #
+    #
+    # def message_new(self, cr, uid, msg_dict, custom_values=None, context=None):
+    #     _logger.debug("self: %s" % self)
+    #     _logger.debug("msg: %s" % msg_dict)
+    #     _logger.debug("cust: %s" % custom_values)
+    #
+    #     return super(MailThread, self).message_new(self, cr, uid, msg_dict, custom_values, context)
+    #
+    #
+    # def message_process(self, cr, uid, model, message, custom_values=None,
+    #                     save_original=False, strip_attachments=False,
+    #                     thread_id=None, context=None):
+    #     _logger.debug("model: %s" % model)
+    #     _logger.debug("msg: %s" % message)
+    #     _logger.debug("cust: %s" % custom_values)
+    #     _logger.debug("ctx: %s" % context)
+    #
+    #     return super(MailThread, self).message_process(cr, uid, model, message, custom_values, save_original,
+    #                                                     strip_attachments, thread_id, context)

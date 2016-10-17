@@ -120,10 +120,14 @@ class CrmClaim(models.Model):
 
         return res
 
-    @api.multi
-    def xmessage_new(self, **kwargs):
+    @api.model
+    def message_new(self, msg, custom_values):
+        print msg
+        print custom_values
 
-        print dict(kwargs)
+        result = super(CrmClaim, self).message_new(msg=msg, custom_values=custom_values)
+
+        return result
 
         msg = False
         if 'msg' in kwargs:
@@ -137,7 +141,5 @@ class CrmClaim(models.Model):
         defaults = {
             'email_cc': email_cc
         }
-
-        result = super(CrmClaim, self).message_new(**kwargs)
 
         return result
