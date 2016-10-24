@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'CRM claim timesheets',
+    'name': 'Claim timesheets',
     'summary': 'Timesheet records from claims',
     'version': '8.0.0.2.0',
     'category': 'Human Resources',
