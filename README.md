@@ -10,6 +10,7 @@ Available addons
 [crm_address_simplification](crm_address_simplification/) | Partner address modifications (simplification)
 [crm_claim_extension](crm_claim_extension/) | Improved claims with helpdesk-like functionality
 [crm_claim_extension_reports](crm_claim_extension_reports/) | Reports for crm_claim_extension
+[crm_claim_swkb](crm_claim_swkb/) | Link claims to software knowledge base
 [crm_claim_timesheet](crm_claim_timesheet/) | Timesheet records from claims
 [crm_contact_list](crm_contact_list/) | A simple list for quick exports
 [crm_contact_m2m](crm_contact_m2m/) | Allow contacts to belong to multiple companies
