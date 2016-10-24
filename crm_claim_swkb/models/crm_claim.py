@@ -14,13 +14,17 @@ from openerp import api, fields, models
 # 6. Unknown third party imports:
 
 
-class PlainModel(models.Model):
+class CrmClaim(models.Model):
     
     # 1. Private attributes
-    _name = 'plain.model'
-    _inherit = 'plain.model'
+    _inherit = 'crm.claim'
 
     # 2. Fields declaration
+    swkb_installations = fields.Many2many(
+        'software_knowledge_base.installation',
+        'swkb_installation_claim_relation',
+        string='Installations',
+    )
 
     # 3. Default methods
 

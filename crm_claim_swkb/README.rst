@@ -2,12 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
-{module_title}
-==============
+=====================================
+Claim software knowledge base records
+=====================================
 
-This module was written to extend the functionality of ... to support ...
-and allow you to ...
+Link claims to software knowledge base
 
 Installation
 ============
