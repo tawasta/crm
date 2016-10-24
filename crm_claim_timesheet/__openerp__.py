@@ -22,7 +22,7 @@
 {
     'name': 'CRM claim timesheets',
     'summary': 'Timesheet records from claims',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'Human Resources',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -35,9 +35,11 @@
     },
     'depends': [
         'crm_claim',
-        'hr_timesheet',
+        'timesheet_task',
     ],
     'data': [
+        'views/assets.xml',
+        'views/crm_claim.xml',
     ],
     'demo': [
     ],
