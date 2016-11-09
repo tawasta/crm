@@ -18,11 +18,15 @@ class ResPartner(models.Model):
     )
 
     @api.model
-    def create(self, vals):
-        if 'personal_customer' in vals and vals['personal_customer']:
-            vals['is_company'] = False
+    def create(self, values):
+        if 'personal_customer' in values and values['personal_customer']:
+            values['is_company'] = False
 
-        return super(ResPartner, self).create(vals)
+        if 'contact_id' in values and values['contact_id']:
+            values['is_company'] = False
+            values['personal_customer'] = True
+
+        return super(ResPartner, self).create(values)
 
     @api.onchange('personal_customer')
     def personal_customer_onchange(self):
