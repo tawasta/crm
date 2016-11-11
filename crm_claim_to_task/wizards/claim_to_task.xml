@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <record id="claim_to_task_wizard" model="ir.ui.view">
+            <field name="name">claim.to.task.wizard</field>
+            <field name="model">claim.to.task</field>
+            <field name="arch" type="xml">
+                <form string="Create a task">
+                    <group>
+                        <field name="partner" />
+                        <field name="user" />
+
+                        <field name="project" />
+                        <field name="task" domain="[('project_id', '=', 'project'])]" />
+
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                </form>
+
+                <footer>
+                    <button name="create_task" string="Create a task" type="object" class="oe_highlight" />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+
+            </field>
+        </record>
+
+	</data>
+</openerp>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <act_window id="action_claim_to_task"
+            name="Create a Task"
+            src_model="crm.claim"
+            res_model="claim.to.task"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"/>
+
+		<record id="crm_case_claims_form_view" model="ir.ui.view">
+			<field name="name">crm.case.claims.form.view.claim.to.task</field>
+			<field name="model">crm.claim</field>
+			<field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
+			<field name="arch" type="xml">
+
+				<field name="stage_id" position="before">
+                    <button name="%(action_claim_to_task)d"
+                        type="action"
+                        string="Create Task"
+                        attrs="{'invisible': [('task', '=', True)]}"
+                    />
+                </field>
+
+                <field name="date" position="before">
+                    <field name="task" attrs="{'invisible': [('task', '=', False)]}" colspan="4"/>
+                </field>
+
+			</field>
+		</record>
+
+	</data>
+</openerp>
