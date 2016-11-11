@@ -2,6 +2,14 @@
 <openerp>
 	<data>
 
+        <act_window id="action_claim_to_opportunity"
+            name="Create an Opportunity"
+            src_model="crm.claim"
+            res_model="claim.to.opportunity"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"/>
+
 		<record id="crm_case_claims_form_view" model="ir.ui.view">
 			<field name="name">crm.case.claims.form.view.claim.to.opportunity</field>
 			<field name="model">crm.claim</field>
@@ -21,15 +29,7 @@
                 </field>
 
 			</field>
-		</record> 
-
-        <act_window id="action_claim_to_opportunity"
-            name="Create an Opportunity"
-            src_model="crm.claim"
-            res_model="claim.to.opportunity"
-            view_mode="form"
-            target="new"
-            key2="client_action_multi"/>
+		</record>
 
 	</data>
 </openerp>
