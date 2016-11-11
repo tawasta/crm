@@ -68,7 +68,6 @@ class CrmClaim(models.Model):
             return list()
 
         domain = ['|', ('partner_ids', 'in', partners), ('technical_contact_ids', '=', partner)]
-        print domain
 
         return domain
 
