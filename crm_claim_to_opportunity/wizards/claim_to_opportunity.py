@@ -56,7 +56,7 @@ class ClaimToOpportunity(models.TransientModel):
             'partner_id': self.partner.id,
             'name': self.name,
             'description': self.description,
-            'user': self.user.id or False,
+            'user_id': self.user.id or False,
             'type': 'opportunity',
         }
 
