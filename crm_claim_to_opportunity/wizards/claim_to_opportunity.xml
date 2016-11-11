@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <record id="claim_to_opportunity_wizard" model="ir.ui.view">
+            <field name="name">claim.to.opportunity.wizard</field>
+            <field name="model">claim.to.opportunity</field>
+            <field name="arch" type="xml">
+                <form string="Create an Opportunity">
+                    <group>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+	</data>
+</openerp>

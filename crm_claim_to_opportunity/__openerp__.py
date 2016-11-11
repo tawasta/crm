@@ -22,7 +22,7 @@
 {
     'name': 'Claim to opportunity',
     'summary': 'Create an opportunity from a claim',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -37,6 +37,8 @@
         'crm_claim',
     ],
     'data': [
+        'views/crm_claim_form.xml',
+        'wizards/claim_to_opportunity.xml',
     ],
     'demo': [
     ],

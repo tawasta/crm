@@ -14,11 +14,10 @@ from openerp import api, fields, models
 # 6. Unknown third party imports:
 
 
-class PlainModel(models.Model):
+class ClaimToOpportunity(models.TransientModel):
     
     # 1. Private attributes
-    _name = 'plain.model'
-    _inherit = 'plain.model'
+    _name = 'claim.to.opportunity'
 
     # 2. Fields declaration
 
@@ -31,5 +30,7 @@ class PlainModel(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
+    def action_create_opportunity(self):
+        pass
 
     # 8. Business methods

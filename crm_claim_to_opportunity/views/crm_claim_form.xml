@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record id="crm_case_claims_form_view" model="ir.ui.view">
+			<field name="name">crm.case.claims.form.view.claim.to.opportunity</field>
+			<field name="model">crm.claim</field>
+			<field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
+			<field name="arch" type="xml">
+
+				<field name="stage_id" position="before">
+                    <button name="%(action_claim_to_opportunity)d"
+                        type="action"
+                        string="Create Opportunity"
+                    />
+                </field>
+
+			</field>
+		</record> 
+
+        <act_window id="action_claim_to_opportunity"
+            name="Create Opportunity"
+            src_model="crm.claim"
+            res_model="claim.to.opportunity"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"/>
+
+	</data>
+</openerp>
