@@ -22,7 +22,7 @@
 {
     'name': 'CRM Simplification',
     'summary': 'Generic CRM simplifications',
-    'version': '8.0.0.4.25',
+    'version': '8.0.0.4.26',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',

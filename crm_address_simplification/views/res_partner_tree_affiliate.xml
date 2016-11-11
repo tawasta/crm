@@ -15,6 +15,7 @@
                		<field name='phone' />
                		<field name='email' />
                		<field name='businessid' />
+               		<field name='category_id' />
               	</tree>
 
 			</field>
