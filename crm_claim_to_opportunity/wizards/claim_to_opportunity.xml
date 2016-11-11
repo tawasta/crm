@@ -16,7 +16,7 @@
                 </form>
 
                 <footer>
-                    <button name="create_opportunity" string="Create Opportunity" type="object" class="oe_highlight" />
+                    <button name="create_opportunity" string="Create an Opportunity" type="object" class="oe_highlight" />
                     or
                     <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>

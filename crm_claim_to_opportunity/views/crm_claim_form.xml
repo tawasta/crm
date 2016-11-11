@@ -12,14 +12,19 @@
                     <button name="%(action_claim_to_opportunity)d"
                         type="action"
                         string="Create Opportunity"
+                        attrs="{'invisible': [('opportunity', '=', True)]}"
                     />
+                </field>
+
+                <field name="date" position="before">
+                    <field name="opportunity" attrs="{'invisible': [('opportunity', '=', False)]}" colspan="4"/>
                 </field>
 
 			</field>
 		</record> 
 
         <act_window id="action_claim_to_opportunity"
-            name="Create Opportunity"
+            name="Create an Opportunity"
             src_model="crm.claim"
             res_model="claim.to.opportunity"
             view_mode="form"

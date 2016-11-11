@@ -20,8 +20,8 @@ class ClaimToOpportunity(models.TransientModel):
     _name = 'claim.to.opportunity'
 
     # 2. Fields declaration
-    partner = fields.Many2one('res.partner', 'Partner')
-    name = fields.Char('Name')
+    partner = fields.Many2one('res.partner', 'Partner', required=True)
+    name = fields.Char('Name', required=True)
     description = fields.Text('Description')
     user = fields.Many2one('res.users', 'User')
 
@@ -34,10 +34,9 @@ class ClaimToOpportunity(models.TransientModel):
 
         claim = self.env['crm.claim'].browse([active_id])
 
-        res['name'] = claim.name
+        res['name'] = "%s - %s" % (claim.partner_id.name, claim.name)
         res['description'] = claim.description
         res['partner'] = claim.partner_id.id
-        res['type'] = 'opportunity'
 
         return res
 
@@ -48,7 +47,23 @@ class ClaimToOpportunity(models.TransientModel):
     # 6. CRUD methods
 
     # 7. Action methods
-    def action_create_opportunity(self):
-        pass
+    @api.multi
+    def create_opportunity(self):
+        self.ensure_one()
+        context = self._context
+
+        values = {
+            'partner_id': self.partner.id,
+            'name': self.name,
+            'description': self.description,
+            'user': self.user.id or False,
+            'type': 'opportunity',
+        }
+
+        opportunity = self.env['crm.lead'].create(values)
+
+        if 'active_id' in context:
+            active_id = context['active_id']
+            self.env['crm.claim'].browse([active_id]).write({'opportunity': opportunity.id})
 
     # 8. Business methods

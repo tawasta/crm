@@ -20,6 +20,7 @@ class CrmClaim(models.Model):
     _inherit = 'crm.claim'
 
     # 2. Fields declaration
+    opportunity = fields.Many2one('crm.lead', 'Opportunity', readonly=True)
 
     # 3. Default methods
 
@@ -30,7 +31,5 @@ class CrmClaim(models.Model):
     # 6. CRUD methods
 
     # 7. Action methods
-    def action_create_opportunity(self):
-        pass
 
     # 8. Business methods
