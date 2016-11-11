@@ -32,7 +32,12 @@ class HrAnalyticTimesheet(models.Model):
         if 'crm_claim' in self._context:
             claim = self.env['crm.claim'].browse([self._context['crm_claim']])
 
-            res['name'] = "%s (#%s): " % (claim.partner_id.name, claim.claim_number)
+            if not claim.partner_id.is_company and claim.partner_id.parent_id:
+                name = claim.partner_id.parent_id.name
+            else:
+                name = claim.partner_id.name
+
+            res['name'] = "%s (#%s): " % (name, claim.claim_number)
 
         return res
 
