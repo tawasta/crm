@@ -20,8 +20,26 @@ class ClaimToOpportunity(models.TransientModel):
     _name = 'claim.to.opportunity'
 
     # 2. Fields declaration
+    partner = fields.Many2one('res.partner', 'Partner')
+    name = fields.Char('Name')
+    description = fields.Text('Description')
+    user = fields.Many2one('res.users', 'User')
 
     # 3. Default methods
+    @api.model
+    def default_get(self, fields):
+        res = super(ClaimToOpportunity, self).default_get(fields)
+
+        active_id = self._context['active_id']
+
+        claim = self.env['crm.claim'].browse([active_id])
+
+        res['name'] = claim.name
+        res['description'] = claim.description
+        res['partner'] = claim.partner_id.id
+        res['type'] = 'opportunity'
+
+        return res
 
     # 4. Compute and search fields, in the same order that fields declaration
 
