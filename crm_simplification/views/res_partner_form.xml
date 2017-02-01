@@ -92,12 +92,14 @@
                     <field name='active' position='attributes'>
                     	<attribute name='attrs'>{'invisible':[('show_all','=',False)]}</attribute>
                     </field>
-                    
+
+                    <!--
                     <field name='lang' position='replace' />
                   	
                   	<field name='user_id' position='after'>
                   		<field name='lang' />
                   	</field>
+                  	-->
                     
                 </field>
         </record>
