@@ -16,7 +16,7 @@
                                 <field name="user_id" />
                                 <field name="account_id" domain="[('state', '=', 'open')]" />
                                 <field name="task_id" domain="[('project_id.analytic_account_id', '=', account_id), ('stage_id.fold', '=', False)]" />
-                                <field name="name" />
+                                <field name="name" style="width: 30%;"/>
                                 <field name="unit_amount" widget="float_time"/>
                             </tree>
                         </field>
