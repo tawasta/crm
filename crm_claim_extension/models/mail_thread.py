@@ -42,6 +42,22 @@ class MailThread(models.Model):
 
     # 8. Business methods
     @api.model
+    def message_process(self, model, message, custom_values=None, save_original=False, strip_attachments=False,
+                        thread_id=None):
+
+        res = super(MailThread, self).message_process(
+            model=model,
+            message=message,
+            custom_values=custom_values,
+            save_original=save_original,
+            strip_attachments=strip_attachments,
+            thread_id=thread_id
+        )
+
+        return res
+
+    # TODO: clean up this mess
+    @api.model
     def message_route(self, message, message_dict, model=None, thread_id=None, custom_values=None):
 
         res = super(MailThread, self).message_route(message, message_dict, model, thread_id, custom_values)
@@ -60,18 +76,37 @@ class MailThread(models.Model):
                 match = claim_number_re.search(message_subject)
 
                 claim_number = match and match.group(0)
-                # Strip all but numbers
+
+                # Strip everything but numbers
                 claim_number = number_re.search(claim_number).group(0)
 
                 claim_id = self.env['crm.claim'].sudo().search(
-                   [('claim_number', '=', claim_number)]
+                   [('claim_number', '=', claim_number)], limit=1
                 )
+                if claim_id:
+                    # Rewrite the res tuple
+                    lst = list(res[0])
+                    lst[1] = claim_id.id
+                    res[0] = tuple(lst)
 
-                # Rewrite the res tuple
-                lst = list(res[0])
-                lst[1] = claim_id[0]
-                res[0] = tuple(lst)
-                _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
+                    # Update CC:s
+                    current_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', claim_id.email_cc)
+                    new_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', message_dict['cc']) if 'cc' in message_dict else False
+
+                    # Compare current CC:s to new CC:s
+                    new_cc_recipients = set(new_cc_list) - set(current_cc_list)
+
+                    if new_cc_recipients:
+                        new_cc_recipients_str = ", ".join(new_cc_list)
+                        _logger.info('Adding %s to CC recipients', new_cc_recipients_str)
+
+                        msg = "Adding '%s' to CC-recipients" % new_cc_recipients_str
+                        claim_id.message_post(body=msg)
+
+                        # Update CC recipients
+                        claim_id.email_cc = ', '.join(set(current_cc_list + new_cc_list))
+
+                    _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
 
         except Exception, e:
             # TODO: FIX "Error while matching a claim: expected string or buffer"

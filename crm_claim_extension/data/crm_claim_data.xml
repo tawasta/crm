@@ -2,10 +2,7 @@
 <openerp>
     <data noupdate="0">
 
-        <!--
-        Case Stage
-        -->
-        
+        <!-- Case Stage -->
         <record model="crm.claim.stage" id="stage_claim30">
             <field name="name">Assigned</field>
             <field name="sequence">30</field>

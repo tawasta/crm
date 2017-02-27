@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    
+ 	<record model="ir.ui.view" id="crm_claim_stage_form">
+            <field name="name">Claim stage from</field>
+            <field name="model">crm.claim.stage</field>
+            <field name="inherit_id" ref="crm_claim.crm_claim_stage_form"/>
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="new_reply_stage" />
+                </field>
+            </field>
+            
+		</record>
+    
+    </data>
+</openerp>

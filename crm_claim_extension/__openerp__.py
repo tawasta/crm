@@ -22,7 +22,7 @@
     'name': 'CRM Claims extension',
     'summary': 'Improved claims with helpdesk-like functionality',
     'category': 'Sales',
-    'version': '8.0.0.8.5',
+    'version': '8.0.0.9.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',
@@ -40,7 +40,11 @@
         'security/ir.model.access.csv',
 
         'views/claim_css.xml',
+
         'views/claim_form_view.xml',
+        #'views/claim_tree_view.xml',
+        'views/crm_claim_stage_form.xml',
+
         'views/claim_menu.xml',
         'views/claim_reply_view.xml',
         'views/claim_search_view.xml',
