@@ -58,10 +58,6 @@ class IrMailServer(models.Model):
                 del message['Reply-To']
                 message['Reply-To'] = noreply_string
 
-        # Set a BCC recipient
-        del message['Bcc']
-        message['Bcc'] = "odoo@tawasta.fi"
-
         return super(IrMailServer, self).send_email(
             message=message,
             mail_server_id=mail_server_id,

@@ -59,7 +59,12 @@ Configuration
 
 Usage
 =====
-\-
+Suggested modules
+- mail_bcc
+- mail_blacklist
+- mail_debrand
+- mail_sent
+- mail_tracking
 
 Known issues / Roadmap
 ======================
