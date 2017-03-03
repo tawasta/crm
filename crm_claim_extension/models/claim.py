@@ -92,8 +92,6 @@ class crm_claim(osv.Model):
                 if attachment_id not in attachments_list:
                     attachment_obj.unlink(cr, uid, res)
 
-        self._claim_send_autoreply(cr, uid, res, context)
-
         return res
 
     def write(self, cr, uid, ids, values, context=None):
@@ -149,7 +147,7 @@ class crm_claim(osv.Model):
                 self.message_post(cr, uid, ids, body=msg_body)
             elif stage_id in [6, 7]:
                 values['stage_id'] = 5
-                msg_body = _("Changing to assigned due to a new message..")
+                msg_body = _("Changing to assigned due to a new message.")
                 self.message_post(cr, uid, ids, body=msg_body)
 
         if values.get('partner_id'):

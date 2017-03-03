@@ -63,13 +63,12 @@ class MailMail(models.Model):
             # Get message footer from reply_to settings
             footer = claim_model._default_get_reply_footer(company_id=claim_instance.company_id.id)
 
-            # If we have a message to show before header,
-            # it can be set in context.
-            # E.g. "Your claim has been received" before header
-            if self._context.get('pre_header'):
+            # This is the first message to the claim. Add a notification before the header
+            if len(claim_instance.message_ids) <= 3:
                 if not header:
                     header = ''
-                header = self._context.get('pre_header') + "<br/>" + header
+
+                header = "<strong>" + _("Your claim has been received.") + "</strong>" + "<br/>" + header
 
             # Get message recipients from claim
             values['reply_to'] = claim_instance.reply_to
