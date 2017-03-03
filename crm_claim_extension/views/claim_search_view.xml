@@ -20,9 +20,7 @@
                 
                 <search position='inside'>
 	                <group expand="0" string="Claim owner">
-	                    <filter string="Digital Lessons" name="owner_digital_lessons" domain="[('company_id','ilike','Digital Lessons')]" help="Digital Lessons claims"/>
 	                    <filter string="Mediamaisteri" name="owners_mediamaisteri" domain="[('company_id','ilike','Mediamaisteri')]" help="Mediamaisteri claims"/>
-	                    <filter string="Open Trainers" name="owner_open_trainers" domain="[('company_id','ilike','Open Trainers')]" help="Open Trainers claims"/>
 	                    <filter string="Tawasta" name="owner_tawasta" domain="[('company_id','ilike','Tawasta')]" help="Tawasta claims"/>
 	                    <filter string="Vizucom" name="owner_vizucom" domain="[('company_id','ilike','Vizucom')]" help="Vizucom claims"/>
                     </group>

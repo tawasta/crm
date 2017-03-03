@@ -156,6 +156,8 @@ class MailMail(models.Model):
                 values['body_html'] += str(footer)
                 values['body_html'] += "</small></p>"
 
+        print values
+
         return super(MailMail, self).create(values)
 
     # 7. Action methods
