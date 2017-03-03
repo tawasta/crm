@@ -148,12 +148,12 @@ class CrmClaim(models.Model):
         return result
 
     @api.model
-    def _create_partner(self, vals):
+    def _fetch_partner(self, vals):
         email_from = vals.get('email_from')
         name_regex = re.compile("^[^<]+")
         email_regex = re.compile("[\w\.-]+@[\w\.-]+")
 
-        logger.info("Creating a new partner for email %s", email_from)
+        logger.info("Fetching partner for email %s", email_from)
 
         try:
             name = name_regex.findall(email_from)[0]
@@ -171,6 +171,8 @@ class CrmClaim(models.Model):
         if existing_partner:
             partner_id = existing_partner.id
         else:
+            logger.info("No partner found. Creating %s", name)
+
             partner_vals = dict()
             partner_vals['name'] = name
             partner_vals['email'] = email
