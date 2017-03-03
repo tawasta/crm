@@ -151,7 +151,7 @@ class CrmClaim(models.Model):
     def _create_partner(self, vals):
         email_from = vals.get('email_from')
         name_regex = re.compile("^[^<]+")
-        email_regex = re.compile("[<][^>]+[>]")
+        email_regex = re.compile("[\w\.-]+@[\w\.-]+")
 
         logger.info("Creating a new partner for email %s", email_from)
 
