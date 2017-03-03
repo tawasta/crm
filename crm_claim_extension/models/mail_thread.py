@@ -65,7 +65,8 @@ class MailThread(models.Model):
         # Try matching by the claim number
         try:
             # A try-block if res is empty for some reason
-            if res[0][0] == 'crm.claim' and not res[0][1]:
+            # TODO: remove this huge try-block
+            if res[0][0] == 'crm.claim':  # and not res[0][1]:
                 # Could not match the claim with header information.
                 # Trying to match by subject
                 claim_number_re = re.compile("[#][0-9]{5,6}[: ]", re.UNICODE)
@@ -78,11 +79,12 @@ class MailThread(models.Model):
                 claim_number = match and match.group(0)
 
                 # Strip everything but numbers
-                claim_number = number_re.search(claim_number).group(0)
+                claim_number = number_re.findall(claim_number)[0]
 
                 claim_id = self.env['crm.claim'].sudo().search(
                    [('claim_number', '=', claim_number)], limit=1
                 )
+
                 if claim_id:
                     # Rewrite the res tuple
                     lst = list(res[0])
@@ -90,8 +92,10 @@ class MailThread(models.Model):
                     res[0] = tuple(lst)
 
                     # Update CC:s
-                    current_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', claim_id.email_cc)
-                    new_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', message_dict['cc']) if 'cc' in message_dict else False
+                    current_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', claim_id.email_cc) \
+                        if claim_id.email_cc else list()
+                    new_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', message_dict['cc'])\
+                        if 'cc' in message_dict else list()
 
                     # Compare current CC:s to new CC:s
                     new_cc_recipients = set(new_cc_list) - set(current_cc_list)

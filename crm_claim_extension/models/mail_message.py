@@ -69,7 +69,6 @@ class MailMessage(models.Model):
 
         try:
             email_match = email_regex.findall(email_from)
-            print email_match
             if email_match:
                 email_from = email_match[0]
                 email_from = re.sub(r'[<>]', "", email_from)
