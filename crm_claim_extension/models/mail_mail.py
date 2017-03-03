@@ -71,7 +71,7 @@ class MailMail(models.Model):
                 header = "<strong>" + _("Your claim has been received.") + "</strong>" + "<br/>" + header
 
             # Get message recipients from claim
-            values['reply_to'] = claim_instance.reply_to
+            values['reply_to'] = claim_instance._get_reply_to()
             values['email_from'] = claim_instance.reply_to
             values['email_cc'] = claim_instance.email_cc
 

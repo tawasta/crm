@@ -37,7 +37,8 @@ class MailMessage(models.Model):
         model = vals.get('model')
 
         if model and model == 'crm.claim':
-            if not vals.get('author_id'):
+
+            if 'email_from' in vals:
                 vals['author_id'] = self.get_author_by_email(vals)
 
             if 'subject' in vals and vals['subject'] and not re.match('.*[#][0-9]{5,6}.*', vals['subject']):
@@ -68,6 +69,7 @@ class MailMessage(models.Model):
 
         try:
             email_match = email_regex.findall(email_from)
+            print email_match
             if email_match:
                 email_from = email_match[0]
                 email_from = re.sub(r'[<>]', "", email_from)
