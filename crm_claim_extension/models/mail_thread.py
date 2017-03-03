@@ -64,7 +64,6 @@ class MailThread(models.Model):
 
         # Try matching by the claim number
         try:
-            _logger.info(res)
             # A try-block if res is empty for some reason
             if res[0][0] == 'crm.claim' and not res[0][1]:
                 # Could not match the claim with header information.

@@ -3,7 +3,6 @@ from openerp.tools.translate import _
 from openerp import SUPERUSER_ID, tools
 import re
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -12,7 +11,6 @@ _logger = logging.getLogger(__name__)
 class crm_claim(osv.Model):
 
     _inherit = 'crm.claim'
-    _order = "write_date DESC"
 
     def create(self, cr, uid, vals, context=None):
         if not context:
@@ -48,11 +46,11 @@ class crm_claim(osv.Model):
         # Remove the helpdesk email and its aliases from cc emails
         claim_instance = self.browse(cr, uid, res)
         if claim_instance.email_cc:
-            email_list = claim_instance.email_cc.split(',')
+            email_regex = re.compile("[\w\.-]+@[\w\.-]+")
+            email_list = email_regex(claim_instance.email_cc)
 
             try:
-                email_regex = re.compile("[<][^>]+[>]")
-                email_raw = email_regex.findall(claim_instance.reply_to)[0]
+                email_raw = email_regex.findall(claim_instance._get_reply_to())[0]
                 email_raw = re.sub(r'[<>]', "", email_raw)
 
                 reply_to = email_raw
@@ -183,69 +181,6 @@ class crm_claim(osv.Model):
         _logger.warn(stage_id)
         return True
 
-    def _claim_send_autoreply(self, cr, uid, claim_id, context):
-        # Checks if a partner is applicable for sending a mail
-        claim = self.browse(cr, uid, claim_id)
-        partner = claim.partner_id
-
-        # All claims for the partner within the last 15 minutes
-        timestamp_search = datetime.strftime(datetime.now() - relativedelta(minutes=15), '%Y-%m-%d %H:%M:%S')
-        claims_count = self.search(cr, SUPERUSER_ID, [('partner_id', '=', partner.id),('stage_id', '=', 1), ('create_date', '>=', timestamp_search)], count=True)
-
-        if claims_count > 3:
-            _logger.warn("This partner has more than three new claims in last 15 minutes. Autoreply is disabled")
-            msg_body = _("<strong>Autoreply was not sent.</strong>") + "<br/>"
-            msg_body += _('This partner has more than three claims in the last 15 minutes.') + "<br/>" 
-            msg_body += _('Sending autoreply is disabled for this partner to prevent an autoreply-loop.') + "<br/>" 
-            msg_body += _('Please wait a while before creating new ticket, or mark some tickets as started.') + "<br/>" 
-            self.message_post(cr, uid, [claim.id], body=msg_body)
-
-            return False
-
-        self._claim_created_mail(cr, uid, claim_id, context)
-        return True
-
-    def _claim_created_mail(self, cr, uid, claim_id, context, disabled=False):
-        # Creates and sends a "claim created" mail to the partner
-        claim = self.browse(cr, uid, claim_id)
-        mail_message = self.pool.get('mail.message')
-        values = {}
-
-        subject = "#" + str(claim.claim_number) + ": " + claim.name
-        email = claim.reply_to
-
-        if not claim.description:
-            claim.description = ''
-
-        description = claim.description.replace('\n', '<br />').encode('ascii', 'ignore')
-
-        # values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
-        values['body'] = "<p><span style='font-weight: bold;'>" + _("Received claim") + ":</span></p>"
-        values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(description) + "</div></p>"
-
-        values['record_name'] = subject
-        values['subject'] = subject
-        values['email_from'] = email
-        values['reply_to'] = email
-
-        values['res_id'] = claim.id
-        values['model'] = claim.__class__.__name__
-        values['type'] = 'email'
-        values['subtype_id'] = 1
-
-        if claim.attachment_ids:
-            values['attachment_ids'] = [(6, 0, claim.attachment_ids.ids)]
-
-        if claim.partner_id:
-            self.message_subscribe(cr, uid, [claim.id], [claim.partner_id.id])
-
-        context = {'default_model': 'crm.claim', 'default_res_id': claim_id}
-        context['pre_header'] = "<strong>" + _("Your claim has been received.") + "</strong>"
-
-        res = mail_message.create(cr, uid, values, context)
-
-        return res
-
     def _default_get_value(self, cr, uid, value_name, context=None, company_id=None):
         return False
 
@@ -261,12 +196,7 @@ class crm_claim(osv.Model):
             _logger.warn('There were no settings for company %s', company_id)
             return False
 
-        _logger.warn(reply_obj)
-        _logger.warn(value_name)
-
         res = getattr(reply_obj, value_name, False)
-
-        _logger.warn("Res: %", res)
 
         return res
 

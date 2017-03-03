@@ -13,13 +13,14 @@ _logger = logging.getLogger(__name__)
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
-from openerp import SUPERUSER_ID
+from openerp import SUPERUSER_ID, _
 
 # 4. Imports from Odoo modules:
 
 # 5. Local imports in the relative form:
 
 # 6. Unknown third party imports:
+
 
 class MailMail(models.Model):
 
@@ -40,18 +41,18 @@ class MailMail(models.Model):
     # 6. CRUD methods
     @api.model
     def create(self, values):
-        model = self._context.get('default_model')
-        if not model:
-            model = self._context.get('default_res_model')
+        model = False
 
-        if model and model == 'crm.claim':
-            # Only send custom messages for claim model message instances
+        if 'mail_message_id' in values:
+            mail_message = self.env['mail.message'].browse([values['mail_message_id']])
+            model = mail_message.model
+            res_id = mail_message.res_id
 
+        # Only send custom messages for claim model message instances
+        if model and model == 'crm.claim' and res_id:
             # Always create a notification
             if 'notification' not in values and values.get('mail_message_id'):
                 values['notification'] = True
-
-            res_id = self._context.get('default_res_id')
 
             claim_model = self.env['crm.claim']
             claim_instance = claim_model.sudo().browse([res_id])
@@ -76,7 +77,7 @@ class MailMail(models.Model):
             values['email_cc'] = claim_instance.email_cc
 
             # Message subject
-            values['record_name'] = "#" + str(claim_instance.claim_number) + ": " + str(claim_instance.name)
+            values['record_name'] = _('Claim') + " #" + str(claim_instance.claim_number) + ": " + str(claim_instance.name)
             values['subject'] = values['record_name']
 
             # A "static" header that's fetched from company-spesific settings
@@ -156,7 +157,8 @@ class MailMail(models.Model):
                 values['body_html'] += str(footer)
                 values['body_html'] += "</small></p>"
 
-        print values
+            if not res_id:
+                values['recipient_ids'] = []
 
         return super(MailMail, self).create(values)
 

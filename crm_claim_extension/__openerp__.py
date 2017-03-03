@@ -22,7 +22,7 @@
     'name': 'CRM Claims extension',
     'summary': 'Improved claims with helpdesk-like functionality',
     'category': 'Sales',
-    'version': '8.0.0.9.6',
+    'version': '8.0.0.10.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',
@@ -31,6 +31,8 @@
     'depends': [
         'crm_claim',
         'fetchmail',
+        'mail_debrand',
+        'mail_sent',
     ],
     'data': [
         'data/claim_number_init.xml',

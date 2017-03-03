@@ -4,6 +4,8 @@
 import re
 
 # 2. Known third party imports:
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
@@ -15,12 +17,13 @@ from openerp import tools, _
 
 # 6. Unknown third party imports:
 import logging
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 class CrmClaim(models.Model):
 
     # 1. Private attributes
     _inherit = 'crm.claim'
+    _order = "write_date DESC"
 
     # 2. Fields declaration
     claim_number = fields.Char('Claim number')
@@ -59,6 +62,17 @@ class CrmClaim(models.Model):
             result[rec.id] = rec.stage_id.name
 
         return result
+
+    @api.model
+    def _get_reply_to(self):
+        claim_reply = self.env['crm_claim.reply'].search([('company_id', '=', self.company_id.id)], limit=1)
+
+        if claim_reply:
+            res = claim_reply.reply_to
+        else:
+            res = self.reply_to
+
+        return res
 
     # 5. Constraints and onchanges
     @api.onchange('email_from')
@@ -111,7 +125,7 @@ class CrmClaim(models.Model):
 
         for claim in claims:
             claim.claim_number = self.env['ir.sequence'].get('crm.claim')
-            logger.debug("Setting claim number for #%s", claim.claim_number)
+            _logger.debug("Setting claim number for #%s", claim.claim_number)
 
     @api.multi
     def message_post(self, **kwargs):
@@ -153,7 +167,7 @@ class CrmClaim(models.Model):
         name_regex = re.compile("^[^<]+")
         email_regex = re.compile("[\w\.-]+@[\w\.-]+")
 
-        logger.info("Fetching partner for email %s", email_from)
+        _logger.info("Fetching partner for email %s", email_from)
 
         try:
             name = name_regex.findall(email_from)[0]
@@ -171,7 +185,7 @@ class CrmClaim(models.Model):
         if existing_partner:
             partner_id = existing_partner.id
         else:
-            logger.info("No partner found. Creating %s", name)
+            _logger.info("No partner found. Creating %s", name)
 
             partner_vals = dict()
             partner_vals['name'] = name
@@ -180,3 +194,53 @@ class CrmClaim(models.Model):
             partner_id = partner_object.create(partner_vals)
 
         return partner_id
+
+    @api.model
+    def _claim_send_autoreply(self, claim_id):
+        # Checks if a partner is applicable for sending a mail
+        claim = self.browse([claim_id])
+        partner = claim.partner_id
+
+        # All claims for the partner within the last 15 minutes
+        timestamp_search = datetime.strftime(datetime.now() - relativedelta(minutes=15), '%Y-%m-%d %H:%M:%S')
+        claims_count = self.sudo().search([('partner_id', '=', partner.id), ('create_date', '>=', timestamp_search)], count=True)
+
+        if claims_count > 3:
+            _logger.warn("This partner has more than three new claims in last 15 minutes. Autoreply is disabled")
+            msg_body = _("<strong>Autoreply was not sent.</strong>") + "<br/>"
+            msg_body += _('This partner has more than three claims in the last 15 minutes.') + "<br/>"
+            msg_body += _('Sending autoreply is disabled for this partner to prevent an autoreply-loop.') + "<br/>"
+            msg_body += _('Please wait a while before creating new ticket, or mark some tickets as started.') + "<br/>"
+            claim.message_post(body=msg_body)
+
+            return False
+
+        #self._claim_created_mail(claim_id=claim_id)
+        return True
+
+    @api.model
+    def get_claim_received_vals(self, values):
+        # Creates and sends a "claim created" mail to the partner
+        mail_message = self.env['mail.message']
+
+        subject = _("Claim") + " #" + str(self.claim_number) + ": " + self.name
+        email = self._get_reply_to()
+
+        if not self.description:
+            self.description = ''
+
+        body = values['body'] or ''
+
+        #description = self.description.replace('\n', '<br />').encode('ascii', 'ignore')
+        #description = self.description
+
+        # values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
+        values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim has been received") + ":</span></p>"
+        values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(body) + "</div></p>"
+
+        values['record_name'] = subject
+        values['subject'] = subject
+        values['email_from'] = email
+        values['reply_to'] = email
+
+        return values
