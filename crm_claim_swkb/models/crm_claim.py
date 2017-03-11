@@ -54,20 +54,24 @@ class CrmClaim(models.Model):
         partners = list()
 
         if self.partner_id:
-            partner = self.partner_id.id
-            partners.append(partner)
+            partner = self.partner_id
+            partners.append(partner.id)
         elif 'params' in context and 'id' in context['params']:
             claim = self.browse([context['params']['id']])
 
-            partner = claim.partner_id.id
-            partners.append(partner)
-
-            if claim.partner_id.parent_id:
-                partners.append(claim.partner_id.parent_id.id)
+            partner = claim.partner_id
+            partners.append(partner.id)
         else:
             return list()
 
-        domain = ['|', ('partner_ids', 'in', partners), ('technical_contact_ids', '=', partner)]
+        # Append two levels of parents
+        if partner.parent_id:
+            partners.append(partner.parent_id.id)
+
+        if partner.parent_id.parent_id:
+            partners.append(partner.parent_id.parent_id.id)
+
+        domain = ['|', ('partner_ids', 'in', partners), ('technical_contact_ids', '=', partner.id)]
 
         return domain
 

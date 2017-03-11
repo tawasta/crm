@@ -22,7 +22,7 @@
 {
     'name': 'Claim software knowledge base records',
     'summary': 'Link claims to software knowledge base',
-    'version': '8.0.0.3.0',
+    'version': '8.0.0.3.1',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
