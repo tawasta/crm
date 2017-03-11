@@ -39,7 +39,7 @@
     ],
     'data': [
         'views/crm_claim_form.xml',
-        'wizards/claim_to_task.xml',
+        #'wizards/claim_to_task.xml',
     ],
     'demo': [
     ],

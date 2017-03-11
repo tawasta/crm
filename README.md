@@ -13,6 +13,7 @@ Available addons
 [crm_claim_swkb](crm_claim_swkb/) | Link claims to software knowledge base
 [crm_claim_timesheet](crm_claim_timesheet/) | Timesheet records from claims
 [crm_claim_to_opportunity](crm_claim_to_opportunity/) | Create an opportunity from a claim
+[crm_claim_to_task](crm_claim_to_task/) | Create a task from a claim
 [crm_contact_list](crm_contact_list/) | A simple list for quick exports
 [crm_contact_m2m](crm_contact_m2m/) | Allow contacts to belong to multiple companies
 [crm_customer_label_print](crm_customer_label_print/) | Customer address labels print 3x8 without margins
