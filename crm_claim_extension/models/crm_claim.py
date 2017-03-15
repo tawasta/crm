@@ -104,6 +104,18 @@ class CrmClaim(models.Model):
 
     @api.multi
     def write(self, values):
+        claim_stage_model = self.env['crm.claim.stage'].search([('new_reply_stage', '=', True)], limit=1)
+
+        for record in self:
+            if values.get('message_last_post'):
+                stage_id = record.stage_id.id
+
+                # Check if a closed ticket gets a new message.
+                # If so, mark the ticket as new
+                if stage_id in [3, 4]:
+                    values['stage_id'] = claim_stage_model.id
+                    msg_body = _("Re-opening claim due to a new message.")
+                    record.message_post(body=msg_body)
 
         return super(CrmClaim, self).write(values)
 

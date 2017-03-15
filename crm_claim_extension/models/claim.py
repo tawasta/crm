@@ -136,20 +136,6 @@ class crm_claim(osv.Model):
                         {'res_id': self.browse(cr, uid, ids).id}
                     )
 
-        if values.get('message_last_post'):
-            stage_id = self.browse(cr, uid, ids).stage_id.id
-
-            # Check if a closed ticket gets a new message.
-            # If so, mark the ticket as new
-            if stage_id in [3, 4]:
-                values['stage_id'] = 1
-                msg_body = _("Re-opening claim due to a new message.")
-                self.message_post(cr, uid, ids, body=msg_body)
-            elif stage_id in [6, 7]:
-                values['stage_id'] = 5
-                msg_body = _("Changing to assigned due to a new message.")
-                self.message_post(cr, uid, ids, body=msg_body)
-
         if values.get('partner_id'):
             # Partner id is changed. Set the new partner as a follower
             self.message_unsubscribe(
