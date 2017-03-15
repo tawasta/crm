@@ -107,7 +107,11 @@ class CrmClaim(models.Model):
         if not values.get('claim_number'):
             values['claim_number'] = self.env['ir.sequence'].get('crm.claim')
 
-        return super(CrmClaim, self).create(values)
+        res = super(CrmClaim, self).create(values)
+
+        res.message_subscribe([res.partner_id.id])
+
+        return res
 
     @api.multi
     def write(self, values):
