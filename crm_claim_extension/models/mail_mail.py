@@ -58,7 +58,7 @@ class MailMail(models.Model):
             claim_instance = claim_model.sudo().browse([res_id])
 
             # Incoming message. Skip all this
-            if not claim_instance.author_id:
+            if 'author_id' in values:
                 return super(MailMail, self).create(values)
 
             # Get message header from reply_to settings
