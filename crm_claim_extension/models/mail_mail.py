@@ -57,6 +57,10 @@ class MailMail(models.Model):
             claim_model = self.env['crm.claim']
             claim_instance = claim_model.sudo().browse([res_id])
 
+            # Incoming message. Skip all this
+            if not claim_instance.author_id:
+                return super(MailMail, self).create(values)
+
             # Get message header from reply_to settings
             header = claim_model._default_get_reply_header(company_id=claim_instance.company_id.id)
 
