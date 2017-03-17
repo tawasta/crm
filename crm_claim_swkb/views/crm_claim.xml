@@ -11,7 +11,7 @@
             <xpath expr="//notebook/page[1]" position="after">
                 <page string="Installations">
                     <field name="swkb_installations">
-                        <tree>
+                        <tree editable="top">
                             <field name="name" />
                             <field name="url" />
                             <field name="server_ip_address" />
