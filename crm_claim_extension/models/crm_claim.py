@@ -261,9 +261,10 @@ class CrmClaim(models.Model):
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim has been received") + ":</span></p>"
         values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(body) + "</div></p>"
 
+        values['author_id'] = False
         values['record_name'] = subject
         values['subject'] = subject
-        values['email_from'] = email
+        #values['email_from'] = email
         values['reply_to'] = email
 
         return values
