@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # 1. Standard library imports:
+from datetime import datetime
 
 # 2. Known third party imports:
 
@@ -21,10 +22,36 @@ class CrmClaim(models.Model):
 
     # 2. Fields declaration
     timesheet_records = fields.One2many('hr.analytic.timesheet', 'crm_claim', 'Work done')
+    suggested_analytic_account = fields.Many2one(
+        'account.analytic.account',
+        'Suggested analytic account',
+        compute='compute_suggested_analytic_account'
+    )
+    suggested_task = fields.Many2one('project.task', 'Suggested task', compute='compute_suggested_task')
 
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
+    @api.multi
+    def compute_suggested_analytic_account(self):
+        analytic_account_model = self.env['account.analytic.account']
+        for record in self:
+            account_name = "Tuki %s" % datetime.now().year  # TODO: claim conf for smarter search
+
+            record.suggested_analytic_account = analytic_account_model.search([
+                ('name', 'ilike', account_name),
+                ('company_id', '=', record.company_id.id)
+            ], limit=1)
+
+    @api.multi
+    def compute_suggested_task(self):
+        task_model = self.env['project.task']
+        for record in self:
+            record.suggested_task = task_model.search([
+                ('project_id.analytic_account_id', '=', record.suggested_analytic_account.id),
+                ('stage_id.closed', '=', False),
+                ('stage_id', '!=', 1),
+            ], limit=1)
 
     # 5. Constraints and onchanges
 
