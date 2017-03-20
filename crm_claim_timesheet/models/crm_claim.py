@@ -20,7 +20,7 @@ class CrmClaim(models.Model):
     _inherit = 'crm.claim'
 
     # 2. Fields declaration
-    timesheet_records = fields.One2many('hr.analytic.timesheet', 'task_id', 'Work done')
+    timesheet_records = fields.One2many('hr.analytic.timesheet', 'crm_claim', 'Work done')
 
     # 3. Default methods
 

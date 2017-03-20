@@ -10,8 +10,10 @@
 
 				<xpath expr='//sheet/group[last()]' position="after">
 			        <group col="1">
-                        <field name="timesheet_records" context="{'crm_claim': active_id}">
+                        <field name="timesheet_records" context="{'default_crm_claim': active_id, 'default_user_id': user_id}">
                             <tree string="Work done" editable="top/bottom" class="work_done_tree">
+								<field name="journal_id" invisble="1" />
+								<field name="crm_claim" invisble="1" />
                                 <field name="date" />
                                 <field name="user_id" />
                                 <field name="account_id" domain="[('state', '=', 'open')]" />

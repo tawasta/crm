@@ -20,6 +20,8 @@ class HrAnalyticTimesheet(models.Model):
     _inherit = 'hr.analytic.timesheet'
 
     # 2. Fields declaration
+    crm_claim = fields.Many2one('crm.claim', 'Claim')
+
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
