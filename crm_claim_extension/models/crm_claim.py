@@ -28,7 +28,7 @@ class CrmClaim(models.Model):
     # 2. Fields declaration
     claim_number = fields.Char('Claim number')
     company_id = fields.Many2one('res.company', string='Company', required=True)
-    stage = fields.Char('Claim Stage', function='_get_stage_string')
+    stage = fields.Char('Claim Stage', compute='compute_stage_string')
     reply_to = fields.Char('Reply to', size=128, help="Provide reply to address for message thread.")
     sla = fields.Selection(
         [
@@ -54,14 +54,10 @@ class CrmClaim(models.Model):
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
-    def _get_stage_string(self, cr, uid, ids, field_name, arg, context=None):
-        records = self.browse(cr, uid, ids)
-        result = {}
-
-        for rec in records:
-            result[rec.id] = rec.stage_id.name
-
-        return result
+    @api.multi
+    def compute_stage_string(self):
+        for record in self:
+            record.stage = record.stage_id.name
 
     @api.model
     def _get_reply_to(self):

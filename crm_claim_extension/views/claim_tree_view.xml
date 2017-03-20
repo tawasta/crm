@@ -14,7 +14,8 @@
             		Over dealine:	red
             		New messages:	bold
             	 -->
-				<tree string='Claims' colors="grey: (stage=='Rejected') or (stage=='Settled');red: date_deadline and (date_deadline&lt;current_date) and stage in ('New','In Progress'); blue: stage=='New';" fonts="bold: (message_unread==True)">
+				<tree string='Claims'
+					  colors="grey: (stage=='Rejected') or (stage=='Settled');red: date_deadline and (date_deadline&lt;current_date) and stage in ('New','In Progress'); blue: stage=='New';" fonts="bold: (message_unread==True)">
 					<field name="message_unread" invisible="1"/>
 					<field name='claim_number' string='#'/>
 					<field name='name' />
