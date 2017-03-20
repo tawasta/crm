@@ -10,6 +10,7 @@ from dateutil.relativedelta import relativedelta
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
 from openerp import tools, _
+from openerp import SUPERUSER_ID
 
 # 4. Imports from Odoo modules:
 
@@ -103,11 +104,14 @@ class CrmClaim(models.Model):
         if not values.get('claim_number'):
             values['claim_number'] = self.env['ir.sequence'].get('crm.claim')
 
-        res = super(CrmClaim, self).create(values)
+            claim = super(CrmClaim, self).create(values)
 
-        res.message_subscribe([res.partner_id.id])
+        claim.message_subscribe([claim.partner_id.id])
 
-        return res
+        if claim.create_uid != SUPERUSER_ID:
+            claim.message_post(subject=claim.name, body=claim.description, type='comment', subtype='mt_comment')
+
+        return claim
 
     @api.multi
     def write(self, values):
