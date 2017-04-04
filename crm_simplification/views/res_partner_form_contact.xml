@@ -9,7 +9,7 @@
             
             <field name="arch" type="xml">
                 <xpath expr="//group[@id='invisible_fields']" position="inside">
-                    <field name="personal_customer"/>
+                    <field name="private_customer"/>
                 </xpath>
             </field>
         </record>

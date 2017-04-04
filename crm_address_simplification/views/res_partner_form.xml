@@ -57,7 +57,7 @@
 	                        	'default_supplier': supplier,
 	                        	'default_customer': customer,
 	                        	'default_is_company': False,
-	                        	'default_personal_customer': True,
+	                        	'default_private_customer': True,
                        		}" />
                     </page>
 

@@ -12,34 +12,40 @@ class ResPartner(models.Model):
     )
 
     # This field is only a helper for "is company"
+    private_customer = fields.Boolean(
+        'Private Customer',
+        help="A customer that's not a company",
+    )
+
+    # Deprecated
     personal_customer = fields.Boolean(
         'Private Customer',
         help="A customer that's not a company"
     )
 
+    @api.multi
+    @api.depends('is_company', 'personal_customer')
+    def compute_private_customer(self):
+        for record in self:
+            record.private_customer = not record.is_company
+
     @api.model
     def create(self, values):
-        if 'personal_customer' in values and values['personal_customer']:
+        if 'private_customer' in values and values['private_customer']:
             values['is_company'] = False
 
         if 'contact_id' in values and values['contact_id']:
             values['is_company'] = False
-            values['personal_customer'] = True
+            values['private_customer'] = True
 
         return super(ResPartner, self).create(values)
 
-    @api.onchange('personal_customer')
-    def personal_customer_onchange(self):
-        if self.personal_customer:
-            self.is_company = False
-            self.businessid_shown = False
-        else:
-            self.is_company = True
-            self.businessid_shown = True
+    @api.onchange('private_customer')
+    def private_customer_onchange(self):
+        self.is_company = not self.private_customer
+        self.businessid_shown = not self.private_customer
 
     @api.onchange('is_company')
-    def is_company_onchange(self):
-        if self.is_company:
-            self.personal_customer = False
-        else:
-            self.personal_customer = True
+    def is_company_onchange_update_private_customer(self):
+        self.private_customer = not self.is_company
+
