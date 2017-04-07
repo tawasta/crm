@@ -33,24 +33,39 @@
 		                	context="{'col_group_by': ['claim_date:year']}"/>
 		            </group>
 		            
-					<group string='Order Year' icon="terp-calendar">
-					    <filter string="2014" name="year_2014" domain="[('year_claim','=','2014')]"/>
-					    <filter string="2015" name="year_2015" domain="[('year_claim','=','2015')]"/>
+					<group string='Year' icon="terp-calendar">
+                        <filter string="This year" name="year_this" domain="['&amp;',('claim_date','&lt;=', time.strftime('%%Y-12-31')),('claim_date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                        <filter string="Last year" name="year_last"
+                                domain="[('claim_date','&gt;=',(context_today()-relativedelta(years=1)).strftime('%%Y-01-01')),('claim_date','&lt;', time.strftime('%%Y-01-01'))]"/>
+
+					   <separator orientation="vertical"/>
+
+                        <filter string="2014" name="year_2014" domain="[('claim_date', 'like', '2014-')]"/>
+					    <filter string="2015" name="year_2015" domain="[('claim_date', 'like', '2015-')]"/>
+					    <filter string="2016" name="year_2016" domain="[('claim_date', 'like', '2016-')]"/>
+					    <filter string="2017" name="year_2017" domain="[('claim_date', 'like', '2017-')]"/>
 					</group>
 					
-                    <group string='Order Month'>
-                        <filter string="January"    name="month_01" domain="[('month_claim','=','1')]"/>
-                        <filter string="February"   name="month_02" domain="[('month_claim','=','2')]"/>
-                        <filter string="March"      name="month_03" domain="[('month_claim','=','3')]"/>
-                        <filter string="April"      name="month_04" domain="[('month_claim','=','4')]"/>
-                        <filter string="May"        name="month_05" domain="[('month_claim','=','5')]"/>
-                        <filter string="June"       name="month_06" domain="[('month_claim','=','6')]"/>
-                        <filter string="July"       name="month_07" domain="[('month_claim','=','7')]"/>
-                        <filter string="August"     name="month_08" domain="[('month_claim','=','8')]"/>
-                        <filter string="September"  name="month_09" domain="[('month_claim','=','9')]"/>
-                        <filter string="October"    name="month_10" domain="[('month_claim','=','10')]"/>
-                        <filter string="November"   name="month_11" domain="[('month_claim','=','11')]"/>
-                        <filter string="December"   name="month_12" domain="[('month_claim','=','12')]"/>
+                    <group string='Month'>
+                        <filter string="This month" name="month_this"
+                                domain="[('claim_date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('claim_date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+                        <filter string="Last month" name="month_last"
+                                domain="[('claim_date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('claim_date','&lt;',time.strftime('%%Y-%%m-01'))]"/>
+
+					   <separator orientation="vertical"/>
+
+                        <filter string="January"    name="month_01" domain="[('claim_date','like','-01-')]"/>
+                        <filter string="February"   name="month_02" domain="[('claim_date','like','-02-')]"/>
+                        <filter string="March"      name="month_03" domain="[('claim_date','like','-03-')]"/>
+                        <filter string="April"      name="month_04" domain="[('claim_date','like','-04-')]"/>
+                        <filter string="May"        name="month_05" domain="[('claim_date','like','-05-')]"/>
+                        <filter string="June"       name="month_06" domain="[('claim_date','like','-06-')]"/>
+                        <filter string="July"       name="month_07" domain="[('claim_date','like','-07-')]"/>
+                        <filter string="August"     name="month_08" domain="[('claim_date','like','-08-')]"/>
+                        <filter string="September"  name="month_09" domain="[('claim_date','like','-09-')]"/>
+                        <filter string="October"    name="month_10" domain="[('claim_date','like','-10-')]"/>
+                        <filter string="November"   name="month_11" domain="[('claim_date','like','-11-')]"/>
+                        <filter string="December"   name="month_12" domain="[('claim_date','like','-12-')]"/>
                     </group>
 
 		        </search>
