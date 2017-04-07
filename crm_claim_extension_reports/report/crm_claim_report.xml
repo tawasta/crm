@@ -15,10 +15,13 @@
             	'search_default_measure_claim': 1,
             	'search_default_measure_email': 1,
             	
-            	'search_default_responsible': 1,
-            	
+            	'search_default_responsible': 0,
+            	'search_default_stage': 1,
+
+            	'search_default_year_this':1,
+
             	'search_default_claim_date_column_group_month':1,
-            	
+
             	'search_default_stage_new': 1,
             	'search_default_stage_progress': 1,
             	'search_default_stage_assigned': 1,
