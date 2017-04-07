@@ -260,7 +260,7 @@ class CrmClaim(models.Model):
 
             return False
 
-        #self._claim_created_mail(claim_id=claim_id)
+        # self._claim_created_mail(claim_id=claim_id)
         return True
 
     @api.model
@@ -276,8 +276,8 @@ class CrmClaim(models.Model):
 
         body = values['body'] or ''
 
-        #description = self.description.replace('\n', '<br />').encode('ascii', 'ignore')
-        #description = self.description
+        # description = self.description.replace('\n', '<br />').encode('ascii', 'ignore')
+        # description = self.description
 
         # values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim has been received") + ":</span></p>"
@@ -286,7 +286,7 @@ class CrmClaim(models.Model):
         values['author_id'] = False
         values['record_name'] = subject
         values['subject'] = subject
-        #values['email_from'] = email
+        # values['email_from'] = email
         values['reply_to'] = email
 
         return values
