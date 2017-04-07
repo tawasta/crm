@@ -15,8 +15,6 @@
                         <field name="suggested_time" invisible="1"/>
                         <field name="suggested_message" invisible="1"/>
 
-                        <field name="time_recorded" widget="float_time" invisible="0"/>
-
                         <field name="timesheet_records"
                                context="{
                                'default_crm_claim': active_id,
