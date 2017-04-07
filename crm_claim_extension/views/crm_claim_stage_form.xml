@@ -8,6 +8,7 @@
             <field name="inherit_id" ref="crm_claim.crm_claim_stage_form"/>
             <field name="arch" type="xml">
                 <field name="sequence" position="after">
+                    <field name="closed" />
                     <field name="new_reply_stage" />
                 </field>
             </field>

@@ -52,6 +52,8 @@ class CrmClaim(models.Model):
     attachment_ids = fields.Many2many('ir.attachment',  string='Attachments')
     stage_change_ids = fields.One2many('crm.claim.stage.change', 'claim_id', string='Stage changes', readonly=True)
 
+    time_open = fields.Float('Time open', compute='compute_time_open', store=True)
+
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
@@ -70,6 +72,26 @@ class CrmClaim(models.Model):
             res = self.reply_to
 
         return res
+
+    @api.multi
+    @api.depends('stage_change_ids')
+    def compute_time_open(self):
+        for record in self:
+            # Skip this if there are less than two stage changes
+            if len(record.stage_change_ids) < 2:
+                continue
+
+            stage_changes = record.stage_change_ids.sorted(key=lambda r: r.create_date, reverse=True)
+            time_open = 0.00
+
+            for stage_change in stage_changes:
+                # Don't calculate closed stage changes
+                if stage_change.stage.closed:
+                    continue
+
+                time_open += stage_change.hours
+
+            record.time_open = time_open
 
     # 5. Constraints and onchanges
     @api.onchange('partner_id')

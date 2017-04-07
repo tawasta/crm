@@ -23,6 +23,7 @@ class CrmClaimStage(models.Model):
     _inherit = 'crm.claim.stage'
 
     # 2. Fields declaration
+    closed = fields.Boolean("Closed stage")
     new_reply_stage = fields.Boolean("New reply stage", help="Claim will be returned to this stage on new message")
 
     # 3. Default methods

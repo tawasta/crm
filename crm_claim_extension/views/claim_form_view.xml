@@ -62,9 +62,13 @@
 								<field name='create_uid' />
 								<field name='create_date' />
 								<field name='stage' />
-								<field name='hours' widget="float_time" sum='Total'/>
+								<field name='hours' widget="float_time"/>
 							</tree>
 						</field>
+
+                        <group>
+                            <field name="time_open" widget="float_time" invisible="0"/>
+                        </group>
 					</page>
 				</notebook>
 
