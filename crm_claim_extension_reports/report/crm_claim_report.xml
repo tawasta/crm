@@ -13,8 +13,9 @@
             <field name="context">
             {
             	'search_default_measure_claim': 1,
-            	'search_default_measure_email': 1,
-            	
+            	'search_default_measure_time_open': 1,
+            	'search_default_measure_time_recorded': 1,
+
             	'search_default_responsible': 0,
             	'search_default_stage': 1,
 
@@ -35,7 +36,6 @@
             <field name="search_view_id" ref="crm_claim.view_report_crm_claim_filter"/>
             <field name="help">Have a general overview of all claims processed in the system by sorting them with specific criteria.</field>
         </record>
-        
         
 		<!-- CRM Claim Report Graph View -->
 

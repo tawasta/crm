@@ -22,6 +22,8 @@
 					<group string='Measures'>
 						<filter string='Claims' name="measure_claim" context="{'measures': ['nbr_claims']}" />
 						<filter string='Emails' name="measure_email" context="{'measures': ['email']}" />
+						<filter string='Time open' name="measure_time_open" context="{'measures': ['time_open']}" />
+						<filter string='Time recorded' name="measure_time_recorded" context="{'measures': ['time_recorded']}" />
 					</group>
 				
 		            <group string='Date grouping'>

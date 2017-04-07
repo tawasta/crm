@@ -64,6 +64,8 @@ class CrmClaimReport(models.Model):
     subject = fields.Char('Claim Subject', readonly=True)
     claim_number = fields.Char('Claim number', readonly=True)
 
+    time_recorded = fields.Float('Time recorded')
+    time_open = fields.Float('Time open')
 
     def _select(self):
         _select = "SELECT "
@@ -78,6 +80,8 @@ class CrmClaimReport(models.Model):
         _select += "c.partner_id,"
         _select += "c.company_id,"
         _select += "c.categ_id,"
+        _select += "c.time_recorded,"
+        _select += "c.time_open,"
         _select += "c.name as subject,"
         _select += "count(*) as nbr_claims,"
         _select += "c.sla as sla,"
@@ -88,7 +92,7 @@ class CrmClaimReport(models.Model):
         /(3600*24) as delay_close, (SELECT count(id) FROM mail_message WHERE\
         model='crm.claim' AND res_id=c.id) AS email,"
         _select += "extract('epoch' from (c.date_deadline - c.date_closed))\
-        /(3600*24) as delay_expected,"
+        /(3600*24) as delay_expected"
 
         return _select
 
@@ -106,6 +110,8 @@ class CrmClaimReport(models.Model):
         _group_by += "c.section_id,"
         _group_by += "c.stage_id,"
         _group_by += "c.categ_id,"
+        _group_by += "c.time_recorded,"
+        _group_by += "c.time_open,"
         _group_by += "c.partner_id,"
         _group_by += "c.company_id,"
         _group_by += "c.create_date,"
