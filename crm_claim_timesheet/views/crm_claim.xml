@@ -12,6 +12,7 @@
 			        <group col="1">
                         <field name="suggested_analytic_account" invisible="1"/>
                         <field name="suggested_task" invisible="1"/>
+                        <field name="suggested_time" invisible="1"/>
 
                         <field name="timesheet_records"
                                context="{
@@ -19,6 +20,7 @@
                                'default_user_id': user_id,
                                'default_account_id': suggested_analytic_account,
                                'default_task_id': suggested_task,
+                               'default_unit_amount': suggested_time,
                                }" >
                             <tree string="Work done" editable="top/bottom" class="work_done_tree">
 								<field name="journal_id" invisible="1" />

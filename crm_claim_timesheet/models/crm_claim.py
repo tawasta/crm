@@ -28,6 +28,7 @@ class CrmClaim(models.Model):
         compute='compute_suggested_analytic_account'
     )
     suggested_task = fields.Many2one('project.task', 'Suggested task', compute='compute_suggested_task')
+    suggested_time = fields.Float('Suggested time', compute='compute_suggested_time')
 
     # 3. Default methods
 
@@ -52,6 +53,18 @@ class CrmClaim(models.Model):
                 ('stage_id.closed', '=', False),
                 ('stage_id', '!=', 1),
             ], limit=1)
+
+    @api.multi
+    def compute_suggested_time(self):
+        for record in self:
+            if hasattr(record, 'stage_change_ids'):
+                # Sort the record set so we can be sure it will suggest the latest stage change
+                stage_changes = record.stage_change_ids.sorted(key=lambda r: r.create_date)
+
+                if len(stage_changes) < 2:
+                    continue
+
+                record.suggested_time = round(stage_changes[1].hours, 2)
 
     # 5. Constraints and onchanges
 
