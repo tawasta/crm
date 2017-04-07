@@ -30,6 +30,8 @@ class CrmClaim(models.Model):
     suggested_task = fields.Many2one('project.task', 'Suggested task', compute='compute_suggested_task')
     suggested_time = fields.Float('Suggested time', compute='compute_suggested_time')
 
+    time_recorded = fields.Float('Time recorded', compute='compute_time_recorded', store=True)
+
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
@@ -65,6 +67,16 @@ class CrmClaim(models.Model):
                     continue
 
                 record.suggested_time = round(stage_changes[1].hours, 2)
+
+    @api.multi
+    @api.depends('timesheet_records')
+    def compute_time_recorded(self):
+        for record in self:
+            time_recorded = 0.00
+            for time in record.timesheet_records:
+                time_recorded += time.unit_amount
+
+            record.time_recorded = time_recorded
 
     # 5. Constraints and onchanges
 

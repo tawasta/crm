@@ -14,6 +14,8 @@
                         <field name="suggested_task" invisible="1"/>
                         <field name="suggested_time" invisible="1"/>
 
+                        <field name="time_recorded" widget="float_time" invisible="0"/>
+
                         <field name="timesheet_records"
                                context="{
                                'default_crm_claim': active_id,
@@ -30,7 +32,7 @@
                                 <field name="account_id" domain="[('state', '=', 'open')]" />
                                 <field name="task_id" domain="[('project_id.analytic_account_id', '=', account_id), ('stage_id.fold', '=', False)]" />
                                 <field name="name" style="width: 30%;"/>
-                                <field name="unit_amount" widget="float_time"/>
+                                <field name="unit_amount" widget="float_time" sum='Total amount'/>
                             </tree>
                         </field>
                     </group>
