@@ -29,6 +29,7 @@ class CrmClaim(models.Model):
     )
     suggested_task = fields.Many2one('project.task', 'Suggested task', compute='compute_suggested_task')
     suggested_time = fields.Float('Suggested time', compute='compute_suggested_time')
+    suggested_message = fields.Char('Suggested message', compute='compute_suggested_message')
 
     time_recorded = fields.Float('Time recorded', compute='compute_time_recorded', store=True)
 
@@ -67,6 +68,13 @@ class CrmClaim(models.Model):
                     continue
 
                 record.suggested_time = round(stage_changes[1].hours, 2)
+
+    @api.multi
+    def compute_suggested_message(self):
+        for record in self:
+            msg = "%s (#%s): " % (record.company_id.name, record.claim_number)
+
+            record.suggested_message = msg
 
     @api.multi
     @api.depends('timesheet_records')

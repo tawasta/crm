@@ -13,6 +13,7 @@
                         <field name="suggested_analytic_account" invisible="1"/>
                         <field name="suggested_task" invisible="1"/>
                         <field name="suggested_time" invisible="1"/>
+                        <field name="suggested_message" invisible="1"/>
 
                         <field name="time_recorded" widget="float_time" invisible="0"/>
 
@@ -23,6 +24,7 @@
                                'default_account_id': suggested_analytic_account,
                                'default_task_id': suggested_task,
                                'default_unit_amount': suggested_time,
+                               'default_name': suggested_message,
                                }" >
                             <tree string="Work done" editable="top/bottom" class="work_done_tree">
 								<field name="journal_id" invisible="1" />
