@@ -64,8 +64,6 @@ class CrmClaimReport(models.Model):
     subject = fields.Char('Claim Subject', readonly=True)
     claim_number = fields.Char('Claim number', readonly=True)
 
-    year_claim = fields.Integer('Claim year')
-    month_claim = fields.Integer('Claim month')
 
     def _select(self):
         _select = "SELECT "
@@ -91,9 +89,6 @@ class CrmClaimReport(models.Model):
         model='crm.claim' AND res_id=c.id) AS email,"
         _select += "extract('epoch' from (c.date_deadline - c.date_closed))\
         /(3600*24) as delay_expected,"
-
-        _select += "EXTRACT(YEAR FROM c.create_date) as year_claim,"
-        _select += "EXTRACT(MONTH FROM c.create_date) as month_claim"
 
         return _select
 

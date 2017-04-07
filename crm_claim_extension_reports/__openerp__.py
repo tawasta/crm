@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Jarmo Kortetjärvi
+#    Author: Oy Tawasta OS Technologies Ltd.
 #    Copyright 2015 Oy Tawasta OS Technologies Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,10 +22,13 @@
     'name': 'CRM Claim Extension Reports',
     'summary': 'Reports for crm_claim_extension',
     'category': 'CRM',
-    'version': '8.0.0.2.1',
+    'version': '8.0.0.2.2',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
-    'depends': ['crm_claim_extension'],
+    'depends': [
+        'crm_claim_extension'
+        'crm_claim_timesheet'
+    ],
     'data': [
         'report/crm_claim_report.xml',
         'report/crm_claim_report_search.xml',

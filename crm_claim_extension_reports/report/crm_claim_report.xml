@@ -27,6 +27,8 @@
             	'search_default_stage_assigned': 1,
             	'search_default_stage_waiting_customer': 1,
             	'search_default_stage_waiting': 1,
+            	'search_default_stage_settled': 1,
+            	'search_default_stage_rejected': 1,
             }
             </field>
             <field name="view_id" ref="crm_claim.view_report_crm_claim_graph"/>
