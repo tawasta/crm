@@ -60,7 +60,7 @@ class CrmClaim(models.Model):
     @api.multi
     def compute_stage_string(self):
         for record in self:
-            record.stage = record.stage_id.name
+            record.stage = record.with_context(lang=False).stage_id.name
 
     @api.model
     def _get_reply_to(self):
