@@ -72,7 +72,8 @@ class CrmClaim(models.Model):
     @api.multi
     def compute_suggested_message(self):
         for record in self:
-            msg = "%s (#%s): " % (record.partner_id.name, record.claim_number)
+            partner = record.partner_id.parent_id.name or record.partner_id.name
+            msg = "%s (#%s): " % (partner, record.claim_number)
 
             record.suggested_message = msg
 
