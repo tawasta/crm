@@ -129,6 +129,9 @@ class CrmClaim(models.Model):
 
             claim = super(CrmClaim, self).create(values)
 
+        if claim.create_uid != SUPERUSER_ID and claim.company_id:
+            claim.message_post(subject=claim.name, body=claim.description, type='comment', subtype='mt_comment')
+
         claim.message_subscribe([claim.partner_id.id])
 
         return claim
