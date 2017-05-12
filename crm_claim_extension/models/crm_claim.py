@@ -20,11 +20,12 @@ from openerp import SUPERUSER_ID
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class CrmClaim(models.Model):
 
     # 1. Private attributes
     _inherit = 'crm.claim'
-    _order = "write_date DESC"
+    _order = "stage_id ASC, write_date DESC"
 
     # 2. Fields declaration
     claim_number = fields.Char('Claim number')
