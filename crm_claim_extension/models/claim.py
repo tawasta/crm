@@ -47,7 +47,8 @@ class crm_claim(osv.Model):
         claim_instance = self.browse(cr, uid, res)
         if claim_instance.email_cc:
             email_regex = re.compile("[\w\.-]+@[\w\.-]+")
-            email_list = email_regex(claim_instance.email_cc)
+
+            email_list = email_regex.findall(claim_instance.email_cc)
 
             try:
                 email_raw = email_regex.findall(claim_instance._get_reply_to())[0]
