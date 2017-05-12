@@ -130,8 +130,8 @@ class CrmClaim(models.Model):
 
         claim.message_subscribe([claim.partner_id.id])
 
-        if claim.create_uid != SUPERUSER_ID:
-            claim.message_post(subject=claim.name, body=claim.description, type='comment', subtype='mt_comment')
+        # if claim.create_uid != SUPERUSER_ID:
+            # claim.message_post(subject=claim.name, body=claim.description, type='comment', subtype='mt_comment')
 
         return claim
 
