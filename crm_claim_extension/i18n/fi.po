@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-15 09:28+0000\n"
-"PO-Revision-Date: 2017-03-15 11:40+0200\n"
+"PO-Revision-Date: 2017-05-12 07:48+0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgstr "Vaihdetaan tila uuden viestin takia"
 #: model:ir.model,name:crm_claim_extension.model_crm_claim
 #, python-format
 msgid "Claim"
-msgstr "Palaute"
+msgstr "Tukipyyntö"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.crm_claim_form_view_extension
@@ -134,7 +134,7 @@ msgstr "Tukipyynnön vastausosoite"
 #. module: crm_claim_extension
 #: model:ir.model,name:crm_claim_extension.model_crm_claim_stage
 msgid "Claim stages"
-msgstr "Palautteen vaiheet"
+msgstr "Tukipyyntöjen vaiheet"
 
 #. module: crm_claim_extension
 #: help:crm.claim.stage,new_reply_stage:0
@@ -147,7 +147,7 @@ msgstr "Tukipyyntö palautetaan tähän vaiheeseen uuden viestin saapuessa."
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_all
 #: model:ir.actions.act_window,name:crm_claim_extension.crm_case_categ_claim_my
 msgid "Claims"
-msgstr "Palautteet"
+msgstr "Tukipyynnöt"
 
 #. module: crm_claim_extension
 #: view:crm.claim:crm_claim_extension.view_crm_case_claims_filter_extension
