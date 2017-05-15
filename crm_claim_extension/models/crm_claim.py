@@ -177,7 +177,9 @@ class CrmClaim(models.Model):
     def message_post(self, **kwargs):
         res = super(CrmClaim, self).message_post(**kwargs)
 
-        if 'type' in kwargs and kwargs['type'] == 'comment' and self.email_cc:
+        if 'type' in kwargs and kwargs['type'] == 'comment' \
+                and 'subtype' in kwargs and kwargs['subtype'] == 'mail.mt_comment' \
+                and self.email_cc:
             # Make a message about cc-recipients
 
             msg = _("Previous message was sent to '%s' as a copy.") % self.email_cc
