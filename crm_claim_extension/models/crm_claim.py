@@ -181,7 +181,7 @@ class CrmClaim(models.Model):
             # Make a message about cc-recipients
 
             msg = _("Previous message was sent to '%s' as a copy.") % self.email_cc
-            self.message_post(body=msg)
+            self.sudo().message_post(body=msg)
 
         return res
 
