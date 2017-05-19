@@ -37,6 +37,12 @@ class ResPartner(models.Model):
 
     street_address = fields.Char('Street address')
 
+    address_contact_ids = fields.One2many(
+        'res.partner',
+        'parent_id',
+        string='Contact',
+        domain=[('type', '=', 'contact')]
+    )
     address_contact_recursive_ids = fields.One2many(
         'res.partner',
         'parent_id',
@@ -124,32 +130,15 @@ class ResPartner(models.Model):
         for record in self:
             child_ids = self._get_recursive_child_ids(record)
             record.address_contact_recursive_ids = \
-                self.search(['&', ('id', 'in', child_ids),
-                             ('type', '=', 'contact')])
+                self.search([
+                    ('id', 'in', child_ids),
+                    ('type', '=', 'contact')
+                ])
 
     @api.one
     def _set_contacts(self):
-        # There's probably a smarter way to do this
-
-        new_contacts = []
-
-        for contact in self.address_contact_recursive_ids:
-            if isinstance(contact.id, models.NewId):
-                contact_values = {}
-                for attr in contact._columns:
-                    val = getattr(contact, attr, False)
-                    if getattr(val, 'id', False):
-                        val = val.id
-
-                    if val:
-                        contact_values[attr] = val
-
-                contact_values['parent_id'] = self.id,
-
-                new_contacts.append(contact_values)
-
-        for new_contact in new_contacts:
-            self.create(new_contact)
+        for record in self:
+            self.address_contact_ids = self.address_contact_recursive_ids
 
     # 5. Constraints and onchanges
     @api.one
@@ -166,10 +155,10 @@ class ResPartner(models.Model):
             values = dict((key, value_or_id(self.parent_id[key]))
                           for key in self._address_fields())
 
-            ''' Can't use self.write, as it doesn't update the fields '''
+            # Can't use self.write, as it doesn't update the fields
             # self.write(values)
 
-            ''' Set the address fields from the parent '''
+            # Set the address fields from the parent
             for key, value in values.iteritems():
                 setattr(self, key, value)
 
