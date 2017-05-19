@@ -135,10 +135,10 @@ class ResPartner(models.Model):
                     ('type', '=', 'contact')
                 ])
 
-    @api.one
+    @api.multi
     def _set_contacts(self):
         for record in self:
-            self.address_contact_ids = self.address_contact_recursive_ids
+            record.address_contact_ids = record.address_contact_recursive_ids
 
     # 5. Constraints and onchanges
     @api.one
