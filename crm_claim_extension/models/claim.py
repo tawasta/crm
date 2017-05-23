@@ -149,23 +149,6 @@ class crm_claim(osv.Model):
 
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
 
-    # Not implemented
-    def action_rejected(self, cr, uid, ids, context=None):
-        _logger.warn("Rejected")
-
-        return super(crm_claim, self).action_rejected(cr, uid, context)
-
-    # Not implemented
-    def action_settled(self, cr, uid, ids, context=None):
-        _logger.warn("Settled")
-
-        return super(crm_claim, self).action_settled(cr, uid, context)
-
-    # Not implemented
-    def _onchange_stage_id(self, cr, uid, ids, stage_id, context):
-        _logger.warn(stage_id)
-        return True
-
     def _default_get_value(self, cr, uid, value_name, context=None, company_id=None):
         return False
 

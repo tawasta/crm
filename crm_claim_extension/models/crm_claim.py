@@ -121,6 +121,26 @@ class CrmClaim(models.Model):
 
             return result
 
+    # Not implemented
+    @api.multi
+    def action_rejected(self):
+        _logger.warn("Rejected")
+
+        return super(CrmClaim, self).action_rejected()
+
+    # Not implemented
+    @api.multi
+    def action_settled(self):
+        _logger.warn("Settled")
+
+        return super(CrmClaim, self).action_settled()
+
+    # Not implemented
+    @api.multi
+    def _onchange_stage_id(self, stage_id):
+        _logger.warn(stage_id)
+        return True
+
     # 6. CRUD methods
     @api.model
     def create(self, values):
