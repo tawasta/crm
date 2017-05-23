@@ -168,19 +168,6 @@ class crm_claim(osv.Model):
 
         return res
 
-    def _default_get_reply_to(self, cr, uid, context=None, company_id=None):
-        if not company_id:
-            company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
-
-        reply_ids = self.pool.get('crm_claim.reply').search(cr, uid, [('company_id', '=', company_id)])
-        if reply_ids:
-            reply_obj = self.pool.get('crm_claim.reply').browse(cr, uid, reply_ids)
-            if reply_obj.reply_to:
-                reply_to = reply_obj.reply_to
-                return reply_to
-
-        return False
-
     def _get_exclude_list(self, cr, uid, context=None, company_id=None):
         mail_ids = self._default_get_reply_alias_ids(cr, uid, context, company_id)
 
@@ -235,20 +222,3 @@ class crm_claim(osv.Model):
             return result
 
         return False
-
-    def _get_company(self, cr, uid, context=None):
-        current_user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-        res = current_user.company_id.id
-
-        return res
-
-    _defaults = {
-        'sla': "1",
-        'stage_id': 1,
-        'reply_to': _default_get_reply_to,
-        'company_id': _get_company
-    }
-
-    _sql_constraints = [
-        ('claim_number', 'unique(claim_number)', _('This claim number is already in use.'))
-    ]

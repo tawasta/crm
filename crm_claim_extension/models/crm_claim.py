@@ -27,11 +27,26 @@ class CrmClaim(models.Model):
     _inherit = 'crm.claim'
     _order = "stage_id ASC, date DESC"
 
+    _sql_constraints = [
+        ('claim_number', 'unique(claim_number)', _('This claim number is already in use.'))
+    ]
+
     # 2. Fields declaration
     claim_number = fields.Char('Claim number')
-    company_id = fields.Many2one('res.company', string='Company', required=True)
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        required=True,
+        default = lambda self: self._get_company(),
+    )
     stage = fields.Char('Claim Stage', compute='compute_stage_string')
-    reply_to = fields.Char('Reply to', size=128, help="Provide reply to address for message thread.")
+    stage_id = fields.Many2one(default=1)
+    reply_to = fields.Char(
+        string='Reply to',
+        size=128,
+        default=lambda self: self._default_get_reply_to(),
+        help="Provide reply to address for message thread."
+    )
     sla = fields.Selection(
         [
             ('0', '-'),
@@ -41,7 +56,8 @@ class CrmClaim(models.Model):
             ('4', 'Taso 4'),
         ],
         'Service level',
-        select=True
+        select=True,
+        default=1,
     )
     email_to = fields.Char('Email to', help='Email recipient')
     email_cc = fields.Char('Email CC', help='Carbon copy message recipients')
@@ -56,6 +72,24 @@ class CrmClaim(models.Model):
     time_open = fields.Float('Time open', compute='compute_time_open', store=True)
 
     # 3. Default methods
+    def _default_get_company(self):
+        res = self.env['res.users'].browse([self._uid]).company_id.id
+
+        return res
+
+    def _default_get_reply_to(self, company_id=None):
+        if not company_id:
+            company_id = self._default_get_company()
+
+        crm_claim_reply = self.env.get('crm_claim.reply')
+        reply_ids = crm_claim_reply.search([('company_id', '=', company_id)])
+        if reply_ids:
+            reply_obj = crm_claim_reply.browse(reply_ids)
+            if reply_obj.reply_to:
+                reply_to = reply_obj.reply_to
+                return reply_to
+
+        return False
 
     # 4. Compute and search fields, in the same order that fields declaration
     @api.multi
