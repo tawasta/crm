@@ -20,11 +20,10 @@
 
                         <field name="partner_id" required="1" colspan="4" />
 
-                        <field name="email_from_readonly" colspan="3" string="Recipient" />
+                        <field name="email_from" readonly="1" colspan="3" string="Recipient" />
                         <field name="partner_phone" nolabel="1" readonly="1" />
 
                         <field name="email_cc" colspan="4" />
-                        <field name="email_from" invisible="1"/>
                     </group>
                 </xpath>
 

@@ -96,31 +96,6 @@ class crm_claim(osv.Model):
         return res
 
     def write(self, cr, uid, ids, values, context=None):
-        # When a claim stage changes, save the date
-        if values.get('email_from'):
-            values['email_from_readonly'] = values.get('email_from')
-
-        if values.get('stage_id'):
-            stage_id = values.get('stage_id')
-
-            if stage_id:
-                values['stage_change_ids'] = [(0, _, {'stage': stage_id})]
-
-            if stage_id == 2:
-                # In progress
-                values['date_start'] = datetime.now().replace(microsecond=0)
-                if not self.browse(cr, uid, ids)[0].user_id:
-                    values['user_id'] = uid
-            if stage_id == 3:
-                # Settled
-                values['date_settled'] = datetime.now().replace(microsecond=0)
-            if stage_id == 4:
-                # Rejected
-                values['date_rejected'] = datetime.now().replace(microsecond=0)
-            if stage_id == 5:
-                # Waiting
-                values['date_waiting'] = datetime.now().replace(microsecond=0)
-
         if values.get('attachment_ids'):
             # Update attachment res_id so inline-added
             # attachments are matched correctly

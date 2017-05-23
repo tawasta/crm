@@ -37,7 +37,7 @@ class CrmClaim(models.Model):
         'res.company',
         string='Company',
         required=True,
-        default = lambda self: self._get_company(),
+        default=lambda self: self._get_company(),
     )
     stage = fields.Char('Claim Stage', compute='compute_stage_string')
     stage_id = fields.Many2one(default=1)
@@ -62,10 +62,13 @@ class CrmClaim(models.Model):
     email_to = fields.Char('Email to', help='Email recipient')
     email_cc = fields.Char('Email CC', help='Carbon copy message recipients')
     email_from_readonly = fields.Char('Recipient email', readonly=True)
+
+    # Dates for logging
     date_start = fields.Datetime('Start date')
     date_waiting = fields.Datetime('Waiting date')
     date_settled = fields.Datetime('Settled date')
     date_rejected = fields.Datetime('Rejected date')
+
     attachment_ids = fields.Many2many('ir.attachment',  string='Attachments')
     stage_change_ids = fields.One2many('crm.claim.stage.change', 'claim_id', string='Stage changes', readonly=True)
 
@@ -133,7 +136,6 @@ class CrmClaim(models.Model):
     @api.multi
     def onchange_partner_id(self):
         for record in self:
-            record.email_from_readonly = record.partner_id.email
             record.email_from = record.partner_id.email
 
     @api.onchange('email_from')
@@ -192,7 +194,8 @@ class CrmClaim(models.Model):
 
     @api.multi
     def write(self, values):
-        claim_stage_model = self.env['crm.claim.stage'].search([('new_reply_stage', '=', True)], limit=1)
+        claim_stage_model = self.env['crm.claim.stage']
+        claim_state_new_reply = claim_stage_model.search([('new_reply_stage', '=', True)], limit=1)
 
         for record in self:
             if values.get('message_last_post'):
@@ -201,9 +204,31 @@ class CrmClaim(models.Model):
                 # Check if a closed ticket gets a new message.
                 # If so, mark the ticket as new
                 if stage_id in [3, 4]:
-                    values['stage_id'] = claim_stage_model.id
+                    values['stage_id'] = claim_state_new_reply.id
                     msg_body = _("Re-opening claim due to a new message.")
                     record.message_post(body=msg_body)
+
+        # When a claim stage changes, save the date
+        if values.get('stage_id'):
+            stage_id = values.get('stage_id')
+
+            if stage_id:
+                values['stage_change_ids'] = [(0, _, {'stage': stage_id})]
+
+            if stage_id == 2:
+                # In progress
+                values['date_start'] = datetime.now().replace(microsecond=0)
+                if not self.user_id:
+                    values['user_id'] = self._uid
+            if stage_id == 3:
+                # Settled
+                values['date_settled'] = datetime.now().replace(microsecond=0)
+            if stage_id == 4:
+                # Rejected
+                values['date_rejected'] = datetime.now().replace(microsecond=0)
+            if stage_id == 5:
+                # Waiting
+                values['date_waiting'] = datetime.now().replace(microsecond=0)
 
         return super(CrmClaim, self).write(values)
 
