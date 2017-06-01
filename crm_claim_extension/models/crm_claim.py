@@ -139,7 +139,7 @@ class CrmClaim(models.Model):
             company_id = self._default_get_company()
 
         claim_reply = self.env['crm_claim.reply'].search([
-            ('company_id', '=', self.company_id.id)
+            ('company_id', '=', self.company_id.id),
             ('reply_to', '!=', False),
         ], limit=1)
 
@@ -268,6 +268,14 @@ class CrmClaim(models.Model):
             if stage_id == 5:
                 # Waiting
                 values['date_waiting'] = datetime.now().replace(microsecond=0)
+
+        if values.get('partner_id'):
+            # Partner is being changed. Update followers
+
+            # Remove current partner
+            self.message_unsubscribe(self.partner_id)
+            # Set the new partner as follower
+            self.message_subscribe(values.get('partner_id'))
 
         return super(CrmClaim, self).write(values)
 

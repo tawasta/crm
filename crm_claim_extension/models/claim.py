@@ -73,52 +73,6 @@ class crm_claim(osv.Model):
             except Exception, e:
                 _logger.error('Could not set email CC: %s', e)
 
-        if vals.get('attachment_ids'):
-            # Update attachment res_id so inline-added
-            # attachments are matched correctly
-            attachment_obj = self.pool.get('ir.attachment')
-            try:
-                attachments_list = vals.get('attachment_ids')[0][2]
-                for attachment in attachments_list:
-                    attachment_obj.write(cr, uid, attachment, {'res_id': res})
-            except:
-                attachments_list = []
-
-            # Check if attachments are removed
-            for attachment_id in attachment_obj.search(
-                cr, SUPERUSER_ID, [('res_id', '=', res),
-                                   ('res_model', '=', 'crm.claim')]
-            ):
-                if attachment_id not in attachments_list:
-                    attachment_obj.unlink(cr, uid, res)
-
         return res
 
-    def write(self, cr, uid, ids, values, context=None):
-        if values.get('attachment_ids'):
-            # Update attachment res_id so inline-added
-            # attachments are matched correctly
-            attachment_obj = self.pool.get('ir.attachment')
-            try:
-                attachments_list = values.get('attachment_ids')[0][2]
-            except:
-                attachments_list = []
 
-            for attachment in attachments_list:
-                if not attachment_obj.browse(cr, uid, attachment).res_id:
-                    attachment_obj.write(
-                        cr, SUPERUSER_ID, attachment,
-                        {'res_id': self.browse(cr, uid, ids).id}
-                    )
-
-        if values.get('partner_id'):
-            # Partner id is changed. Set the new partner as a follower
-            self.message_unsubscribe(
-                cr, uid, ids, [self.browse(cr, uid, ids).partner_id.id],
-                context=context
-            )
-            self.message_subscribe(
-                cr, uid, ids, [values.get('partner_id')], context=context
-            )
-
-        return super(crm_claim, self).write(cr, uid, ids, values, context=context)
