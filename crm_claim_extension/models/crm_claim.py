@@ -99,6 +99,15 @@ class CrmClaim(models.Model):
 
         return res
 
+    def _default_get_reply_footer(self, company_id=None,):
+        res = False
+        reply_settings = self._default_get_reply_settings(company_id)
+
+        if reply_settings:
+            res = reply_settings.footer
+
+        return res
+
     def _default_get_reply_aliases(self, company_id=None):
         res = False
         reply_settings = self._default_get_reply_settings(company_id)
