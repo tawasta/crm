@@ -91,7 +91,7 @@ class CrmClaim(models.Model):
         ], limit=1)
 
         if reply_to:
-            return reply_to.id
+            return reply_to.email
 
         return False
 

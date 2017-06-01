@@ -37,8 +37,6 @@ class IrMailServer(models.Model):
     def send_email(self, message, mail_server_id=None, smtp_server=None,
         smtp_port=None, smtp_user=None, smtp_password=None,
         smtp_encryption=None, smtp_debug=False):
-        # Send a BCC message to an address every time a mail is sent.
-        # This is for debugging purposes
 
         # Get TO-recipients as a list
         current_to_list = list(set(re.findall(r'[\w\.-]+@[\w\.-]+', message['To'])))
@@ -49,6 +47,9 @@ class IrMailServer(models.Model):
         for email_addess in current_to_list:
             # ilike is a bit risky, but we are using it to match
             # "Some Guy <some.guy@mail.com>" with "some.guy@gmail.com"
+
+            print self
+            print self._uid
 
             if len(current_to_list) == 1 and users_model.search([('partner_id.email', 'ilike', email_addess)]):
                 # TODO: a noreply address
