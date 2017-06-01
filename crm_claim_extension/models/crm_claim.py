@@ -80,6 +80,21 @@ class CrmClaim(models.Model):
 
         return res
 
+    def _default_get_reply_header(self, company_id=None):
+        res = False
+
+        if not company_id:
+            company_id = self._default_get_company()
+
+        reply_settings = self.env['crm_claim.reply'].search([
+            ('company_id', '=', company_id)
+        ], limit=1)
+
+        if reply_settings:
+            res = reply_settings.header
+
+        return res
+
     # 4. Compute and search fields, in the same order that fields declaration
     @api.multi
     def compute_stage_string(self):
