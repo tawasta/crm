@@ -37,7 +37,7 @@ class CrmClaim(models.Model):
         'res.company',
         string='Company',
         required=True,
-        default=lambda self: self._get_company(),
+        default=lambda self: self._default_get_company(),
     )
     stage = fields.Char('Claim Stage', compute='compute_stage_string')
     stage_id = fields.Many2one(default=1)
@@ -50,14 +50,14 @@ class CrmClaim(models.Model):
     sla = fields.Selection(
         [
             ('0', '-'),
-            ('1', 'Taso 1'),
-            ('2', 'Taso 2'),
-            ('3', 'Taso 3'),
-            ('4', 'Taso 4'),
+            ('1', 'Level 1'),
+            ('2', 'Level 2'),
+            ('3', 'Level 3'),
+            ('4', 'Level 4'),
         ],
         'Service level',
         select=True,
-        default=1,
+        default='1',
     )
     email_to = fields.Char('Email to', help='Email recipient')
     email_cc = fields.Char('Email CC', help='Carbon copy message recipients')
@@ -84,13 +84,14 @@ class CrmClaim(models.Model):
         if not company_id:
             company_id = self._default_get_company()
 
-        crm_claim_reply = self.env.get('crm_claim.reply')
-        reply_ids = crm_claim_reply.search([('company_id', '=', company_id)])
-        if reply_ids:
-            reply_obj = crm_claim_reply.browse(reply_ids)
-            if reply_obj.reply_to:
-                reply_to = reply_obj.reply_to
-                return reply_to
+        crm_claim_reply = self.env['crm_claim.reply']
+        reply_to = crm_claim_reply.search([
+            ('company_id', '=', company_id),
+            ('reply_to', '!=', False),
+        ], limit=1)
+
+        if reply_to:
+            return reply_to.id
 
         return False
 
