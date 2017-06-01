@@ -44,7 +44,7 @@ class CrmClaim(models.Model):
     reply_to = fields.Char(
         string='Reply to',
         size=128,
-        default=lambda self: self._default_get_reply_to(),
+        default=lambda self: self._get_reply_to(),
         help="Provide reply to address for message thread."
     )
     sla = fields.Selection(
@@ -80,21 +80,6 @@ class CrmClaim(models.Model):
 
         return res
 
-    def _default_get_reply_to(self, company_id=None):
-        if not company_id:
-            company_id = self._default_get_company()
-
-        crm_claim_reply = self.env['crm_claim.reply']
-        reply_to = crm_claim_reply.search([
-            ('company_id', '=', company_id),
-            ('reply_to', '!=', False),
-        ], limit=1)
-
-        if reply_to:
-            return reply_to.email
-
-        return False
-
     # 4. Compute and search fields, in the same order that fields declaration
     @api.multi
     def compute_stage_string(self):
@@ -102,8 +87,14 @@ class CrmClaim(models.Model):
             record.stage = record.with_context(lang=False).stage_id.name
 
     @api.model
-    def _get_reply_to(self):
-        claim_reply = self.env['crm_claim.reply'].search([('company_id', '=', self.company_id.id)], limit=1)
+    def _get_reply_to(self, company_id=None):
+        if not company_id:
+            company_id = self._default_get_company()
+
+        claim_reply = self.env['crm_claim.reply'].search([
+            ('company_id', '=', self.company_id.id)
+            ('reply_to', '!=', False),
+        ], limit=1)
 
         if claim_reply:
             res = claim_reply.reply_to

@@ -34,8 +34,7 @@ class crm_claim(osv.Model):
 
             if fetchmail_server:
                 company_id = fetchmail_server.company_id.id
-                reply_to = self._default_get_reply_to(cr, uid,
-                                                      company_id=company_id)
+                reply_to = self._get_reply_to(cr, uid, company_id=company_id)
 
                 write_vals = {'company_id': company_id, 'reply_to': reply_to,
                               'user_id': False}
