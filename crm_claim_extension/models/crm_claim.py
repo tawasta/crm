@@ -99,12 +99,22 @@ class CrmClaim(models.Model):
 
         return res
 
-    def _default_get_reply_alias_ids(self, company_id=None):
+    def _default_get_reply_aliases(self, company_id=None):
         res = False
         reply_settings = self._default_get_reply_settings(company_id)
 
         if reply_settings:
             res = reply_settings.reply_alias_ids
+
+        return res
+
+    def _get_exclude_list(self, company_id=None):
+        mail_ids = self._default_get_reply_aliases(company_id)
+
+        res = []
+
+        for mail_id in mail_ids:
+            res.append(mail_id.name)
 
         return res
 

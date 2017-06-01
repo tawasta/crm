@@ -142,15 +142,6 @@ class crm_claim(osv.Model):
 
         return res
 
-    def _get_exclude_list(self, cr, uid, context=None, company_id=None):
-        mail_ids = self._default_get_reply_alias_ids(cr, uid, context, company_id)
-
-        res = []
-
-        for mail_id in mail_ids:
-            res.append(mail_id.name)
-
-        return res
 
     def _default_get_reply_footer(self, cr, uid, context=None, company_id=None,):
         if not company_id:
