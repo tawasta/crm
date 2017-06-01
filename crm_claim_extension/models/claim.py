@@ -122,22 +122,3 @@ class crm_claim(osv.Model):
             )
 
         return super(crm_claim, self).write(cr, uid, ids, values, context=context)
-
-    def _default_get_value(self, cr, uid, value_name, context=None, company_id=None):
-        return False
-
-        if not company_id:
-            company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
-
-        reply_ids=self.pool.get('crm_claim.reply').search(cr, SUPERUSER_ID,[('company_id', '=', company_id)])
-        assert len(reply_ids) == 1, 'There should be only one settings instance for each company.'
-
-        if reply_ids:
-            reply_obj = self.pool.get('crm_claim.reply').browse(cr, SUPERUSER_ID,reply_ids)[0]
-        else:
-            _logger.warn('There were no settings for company %s', company_id)
-            return False
-
-        res = getattr(reply_obj, value_name, False)
-
-        return res
