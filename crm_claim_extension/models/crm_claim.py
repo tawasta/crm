@@ -80,9 +80,7 @@ class CrmClaim(models.Model):
 
         return res
 
-    def _default_get_reply_header(self, company_id=None):
-        res = False
-
+    def _default_get_reply_settings(self, company_id=None):
         if not company_id:
             company_id = self._default_get_company()
 
@@ -90,8 +88,23 @@ class CrmClaim(models.Model):
             ('company_id', '=', company_id)
         ], limit=1)
 
+        return reply_settings
+
+    def _default_get_reply_header(self, company_id=None):
+        res = False
+        reply_settings = self._default_get_reply_settings(company_id)
+
         if reply_settings:
             res = reply_settings.header
+
+        return res
+
+    def _default_get_reply_alias_ids(self, company_id=None):
+        res = False
+        reply_settings = self._default_get_reply_settings(company_id)
+
+        if reply_settings:
+            res = reply_settings.reply_alias_ids
 
         return res
 

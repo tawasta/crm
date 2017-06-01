@@ -152,22 +152,6 @@ class crm_claim(osv.Model):
 
         return res
 
-    def _default_get_reply_alias_ids(self, cr, uid, context=None, company_id=None):
-        # return self._default_get_value(cr, uid, 'reply_alias_ids', context, company_id)
-        if not company_id:
-            company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
-
-        reply_object = self.pool.get('crm_claim.reply')
-
-        reply_settings_id = reply_object.search(cr, uid, [('company_id', '=', company_id)])[0]
-
-        if reply_settings_id:
-            result = reply_object.browse(cr,SUPERUSER_ID,reply_settings_id).reply_alias_ids
-
-            return result
-
-        return False
-
     def _default_get_reply_footer(self, cr, uid, context=None, company_id=None,):
         if not company_id:
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
