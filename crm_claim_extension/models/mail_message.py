@@ -39,7 +39,9 @@ class MailMessage(models.Model):
         if model and model == 'crm.claim':
 
             if 'email_from' in vals:
-                vals['author_id'] = self.get_author_by_email(vals)
+                vals['author_id'] = self.get_author_by_email(vals['email_from']).id
+
+            real_author = False
 
             if 'subject' in vals and vals['subject'] and not re.match('.*[#][0-9]{5,6}.*', vals['subject']):
                 claim = self.env[model].browse([vals['res_id']])
@@ -47,7 +49,8 @@ class MailMessage(models.Model):
                 # Add claim number to the first post
                 vals['subject'] = _('Claim') + " #" + claim.claim_number + ": " + vals['subject']
 
-                # Send claim received mail
+                # Add "claim received"-message
+                real_author = vals.get('author_id')
                 vals = claim.get_claim_received_vals(vals)
 
                 if claim.attachment_ids:
@@ -56,15 +59,21 @@ class MailMessage(models.Model):
                 if claim.partner_id:
                     claim.message_subscribe([claim.partner_id.id])
 
-        return super(MailMessage, self).create(vals)
+        res =  super(MailMessage, self).create(vals)
+
+        # Change the "claim received" sender.
+        # We can't do this before posting or the sender won't receive the mail,
+        # as the sender and recipient would be the same
+        res.author_id = real_author
+
+        return res
 
     # 7. Action methods
 
     # 8. Business methods
     @api.model
-    def get_author_by_email(self, vals):
+    def get_author_by_email(self, email_from):
         # Try to get an author (i.e. partner) by email address
-        email_from = vals.get('email_from')
         email_regex = re.compile("[\w\.-]+@[\w\.-]+")
 
         try:
@@ -82,7 +91,7 @@ class MailMessage(models.Model):
                 limit=1,
             )
 
-        res = author.id if author else False
+        res = author if author else False
 
         return res
 

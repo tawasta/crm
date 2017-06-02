@@ -135,9 +135,11 @@ class MailMail(models.Model):
                     ).astimezone(tz)
 
                     level += 1
+                    email_from = child_message.email_from or ''
+
                     messages_history += "<div style='padding-left: %sem;'>" % level
                     messages_history += "<p>" + message_date.strftime('%d.%m.%Y %H:%M:%S') + ", " +\
-                                        child_message.email_from + " :</p>"
+                                        email_from + " :</p>"
                     messages_history += child_message.body
                     messages_history += "</div>"
 

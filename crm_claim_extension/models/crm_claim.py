@@ -258,7 +258,13 @@ class CrmClaim(models.Model):
                 _logger.error('Could not set email CCs: %s', e)
 
         if claim.create_uid.id != SUPERUSER_ID and claim.company_id:
-            claim.message_post(subject=claim.name, body=claim.description, type='comment', subtype='mt_comment')
+            # Create "claim received" message
+            message = claim.message_post(
+                subject=claim.name,
+                body=claim.description,
+                type='comment',
+                subtype='mt_comment'
+            )
 
         claim.message_subscribe([claim.partner_id.id])
 
@@ -272,12 +278,13 @@ class CrmClaim(models.Model):
         for record in self:
             if values.get('message_last_post'):
                 # Check if a closed ticket gets a new message and reopen if necessary
-                if record.stage.closed:
+                if record.stage_id.closed:
                     values['stage_id'] = claim_state_new_reply.id
                     msg_body = _("Re-opening claim due to a new message.")
                     record.message_post(body=msg_body)
 
         # When a claim stage changes, save the date
+        # TODO: make this modular (not bound to ids)
         if values.get('stage_id'):
             stage_id = values.get('stage_id')
 
@@ -342,28 +349,6 @@ class CrmClaim(models.Model):
             self.sudo().message_post(body=msg)
 
         return res
-
-    @api.model
-    def message_new(self, msg, custom_values):
-
-        result = super(CrmClaim, self).message_new(msg=msg, custom_values=custom_values)
-
-        return result
-
-        msg = False
-        if 'msg' in kwargs:
-            msg = kwargs['msg']
-
-        email_cc = msg.get('to')
-
-        if msg.get('cc'):
-            email_cc = email_cc + "," + msg.get('cc')
-
-        defaults = {
-            'email_cc': email_cc
-        }
-
-        return result
 
     @api.model
     def _fetch_partner(self, vals):
@@ -442,7 +427,7 @@ class CrmClaim(models.Model):
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim has been received") + ":</span></p>"
         values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(body) + "</div></p>"
 
-        values['author_id'] = False
+        values['author_id'] = SUPERUSER_ID
         values['record_name'] = subject
         values['subject'] = subject
         # values['email_from'] = email
