@@ -2,7 +2,6 @@ import claim_reply
 import claim_reply_alias
 import crm_claim
 import crm_claim_stage
-import claim
 import claim_stage_change
 import mail_mail
 import mail_message
