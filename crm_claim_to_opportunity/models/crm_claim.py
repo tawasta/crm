@@ -20,7 +20,12 @@ class CrmClaim(models.Model):
     _inherit = 'crm.claim'
 
     # 2. Fields declaration
-    opportunity = fields.Many2one('crm.lead', 'Opportunity', readonly=True)
+    opportunity = fields.Many2one(
+        comodel_name='crm.lead',
+        string='Opportunity',
+        readonly=True,
+        copy=False,
+    )
 
     # 3. Default methods
 

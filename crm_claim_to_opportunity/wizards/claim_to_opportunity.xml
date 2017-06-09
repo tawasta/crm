@@ -13,14 +13,13 @@
                         <field name="name" />
                         <field name="description" />
                     </group>
+
+                    <footer>
+                        <button name="create_opportunity" string="Create an Opportunity" type="object" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
                 </form>
-
-                <footer>
-                    <button name="create_opportunity" string="Create an Opportunity" type="object" class="oe_highlight" />
-                    or
-                    <button string="Cancel" class="oe_link" special="cancel"/>
-                </footer>
-
             </field>
         </record>
 

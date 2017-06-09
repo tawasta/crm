@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 13:13+0000\n"
-"PO-Revision-Date: 2016-11-11 15:16+0200\n"
+"POT-Creation-Date: 2017-06-09 05:44+0000\n"
+"PO-Revision-Date: 2017-06-09 08:45+0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Luo mahdollisuus"
 
 #. module: crm_claim_to_opportunity
 #: view:claim.to.opportunity:crm_claim_to_opportunity.claim_to_opportunity_wizard
-#: model:ir.actions.act_window,name:crm_claim_to_opportunity.action_claim_to_opportunity
+#: model:ir.actions.act_window,name:crm_claim_to_opportunity.act_claim_to_opportunity
 msgid "Create an Opportunity"
 msgstr "Luo mahdollisuus"
 
@@ -54,19 +54,9 @@ msgid "Description"
 msgstr "Kuvaus"
 
 #. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,display_name:0
-msgid "Display Name"
-msgstr "Nimi"
-
-#. module: crm_claim_to_opportunity
 #: field:claim.to.opportunity,id:0
 msgid "ID"
 msgstr "ID"
-
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,__last_update:0
-msgid "Last Modified on"
-msgstr "Viimeksi muokattu"
 
 #. module: crm_claim_to_opportunity
 #: field:claim.to.opportunity,write_uid:0

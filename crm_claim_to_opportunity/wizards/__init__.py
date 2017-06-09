@@ -1,2 +1,1 @@
-import claim_to_opportunity
-
+from . import claim_to_opportunity
