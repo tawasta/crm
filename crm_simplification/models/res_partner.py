@@ -7,20 +7,20 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     show_all = fields.Boolean(
-        'Show all fields',
-        help="Some of the lesser used fields are hidden by default"
+        string='Show all fields',
+        help='Some of the lesser used fields are hidden by default'
     )
 
     # This field is only a helper for "is company"
     private_customer = fields.Boolean(
-        'Private Customer',
-        help="A customer that's not a company",
+        string='Private Customer',
+        help='A customer that\'s not a company',
     )
 
     # Deprecated
     personal_customer = fields.Boolean(
-        'Private Customer',
-        help="A customer that's not a company"
+        string='Private Customer',
+        help='A customer that\'s not a company'
     )
 
     @api.multi

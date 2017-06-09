@@ -1,26 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* crm_simplification
+#	* crm_simplification
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-30 13:35+0000\n"
-"PO-Revision-Date: 2015-11-10 08:45+0200\n"
-"Last-Translator: Jarmo Kortetjärvi <jarmo@futurable.fi>\n"
+"POT-Creation-Date: 2017-06-09 10:43+0000\n"
+"PO-Revision-Date: 2017-06-09 10:43+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: fi\n"
-"X-Generator: Poedit 1.7.5\n"
-
-#. module: crm_simplification
-#: help:res.partner,personal_customer:0
-msgid "A customer that's not a company"
-msgstr "Asiakas, joka ei ole yritys"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
@@ -151,7 +144,7 @@ msgstr "Postitukset"
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 msgid "Meetings"
-msgstr "Kokoukset"
+msgstr "Tapaamiset"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
@@ -175,11 +168,6 @@ msgid "Partner"
 msgstr "Kumppani"
 
 #. module: crm_simplification
-#: field:res.partner,personal_customer:0
-msgid "Personal Customer"
-msgstr "Henkilöasiakas"
-
-#. module: crm_simplification
 #: view:res.partner:crm_simplification.view_partner_form
 msgid "Phone"
 msgstr "Puhelin"
@@ -191,21 +179,11 @@ msgid "Schedule/Log"
 msgstr "Aikatalu/loki"
 
 #. module: crm_simplification
-#: field:crm.lead,show_all:0 field:res.partner,show_all:0
-msgid "Show all fields"
-msgstr "Näytä kaikki kentät"
-
-#. module: crm_simplification
-#: help:res.partner,show_all:0
-msgid "Some of the lesser used fields are hidden by default"
-msgstr "Joitain vähemmän käytettyjä kenttiä on piilotettu oletuksena"
-
-#. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
 #: view:crm.lead:crm_simplification.crm_opportunity_simplified_form_view
 #: view:res.partner:crm_simplification.view_partner_form
 msgid "State"
-msgstr "Osavaltio"
+msgstr "Maakunta"
 
 #. module: crm_simplification
 #: view:crm.lead:crm_simplification.crm_lead_simplified_form_view
@@ -271,13 +249,9 @@ msgid "{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}"
 msgstr "{'invisible':['|',('show_all','=',False),('vatnumber_shown','=',False)]}"
 
 #. module: crm_simplification
-#: view:res.partner:crm_simplification.view_partner_form
-msgid "{'invisible':[('parent_id', '=', False),('show_all','=',False)]}"
-msgstr "{'invisible':[('parent_id', '=', False),('show_all','=',False)]}"
-
-#. module: crm_simplification
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view_notify_email
 #: view:res.partner:crm_simplification.res_partner_simplified_form_view_opt_out
 #: view:res.partner:crm_simplification.view_partner_form
 msgid "{'invisible':[('show_all','=',False)]}"
 msgstr "{'invisible':[('show_all','=',False)]}"
+
