@@ -59,12 +59,13 @@ class MailMessage(models.Model):
                 if claim.partner_id:
                     claim.message_subscribe([claim.partner_id.id])
 
-        res =  super(MailMessage, self).create(vals)
+        res = super(MailMessage, self).create(vals)
 
-        # Change the "claim received" sender.
-        # We can't do this before posting or the sender won't receive the mail,
-        # as the sender and recipient would be the same
-        res.author_id = real_author
+        if model and model == 'crm.claim' and real_author:
+            # Change the "claim received" sender.
+            # We can't do this before posting or the sender won't receive the mail,
+            # as the sender and recipient would be the same
+            res.author_id = real_author
 
         return res
 
