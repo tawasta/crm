@@ -17,14 +17,6 @@
             	<field name="name" position='replace'>
             		<field name="name" string="Claims" filter_domain="['|', '|', ('name','ilike',self), ('partner_id.name', 'ilike', self), ('claim_number','ilike',self)]"/>
             	</field>
-                
-                <search position='inside'>
-	                <group expand="0" string="Claim owner">
-	                    <filter string="Mediamaisteri" name="owners_mediamaisteri" domain="[('company_id','ilike','Mediamaisteri')]" help="Mediamaisteri claims"/>
-	                    <filter string="Tawasta" name="owner_tawasta" domain="[('company_id','ilike','Tawasta')]" help="Tawasta claims"/>
-	                    <filter string="Vizucom" name="owner_vizucom" domain="[('company_id','ilike','Vizucom')]" help="Vizucom claims"/>
-                    </group>
-                </search>
             </field>
 
       	</record> 
