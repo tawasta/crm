@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-14 10:28+0000\n"
-"PO-Revision-Date: 2017-06-14 13:28+0300\n"
+"POT-Creation-Date: 2017-06-14 13:07+0000\n"
+"PO-Revision-Date: 2017-06-14 16:07+0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,5 +24,5 @@ msgstr "Tukipyyntö"
 
 #. module: crm_claim_type
 #: field:crm.claim,claim_type:0
-msgid "Claim type"
+msgid "Type"
 msgstr "Tyyppi"
