@@ -20,6 +20,10 @@ class CrmClaim(models.Model):
     _inherit = 'crm.claim'
 
     # 2. Fields declaration
+    claim_type = fields.Many2one(
+        comodel_name='project.task.class',
+        string='Type',
+    )
 
     # 3. Default methods
 

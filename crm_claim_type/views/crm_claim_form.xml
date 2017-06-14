@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record id="crm_case_claims_form_view" model="ir.ui.view">
+			<field name="name">crm.case.claims.form.view.claim.type</field>
+			<field name="model">crm.claim</field>
+			<field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
+			<field name="arch" type="xml">
+
+                <field name="date" position="before">
+                    <field name="claim_type" colspan="2"/>
+					<group colspan="2" />
+                </field>
+
+			</field>
+		</record>
+
+	</data>
+</openerp>
