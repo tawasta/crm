@@ -22,7 +22,7 @@
 {
     'name': 'Claim to task',
     'summary': 'Create a task from a claim',
-    'version': '8.0.0.2.1',
+    'version': '8.0.0.2.2',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',

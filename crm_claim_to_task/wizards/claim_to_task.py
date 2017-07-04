@@ -35,7 +35,7 @@ class ClaimToTask(models.TransientModel):
 
         claim = self.env['crm.claim'].browse([active_id])
 
-        res['user'] = claim.user_id.id
+        res['user'] = self._uid
         res['name'] = claim.name
         res['description'] = claim.description
         res['partner'] = claim.partner_id.id
