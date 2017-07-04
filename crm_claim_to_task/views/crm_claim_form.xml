@@ -20,7 +20,7 @@
                     <button name="%(act_claim_to_task)d"
                         type="action"
                         string="Create Task"
-                        attrs="{'invisible': [('task', '=', True)]}"
+                        attrs="{'invisible': [('task', '!=', False)]}"
                     />
                 </field>
 
