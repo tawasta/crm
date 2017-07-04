@@ -37,6 +37,7 @@ class ClaimToOpportunity(models.TransientModel):
         res['name'] = "%s - %s" % (claim.partner_id.name, claim.name)
         res['description'] = claim.description
         res['partner'] = claim.partner_id.id
+        res['user'] = self._uid
 
         return res
 
