@@ -48,9 +48,6 @@ class IrMailServer(models.Model):
             # ilike is a bit risky, but we are using it to match
             # "Some Guy <some.guy@mail.com>" with "some.guy@gmail.com"
 
-            print self
-            print self._uid
-
             if len(current_to_list) == 1 and users_model.search([('partner_id.email', 'ilike', email_addess)]):
                 # TODO: a noreply address
                 noreply_address = 'noreply' + re.search("@[\w.]+", message['Reply-to']).group()
