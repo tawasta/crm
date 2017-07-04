@@ -20,7 +20,12 @@ class CrmClaim(models.Model):
     _inherit = 'crm.claim'
 
     # 2. Fields declaration
-    task = fields.Many2one('project.task', 'Task', readonly=True)
+    task = fields.Many2one(
+        comodel_name='project.task',
+        string='Task',
+        readonly=True,
+        copy=False,
+    )
 
     # 3. Default methods
 

@@ -12,18 +12,17 @@
                         <field name="user" />
 
                         <field name="project" />
-                        <field name="task" domain="[('project_id', '=', 'project'])]" />
 
                         <field name="name" />
                         <field name="description" />
                     </group>
-                </form>
 
-                <footer>
-                    <button name="create_task" string="Create a task" type="object" class="oe_highlight" />
-                    or
-                    <button string="Cancel" class="oe_link" special="cancel"/>
-                </footer>
+                    <footer>
+                        <button name="create_task" string="Create a task" type="object" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
 
             </field>
         </record>

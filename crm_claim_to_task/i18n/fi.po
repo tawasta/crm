@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* crm_claim_to_opportunity
+# 	* crm_claim_to_task
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 13:13+0000\n"
-"PO-Revision-Date: 2016-11-11 15:16+0200\n"
+"POT-Creation-Date: 2017-07-04 11:07+0000\n"
+"PO-Revision-Date: 2017-07-04 14:08+0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,88 +17,97 @@ msgstr ""
 "Language: fi\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#. module: crm_claim_to_opportunity
-#: view:claim.to.opportunity:crm_claim_to_opportunity.claim_to_opportunity_wizard
+#. module: crm_claim_to_task
+#: view:claim.to.task:crm_claim_to_task.claim_to_task_wizard
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr "Peru"
 
-#. module: crm_claim_to_opportunity
-#: model:ir.model,name:crm_claim_to_opportunity.model_crm_claim
+#. module: crm_claim_to_task
+#: model:ir.model,name:crm_claim_to_task.model_crm_claim
 msgid "Claim"
 msgstr "Palaute"
 
-#. module: crm_claim_to_opportunity
-#: view:crm.claim:crm_claim_to_opportunity.crm_case_claims_form_view
-msgid "Create Opportunity"
-msgstr "Luo mahdollisuus"
+#. module: crm_claim_to_task
+#: view:crm.claim:crm_claim_to_task.crm_case_claims_form_view
+msgid "Create Task"
+msgstr "Luo tehtävä"
 
-#. module: crm_claim_to_opportunity
-#: view:claim.to.opportunity:crm_claim_to_opportunity.claim_to_opportunity_wizard
-#: model:ir.actions.act_window,name:crm_claim_to_opportunity.action_claim_to_opportunity
-msgid "Create an Opportunity"
-msgstr "Luo mahdollisuus"
+#. module: crm_claim_to_task
+#: model:ir.actions.act_window,name:crm_claim_to_task.act_claim_to_task
+msgid "Create a Task"
+msgstr "Luo tehtävä"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,create_uid:0
+#. module: crm_claim_to_task
+#: view:claim.to.task:crm_claim_to_task.claim_to_task_wizard
+msgid "Create a task"
+msgstr "Luo tehtävä"
+
+#. module: crm_claim_to_task
+#: field:claim.to.task,create_uid:0
 msgid "Created by"
 msgstr "Luonut"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,create_date:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,create_date:0
 msgid "Created on"
 msgstr "Luotu"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,description:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,description:0
 msgid "Description"
 msgstr "Kuvaus"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,display_name:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,display_name:0
 msgid "Display Name"
-msgstr "Nimi"
+msgstr "Näyttönimi"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,id:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,id:0
 msgid "ID"
 msgstr "ID"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,__last_update:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,__last_update:0
 msgid "Last Modified on"
 msgstr "Viimeksi muokattu"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,write_uid:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,write_uid:0
 msgid "Last Updated by"
-msgstr "Viimeisin päivittäjä"
+msgstr "Viimeksi päivittänyt"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,write_date:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,write_date:0
 msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,name:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,name:0
 msgid "Name"
 msgstr "Nimi"
 
-#. module: crm_claim_to_opportunity
-#: field:crm.claim,opportunity:0
-msgid "Opportunity"
-msgstr "Mahdollisuus"
-
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,partner:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,partner:0
 msgid "Partner"
 msgstr "Kumppani"
 
-#. module: crm_claim_to_opportunity
-#: field:claim.to.opportunity,user:0
+#. module: crm_claim_to_task
+#: field:claim.to.task,project:0
+msgid "Project"
+msgstr "Projekti"
+
+#. module: crm_claim_to_task
+#: field:crm.claim,task:0
+msgid "Task"
+msgstr "Tehtävä"
+
+#. module: crm_claim_to_task
+#: field:claim.to.task,user:0
 msgid "User"
 msgstr "Käyttäjä"
 
-#. module: crm_claim_to_opportunity
-#: view:claim.to.opportunity:crm_claim_to_opportunity.claim_to_opportunity_wizard
+#. module: crm_claim_to_task
+#: view:claim.to.task:crm_claim_to_task.claim_to_task_wizard
 msgid "or"
 msgstr "tai"

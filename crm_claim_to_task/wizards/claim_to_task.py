@@ -24,9 +24,7 @@ class ClaimToTask(models.TransientModel):
     name = fields.Char('Name', required=True)
     description = fields.Text('Description')
     user = fields.Many2one('res.users', 'User')
-
     project = fields.Many2one('project.project', 'Project', required=True)
-    task = fields.Many2one('project.task', 'Task', required=True)
 
     # 3. Default methods
     @api.model
@@ -37,6 +35,7 @@ class ClaimToTask(models.TransientModel):
 
         claim = self.env['crm.claim'].browse([active_id])
 
+        res['user'] = claim.user_id.id
         res['name'] = claim.name
         res['description'] = claim.description
         res['partner'] = claim.partner_id.id
@@ -56,7 +55,7 @@ class ClaimToTask(models.TransientModel):
         context = self._context
 
         values = {
-            'project_id': self.partner.id,
+            'project_id': self.project.id,
             'partner_id': self.partner.id,
             'name': self.name,
             'description': self.description,

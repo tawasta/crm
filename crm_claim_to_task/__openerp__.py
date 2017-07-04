@@ -22,13 +22,13 @@
 {
     'name': 'Claim to task',
     'summary': 'Create a task from a claim',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'CRM',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
     'external_dependencies': {
         'python': [],
         'bin': [],
@@ -39,7 +39,7 @@
     ],
     'data': [
         'views/crm_claim_form.xml',
-        #'wizards/claim_to_task.xml',
+        'wizards/claim_to_task.xml',
     ],
     'demo': [
     ],
