@@ -39,7 +39,11 @@ class MailMessage(models.Model):
         if model and model == 'crm.claim':
 
             if 'email_from' in vals:
-                vals['author_id'] = self.get_author_by_email(vals['email_from']).id
+                author = self.get_author_by_email(vals['email_from'])
+                if author:
+                    vals['author_id'] = author.id
+                else:
+                    vals['author_id'] = False
 
             real_author = False
 

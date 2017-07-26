@@ -98,10 +98,13 @@ class MailThread(models.Model):
             res[0] = tuple(lst)
 
             # Update CC:s
-            current_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', claim_id.email_cc) \
-                if claim_id.email_cc else list()
-            new_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', message_dict['cc'])\
-                if 'cc' in message_dict else list()
+            current_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', claim_id.email_cc) if claim_id.email_cc else list()
+
+            try:
+                new_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', message_dict['cc']) if 'cc' in message_dict else list()
+            except TypeError:
+                _logger.warning("Could not find cc from message")
+                new_cc_list = list()
 
             # Compare current CC:s to new CC:s
             new_cc_recipients = set(new_cc_list) - set(current_cc_list)
