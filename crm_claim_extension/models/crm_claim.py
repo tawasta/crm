@@ -142,7 +142,7 @@ class CrmClaim(models.Model):
             company_id = self._default_get_company()
 
         claim_reply = self.env['crm_claim.reply'].search([
-            ('company_id', '=', self.company_id.id),
+            ('company_id', '=', company_id),
             ('reply_to', '!=', False),
         ], limit=1)
 
