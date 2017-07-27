@@ -267,6 +267,9 @@ class CrmClaim(models.Model):
 
         claim.message_subscribe([claim.partner_id.id])
 
+        # Unsubscribe the company from followers
+        claim.message_unsubscribe_users([claim.company_id.id])
+
         return claim
 
     @api.multi
