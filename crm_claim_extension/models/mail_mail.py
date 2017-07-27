@@ -107,7 +107,6 @@ class MailMail(models.Model):
                      ('model', '=', 'crm.claim'),
                      ('subtype_id', '=', 1),
                      ('id', '!=', message_instance.id),
-                     ('parent_id', '!=', False)
                 ], order='id DESC')
 
                 # Write a html-formatted messages history from previous message thread messages
