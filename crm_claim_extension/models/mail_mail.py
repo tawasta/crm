@@ -83,7 +83,7 @@ class MailMail(models.Model):
             values['record_name'] = _('Claim') + " #" + str(claim_instance.claim_number) + ": " + str(claim_instance.name)
             values['subject'] = values['record_name']
 
-            # A "static" header that's fetched from company-spesific settings
+            # A "static" header that's fetched from company-specific settings
             static_header = "<p><small>" + str(header) + "</small></p><hr style='margin: 1em 0 1em 0;'/>"
             static_header += '<p>#' + str(claim_instance.claim_number) + ": " + str(claim_instance.name) + "</p>"
             static_header += '<p>'
@@ -102,21 +102,13 @@ class MailMail(models.Model):
                 message_model = self.env['mail.message']
                 message_instance = message_model.sudo().browse([values.get('mail_message_id')])
 
-                # Get message history from parent and grandparent (lower levels shouldn't exists on claims)
-                mail_parent_id = message_instance.parent_id.id
-                mail_grandparent_id = message_instance.parent_id.parent_id.id if \
-                    message_instance.parent_id.parent_id.id \
-                    else mail_parent_id
-
-                message_child_ids = message_model.sudo().search(
-                    ['|',
-                     ('parent_id', '=', mail_parent_id),
-                     ('parent_id', '=', mail_grandparent_id),
+                message_child_ids = message_model.sudo().search([
+                     ('res_id', '=', res_id),
+                     ('model', '=', 'crm.claim'),
                      ('subtype_id', '=', 1),
                      ('id', '!=', message_instance.id),
                      ('parent_id', '!=', False)
-                     ]
-                )
+                ], order='id DESC')
 
                 # Write a html-formatted messages history from previous message thread messages
                 messages_history = '<div dir="ltr" style="color: grey;">'
