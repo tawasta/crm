@@ -104,7 +104,7 @@ class MailMail(models.Model):
 
                 message_child_ids = message_model.sudo().search([
                      ('res_id', '=', res_id),
-                     ('model', '=', 'crm.claim'),
+                     ('model', '=', model),
                      ('subtype_id', '=', 1),
                      ('id', '!=', message_instance.id),
                 ], order='id DESC')
