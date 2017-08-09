@@ -312,9 +312,9 @@ class CrmClaim(models.Model):
             # Partner is being changed. Update followers
 
             # Remove current partner
-            self.message_unsubscribe(self.partner_id.id)
+            self.message_unsubscribe([self.partner_id.id])
             # Set the new partner as follower
-            self.message_subscribe(values.get('partner_id'))
+            self.message_subscribe([values.get('partner_id')])
 
         return super(CrmClaim, self).write(values)
 
