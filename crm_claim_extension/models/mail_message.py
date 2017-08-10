@@ -55,6 +55,10 @@ class MailMessage(models.Model):
 
                 # Add "claim received"-message
                 real_author = vals.get('author_id')
+
+                if not real_author:
+                    real_author = claim.partner_id.id
+
                 vals = claim.get_claim_received_vals(vals)
 
                 if claim.attachment_ids:
