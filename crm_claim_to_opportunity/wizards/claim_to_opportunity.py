@@ -57,14 +57,19 @@ class ClaimToOpportunity(models.TransientModel):
             'partner_id': self.partner.id,
             'name': self.name,
             'description': self.description,
-            'user_id': self.user.id or False,
             'type': 'opportunity',
         }
 
         opportunity = self.env['crm.lead'].create(values)
 
+        # Add user after creating to trigger an auto-message
+        if self.user:
+            opportunity.user_id = self.user.id
+
         if 'active_id' in context:
             active_id = context['active_id']
-            self.env['crm.claim'].browse([active_id]).write({'opportunity': opportunity.id})
+            claim = self.env['crm.claim'].browse([active_id])
+
+            opportunity.claim = claim.id
 
     # 8. Business methods

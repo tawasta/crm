@@ -14,16 +14,15 @@ from openerp import api, fields, models
 # 6. Unknown third party imports:
 
 
-class CrmClaim(models.Model):
+class CrmLead(models.Model):
     
     # 1. Private attributes
-    _inherit = 'crm.claim'
+    _inherit = 'crm.lead'
 
     # 2. Fields declaration
-    opportunities = fields.One2many(
-        comodel_name='crm.lead',
-        inverse_name='claim',
-        string='Opportunity',
+    claim = fields.Many2one(
+        comodel_name='crm.claim',
+        string='Claim',
         readonly=True,
         copy=False,
     )
