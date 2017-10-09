@@ -57,13 +57,12 @@ class MailMail(models.Model):
             claim_model = self.env['crm.claim']
             claim_instance = claim_model.sudo().browse([res_id])
 
-            # Incoming message. Skip all this
-            author = self.env['mail.message'].get_author_by_email(values['email_from'])
-            if author:
-                values['author_id'] = author.id
-            else:
-                values['author_id'] = False
+            if not 'author_id' in values:
+                author = self.env['mail.message'].get_author_by_email(values['email_from'])
+                if author:
+                    values['author_id'] = author.id
 
+            # Incoming message. Skip all this
             if 'author_id' in values:
                 return super(MailMail, self).create(values)
 
