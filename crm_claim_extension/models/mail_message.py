@@ -39,7 +39,7 @@ class MailMessage(models.Model):
         if model and model == 'crm.claim':
 
             if 'email_from' in vals:
-                author = self.env['res.partner']._fetch_partner(vals)
+                author = self.env[model]._fetch_partner(vals)
                 if author:
                     vals['author_id'] = author.id
                 else:
