@@ -63,6 +63,9 @@ class CrmClaim(models.Model):
     email_cc = fields.Char('Email CC', help='Carbon copy message recipients')
     email_from_readonly = fields.Char('Recipient email', readonly=True)
 
+    # Change the description type
+    description = fields.Html('Description')
+
     # Dates for logging
     date_start = fields.Datetime('Start date')
     date_waiting = fields.Datetime('Waiting date')
@@ -422,17 +425,12 @@ class CrmClaim(models.Model):
 
         body = values['body'] or ''
 
-        # description = self.description.replace('\n', '<br />').encode('ascii', 'ignore')
-        # description = self.description
-
-        # values['body'] = "<p style='font-weight: bold;'>" + subject + "</p>"
         values['body'] = "<p><span style='font-weight: bold;'>" + _("Claim has been received") + ":</span></p>"
         values['body'] += "<p><div dir='ltr' style='margin-left: 2em;'>" + str(body) + "</div></p>"
 
         values['author_id'] = SUPERUSER_ID
         values['record_name'] = subject
         values['subject'] = subject
-        # values['email_from'] = email
         values['reply_to'] = email
 
         return values
