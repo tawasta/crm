@@ -182,6 +182,7 @@ class CrmClaim(models.Model):
     def onchange_partner_id(self):
         for record in self:
             record.email_from = record.partner_id.email
+            record.email_from_readonly = record.partner_id.email
 
     @api.onchange('email_from')
     def onchange_email(self):
