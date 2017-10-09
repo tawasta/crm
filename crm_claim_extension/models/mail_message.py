@@ -96,7 +96,7 @@ class MailMessage(models.Model):
         author = False
         if email_from:
             author = self.env['res.partner'].search(
-                [('email', '=', email_from)],
+                [('email', '=ilike', email_from)],
                 limit=1,
             )
 
