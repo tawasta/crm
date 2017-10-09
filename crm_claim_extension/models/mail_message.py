@@ -41,7 +41,7 @@ class MailMessage(models.Model):
             if 'email_from' in vals:
                 author = self.env[model]._fetch_partner(vals)
                 if author:
-                    vals['author_id'] = author.id
+                    vals['author_id'] = author
                 else:
                     vals['author_id'] = False
 
