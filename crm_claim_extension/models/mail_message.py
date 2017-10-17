@@ -39,9 +39,9 @@ class MailMessage(models.Model):
         if model and model == 'crm.claim':
 
             if 'email_from' in vals:
-                author = self.get_author_by_email(vals['email_from'])
+                author = self.env[model]._fetch_partner(vals)
                 if author:
-                    vals['author_id'] = author.id
+                    vals['author_id'] = author
                 else:
                     vals['author_id'] = False
 
@@ -96,7 +96,7 @@ class MailMessage(models.Model):
         author = False
         if email_from:
             author = self.env['res.partner'].search(
-                [('email', '=', email_from)],
+                [('email', '=ilike', email_from)],
                 limit=1,
             )
 
