@@ -67,6 +67,7 @@ Suggested modules
 Known issues / Roadmap
 ======================
 - Add a recursive claims count for all the children
+- Use a template for header/footer/other static text
 
 Credits
 =======

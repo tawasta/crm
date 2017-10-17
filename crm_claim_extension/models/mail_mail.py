@@ -102,40 +102,6 @@ class MailMail(models.Model):
                 message_model = self.env['mail.message']
                 message_instance = message_model.sudo().browse([values.get('mail_message_id')])
 
-                message_child_ids = message_model.sudo().search([
-                     ('res_id', '=', res_id),
-                     ('model', '=', model),
-                     ('subtype_id', '=', 1),
-                     ('id', '!=', message_instance.id),
-                ], order='id DESC')
-
-                # Write a html-formatted messages history from previous message thread messages
-                messages_history = '<div dir="ltr" style="color: grey;">'
-
-                # Get users timezone
-                tz = pytz.timezone(self.env['res.users'].browse([self._uid]).partner_id.tz) or pytz.utc
-
-                # Indentation level
-                level = 1
-
-                for child_message in message_child_ids:
-                    # Format child messages with incementing indentation
-                    # TODO: Should we use '>' for indentation instead of CSS?
-                    message_date = pytz.utc.localize(
-                        datetime.datetime.strptime(child_message.date, '%Y-%m-%d %H:%M:%S')
-                    ).astimezone(tz)
-
-                    level += 1
-                    email_from = child_message.email_from or ''
-
-                    messages_history += "<div style='padding-left: %sem;'>" % level
-                    messages_history += "<p>" + message_date.strftime('%d.%m.%Y %H:%M:%S') + ", " +\
-                                        email_from + " :</p>"
-                    messages_history += child_message.body
-                    messages_history += "</div>"
-
-                messages_history += '</div>'
-
                 # Don't sign the message with sender name, if the message was sent by admin (e.g. automatic messages)
                 if message_instance.create_uid.id != SUPERUSER_ID:
                     values['body_html'] += str(message_instance.create_uid.partner_id.name)
@@ -143,11 +109,6 @@ class MailMail(models.Model):
                 values['body_html'] += str(footer)
                 values['body_html'] += "</small></p>"
 
-                # Include messages history on the bottom of the message,
-                # under a horizontal line
-                values['body_html'] += "<hr style='margin: 1em 0 1em 0;' />"
-                values['body_html'] += messages_history
-                values['body_html'] += "<br/>"
 
             elif res_id:
                 values['body_html'] += str(footer)
