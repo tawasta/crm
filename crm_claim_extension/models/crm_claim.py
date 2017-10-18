@@ -433,3 +433,15 @@ class CrmClaim(models.Model):
         values['reply_to'] = email
 
         return values
+
+    @api.model
+    def message_new(self, msg, custom_values=None):
+        # Overwrites the plain text description with html description (the field type has been changed)
+
+        if not custom_values:
+            custom_values = dict()
+
+        custom_values['description'] = msg.get('body') if msg.get('body') else ''
+        res = super(CrmClaim, self).message_new(msg=msg, custom_values=custom_values)
+
+        return res

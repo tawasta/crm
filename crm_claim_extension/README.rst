@@ -68,6 +68,7 @@ Known issues / Roadmap
 ======================
 - Add a recursive claims count for all the children
 - Use a template for header/footer/other static text
+- Move message/thread -spesific overridest to crm_claim model
 
 Credits
 =======
