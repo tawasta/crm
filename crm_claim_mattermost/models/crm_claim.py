@@ -40,13 +40,13 @@ class CrmClaim(models.Model):
 
     def mattermost_claim_author_changed(self):
         msg = '**%(user)s** assigned **%(name)s** to **%(author)s**' \
-              % {'user': self.env.uid.name, 'name': self.name, 'author': self.user_id.name}
+              % {'user': self.write_uid.name, 'name': self.name, 'author': self.user_id.name}
 
         return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_stage_changed(self):
         msg = '**%(user)s** changed **%(name)s** stage to **%(stage)s**' \
-              % {'user': self.env.uid.name, 'name': self.name, 'stage': self.stage_id.name}
+              % {'user': self.write_uid.name, 'name': self.name, 'stage': self.stage_id.name}
 
         return self.mattermost_send_message(_(msg))
 
