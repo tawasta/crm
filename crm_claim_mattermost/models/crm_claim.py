@@ -33,19 +33,19 @@ class CrmClaim(models.Model):
 
     def mattermost_claim_created(self):
         if self.name and self.partner_id:
-            msg = 'A new claim **%(subject)s** from **%(partner)s**' \
+            msg = 'A new claim `%(subject)s` from `%(partner)s`' \
                   % {'subject': self.name, 'partner': self.partner_id.display_name}
 
             return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_author_changed(self):
-        msg = '**%(user)s** assigned **%(name)s** to **%(author)s**' \
+        msg = '`%(user)s` assigned `%(name)s` to `%(author)s`' \
               % {'user': self.write_uid.name, 'name': self.name, 'author': self.user_id.name}
 
         return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_stage_changed(self):
-        msg = '**%(user)s** changed **%(name)s** stage to **%(stage)s**' \
+        msg = '`%(user)s` changed `%(name)s` stage to `%(stage)s`' \
               % {'user': self.write_uid.name, 'name': self.name, 'stage': self.stage_id.name}
 
         return self.mattermost_send_message(_(msg))
