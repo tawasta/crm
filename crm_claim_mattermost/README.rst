@@ -6,7 +6,8 @@
 CRM Claims Mattermost integration
 =================================
 
-Pushes claim events to a Mattermost channel
+Pushes claim events to a Mattermost channel.
+This module is in alpha-state. Use at your own risk!
 
 Installation
 ============
@@ -23,7 +24,7 @@ Usage
 
 Known issues / Roadmap
 ======================
-\-
+- Encoding issues between python2 and python3
 
 Credits
 =======

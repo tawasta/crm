@@ -7,6 +7,7 @@
 import sys
 from ast import literal_eval
 from mattermostdriver import Driver
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 # Get variables
 # TODO: A lot of validation here
@@ -35,6 +36,10 @@ try:
         'channel_id': channel_id,
         'message': vars['message'],
     })
+
+except InsecureRequestWarning:
+    # TODO: warning
+    pass
 
 except Exception as e:
     print(e)
