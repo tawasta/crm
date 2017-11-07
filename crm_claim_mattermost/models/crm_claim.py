@@ -6,6 +6,7 @@ from openerp import api, fields, models
 from openerp.exceptions import ValidationError
 from openerp import _
 
+
 class CrmClaim(models.Model):
 
     _inherit = 'crm.claim'
@@ -39,14 +40,14 @@ class CrmClaim(models.Model):
             return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_author_changed(self):
-        msg = 'Claim **%(name)s** assigned to **%(author)s**' \
-              % {'name': self.name, 'author': self.user_id.name}
+        msg = '**%(user)s** assigned **%(name)s** to **%(author)s**' \
+              % {'user': self.write_uid.name, 'name': self.name, 'author': self.user_id.name}
 
         return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_stage_changed(self):
-        msg = 'Claim **%(name)s** stage changed to **%(stage)s**' \
-              % {'name': self.name, 'stage': self.stage_id.name}
+        msg = '**%(user)s** changed **%(name)s** stage to **%(stage)s**' \
+              % {'user': self.write_uid.name, 'name': self.name, 'stage': self.stage_id.name}
 
         return self.mattermost_send_message(_(msg))
 
