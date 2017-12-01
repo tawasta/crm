@@ -25,7 +25,7 @@ try:
         'port': int(vars['port']),
         'basepath': vars['basepath'],
         'verify': vars['verify'],
-        'timeout': 30,
+        'timeout': 2,
     })
 
     mm_driver.login()
