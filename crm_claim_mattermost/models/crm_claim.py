@@ -69,7 +69,6 @@ class CrmClaim(models.Model):
                 count = self.search_count([('company_id', '=', company.id), ('stage_id', '=', stage.id)])
                 msg += '%s: **%s**\n' % (stage.name, count)
 
-            print msg
             self.mattermost_send_message(_(msg), company)
 
 
