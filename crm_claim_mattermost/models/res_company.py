@@ -11,7 +11,6 @@ class ResCompany(models.Model):
         help='Use mattermost notifications for this company?',
         default=False,
     )
-
     mattermost_login_id = fields.Char(
         string='User',
     )

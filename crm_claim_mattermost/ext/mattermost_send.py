@@ -7,7 +7,9 @@
 import sys
 from ast import literal_eval
 from mattermostdriver import Driver
-from urllib3.connectionpool import InsecureRequestWarning
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Get variables
 # TODO: A lot of validation here
@@ -25,7 +27,7 @@ try:
         'port': int(vars['port']),
         'basepath': vars['basepath'],
         'verify': vars['verify'],
-        'timeout': 30,
+        'timeout': 2,
     })
 
     mm_driver.login()
@@ -36,10 +38,6 @@ try:
         'channel_id': channel_id,
         'message': vars['message'],
     })
-
-except InsecureRequestWarning:
-    # TODO: warning
-    pass
 
 except Exception as e:
     print(e)

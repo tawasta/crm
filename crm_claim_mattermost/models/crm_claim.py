@@ -34,32 +34,60 @@ class CrmClaim(models.Model):
 
     def mattermost_claim_created(self):
         if self.name and self.partner_id:
-            msg = 'A new claim **%(subject)s** from **%(partner)s**' \
-                  % {'subject': self.name, 'partner': self.partner_id.display_name}
+            subject = "[%s](%s)" % (self.name, self.mattermost_get_url())
+
+            msg = ':incoming_envelope: A new claim **%(subject)s** from **%(partner)s**' \
+                  % {'subject': subject, 'partner': self.partner_id.display_name}
 
             return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_author_changed(self):
-        msg = '**%(user)s** assigned **%(name)s** to **%(author)s**' \
-              % {'user': self.write_uid.name, 'name': self.name, 'author': self.user_id.name}
+        subject = "[%s](%s)" % (self.name, self.mattermost_get_url())
+        author = self.user_id.name or 'No one'
+
+        msg = '**%(user)s** assigned **%(subject)s** to **%(author)s**' \
+              % {'user': self.write_uid.name, 'subject':subject, 'author': author}
 
         return self.mattermost_send_message(_(msg))
 
     def mattermost_claim_stage_changed(self):
-        msg = '**%(user)s** changed **%(name)s** stage to **%(stage)s**' \
-              % {'user': self.write_uid.name, 'name': self.name, 'stage': self.stage_id.name}
+        subject = "[%s](%s)" % (self.name, self.mattermost_get_url())
+
+        msg = '**%(user)s** changed **%(subject)s** stage to **%(stage)s**' \
+              % {'user': self.write_uid.name, 'subject': subject, 'stage': self.stage_id.name}
 
         return self.mattermost_send_message(_(msg))
 
-    def mattermost_send_message(self, message):
-        company = self.company_id
+    @api.model
+    def mattermost_summary(self):
+        stages = self.env['crm.claim.stage'].search([('closed', '=', False)])
 
-        if not company.mattermost_active:
+        for company in self.env['res.company'].search([('mattermost_active', '=', True)]):
+            msg = '### Claim summary\n'
+
+            for stage in stages:
+                count = self.search_count([('company_id', '=', company.id), ('stage_id', '=', stage.id)])
+                msg += '%s: **%s**\n' % (stage.name, count)
+
+            self.mattermost_send_message(_(msg), company)
+
+
+    def mattermost_get_url(self):
+        base_url = self.env['ir.config_parameter'].get_param('web.base.url')
+        url = "%(base_url)sweb/#id=%(record_id)s&view_type=form&model=crm.claim" \
+              % {'base_url': base_url, 'record_id': self.id}
+
+        return url
+
+    def mattermost_send_message(self, message, company=False):
+        company = self.company_id or company
+
+        if not company or not company.mattermost_active:
             # Mattermost claim integration is not set
             return False
 
         # Validate variables
-        validation_error = self.validate_variables()
+        validation_error = self.validate_variables(company)
         if validation_error:
             raise ValidationError(validation_error)
 
@@ -85,9 +113,8 @@ class CrmClaim(models.Model):
         cmd = 'python3 %(script)s "%(vars)s"' % {'script': script_path, 'vars': vars}
         call(cmd, shell=True)
 
-    def validate_variables(self):
+    def validate_variables(self, company):
         # TODO: actual validation for each variable and custom error messages
-        company = self.company_id
         error_msg = False
 
         if not company.mattermost_login_id:
