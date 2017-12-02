@@ -22,7 +22,7 @@
     'name': 'CRM Claims Mattermost integration',
     'summary': 'Pushes claim events to a Mattermost channel',
     'category': 'Sales',
-    'version': '8.0.0.3.0',
+    'version': '8.0.0.4.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',
@@ -32,6 +32,7 @@
         'crm_claim',
     ],
     'data': [
+        'data/ir_cron.xml',
         'views/res_company.xml',
     ],
 }

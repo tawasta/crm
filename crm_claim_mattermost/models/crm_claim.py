@@ -58,6 +58,21 @@ class CrmClaim(models.Model):
 
         return self.mattermost_send_message(_(msg))
 
+    @api.model
+    def mattermost_summary(self):
+        stages = self.env['crm.claim.stage'].search([('closed', '=', False)])
+
+        for company in self.env['res.company'].search([('mattermost_active', '=', True)]):
+            msg = '### Claim summary\n'
+
+            for stage in stages:
+                count = self.search_count([('company_id', '=', company.id), ('stage_id', '=', stage.id)])
+                msg += '%s: **%s**\n' % (stage.name, count)
+
+            print msg
+            self.mattermost_send_message(_(msg), company)
+
+
     def mattermost_get_url(self):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
         url = "%(base_url)sweb/#id=%(record_id)s&view_type=form&model=crm.claim" \
@@ -65,15 +80,15 @@ class CrmClaim(models.Model):
 
         return url
 
-    def mattermost_send_message(self, message):
-        company = self.company_id
+    def mattermost_send_message(self, message, company=False):
+        company = self.company_id or company
 
-        if not company.mattermost_active:
+        if not company or not company.mattermost_active:
             # Mattermost claim integration is not set
             return False
 
         # Validate variables
-        validation_error = self.validate_variables()
+        validation_error = self.validate_variables(company)
         if validation_error:
             raise ValidationError(validation_error)
 
@@ -99,9 +114,8 @@ class CrmClaim(models.Model):
         cmd = 'python3 %(script)s "%(vars)s"' % {'script': script_path, 'vars': vars}
         call(cmd, shell=True)
 
-    def validate_variables(self):
+    def validate_variables(self, company):
         # TODO: actual validation for each variable and custom error messages
-        company = self.company_id
         error_msg = False
 
         if not company.mattermost_login_id:
