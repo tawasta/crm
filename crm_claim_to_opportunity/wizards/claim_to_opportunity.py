@@ -37,7 +37,7 @@ class ClaimToOpportunity(models.TransientModel):
         claim = self.env['crm.claim'].browse([active_id])
 
         # Replace possible br-elements with line breaks
-        description = re.sub('<br\s*?>', '\n', claim.description)
+        description = re.sub('<br\s*[\/]?>', '\n', claim.description or '')
 
         res['name'] = "%s - %s" % (claim.partner_id.name, claim.name)
         # Strip possible html elements
