@@ -360,8 +360,6 @@ class CrmClaim(models.Model):
         name_regex = re.compile("^[^<]+")
         email_regex = re.compile("[\w\.-]+@[\w\.-]+")
 
-        _logger.info("Fetching partner for email %s", email_from)
-
         try:
             name = name_regex.findall(email_from)[0]
             email = email_regex.findall(email_from)[0].lower()
@@ -370,8 +368,10 @@ class CrmClaim(models.Model):
             name = email_from
             email = email_from
 
-        email = re.sub(r'[<>]', "", email)
+        email = re.sub(r'[<>]', "", email).lower()
         name = re.sub(r'["]', "", name)
+
+        _logger.info("Fetching partner for email %s", email)
 
         partner_object = self.env['res.partner']
         existing_partner = partner_object.search([('email', '=ilike', email)], limit=1)
