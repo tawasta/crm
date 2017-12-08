@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 # 1. Standard library imports:
+import re
 
 # 2. Known third party imports:
+from bs4 import BeautifulSoup
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
@@ -34,8 +36,12 @@ class ClaimToOpportunity(models.TransientModel):
 
         claim = self.env['crm.claim'].browse([active_id])
 
+        # Replace possible br-elements with line breaks
+        description = re.sub('<br\s*?>', '\n', claim.description)
+
         res['name'] = "%s - %s" % (claim.partner_id.name, claim.name)
-        res['description'] = claim.description
+        # Strip possible html elements
+        res['description'] = BeautifulSoup(description, 'lxml').text
         res['partner'] = claim.partner_id.id
         res['user'] = self._uid
 
@@ -71,5 +77,14 @@ class ClaimToOpportunity(models.TransientModel):
             claim = self.env['crm.claim'].browse([active_id])
 
             opportunity.claim = claim.id
+
+        return {
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'crm.lead',
+            'target': 'current',
+            'res_id': opportunity.id,
+            'type': 'ir.actions.act_window',
+        }
 
     # 8. Business methods
