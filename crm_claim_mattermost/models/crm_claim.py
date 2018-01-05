@@ -65,9 +65,16 @@ class CrmClaim(models.Model):
         for company in self.env['res.company'].search([('mattermost_active', '=', True)]):
             msg = '### Claim summary\n'
 
+            total_count = 0
+
             for stage in stages:
                 count = self.search_count([('company_id', '=', company.id), ('stage_id', '=', stage.id)])
+                total_count += count
+
                 msg += '%s: **%s**\n' % (stage.name, count)
+
+            total_string = _('Total count')
+            msg += '\n%s: **%s**\n' % (total_string, total_count)
 
             self.mattermost_send_message(_(msg), company)
 
