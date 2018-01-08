@@ -20,6 +20,7 @@
     'author': 'Oy Tawasta Technologies Ltd',
     'website': 'http://www.tawasta.fi',
     'depends': ['crm'],
+    'application': False,
     'installable': False,
     'description': '''
 * A simple token key management

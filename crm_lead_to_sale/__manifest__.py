@@ -25,6 +25,8 @@
     'version': '8.0.0.4.3',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
+    'application': False,
+    'installable': False,
     'depends': [
         'crm_simplification',
         'sale_crm',

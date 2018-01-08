@@ -25,6 +25,8 @@
     'version': '8.0.0.3.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
+    'application': False,
+    'installable': False,
     'depends': [
         'crm_claim_extension',
         'crm_claim_timesheet',

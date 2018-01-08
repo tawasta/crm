@@ -18,7 +18,9 @@
     'category': 'CRM',
     'version': '0.1',
     'author': 'Oy Tawasta Technologies Ltd.',
-    'website': 'http://www.tawasta.fi',    
+    'website': 'http://www.tawasta.fi',
+    'application': False,
+    'installable': False,
     'depends': [],
     'description': '''
 * Overrides partner deleting and deactivates them instead

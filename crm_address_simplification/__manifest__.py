@@ -27,7 +27,7 @@
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
+    'installable': False,
     'depends': [
         'crm',
         'crm_customer_number',
