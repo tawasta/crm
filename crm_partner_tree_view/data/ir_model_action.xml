@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Sale customers -->
+    <record id="base.action_partner_form" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="base.action_partner_form_view1" model="ir.actions.act_window.view">
+        <field eval="1" name="sequence"/>
+    </record>
+    <record id="base.action_partner_tree_view1" model="ir.actions.act_window.view">
+        <field eval="0" name="sequence"/>
+    </record>
+
+    <!-- Purchase vendor -->
+    <record id="base.action_partner_supplier_form" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+</odoo>
