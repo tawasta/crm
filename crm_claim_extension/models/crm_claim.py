@@ -178,14 +178,15 @@ class CrmClaim(models.Model):
 
     # 5. Constraints and onchanges
     @api.onchange('partner_id')
+    @api.depends('partner_id')
     @api.multi
-    def onchange_partner_id(self):
+    def onchange_partner_id_update_email(self):
         for record in self:
             record.email_from = record.partner_id.email
             record.email_from_readonly = record.partner_id.email
 
     @api.onchange('email_from')
-    def onchange_email(self):
+    def onchange_email_validate_email(self):
         # Validates email
 
         if self.email_from:
