@@ -1,45 +1,20 @@
 # -*- coding: utf-8 -*-
-
-# 1. Standard library imports:
-
-# 2. Known third party imports:
-
-# 3. Odoo imports (openerp):
 from openerp import api, fields, models
-from openerp import tools, _
-
-# 4. Imports from Odoo modules:
-
-# 5. Local imports in the relative form:
-
-# 6. Unknown third party imports:
-import logging
-logger = logging.getLogger(__name__)
 
 
 class CrmClaimStage(models.Model):
-
-    # 1. Private attributes
     _inherit = 'crm.claim.stage'
 
-    # 2. Fields declaration
+    # TODO: rename "closed". The point of this is to mark which claim stages should be reverted back to the
+    # "new reply stage" when new message arrives (waiting for customer, completed, cancelled, etc.
     closed = fields.Boolean(
         string='Inactive stage',
         help='This stage is not in support persons "todo", list. E.g. completed or waiting for customer',
     )
+
+    # This is the stage to which tickets in "closed" stage should be moved
+    # TODO: this should obviously be constrained to a single stage
     new_reply_stage = fields.Boolean(
         string='New reply stage',
         help='Claim will be returned to this stage on new message',
     )
-
-    # 3. Default methods
-
-    # 4. Compute and search fields, in the same order that fields declaration
-
-    # 5. Constraints and onchanges
-
-    # 6. CRUD methods
-
-    # 7. Action methods
-
-    # 8. Business methods
