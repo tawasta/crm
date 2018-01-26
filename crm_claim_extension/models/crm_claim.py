@@ -282,8 +282,9 @@ class CrmClaim(models.Model):
 
         for record in self:
             if values.get('message_last_post'):
-                # Check if a closed ticket gets a new message and reopen if necessary
-                if record.stage_id.closed:
+                # Check if a closed or waiting ticket gets a new message
+                # and reopen it if necessary
+                if record.stage_id.closed or record.stage_id.waiting:
                     values['stage_id'] = claim_state_new_reply.id
                     msg_body = _("Re-opening claim due to a new message.")
                     record.message_post(body=msg_body)
