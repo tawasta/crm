@@ -59,8 +59,9 @@ class CrmClaim(models.Model):
         elif 'params' in context and 'id' in context['params']:
             claim = self.browse([context['params']['id']])
 
-            partner = claim.partner_id
-            partners.append(partner.id)
+            if claim.partner_id:
+                partner = claim.partner_id
+                partners.append(partner.id)
         else:
             return list()
 
