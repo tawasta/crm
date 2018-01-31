@@ -138,6 +138,12 @@ class MailThread(models.Model):
 
             email_address = tools.email_split(email)[0]
 
+            _logger.info("Using '%s' for partner matching", email_address)
+
+            # Skip empty emails
+            if not email_address:
+                continue
+
             vals = dict()
             vals['email_from'] = email_address
 
