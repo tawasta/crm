@@ -132,53 +132,16 @@ class MailThread(models.Model):
             check_followers=check_followers,
         )
 
+        CrmClaim = self.env['crm.claim']
+
         for email in emails:
-            partner_object = self.env['res.partner']
+
             email_address = tools.email_split(email)[0]
 
-            # Escape special SQL characters in email_address to avoid invalid matches
-            email_address = (email_address.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_'))
-            email_brackets = "<%s>" % email_address
+            vals = dict()
+            vals['email_from'] = email_address
 
-            _logger.info("Using '%s' for partner matching", email_address)
-
-            # Skip empty emails
-            if not email_address:
-                continue
-
-            # Exact, case-insensitive match
-            ids = partner_object.sudo().search(
-                [('email', 'ilike', email_address)],
-                limit=1
-            )
-
-            if not ids:
-                # If no match with addr-spec, attempt substring match within name-addr pair
-                ids = partner_object.search(
-                    [('email', 'ilike', email_brackets)],
-                    limit=1
-                )
-
-            if not ids:
-                _logger.warn("%s not found. Creating", email_address)
-                partner_id = partner_object.create({'name': email_address, 'email': email})
-                res.append(partner_id.id)
+            partner_id = CrmClaim._fetch_partner(vals)
+            res.append(partner_id)
 
         return res
-
-    # def message_parse(self, cr, uid, message, save_original=False, context=None):
-    #     res = super(MailThread, self).message_parse(cr, uid, message, save_original, context=context)
-    #
-    #     _logger.debug(res)
-    #
-    #     return res
-    #
-    #
-    # def message_new(self, cr, uid, msg_dict, custom_values=None, context=None):
-    #     _logger.debug("self: %s" % self)
-    #     _logger.debug("msg: %s" % msg_dict)
-    #     _logger.debug("cust: %s" % custom_values)
-    #
-    #     return super(MailThread, self).message_new(self, cr, uid, msg_dict, custom_values, context)
-    #
-    #
