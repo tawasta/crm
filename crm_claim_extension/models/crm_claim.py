@@ -371,7 +371,7 @@ class CrmClaim(models.Model):
             email = email_from
 
         email = re.sub(r'[<>]', "", email).lower()
-        name = re.sub(r'["]', "", name)
+        name = re.sub(r'["<>]', "", name)
 
         _logger.info("Fetching partner for email %s", email)
 
@@ -380,7 +380,7 @@ class CrmClaim(models.Model):
         if existing_partner:
             partner_id = existing_partner.id
         else:
-            _logger.info("No partner found. Creating %s", name)
+            _logger.info("No partner found. Creating %s (%s)" % (name, email))
 
             partner_vals = dict()
             partner_vals['name'] = name
