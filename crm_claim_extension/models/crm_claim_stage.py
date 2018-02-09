@@ -5,6 +5,9 @@ from openerp import api, fields, models
 class CrmClaimStage(models.Model):
     _inherit = 'crm.claim.stage'
 
+    # TODO: waiting, closed, etc. should be selection or One2many
+    # Same stage should be allowed to be waiting AND closed
+
     # The point of this is to mark which claim stages should be reverted
     # back to the "new reply stage" when new message arrives
     # (waiting for customer, completed, cancelled, etc.

@@ -275,6 +275,7 @@ class CrmClaim(models.Model):
 
         return claim
 
+    # TODO: break this down to smaller methods
     @api.multi
     def write(self, values):
         claim_stage_model = self.env['crm.claim.stage']
@@ -284,10 +285,22 @@ class CrmClaim(models.Model):
             if values.get('message_last_post'):
                 # Check if a closed or waiting ticket gets a new message
                 # and reopen it if necessary
-                if record.stage_id.closed or record.stage_id.waiting:
-                    values['stage_id'] = claim_state_new_reply.id
-                    msg_body = _("Re-opening claim due to a new message.")
-                    record.message_post(body=msg_body)
+
+                latest_message = record.message_ids.sorted(
+                    key=lambda r: r.create_date, reverse=True)[0]
+
+                author = self.env['res.users'].search([
+                    ('partner_id', '=', latest_message.author_id.id)
+                ])
+
+                # Don't switch the stage if support person sends a message
+                if not author or \
+                        (author and not author.has_group('base.group_user')):
+                    # Switch the stage if the claim is waiting or closed
+                    if record.stage_id.closed or record.stage_id.waiting:
+                        values['stage_id'] = claim_state_new_reply.id
+                        msg_body = _("Re-opening claim due to a new message.")
+                        record.message_post(body=msg_body)
 
         # When a claim stage changes, save the date
         # TODO: make this modular (not bound to ids)
