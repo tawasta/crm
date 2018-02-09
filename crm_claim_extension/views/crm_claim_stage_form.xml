@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <field name="sequence" position="after">
                     <field name="closed" />
+                    <field name="waiting" />
                     <field name="new_reply_stage" />
                 </field>
             </field>
