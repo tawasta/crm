@@ -51,6 +51,7 @@ class CrmClaim(models.Model):
     def compute_swkb_installations_domain(self):
         # Search installations in which the person is a contact person, or the installation belongs to the company
         context = self._context
+        partner = False
         partners = list()
 
         if self.partner_id:
@@ -66,10 +67,10 @@ class CrmClaim(models.Model):
             return list()
 
         # Append two levels of parents
-        if partner.parent_id:
+        if partner and partner.parent_id:
             partners.append(partner.parent_id.id)
 
-        if partner.parent_id.parent_id:
+        if partner and partner.parent_id.parent_id:
             partners.append(partner.parent_id.parent_id.id)
 
         domain = ['|', ('partner_ids', 'in', partners), ('technical_contact_ids', '=', partner.id)]
