@@ -22,7 +22,7 @@
 {
     'name': 'Claim types',
     'summary': 'Types for claims',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Human Resources',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',
@@ -38,6 +38,7 @@
         'project_task_class',
     ],
     'data': [
+        'views/claim_search_view.xml',
         'views/crm_claim_form.xml',
     ],
     'demo': [
