@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>	
+		<!-- Filters view -->
+      	<record id="view_crm_case_claims_filter" model="ir.ui.view">
+            <field name="name">crm.claim.filter.type</field>
+            <field name="model">crm.claim</field>
+            <field name="inherit_id" ref="crm_claim.view_crm_case_claims_filter"/>
+            <field name="arch" type="xml">
+				<xpath expr="//filter[@string='Type']" position="replace">
+					<filter string="Type"
+							name="claim_type"
+							domain="[]"
+							context="{'group_by': 'claim_type'}"/>
+				</xpath>
+            </field>
+
+      	</record> 
+	</data>
+</openerp>
