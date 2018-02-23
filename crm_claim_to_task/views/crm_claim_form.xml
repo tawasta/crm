@@ -16,7 +16,7 @@
 			<field name="inherit_id" ref="crm_claim.crm_case_claims_form_view" />
 			<field name="arch" type="xml">
 
-				<field name="stage_id" position="before">
+				<field name="stage_id" position="before" groups="base.group_user">
                     <button name="%(act_claim_to_task)d"
                         type="action"
                         string="Create Task"
@@ -24,7 +24,7 @@
                     />
                 </field>
 
-                <field name="date" position="before">
+                <field name="date" position="before" groups="base.group_user">
                     <field name="task" attrs="{'invisible': [('task', '=', False)]}" colspan="4"/>
                 </field>
 
