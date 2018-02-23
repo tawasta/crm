@@ -9,7 +9,7 @@
 			<field name="arch" type="xml">
 
             <xpath expr="//notebook/page[1]" position="after">
-                <page string="Installations">
+                <page string="Installations" groups="base.group_user">
                     <field name="swkb_installations">
                         <tree editable="top">
                             <field name="name" />
