@@ -18,14 +18,15 @@
 
 				<field name="stage_id" position="before">
                     <button name="%(act_claim_to_opportunity)d"
-                        type="action"
-                        string="Create Opportunity"
+                        	type="action"
+                        	string="Create Opportunity"
+							groups="base.group_user"
                     />
                 </field>
 
                 <notebook position="inside">
 					<page name="opportunities" string="Opportunities" attrs="{'invisible': [('opportunities', '=', [])]}">
-                    	<field name="opportunities" />
+                    	<field name="opportunities" groups="base.group_user"/>
 					</page>
                 </notebook>
 
