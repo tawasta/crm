@@ -22,7 +22,7 @@
 {
     'name': 'Claim timesheets',
     'summary': 'Timesheet records from claims',
-    'version': '8.0.0.4.8',
+    'version': '8.0.0.4.9',
     'category': 'Human Resources',
     'website': 'http://www.tawasta.fi',
     'author': 'Oy Tawasta Technologies Ltd.',

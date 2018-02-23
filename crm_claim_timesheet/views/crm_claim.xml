@@ -9,7 +9,7 @@
 			<field name="arch" type="xml">
 
 				<xpath expr='//sheet/group[last()]' position="after">
-			        <group col="1">
+			        <group col="1" groups="base.group_user">
                         <field name="suggested_analytic_account" invisible="1"/>
                         <field name="suggested_task" invisible="1"/>
                         <field name="suggested_time" invisible="1"/>
