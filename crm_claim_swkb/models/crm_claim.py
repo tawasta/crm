@@ -6,6 +6,7 @@
 
 # 3. Odoo imports (openerp):
 from openerp import api, fields, models
+from openerp.exceptions import MissingError
 
 # 4. Imports from Odoo modules:
 
@@ -63,9 +64,13 @@ class CrmClaim(models.Model):
         elif 'params' in context and 'id' in context['params']:
             claim = self.browse([context['params']['id']])
 
-            if claim and claim.partner_id:
-                partner = claim.partner_id
-                partners.append(partner.id)
+            try:
+                if claim and claim.partner_id:
+                    partner = claim.partner_id
+                    partners.append(partner.id)
+            except MissingError:
+                # Claim partner (i.e. company contact) has been deleted
+                pass
 
         # Append two levels of parents
         if partner and partner.parent_id:
