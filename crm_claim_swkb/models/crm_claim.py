@@ -84,7 +84,9 @@ class CrmClaim(models.Model):
         ]
 
         if partner:
-            domain = ['|'] + domain + ('technical_contact_ids', '=', partner.id)
+            domain = ['|'] \
+                     + domain \
+                     + [('technical_contact_ids', '=', partner.id)]
 
         return domain
 
