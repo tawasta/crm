@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Tawasta/crm.svg?branch=10.0)](https://travis-ci.org/Tawasta/crm)
+
 Customer relationship management
 ================================
 
