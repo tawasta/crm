@@ -109,6 +109,7 @@
 
                         <field name='name' readonly="1"/>
                         <field name="description" readonly="1"/>
+                        <field name="section_id" groups="base.group_multi_salesteams"/>
                     </group>
                 </sheet>
 
