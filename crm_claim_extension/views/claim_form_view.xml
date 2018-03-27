@@ -88,7 +88,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-
+                    <field name="stage_id" widget="statusbar" clickable="False"/>
                 </header>
 
                 <sheet>
@@ -104,7 +104,6 @@
                     </group>
 
                     <group name="claim" string="Claim">
-                        <field name="stage_id" readonly="1"/>
                         <field name="date" readonly="1"/>
                         <field name="sla" widget='priority' readonly="1" invisible="1"/>
 
