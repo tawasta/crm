@@ -54,6 +54,7 @@ class CrmClaim(models.Model):
     def compute_swkb_installations_domain(self):
         # Search installations in which the person is a contact person,
         # or the installation belongs to the company
+        self = self.sudo()
         context = self._context
         partner = False
         partners = list()
