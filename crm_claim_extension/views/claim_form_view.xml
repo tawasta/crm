@@ -104,6 +104,7 @@
                     </group>
 
                     <group name="claim" string="Claim">
+                        <field name="stage_id" readonly="1"/>
                         <field name="date" readonly="1"/>
                         <field name="sla" widget='priority' readonly="1" invisible="1"/>
 
