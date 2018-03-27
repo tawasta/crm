@@ -36,5 +36,27 @@
             </field>
             
 		</record>
+
+		<record model="ir.ui.view" id="crm_claim.crm_case_claims_portal_tree_view">
+            <field name="name">Claims portal tree view</field>
+            <field name="model">crm.claim</field>
+			<field name="priority" eval="100" />
+            <field name="arch" type="xml">
+
+				<tree string='Claims'
+					  colors="grey: (stage=='Rejected') or (stage=='Settled'); blue: stage=='New';">
+					<field name='claim_number' string='#'/>
+					<field name='name' />
+					<field name='stage_id' />
+					<field name='stage' invisible='1'/>
+					<field name='priority' />
+					<field name='sla' />
+					<field name='date' />
+					<field name='write_date' />
+				</tree>
+
+            </field>
+
+		</record>
     </data>
 </openerp>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-    
+
  	<record model="ir.ui.view" id="crm_claim_form_view_extension">
             <field name="name">Claims form view</field>
             <field name="model">crm.claim</field>
@@ -80,6 +80,44 @@
             </field>
             
 		</record>
-    
+
+    <record model="ir.ui.view" id="crm_claim.crm_case_claims_portal_form_view">
+        <field name="name">Claims portal form view</field>
+        <field name="model">crm.claim</field>
+        <field name="priority" eval="100" />
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                </header>
+
+                <sheet>
+                    <h2>Claim #<field name='claim_number' readonly='1' style="display: inline;"/></h2>
+
+                    <group name="partner" string="Partner" >
+
+                        <field name="email_from_readonly" readonly="1" string="Recipient" />
+
+                        <field name="partner_phone" readonly="1" />
+
+                        <field name="email_cc" readonly="1"/>
+                    </group>
+
+                    <group name="claim" string="Claim">
+                        <field name="date" readonly="1"/>
+                        <field name="sla" widget='priority' readonly="1" invisible="1"/>
+
+                        <field name='name' readonly="1"/>
+                        <field name="description" readonly="1"/>
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
     </data>
 </openerp>

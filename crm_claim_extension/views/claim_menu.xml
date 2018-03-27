@@ -37,9 +37,29 @@
                 </p>
             </field>
         </record>
-		
-		<menuitem name="My Claims" id="menu_crm_case_claims_my" parent="base.menu_aftersale" action="crm_case_categ_claim_my" sequence="10"/> 
-		<menuitem name="All Claims" id="menu_crm_case_claims_all" parent="base.menu_aftersale" action="crm_case_categ_claim_all" sequence="20"/>
-        
+
+		<!-- Portal claims menu action -->
+        <record model="ir.actions.act_window" id="crm_case_categ_claim_portal">
+            <field name="name">Portal claims</field>
+            <field name="res_model">crm.claim</field>
+            <field name="view_id" ref="crm_claim.crm_case_claims_portal_tree_view"/>
+            <field name="context">{
+                'tree_view_ref': 'crm_claim.crm_case_claims_portal_tree_view',
+                'form_view_ref': 'crm_claim.crm_case_claims_portal_form_view',
+                }
+            </field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No claims.
+                </p>
+            </field>
+        </record>
+
+		<menuitem name="My Claims" id="menu_crm_case_claims_my" parent="base.menu_aftersale" action="crm_case_categ_claim_my" sequence="10" groups="base.group_user"/>
+		<menuitem name="All Claims" id="menu_crm_case_claims_all" parent="base.menu_aftersale" action="crm_case_categ_claim_all" sequence="20" groups="base.group_user"/>
+		<menuitem name="Portal Claims" id="menu_crm_case_claims_portal" parent="base.menu_aftersale" action="crm_case_categ_claim_portal" sequence="30" groups="base.group_portal"/>
+
 	</data>
 </openerp>
