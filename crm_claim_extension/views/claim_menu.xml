@@ -44,6 +44,7 @@
             <field name="res_model">crm.claim</field>
             <field name="view_id" ref="crm_claim.crm_case_claims_portal_tree_view"/>
             <field name="context">{
+                'search_default_active_claims': 1,
                 'tree_view_ref': 'crm_claim.crm_case_claims_portal_tree_view',
                 'form_view_ref': 'crm_claim.crm_case_claims_portal_form_view',
                 }
