@@ -101,13 +101,19 @@ class MailMail(models.Model):
             values['body_html'] += "--<br/>"
 
             if 'mail_message_id' in values:
-                # Add message history to claim replies
-
                 # Get the message instance
-                message_model = self.env['mail.message']
-                message_instance = message_model.sudo().browse([values.get('mail_message_id')])
+                MailMessage = self.env['mail.message']
+                message_instance = MailMessage.sudo().browse([values.get('mail_message_id')])
 
-                # Don't sign the message with sender name, if the message was sent by admin (e.g. automatic messages)
+                # Add message description to the bottom
+                description = '<div dir="ltr" style="color: grey;">'
+                description += '<div style="padding-left: 1em;">'
+                description += message_instance.description
+                description += '</div>'
+                description += '</div>'
+
+                # Don't sign the message with sender name,
+                # if the message was sent by admin (e.g. automatic messages)
                 if message_instance.create_uid.id != SUPERUSER_ID:
                     values['body_html'] += str(message_instance.create_uid.partner_id.name)
                     values['body_html'] += "<br/>"
