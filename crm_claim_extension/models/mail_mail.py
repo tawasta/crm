@@ -120,6 +120,11 @@ class MailMail(models.Model):
                 values['body_html'] += str(footer)
                 values['body_html'] += "</small></p>"
 
+                # Include message description on the bottom of the message,
+                # under a horizontal line
+                values['body_html'] += "<hr style='margin: 1em 0 1em 0;' />"
+                values['body_html'] += description
+                values['body_html'] += "<br/>"
 
             elif res_id:
                 values['body_html'] += str(footer)
