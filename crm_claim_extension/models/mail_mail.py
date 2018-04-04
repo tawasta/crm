@@ -108,7 +108,7 @@ class MailMail(models.Model):
                 # Add message description to the bottom
                 description = '<div dir="ltr" style="color: grey;">'
                 description += '<div style="padding-left: 1em;">'
-                description += message_instance.description
+                description += claim_instance.description
                 description += '</div>'
                 description += '</div>'
 
