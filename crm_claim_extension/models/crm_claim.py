@@ -292,7 +292,7 @@ class CrmClaim(models.Model):
                 latest_message = record.message_ids.sorted(
                     key=lambda r: r.create_date, reverse=True)[0]
 
-                author = self.env['res.users'].search([
+                author = ResPartner.search([
                     ('partner_id', '=', latest_message.author_id.id)
                 ])
 
@@ -307,7 +307,7 @@ class CrmClaim(models.Model):
 
             # Remove cc-recipients from followers
             email_regex = re.compile("[\w\.-]+@[\w\.-]+")
-            for recipient in self.email_cc.split(','):
+            for recipient in record.email_cc.split(','):
                 recipient_email = email_regex.findall(recipient)
 
                 if recipient_email:
@@ -319,36 +319,36 @@ class CrmClaim(models.Model):
                         record.message_unsubscribe(
                             [cc_partner.id])
 
-        # When a claim stage changes, save the date
-        # TODO: make this modular (not bound to ids)
-        if values.get('stage_id'):
-            stage_id = values.get('stage_id')
+            # When a claim stage changes, save the date
+            # TODO: make this modular (not bound to ids)
+            if values.get('stage_id'):
+                stage_id = values.get('stage_id')
 
-            if stage_id:
-                values['stage_change_ids'] = [(0, _, {'stage': stage_id})]
+                if stage_id:
+                    values['stage_change_ids'] = [(0, _, {'stage': stage_id})]
 
-            if stage_id == 2:
-                # In progress
-                values['date_start'] = datetime.now().replace(microsecond=0)
-                if not self.user_id:
-                    values['user_id'] = self._uid
-            if stage_id == 3:
-                # Settled
-                values['date_settled'] = datetime.now().replace(microsecond=0)
-            if stage_id == 4:
-                # Rejected
-                values['date_rejected'] = datetime.now().replace(microsecond=0)
-            if stage_id == 5:
-                # Waiting
-                values['date_waiting'] = datetime.now().replace(microsecond=0)
+                if stage_id == 2:
+                    # In progress
+                    values['date_start'] = datetime.now().replace(microsecond=0)
+                    if not record.user_id:
+                        values['user_id'] = record._uid
+                if stage_id == 3:
+                    # Settled
+                    values['date_settled'] = datetime.now().replace(microsecond=0)
+                if stage_id == 4:
+                    # Rejected
+                    values['date_rejected'] = datetime.now().replace(microsecond=0)
+                if stage_id == 5:
+                    # Waiting
+                    values['date_waiting'] = datetime.now().replace(microsecond=0)
 
-        if values.get('partner_id'):
-            # Partner is being changed. Update followers
+            if values.get('partner_id'):
+                # Partner is being changed. Update followers
 
-            # Remove current partner
-            self.message_unsubscribe([self.partner_id.id])
-            # Set the new partner as follower
-            self.message_subscribe([values.get('partner_id')])
+                # Remove current partner
+                record.message_unsubscribe([record.partner_id.id])
+                # Set the new partner as follower
+                record.message_subscribe([values.get('partner_id')])
 
         return super(CrmClaim, self).write(values)
 
