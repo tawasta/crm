@@ -278,8 +278,11 @@ class CrmClaim(models.Model):
     # TODO: break this down to smaller methods
     @api.multi
     def write(self, values):
-        claim_stage_model = self.env['crm.claim.stage']
-        claim_state_new_reply = claim_stage_model.search([('new_reply_stage', '=', True)], limit=1)
+        ResPartner = self.env['res.partner']
+        CrmClaimStage = self.env['crm.claim.stage']
+        claim_state_new_reply = CrmClaimStage.search([
+            ('new_reply_stage', '=', True)
+        ], limit=1)
 
         for record in self:
             if values.get('message_last_post'):
@@ -301,6 +304,20 @@ class CrmClaim(models.Model):
                         values['stage_id'] = claim_state_new_reply.id
                         msg_body = _("Re-opening claim due to a new message.")
                         record.message_post(body=msg_body)
+
+            # Remove cc-recipients from followers
+            email_regex = re.compile("[\w\.-]+@[\w\.-]+")
+            for recipient in self.email_cc.split(','):
+                recipient_email = email_regex.findall(recipient)
+
+                if recipient_email:
+                    cc_partners = ResPartner.search([
+                        ('email', 'ilike', recipient_email[0])
+                    ])
+
+                    for cc_partner in cc_partners:
+                        record.message_unsubscribe(
+                            [cc_partner.id])
 
         # When a claim stage changes, save the date
         # TODO: make this modular (not bound to ids)
