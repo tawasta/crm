@@ -278,6 +278,7 @@ class CrmClaim(models.Model):
     # TODO: break this down to smaller methods
     @api.multi
     def write(self, values):
+        ResUsers = self.env['res.users']
         ResPartner = self.env['res.partner']
         CrmClaimStage = self.env['crm.claim.stage']
         claim_state_new_reply = CrmClaimStage.search([
@@ -292,7 +293,7 @@ class CrmClaim(models.Model):
                 latest_message = record.message_ids.sorted(
                     key=lambda r: r.create_date, reverse=True)[0]
 
-                author = ResPartner.search([
+                author = ResUsers.search([
                     ('partner_id', '=', latest_message.author_id.id)
                 ])
 
