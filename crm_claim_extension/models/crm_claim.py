@@ -306,18 +306,19 @@ class CrmClaim(models.Model):
                         record.message_post(body=msg_body)
 
             # Remove cc-recipients from followers
-            email_regex = re.compile("[\w\.-]+@[\w\.-]+")
-            for recipient in record.email_cc.split(','):
-                recipient_email = email_regex.findall(recipient)
+            if record.email_cc:
+                email_regex = re.compile("[\w\.-]+@[\w\.-]+")
+                for recipient in record.email_cc.split(','):
+                    recipient_email = email_regex.findall(recipient)
 
-                if recipient_email:
-                    cc_partners = ResPartner.search([
-                        ('email', 'ilike', recipient_email[0])
-                    ])
+                    if recipient_email:
+                        cc_partners = ResPartner.search([
+                            ('email', 'ilike', recipient_email[0])
+                        ])
 
-                    for cc_partner in cc_partners:
-                        record.message_unsubscribe(
-                            [cc_partner.id])
+                        for cc_partner in cc_partners:
+                            record.message_unsubscribe(
+                                [cc_partner.id])
 
             # When a claim stage changes, save the date
             # TODO: make this modular (not bound to ids)
