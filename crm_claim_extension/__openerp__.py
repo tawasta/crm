@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'CRM Claims extension',
-    'summary': 'Improved claims with helpdesk-like functionality',
+    'summary': 'DEPRECATED: please do not use!',
     'category': 'Sales',
     'version': '8.0.0.14.9',
     'author': 'Oy Tawasta Technologies Ltd.',

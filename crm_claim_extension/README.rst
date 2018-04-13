@@ -6,6 +6,7 @@
 Claims extension
 ================
 
+DEPRECATED: please do not use!
 Adds helpdesk-like functionality to the claims
 
 Features
