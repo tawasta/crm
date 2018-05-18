@@ -9,6 +9,9 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[crm_data_integrity](crm_data_integrity/) | 10.0.1.0.0 | Prevents accidentally deleting partner data
+[crm_lead_extended_search](crm_lead_extended_search/) | 10.0.1.0.0 | Search also from the Internal Notes field
+[crm_opportunity_calendar_event](crm_opportunity_calendar_event/) | 10.0.1.0.0 | Replace opportunity actions with calendar events
 [crm_partner_tree_view](crm_partner_tree_view/) | 10.0.1.0.0 | Defaults Sales-Sales->Customers view to tree
 
 
@@ -28,7 +31,6 @@ addon | version | summary
 [crm_contact_list](crm_contact_list/) | 8.0.0.3.2 (unported) | A simple list for quick exports
 [crm_contact_m2m](crm_contact_m2m/) | 8.0.0.2.3 (unported) | Allow contacts to belong to multiple companies
 [crm_customer_label_print](crm_customer_label_print/) | 8.0.0.2.4 (unported) | Customer address labels print 3x8 without margins
-[crm_data_integrity](crm_data_integrity/) | 0.1 (unported) | Prevents accidentally deleting partner data
 [crm_hide_opportunities](crm_hide_opportunities/) | 8.0.1.0.0 (unported) | Hides lead and opportunity menus
 [crm_simplification](crm_simplification/) | 8.0.0.4.29 (unported) | Generic CRM simplifications
 [crm_tokenkey](crm_tokenkey/) | 0.1 (unported) | Simple token key management
