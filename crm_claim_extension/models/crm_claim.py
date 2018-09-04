@@ -285,6 +285,9 @@ class CrmClaim(models.Model):
             ('new_reply_stage', '=', True)
         ], limit=1)
 
+        if values.get('email_from'):
+            values['email_from_readonly'] = values['email_from']        
+        
         for record in self:
             if values.get('message_last_post'):
                 # Check if a closed or waiting ticket gets a new message
