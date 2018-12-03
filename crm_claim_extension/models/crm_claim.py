@@ -214,6 +214,13 @@ class CrmClaim(models.Model):
             if values.get('email_from'):
                 values['email_from_readonly'] = values.get('email_from')
 
+        # Create a line for the first stage change line
+        initial_stage = self.env['crm.claim.stage'].search([], limit=1)
+        if initial_stage:
+            values['stage_change_ids'] = [
+                (0, _, {'stage': initial_stage.id})
+            ]                
+                
         # If partner doesn't exist, we'll need to create one
         if not values.get('partner_id'):
             values['partner_id'] = self._fetch_partner(values)
