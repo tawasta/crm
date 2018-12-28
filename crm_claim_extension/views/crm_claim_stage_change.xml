@@ -7,7 +7,7 @@
             <field name="name">Claim stage changes</field>
             <field name="res_model">crm.claim.stage.change</field>
             <field name="view_type">form</field>
-            <field name="view_mode">graph,tree</field>
+            <field name="view_mode">tree,graph</field>
             <field name="context">{'search_default_groupby_claim_partner': 1, 'search_default_groupby_claim': 1, 'search_default_groupby_stage': 1, 'search_default_year_this': 1, 'search_default_month_last': 1, 'search_default_month_this': 1}</field>
         </record>
 
