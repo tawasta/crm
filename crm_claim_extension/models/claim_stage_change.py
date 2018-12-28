@@ -24,9 +24,24 @@ class ClaimStageChange(models.Model):
 
     # 2. Fields declaration
     stage = fields.Many2one('crm.claim.stage', 'New stage')
-    claim_id = fields.Many2one('crm.claim', 'Claim id')
+    claim_id = fields.Many2one('crm.claim', 'Claim')
     hours = fields.Float("Hours", compute="_compute_hours")
-
+    claim_partner_id = fields.Many2one(related='claim_id.partner_id', string='Claim partner', store=True)
+    claim_date = fields.Datetime(related='claim_id.date', string='Claim received', store=True)
+    claim_date_closed = fields.Datetime(related='claim_id.date_closed', string='Claim closed')
+    claim_message_last_post = fields.Datetime(related='claim_id.message_last_post', string='Claim last message')
+    claim_sla = fields.Selection(
+        [   
+            ('0', '-'),
+            ('1', 'Level 1'),
+            ('2', 'Level 2'),
+            ('3', 'Level 3'),
+            ('4', 'Level 4'),
+        ],
+        string='Claim SLA',
+        related='claim_id.sla',
+   )
+    
     # 3. Default methods
 
     # 4. Compute and search fields, in the same order that fields declaration
