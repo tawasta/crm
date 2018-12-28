@@ -22,7 +22,7 @@
     'name': 'CRM Claims extension',
     'summary': 'DEPRECATED: please do not use!',
     'category': 'Sales',
-    'version': '8.0.0.14.11',
+    'version': '8.0.0.15.0',
     'author': 'Oy Tawasta Technologies Ltd.',
     'website': 'http://www.tawasta.fi',
     'license': 'AGPL-3',
@@ -46,6 +46,7 @@
         'views/claim_form_view.xml',
         'views/claim_tree_view.xml',
         'views/crm_claim_stage_form.xml',
+        'views/crm_claim_stage_change.xml',        
 
         'views/claim_menu.xml',
         'views/claim_reply_view.xml',
