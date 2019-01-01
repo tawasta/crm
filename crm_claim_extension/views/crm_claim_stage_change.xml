@@ -18,7 +18,7 @@
             <field name="model">crm.claim.stage.change</field>
             <field name="arch" type="xml">
 
-                <tree string='Stage changes' readonly='1' default_order='claim_date, claim_message_last_post'>
+                <tree string='Stage changes' readonly='1' default_order='claim_date DESC,id,claim_partner_id'>
                     <field name='claim_partner_id' />
                     <field name='claim_date' />
                     <field name='claim_id' />
