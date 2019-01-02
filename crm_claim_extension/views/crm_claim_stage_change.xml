@@ -8,7 +8,7 @@
             <field name="res_model">crm.claim.stage.change</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,graph</field>
-            <field name="context">{'search_default_groupby_claim_partner': 1, 'search_default_groupby_claim': 1, 'search_default_groupby_stage': 1, 'search_default_year_this': 1, 'search_default_month_last': 1, 'search_default_month_this': 1}</field>
+            <field name="context">{'search_default_groupby_claim': 1, 'search_default_year_this': 1, 'search_default_month_last': 1, 'search_default_month_this': 1}</field>
         </record>
 
         <menuitem name="Stage changes" id="menu_crm_claim_stage_changes" parent="base.menu_aftersale" action="action_crm_claim_stage_change" sequence="40" groups="base.group_user"/>
@@ -18,7 +18,7 @@
             <field name="model">crm.claim.stage.change</field>
             <field name="arch" type="xml">
 
-                <tree string='Stage changes' readonly='1' default_order='claim_date DESC,id,claim_partner_id'>
+                <tree string='Stage changes' readonly='1' default_order='claim_date DESC,claim_partner_id,id DESC'>
                     <field name='claim_partner_id' />
                     <field name='claim_date' />
                     <field name='claim_id' />
