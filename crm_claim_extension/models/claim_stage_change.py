@@ -41,6 +41,7 @@ class ClaimStageChange(models.Model):
         string='Claim SLA',
         related='claim_id.sla',
    )
+    claim_company_id = fields.Many2one(related='claim_id.company_id', string='Claim company')
     
     # 3. Default methods
 
