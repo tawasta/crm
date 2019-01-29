@@ -384,20 +384,6 @@ class CrmClaim(models.Model):
             claim.claim_number = self.env['ir.sequence'].get('crm.claim')
             _logger.debug("Setting claim number for #%s", claim.claim_number)
 
-    @api.multi
-    def message_post(self, **kwargs):
-        res = super(CrmClaim, self).message_post(**kwargs)
-
-        if 'type' in kwargs and kwargs['type'] == 'comment' \
-                and 'subtype' in kwargs and kwargs['subtype'] == 'mail.mt_comment' \
-                and self.email_cc:
-            # Make a message about cc-recipients
-
-            msg = _("Previous message was sent to '%s' as a copy.") % self.email_cc
-            self.sudo().message_post(body=msg)
-
-        return res
-
     @api.model
     def _fetch_partner(self, vals):
         email_from = vals.get('email_from')
