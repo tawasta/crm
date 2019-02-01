@@ -64,6 +64,8 @@ class ClaimStageChange(models.Model):
             difference = previous_date-this_date
 
             record.hours = difference.total_seconds() / 3600
+            
+            previous_record = record
 
     # 5. Constraints and onchanges
 
