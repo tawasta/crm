@@ -316,7 +316,7 @@ class CrmClaim(models.Model):
                         msg_body = _("Re-opening claim due to a new message.")
                         record.message_post(body=msg_body)
 
-            # Remove cc-recipients from followers
+            # Add cc-recipients as followers
             if record.email_cc:
                 email_regex = re.compile("[\w\.-]+@[\w\.-]+")
                 for recipient in record.email_cc.split(','):
