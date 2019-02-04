@@ -316,6 +316,18 @@ class CrmClaim(models.Model):
                         msg_body = _("Re-opening claim due to a new message.")
                         record.message_post(body=msg_body)
 
+            # Remove cc-recipients from followers
+            if record.email_cc:
+                email_regex = re.compile("[\w\.-]+@[\w\.-]+")
+                for recipient in record.email_cc.split(','):
+                    recipient_emails = email_regex.findall(recipient)
+
+                    for recipient_email in recipient_emails:
+                        partner_id = self._fetch_partner({'email_from': recipient_email})
+                        record.message_subscribe([partner_id])
+
+                values['email_cc'] = False
+                        
             # When a claim stage changes, save the date
             # TODO: make this modular (not bound to ids)
             if values.get('stage_id'):
