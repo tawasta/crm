@@ -263,6 +263,13 @@ class CrmClaim(models.Model):
                 email_cc = ','.join(email_list)
                 self.email_cc = email_cc
 
+                # Add cc-recipients as followers
+                for recipient_email in email_list:
+                    partner_id = self._fetch_partner({'email_from': recipient_email})
+                    claim.message_subscribe([partner_id])
+
+                claim.email_cc = False                
+                
             except Exception, e:
                 _logger.error('Could not set email CCs: %s', e)
 
