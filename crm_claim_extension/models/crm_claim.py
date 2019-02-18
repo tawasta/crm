@@ -90,7 +90,7 @@ class CrmClaim(models.Model):
         if not company_id:
             company_id = self._default_get_company()
 
-        reply_settings = self.env['crm_claim.reply'].search([
+        reply_settings = self.env['crm_claim.reply'].sudo().search([
             ('company_id', '=', company_id)
         ], limit=1)
 
@@ -226,8 +226,9 @@ class CrmClaim(models.Model):
             values['partner_id'] = self._fetch_partner(values)
 
         # Get the reply-to address based on the fetchmail server instance owner
+        company_id = False
         if self._context.get('fetchmail_server_id'):
-            fetchmail_server = self.env['fetchmail.server'].browse([self._context.get('fetchmail_server_id')])
+            fetchmail_server = self.env['fetchmail.server'].sudo().browse([self._context.get('fetchmail_server_id')])
 
             if fetchmail_server:
                 company_id = fetchmail_server.company_id.id
@@ -236,42 +237,43 @@ class CrmClaim(models.Model):
                 values['reply_to'] = reply_to
                 values['user_id'] = False
 
-        claim = super(CrmClaim, self).create(values)
-
-        # Remove the helpdesk email and its aliases from cc emails
-        if claim.email_cc:
+        if 'email_cc' in values and values['email_cc']:
             email_regex = re.compile("[\w\.-]+@[\w\.-]+")
-            email_list = email_regex.findall(claim.email_cc)
+            email_list = email_regex.findall(values['email_cc'])
 
+            if 'company_id' in values:
+                company_id = values['company_id']            
+            
             try:
-                email_raw = email_regex.findall(claim._get_reply_to())[0]
-                email_raw = re.sub(r'[<>]', "", email_raw)
+                if company_id:
+                    email_raw = email_regex.findall(self._get_reply_to(company_id))[0]
+                    email_raw = re.sub(r'[<>]', "", email_raw)
+                    reply_to = email_raw
+                    exclude_list = self._get_exclude_list(company_id) + [reply_to]
 
-                reply_to = email_raw
+                    for exclude in exclude_list:
+                        match = [s for s in email_list if exclude in s]
 
-                exclude_list = self._get_exclude_list(claim.company_id.id) + [reply_to]
-
-                for exclude in exclude_list:
-                    match = [s for s in email_list if exclude in s]
-
-                    if match:
-                        email_list.pop(email_list.index(match[0]))
+                        if match:
+                            email_list.pop(email_list.index(match[0]))
 
                     match = False
 
                 _logger.info("Using email CCs: %s", email_list)
-                email_cc = ','.join(email_list)
-                self.email_cc = email_cc
-
+                
+                followers = list()
                 # Add cc-recipients as followers
                 for recipient_email in email_list:
                     partner_id = self._fetch_partner({'email_from': recipient_email})
-                    claim.message_subscribe([partner_id])
+                    followers.append(partner_id)
 
-                claim.email_cc = False                
+                values['email_cc'] = False
+                values['message_follower_ids'] = [(6, 0, followers)]
                 
             except Exception, e:
                 _logger.error('Could not set email CCs: %s', e)
+                
+        claim = super(CrmClaim, self).create(values)
 
         if claim.create_uid.id != SUPERUSER_ID and claim.company_id:
             # Create a "claim received" message
