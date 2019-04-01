@@ -55,7 +55,7 @@ class CrmClaim(models.Model):
                 ('project_id.analytic_account_id', '=', record.suggested_analytic_account.id),
                 ('stage_id.closed', '=', False),
                 ('stage_id', '!=', 1),
-            ], limit=1)
+            ], limit=1, order='sequence')
 
     @api.multi
     def compute_suggested_time(self):
