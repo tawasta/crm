@@ -98,26 +98,15 @@ class MailThread(models.Model):
             res[0] = tuple(lst)
 
             # Update CC:s
-            current_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', claim_id.email_cc) if claim_id.email_cc else list()
-
             try:
                 new_cc_list = re.findall(r'[\w\.-]+@[\w\.-]+', message_dict['cc']) if 'cc' in message_dict else list()
             except TypeError:
                 _logger.warning("Could not find cc from message")
                 new_cc_list = list()
-
-            # Compare current CC:s to new CC:s
-            new_cc_recipients = set(new_cc_list) - set(current_cc_list)
-
-            if new_cc_recipients:
-                new_cc_recipients_str = ", ".join(new_cc_list)
-                _logger.info('Adding %s to CC recipients', new_cc_recipients_str)
-
-                msg = "Adding '%s' to CC-recipients" % new_cc_recipients_str
-                claim_id.message_post(body=msg)
-
-                # Update CC recipients
-                claim_id.email_cc = ', '.join(set(current_cc_list + new_cc_list))
+                
+            for recipient in new_cc_list:
+               partner_id = claim_id._fetch_partner({'email_from': recipient})
+               claim_id.message_subscribe([partner_id])            
 
             _logger.info('Matched a message "%s" to claim "#%s" using message subject', message_subject, claim_number)
 
