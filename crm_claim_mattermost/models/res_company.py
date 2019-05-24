@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from openerp import api, fields, models
+from openerp import fields, models
 
 
 class ResCompany(models.Model):
@@ -36,7 +35,7 @@ class ResCompany(models.Model):
     )
     mattermost_scheme = fields.Selection(
         string='Scheme',
-        selection=[('http', 'http'),('https', 'https')],
+        selection=[('http', 'http'), ('https', 'https')],
         default='https',
     )
     mattermost_verify = fields.Boolean(

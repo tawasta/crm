@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # THIS MUST BE RUN WITH PYTHON3
 # The syntax when running:
 # python3 mattermost_send.py {dict with variables}
@@ -32,7 +30,8 @@ try:
 
     mm_driver.login()
 
-    channel_id = mm_driver.api['channels'].get_channel_by_name_and_team_name(vars['team'], vars['channel'])['id']
+    channel_id = mm_driver.api['channels']\
+        .get_channel_by_name_and_team_name(vars['team'], vars['channel'])['id']
 
     mm_driver.api['posts'].create_post(options={
         'channel_id': channel_id,

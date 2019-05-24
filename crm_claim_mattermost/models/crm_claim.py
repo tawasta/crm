@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 import os
 from subprocess import call
 
-from openerp import api, fields, models
+from openerp import api, models
 from openerp.exceptions import ValidationError
 from openerp import _
 
@@ -36,8 +35,11 @@ class CrmClaim(models.Model):
         if self.name and self.partner_id:
             subject = "[%s](%s)" % (self.name, self.mattermost_get_url())
 
-            msg = ':incoming_envelope: A new claim **%(subject)s** from **%(partner)s**' \
-                  % {'subject': subject, 'partner': self.partner_id.display_name}
+            msg = ':incoming_envelope: A new claim \
+                **%(subject)s** from **%(partner)s**' \
+                  % {
+                      'subject': subject,
+                      'partner': self.partner_id.display_name}
 
             return self.mattermost_send_message(_(msg))
 
@@ -46,7 +48,10 @@ class CrmClaim(models.Model):
         author = self.user_id.name or 'No one'
 
         msg = '**%(user)s** assigned **%(subject)s** to **%(author)s**' \
-              % {'user': self.write_uid.name, 'subject':subject, 'author': author}
+              % {
+                  'user': self.write_uid.name,
+                  'subject': subject,
+                  'author': author}
 
         return self.mattermost_send_message(_(msg))
 
@@ -54,7 +59,10 @@ class CrmClaim(models.Model):
         subject = "[%s](%s)" % (self.name, self.mattermost_get_url())
 
         msg = '**%(user)s** changed **%(subject)s** stage to **%(stage)s**' \
-              % {'user': self.write_uid.name, 'subject': subject, 'stage': self.stage_id.name}
+              % {
+                  'user': self.write_uid.name,
+                  'subject': subject,
+                  'stage': self.stage_id.name}
 
         return self.mattermost_send_message(_(msg))
 
@@ -62,13 +70,16 @@ class CrmClaim(models.Model):
     def mattermost_summary(self):
         stages = self.env['crm.claim.stage'].search([('closed', '=', False)])
 
-        for company in self.env['res.company'].search([('mattermost_active', '=', True)]):
+        for company in self.env['res.company']\
+                .search([('mattermost_active', '=', True)]):
             msg = '### Claim summary\n'
 
             total_count = 0
 
             for stage in stages:
-                count = self.search_count([('company_id', '=', company.id), ('stage_id', '=', stage.id)])
+                count = self.search_count(
+                    [('company_id', '=', company.id),
+                     ('stage_id', '=', stage.id)])
                 total_count += count
 
                 msg += '%s: **%s**\n' % (stage.name, count)
@@ -78,10 +89,10 @@ class CrmClaim(models.Model):
 
             self.mattermost_send_message(_(msg), company)
 
-
     def mattermost_get_url(self):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-        url = "%(base_url)sweb/#id=%(record_id)s&view_type=form&model=crm.claim" \
+        url = "%(base_url)sweb/#id=%(record_id)s\
+            &view_type=form&model=crm.claim" \
               % {'base_url': base_url, 'record_id': self.id}
 
         return url
@@ -117,7 +128,8 @@ class CrmClaim(models.Model):
         module_path = os.path.dirname(models_path)
         script_path = '%s/ext/mattermost_send.py' % module_path
 
-        cmd = 'python3 %(script)s "%(vars)s"' % {'script': script_path, 'vars': vars}
+        cmd = 'python3 %(script)s "%(vars)s"' % \
+            {'script': script_path, 'vars': vars}
         call(cmd, shell=True)
 
     def validate_variables(self, company):

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # 1. Standard library imports:
 import re
 
@@ -17,7 +15,7 @@ from openerp import api, fields, models
 
 
 class ClaimToOpportunity(models.TransientModel):
-    
+
     # 1. Private attributes
     _name = 'claim.to.opportunity'
 
