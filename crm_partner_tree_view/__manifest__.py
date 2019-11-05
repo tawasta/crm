@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
@@ -22,9 +21,9 @@
 {
     'name': 'Defaults customer view to tree',
     'summary': 'Defaults Sales-Sales->Customers view to tree',
-    'version': '10.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Events',
-    'website': 'http://www.tawasta.fi',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,

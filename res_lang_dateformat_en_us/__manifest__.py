@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
@@ -23,8 +22,8 @@
     'name': 'd.m.Y dateformat for en_US',
     'summary': "Change the dateformat for en_US",
     'category': 'CRM',
-    'version': '10.0.1.0.0',
-    'website': 'http://www.tawasta.fi',
+    'version': '12.0.1.0.0',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,

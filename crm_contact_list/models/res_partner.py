@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # 1. Standard library imports:
 
 # 2. Known third party imports:

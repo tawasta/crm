@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
@@ -24,7 +23,7 @@
     'summary': 'A simple list for quick exports',
     'version': '8.0.0.3.2',
     'category': 'CRM',
-    'website': 'http://www.tawasta.fi',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,

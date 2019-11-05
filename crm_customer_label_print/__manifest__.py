@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
@@ -24,7 +23,7 @@
     'summary': 'Customer address labels print 3x8 without margins',
     'version': '8.0.0.2.4',
     'category': 'CRM',
-    'website': 'http://www.tawasta.fi',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,
