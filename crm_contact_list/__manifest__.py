@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2016 Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
+#    Copyright 2016 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@
     'summary': 'A simple list for quick exports',
     'version': '8.0.0.3.2',
     'category': 'CRM',
-    'website': 'http://www.tawasta.fi',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,

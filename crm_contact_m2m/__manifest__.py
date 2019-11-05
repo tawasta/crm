@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2015 Oy Tawasta OS Technologies Ltd. (http://www.tawasta.fi)
+#    Copyright 2015 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@
     'summary': 'Allow contacts to belong to multiple companies',
     'version': '8.0.0.2.3',
     'category': 'CRM',
-    'website': 'http://www.tawasta.fi',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,
