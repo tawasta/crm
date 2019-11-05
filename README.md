@@ -16,7 +16,7 @@ addon | version | summary
 [crm_lead_extended_search](crm_lead_extended_search/) | 10.0.1.0.0 | Search also from the Internal Notes field
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 10.0.1.0.0 | Converting opportunities to sales copies related attachments
 [crm_opportunity_calendar_event](crm_opportunity_calendar_event/) | 10.0.1.0.0 | Replace opportunity actions with calendar events
-[crm_partner_tree_view](crm_partner_tree_view/) | 10.0.1.0.0 | Defaults Sales-Sales->Customers view to tree
+[crm_partner_tree_view](../partner/partner_default_tree_view/) | 10.0.1.0.0 | Defaults Sales-Sales->Customers view to tree
 [res_lang_dateformat_en_us](res_lang_dateformat_en_us/) | 10.0.1.0.0 | Change the dateformat for en_US
 
 
