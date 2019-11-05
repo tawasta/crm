@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-	<record id="crm_case_form_view_oppor" model="ir.ui.view">
-		<field name="name">crm.case.form.view.opportunity.calendar</field>
-		<field name="model">crm.lead</field>
-		<field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
-		<field name="arch" type="xml">
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">crm.case.form.view.opportunity.calendar</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
 
-			<field name="date_deadline" position="before">
+            <field name="date_deadline" position="before">
                 <label for="next_event_id"/>
                 <div class="o_row mr16" id="next-event-div">
                     <field name="next_event_id"
@@ -17,20 +17,23 @@
                            }"
                            domain="[('opportunity_id', '=', active_id)]"
                     />
-                    <field name="next_event_start" nolabel="1" />
-                    <field name="next_event_duration" widget="float_time" nolabel="1" />
+                    <field name="next_event_start" nolabel="1"/>
+                    <field name="next_event_duration" widget="float_time"
+                           nolabel="1"/>
                 </div>
-			</field>
+            </field>
 
-            <xpath expr="//label[@for='next_activity_id']"  position="attributes">
+            <xpath expr="//label[@for='next_activity_id']"
+                   position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
-            <xpath expr="//label[@for='next_activity_id']/following-sibling::div" position="attributes">
+            <xpath expr="//label[@for='next_activity_id']/following-sibling::div"
+                   position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
-		</field>
-	</record>
+        </field>
+    </record>
 
 </odoo>
