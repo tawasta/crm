@@ -22,9 +22,9 @@
 {
     'name': 'Extended Search for Opportunities',
     'summary': 'Search also from the Internal Notes field',
-    'version': '10.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'CRM',
-    'website': 'http://www.tawasta.fi',
+    'website': 'https://github.com/Tawasta/crm',
     'author': 'Oy Tawasta Technologies Ltd.',
     'license': 'AGPL-3',
     'application': False,
