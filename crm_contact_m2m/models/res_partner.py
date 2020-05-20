@@ -3,7 +3,7 @@
 # 2. Known third party imports:
 
 # 3. Odoo imports (openerp):
-from openerp import api, fields, models
+from openerp import fields, models
 
 # 4. Imports from Odoo modules:
 
@@ -13,7 +13,7 @@ from openerp import api, fields, models
 
 
 class ResPartner(models.Model):
-    
+
     # 1. Private attributes
     _inherit = 'res.partner'
 

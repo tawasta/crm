@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Oy Tawasta OS Technologies Ltd.
-#    Copyright 2015 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
+#    Copyright 2020 Oy Tawasta OS Technologies Ltd. (https://tawasta.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,21 +19,15 @@
 ##############################################################################
 
 {
-    'name': 'CRM Contact M2M',
-    'summary': 'Allow contacts to belong to multiple companies',
-    'version': '8.0.0.2.3',
+    'name': 'CRM Lead Stage Lost when Mark Lost',
+    'summary': 'CRM Lead Stage Lost when Mark Lost',
+    'version': '12.0.1.0.0',
     'category': 'CRM',
-    'website': 'https://github.com/Tawasta/crm',
-    'author': 'Oy Tawasta Technologies Ltd.',
+    'website': 'https://tawasta.fi',
+    'author': 'Tawasta',
     'license': 'AGPL-3',
     'application': False,
-    'installable': False,
-    'depends': [
-        'crm',
-        'crm_address_simplification',
-    ],
-    'data': [
-        'views/res_partner_form.xml',
-        'views/res_partner_tree.xml',
-    ],
+    'installable': True,
+    'depends': ['crm'],
+    'data': [],
 }
