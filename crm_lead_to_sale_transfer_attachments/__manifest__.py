@@ -34,6 +34,7 @@
     },
     'depends': [
         'crm',
+        'sale',
     ],
     'data': [
     ],
