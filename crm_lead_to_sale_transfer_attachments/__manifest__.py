@@ -23,7 +23,7 @@
     "summary": "Converting opportunities to sales copies related attachments",
     "version": "14.0.1.0.0",
     "category": "Sales",
-    "website": "https://github.com/Tawasta/crm",
+    "website": "https://gitlab.com/tawasta/odoo/crm",
     "author": "Tawasta",
     "license": "AGPL-3",
     "application": False,
