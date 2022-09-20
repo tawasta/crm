@@ -9,22 +9,9 @@ Customer relationship management
 
 Available addons
 ----------------
-addon | version | summary
---- | --- | ---
-[crm_data_integrity](crm_data_integrity/) | 12.0.1.0.0 | Prevents accidentally deleting partner data
-[crm_lead_extended_search](crm_lead_extended_search/) | 12.0.1.0.0 | Search also from the Internal Notes field
-[crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 12.0.1.0.0 | Converting opportunities to sales copies related attachments
-[crm_opportunity_calendar_event](crm_opportunity_calendar_event/) | 12.0.1.0.0 | Replace opportunity actions with calendar events
-[res_lang_dateformat_en_us](res_lang_dateformat_en_us/) | 12.0.1.0.0 | Change the dateformat for en_US
-
-
-Unported addons
----------------
-addon | version | summary
---- | --- | ---
-[crm_contact_list](crm_contact_list/) | 8.0.0.3.2 (unported) | A simple list for quick exports
-[crm_contact_m2m](crm_contact_m2m/) | 8.0.0.2.3 (unported) | Allow contacts to belong to multiple companies
-[crm_customer_label_print](crm_customer_label_print/) | 8.0.0.2.4 (unported) | Customer address labels print 3x8 without margins
-[crm_hide_opportunities](crm_hide_opportunities/) | 8.0.1.0.0 (unported) | Hides lead and opportunity menus
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[crm_lead_new_customer](crm_lead_new_customer/) | 14.0.1.0.0 |  | New customer boolean toggle for CRM lead
+[crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 14.0.1.0.0 |  | Converting opportunities to sales copies related attachments
 
 [//]: # (end addons)
