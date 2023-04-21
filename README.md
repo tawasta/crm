@@ -11,6 +11,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[crm_lead_activity_deadline_all](crm_lead_activity_deadline_all/) | 14.0.1.0.0 |  | Show last write date on crm lead tree view
 [crm_lead_disable_quick_create](crm_lead_disable_quick_create/) | 14.0.1.0.0 |  | Disable quick create from crm lead
 [crm_lead_new_customer](crm_lead_new_customer/) | 14.0.1.0.0 |  | New customer boolean toggle for CRM lead
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 14.0.1.0.0 |  | Converting opportunities to sales copies related attachments
