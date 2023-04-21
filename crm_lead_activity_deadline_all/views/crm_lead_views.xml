@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_case_tree_view_leads_activity_all" model="ir.ui.view">
+        <field name="name">crm.lead.tree.lead.activity.all</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="arch" type="xml">
+            <tree position="inside">
+                <field name="activity_date_deadline_all" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="crm_case_tree_view_oppor_activity_all" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.activity.all</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="activity_date_deadline_my" position="after">
+                <field name="activity_date_deadline_all" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
