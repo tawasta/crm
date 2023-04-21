@@ -63,7 +63,7 @@ class CrmLead(models.Model):
             )
 
         for record in self:
-            record.activity_date_deadline_my = next(
+            record.activity_date_deadline_all = next(
                 (
                     activity.date_deadline
                     for activity in todo_activities
