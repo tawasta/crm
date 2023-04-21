@@ -29,6 +29,6 @@
     "installable": True,
     "depends": ["crm"],
     "data": [
-        "data/crm_lead_views.xml",
+        "views/crm_lead_views.xml",
     ],
 }
