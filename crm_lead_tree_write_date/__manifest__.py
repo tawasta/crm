@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "CRM Lead Tree Write Date",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "category": "CRM",
     "summary": "Show last write date on crm lead tree view",
     "website": "https://gitlab.com/tawasta/odoo/crm",
