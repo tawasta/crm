@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_crm_case_opportunities_filter" model="ir.ui.view">
+        <field name="name">crm.lead.search.opportunity.activity.filters</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+        <field name="arch" type="xml">
+            <filter name="overdue_opp" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </filter>
+            <filter name="activities_overdue" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </filter>
+            <filter name="activities_today" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </filter>
+            <filter name="activities_upcoming_all" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </filter>
+        </field>
+    </record>
+</odoo>
