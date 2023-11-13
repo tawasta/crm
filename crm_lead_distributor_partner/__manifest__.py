@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "CRM Lead: distributor partner link",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "CRM",
     "summary": "Enables linking Leads/Opportunities to a Distributor Partner",
     "website": "https://gitlab.com/tawasta/odoo/crm",

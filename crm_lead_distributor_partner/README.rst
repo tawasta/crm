@@ -19,6 +19,8 @@ Configuration
 =============
 * In Contacts, check the new "Is Distributor Partner?" field for all relevant partners. These partners
   become selectable in Distributor Partner fields of Leads/Opportunities.
+* (optional) In Contacts, for Customers, set the "Distributor Partner" selection field value, to be able to filter
+  customer lists based on the Distributor Partner they are linked to
 
 Usage
 =====

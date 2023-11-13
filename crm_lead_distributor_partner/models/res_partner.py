@@ -12,6 +12,13 @@ class ResPartner(models.Model):
         compute="_compute_distributor_partner_opportunity_count",
     )
 
+    distributor_partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Distributor Partner",
+        domain=[("is_distributor_partner", "=", True)],
+        help="""The distributor partner responsible for this Customer""",
+    )
+
     # Note that this does not fetch all the child partners and tally
     # the opportunity counts together
     def _compute_distributor_partner_opportunity_count(self):

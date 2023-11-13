@@ -16,7 +16,7 @@
           groups="sales_team.group_sale_salesman"
           attrs="{'invisible': [('is_distributor_partner', '=', False)]}"
         >
-                    <field
+                <field
             string="Distributor Leads"
             name="distributor_partner_opportunity_count"
             widget="statinfo"
@@ -27,6 +27,14 @@
             <field name="category_id" position="after">
                 <field name="is_distributor_partner" />
             </field>
+
+            <xpath expr="//group[@name='sale']" position="inside">
+                <field
+          name="distributor_partner_id"
+          attrs="{'invisible': [('is_distributor_partner', '=', True)]}"
+          context="{'default_is_distributor_partner': True }"
+        />
+            </xpath>
         </field>
     </record>
 </odoo>
