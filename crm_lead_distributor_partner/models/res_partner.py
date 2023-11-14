@@ -5,18 +5,18 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    is_distributor_partner = fields.Boolean(string="Is a Distributor Partner")
+    is_distributor_partner = fields.Boolean(string="Is a Sales Partner")
 
     distributor_partner_opportunity_count = fields.Integer(
-        string="Distributor Partner Opportunity Count",
+        string="Sales Partner Opportunity Count",
         compute="_compute_distributor_partner_opportunity_count",
     )
 
     distributor_partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Distributor Partner",
+        string="Sales Partner",
         domain=[("is_distributor_partner", "=", True)],
-        help="""The distributor partner responsible for this Customer""",
+        help="""The Sales Partner responsible for this Customer""",
     )
 
     # Note that this does not fetch all the child partners and tally

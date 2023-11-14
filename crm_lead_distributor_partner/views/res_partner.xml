@@ -17,7 +17,7 @@
           attrs="{'invisible': [('is_distributor_partner', '=', False)]}"
         >
                 <field
-            string="Distributor Leads"
+            string="Sales Partner Leads"
             name="distributor_partner_opportunity_count"
             widget="statinfo"
           />

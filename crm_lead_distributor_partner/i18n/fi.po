@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0-20230925\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-13 13:15+0000\n"
-"PO-Revision-Date: 2023-11-13 13:15+0000\n"
+"POT-Creation-Date: 2023-11-14 14:59+0000\n"
+"PO-Revision-Date: 2023-11-14 14:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,24 +27,6 @@ msgid "Display Name"
 msgstr "Näyttönimi"
 
 #. module: crm_lead_distributor_partner
-#: model_terms:ir.ui.view,arch_db:crm_lead_distributor_partner.view_partner_form
-msgid "Distributor Leads"
-msgstr "Jälleenmyyjän liidit"
-
-#. module: crm_lead_distributor_partner
-#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_crm_lead__distributor_partner_id
-#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_partner__distributor_partner_id
-#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_users__distributor_partner_id
-msgid "Distributor Partner"
-msgstr "Jälleenmyyjä"
-
-#. module: crm_lead_distributor_partner
-#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_partner__distributor_partner_opportunity_count
-#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_users__distributor_partner_opportunity_count
-msgid "Distributor Partner Opportunity Count"
-msgstr "Jälleenmyyjän Liidien Määrä"
-
-#. module: crm_lead_distributor_partner
 #: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_crm_lead__id
 #: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_partner__id
 msgid "ID"
@@ -53,8 +35,8 @@ msgstr "Tunniste (ID)"
 #. module: crm_lead_distributor_partner
 #: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_partner__is_distributor_partner
 #: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_users__is_distributor_partner
-msgid "Is a Distributor Partner"
-msgstr "On Jälleenmyyjä"
+msgid "Is a Sales Partner"
+msgstr "On jälleenmyyjä"
 
 #. module: crm_lead_distributor_partner
 #: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_crm_lead____last_update
@@ -68,12 +50,30 @@ msgid "Lead/Opportunity"
 msgstr "Liidi/mahdollisuus"
 
 #. module: crm_lead_distributor_partner
+#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_crm_lead__distributor_partner_id
+#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_partner__distributor_partner_id
+#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_users__distributor_partner_id
+msgid "Sales Partner"
+msgstr "Jälleenmyyjä"
+
+#. module: crm_lead_distributor_partner
+#: model_terms:ir.ui.view,arch_db:crm_lead_distributor_partner.view_partner_form
+msgid "Sales Partner Leads"
+msgstr "Jälleenmyyjän liidit"
+
+#. module: crm_lead_distributor_partner
+#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_partner__distributor_partner_opportunity_count
+#: model:ir.model.fields,field_description:crm_lead_distributor_partner.field_res_users__distributor_partner_opportunity_count
+msgid "Sales Partner Opportunity Count"
+msgstr "Jälleenmyyjän liidimäärä"
+
+#. module: crm_lead_distributor_partner
 #: model:ir.model.fields,help:crm_lead_distributor_partner.field_res_partner__distributor_partner_id
 #: model:ir.model.fields,help:crm_lead_distributor_partner.field_res_users__distributor_partner_id
-msgid "The distributor partner responsible for this Customer"
+msgid "The Sales Partner responsible for this Customer"
 msgstr "Jälleenmyyjä, jonka vastuulla tämä asiakas on"
 
 #. module: crm_lead_distributor_partner
 #: model:ir.model.fields,help:crm_lead_distributor_partner.field_crm_lead__distributor_partner_id
-msgid "The distributor partner responsible for this Lead/Opportunity"
+msgid "The Sales Partner responsible for this Lead/Opportunity"
 msgstr "Jälleenmyyjä, jonka vastuulla tämä liidi/mahdollisuus on"
