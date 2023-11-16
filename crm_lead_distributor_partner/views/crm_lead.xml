@@ -13,4 +13,16 @@
             </field>
         </field>
     </record>
+
+    <record id="crm_case_tree_view_oppor" model="ir.ui.view">
+        <field name="name">crm.lead.tree.inherit.distributor.partner</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="distributor_partner_id" optional="show" />
+            </field>
+        </field>
+    </record>
+
 </odoo>
