@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -16,6 +16,23 @@ class CrmStage(models.Model):
         "Days to Close value calculated.",
     )
 
+    @api.model
+    def create(self, values):
+        res = super().create(values)
+        lost_stages = self.env["crm.stage"].search([("is_lost", "=", True)])
+
+        if len(lost_stages) > 1:
+            lost_stage_names = [s.name for s in lost_stages]
+            raise ValidationError(
+                _(
+                    "Only a single Stage is allowed to have the 'Is Lost Stage?' "
+                    " attribute. The following stages have it: %s ",
+                    ", ".join(lost_stage_names),
+                )
+            )
+
+        return res
+
     def write(self, vals):
 
         res = super().write(vals)
@@ -27,7 +44,7 @@ class CrmStage(models.Model):
                 _(
                     "Only a single Stage is allowed to have the 'Is Lost Stage?' "
                     " attribute. The following stages have it: %s ",
-                    str(lost_stage_names),
+                    ", ".join(lost_stage_names),
                 )
             )
 
