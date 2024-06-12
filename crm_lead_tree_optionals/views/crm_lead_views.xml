@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_case_tree_view_oppor_optionals" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.optionals</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="email_from" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="phone" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

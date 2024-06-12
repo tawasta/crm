@@ -19,6 +19,7 @@ addon | version | maintainers | summary
 [crm_lead_stage_is_lost](crm_lead_stage_is_lost/) | 14.0.1.0.0 |  | A new field to supplement the existing 'Is Won Stage?' Field
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 14.0.1.0.0 |  | Converting opportunities to sales copies related attachments
 [crm_lead_tree_activity_date_deadline_as_date](crm_lead_tree_activity_date_deadline_as_date/) | 14.0.1.0.0 |  | Show activity date deadline as date in lead tree view
+[crm_lead_tree_optionals](crm_lead_tree_optionals/) | 14.0.1.0.0 |  | Customize optional-attributes in tree view
 [crm_lead_tree_write_date](crm_lead_tree_write_date/) | 14.0.1.0.2 |  | Show last write date on crm lead tree view
 
 [//]: # (end addons)
