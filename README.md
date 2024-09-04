@@ -11,6 +11,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[crm_claim_customer_vendor_claim_type](crm_claim_customer_vendor_claim_type/) | 14.0.1.0.0 |  | CRM Claim - Customer and Vendor claim type
 [crm_lead_activity_deadline_all](crm_lead_activity_deadline_all/) | 14.0.1.0.0 |  | Show last write date on crm lead tree view
 [crm_lead_activity_filters](crm_lead_activity_filters/) | 14.0.1.0.0 |  | Show activity filters: late, today, future
 [crm_lead_disable_quick_create](crm_lead_disable_quick_create/) | 14.0.1.0.0 |  | Disable quick create from crm lead
