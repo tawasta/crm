@@ -14,11 +14,16 @@
     <record model="ir.actions.act_window" id="crm_claim_category_claim_vendor">
         <field name="name">Vendor claims</field>
         <field name="res_model">crm.claim</field>
-        <field name="view_mode">tree,calendar,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="view_id" ref="crm_claim.crm_case_claims_tree_view" />
         <field name="context">
         {"stage_type": 'claim',  "search_default_claim_type": 'vendor'}</field>
         <field name="search_view_id" ref="crm_claim.view_crm_case_claims_filter" />
+    </record>
+
+    <record model="ir.actions.act_window" id="crm_claim.crm_claim_category_claim0">
+        <field name="context">
+        {"search_default_user_id":uid, "stage_type": 'claim', "search_default_claim_type": 'customer'}</field>
     </record>
 
     <menuitem

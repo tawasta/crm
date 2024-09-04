@@ -21,7 +21,7 @@
 {
     "name": "CRM Claim - Customer and Vendor claim type",
     "summary": "CRM Claim - Customer and Vendor claim type",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "CRM",
     "website": "https://gitlab.com/tawasta/odoo/crm",
     "author": "Tawasta",
