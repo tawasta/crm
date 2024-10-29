@@ -10,6 +10,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[crm_lead_new_customer](crm_lead_new_customer/) | 17.0.1.0.0 |  | New customer boolean toggle for CRM lead
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 17.0.1.0.0 |  | Converting opportunities to sales copies related attachments
 
 [//]: # (end addons)
