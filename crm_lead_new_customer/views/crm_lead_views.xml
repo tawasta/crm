@@ -6,15 +6,15 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form" />
         <field name="arch" type="xml">
             <xpath
-        expr="//group[@name='lead_partner']//field[@name='partner_name']"
-        position="after"
-      >
+                expr="//group[@name='lead_partner']//field[@name='partner_name']"
+                position="after"
+            >
                 <field name="new_customer" />
             </xpath>
             <xpath
-        expr="//group[@name='opportunity_partner']//field[@name='partner_id']"
-        position="after"
-      >
+                expr="//group[@name='opportunity_partner']//field[@name='partner_id']"
+                position="after"
+            >
                 <field name="new_customer" />
             </xpath>
         </field>
@@ -47,10 +47,10 @@
             <filter name="unassigned_leads" position="after">
                 <separator />
                 <filter
-          string="New Customer"
-          name="new_customers"
-          domain="[('new_customer', '=', True)]"
-        />
+                    string="New Customer"
+                    name="new_customers"
+                    domain="[('new_customer', '=', True)]"
+                />
             </filter>
         </field>
     </record>
