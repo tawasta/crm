@@ -32,9 +32,10 @@ from odoo import api, fields, models
 # 6. Unknown third party imports:
 
 
-class MailMessage(models.Model):
+class MailActivity(models.Model):
+
     # 1. Private attributes
-    _inherit = "mail.message"
+    _inherit = "mail.activity"
 
     # 2. Fields declaration
 
@@ -47,11 +48,20 @@ class MailMessage(models.Model):
     # 6. CRUD methods
     @api.model
     def create(self, vals):
-        """If crm.lead related message is created, update crm.lead write_date"""
+        """If crm.lead related activity is created, update crm.lead write_date"""
         res = super().create(vals)
-        if res.model == "crm.lead":
+        if res.res_model == "crm.lead":
             lead = self.env["crm.lead"].sudo().search([("id", "=", res.res_id)])
             lead.write_date = fields.Datetime.now()
+        return res
+
+    def write(self, vals):
+        """If crm.lead related activity is edited, update crm.lead write_date"""
+        res = super().write(vals)
+        for rec in self:
+            if rec.res_model == "crm.lead":
+                lead = self.env["crm.lead"].sudo().search([("id", "=", rec.res_id)])
+                lead.write_date = fields.Datetime.now()
         return res
 
     # 7. Action methods

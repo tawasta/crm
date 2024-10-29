@@ -33,6 +33,7 @@ from odoo import api, fields, models
 
 
 class MailMessage(models.Model):
+
     # 1. Private attributes
     _inherit = "mail.message"
 
