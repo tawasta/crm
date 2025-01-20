@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_lead_view_form_new_customer" model="ir.ui.view">
+        <field name="name">crm.lead.form.new.customer</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='lead_partner']//field[@name='partner_name']"
+                position="after"
+            >
+                <field name="new_customer" />
+            </xpath>
+            <xpath
+                expr="//group[@name='opportunity_partner']//field[@name='partner_id']"
+                position="after"
+            >
+                <field name="new_customer" />
+            </xpath>
+        </field>
+    </record>
+    <record id="crm_case_tree_view_leads_new_customer" model="ir.ui.view">
+        <field name="name">crm.lead.tree.lead.new.customer</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="arch" type="xml">
+            <field name="partner_name" position="after">
+                <field name="new_customer" optional="show" />
+            </field>
+        </field>
+    </record>
+    <record id="crm_case_tree_view_oppor_new_customer" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.new.customer</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="new_customer" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="view_crm_case_leads_filter_new_customer" model="ir.ui.view">
+        <field name="name">crm.lead.search.lead.new.customer</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter" />
+        <field name="arch" type="xml">
+            <filter name="unassigned_leads" position="after">
+                <separator />
+                <filter
+                    string="New Customer"
+                    name="new_customers"
+                    domain="[('new_customer', '=', True)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
