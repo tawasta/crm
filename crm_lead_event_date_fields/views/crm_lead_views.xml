@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Lead+opportunity form -->
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="(//sheet/group)[1]" position="after">
+                <group name="event_dates_group">
+                    <group>
+                        <field name="event_start_date" />
+                        <field name="event_end_date" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Lead tree -->
+    <record id="crm_case_tree_view_leads" model="ir.ui.view">
+        <field name="name">crm.lead.tree.lead.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="event_start_date" optional="show" />
+                <field name="event_end_date" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Lead kanban -->
+    <record id="view_crm_lead_kanban" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.lead.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban" />
+        <field name="arch" type="xml">
+
+            <field name="user_id" position="after">
+                <field name="event_start_date" />
+                <field name="event_end_date" />
+            </field>
+
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div>
+                    <div t-if="record.event_start_date.value">
+                        Event Start Date: <span t-esc="record.event_start_date.value" />
+                    </div>
+                    <div t-if="record.event_end_date.value">
+                        Event End Date: <span t-esc="record.event_end_date.value" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Opportunity tree -->
+    <record id="crm_case_tree_view_oppor" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="event_start_date" optional="show" />
+                <field name="event_end_date" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Opportunity kanban -->
+    <record id="crm_case_kanban_view_leads" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.opportunity.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+
+            <field name="team_id" position="after">
+                <field name="event_start_date" />
+                <field name="event_end_date" />
+            </field>
+
+            <xpath expr="//div[hasclass('oe_kanban_content')]" position="inside">
+                <div>
+                    <div t-if="record.event_start_date.value">
+                        Event Start Date: <span t-esc="record.event_start_date.value" />
+                    </div>
+                    <div t-if="record.event_end_date.value">
+                        Event End Date: <span t-esc="record.event_end_date.value" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
