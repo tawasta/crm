@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Futural Oy
-#    Copyright 2021- Futural Oy (https://futural.fi)
+#    Copyright 2025- Futural Oy (https://futural.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,10 +18,10 @@
 #
 ##############################################################################
 {
-    "name": "CRM Lead Tree Activity Date Deadline as Date",
+    "name": "CRM Lead: Event Date Fields",
     "version": "17.0.1.0.0",
     "category": "CRM",
-    "summary": "Show activity date deadline as date in lead tree view",
+    "summary": "Adds simple start and end date fields to leads",
     "website": "https://github.com/tawasta/crm",
     "author": "Futural",
     "license": "AGPL-3",
