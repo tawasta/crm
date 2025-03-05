@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_lead_event_date_fields
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20241118\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-05 11:24+0000\n"
+"PO-Revision-Date: 2025-03-05 11:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_lead_event_date_fields
+#: model:ir.model.fields,help:crm_lead_event_date_fields.field_crm_lead__event_end_date
+msgid "End Date of the event, if one is organized based on this lead."
+msgstr "Tapahtuman päättymispäivä, mikäli tähän liidiin liittyy järjestetty tapahtuma."
+
+#. module: crm_lead_event_date_fields
+#: model:ir.model.fields,field_description:crm_lead_event_date_fields.field_crm_lead__event_end_date
+msgid "Event End Date"
+msgstr "Tapahtuman päättymispäivä"
+
+#. module: crm_lead_event_date_fields
+#: model_terms:ir.ui.view,arch_db:crm_lead_event_date_fields.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_lead_event_date_fields.view_crm_lead_kanban
+msgid "Event End Date:"
+msgstr "Tapahtuman päättymispäivä:"
+
+#. module: crm_lead_event_date_fields
+#: model:ir.model.fields,field_description:crm_lead_event_date_fields.field_crm_lead__event_start_date
+msgid "Event Start Date"
+msgstr "Tapahtuman alkamispäivä"
+
+#. module: crm_lead_event_date_fields
+#: model_terms:ir.ui.view,arch_db:crm_lead_event_date_fields.crm_case_kanban_view_leads
+#: model_terms:ir.ui.view,arch_db:crm_lead_event_date_fields.view_crm_lead_kanban
+msgid "Event Start Date:"
+msgstr "Tapahtuman alkamispäivä:"
+
+#. module: crm_lead_event_date_fields
+#: model:ir.model,name:crm_lead_event_date_fields.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Liidi/mahdollisuus"
+
+#. module: crm_lead_event_date_fields
+#: model:ir.model.fields,help:crm_lead_event_date_fields.field_crm_lead__event_start_date
+msgid "Start Date of the event, if one is organized based on this lead."
+msgstr "Tapahtuman alkamispäivä, mikäli tähän liidiin liittyy järjestetty tapahtuma."
