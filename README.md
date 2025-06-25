@@ -12,6 +12,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [crm_lead_activity_deadline_all](crm_lead_activity_deadline_all/) | 17.0.1.0.0 |  | Show last write date on crm lead tree view
+[crm_lead_code_allow_editing](crm_lead_code_allow_editing/) | 17.0.1.0.0 |  | Modify OCA module to allow for manual changing of the code
 [crm_lead_disable_quick_create](crm_lead_disable_quick_create/) | 17.0.1.0.0 |  | Disable quick create from crm lead
 [crm_lead_event_date_fields](crm_lead_event_date_fields/) | 17.0.1.0.0 |  | Adds simple start and end date fields to leads
 [crm_lead_new_customer](crm_lead_new_customer/) | 17.0.1.0.0 |  | New customer boolean toggle for CRM lead
