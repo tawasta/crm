@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Lead+opportunity form -->
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+
+            <notebook position="inside">
+                <page string="Instrument Need">
+                    <group>
+                        <field name="instrument_need" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Lead tree -->
+    <record id="crm_case_tree_view_leads" model="ir.ui.view">
+        <field name="name">crm.lead.tree.lead.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="instrument_need" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Lead kanban -->
+    <record id="view_crm_lead_kanban" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.lead.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban" />
+        <field name="arch" type="xml">
+
+            <field name="user_id" position="after">
+                <field name="instrument_need" />
+            </field>
+
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div>
+                    <div t-if="record.instrument_need.value">
+                        Instrument Need:<br />
+                        <span t-esc="record.instrument_need.value" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Opportunity tree -->
+    <record id="crm_case_tree_view_oppor" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="instrument_need" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Opportunity kanban -->
+    <record id="crm_case_kanban_view_leads" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.opportunity.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+
+            <field name="team_id" position="after">
+                <field name="instrument_need" />
+            </field>
+
+            <xpath expr="//div[hasclass('oe_kanban_content')]" position="inside">
+                <div>
+                    <div t-if="record.instrument_need.value">
+                        Instrument Need:<br />
+                        <span t-esc="record.instrument_need.value" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
