@@ -8,8 +8,9 @@
         <field name="arch" type="xml">
             <field name="my_activity_date_deadline" position="after">
                 <field
-                    name="activity_date_deadline_stored"
+                    name="activity_date_deadline_all"
                     optional="hide"
+                    widget="remaining_days"
                     options="{'allow_order': '1'}"
                 />
             </field>
