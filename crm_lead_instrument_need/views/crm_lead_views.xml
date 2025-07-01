@@ -8,13 +8,14 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form" />
         <field name="arch" type="xml">
 
-            <notebook position="inside">
-                <page string="Instrument Need">
-                    <group>
-                        <field name="instrument_need" />
-                    </group>
-                </page>
-            </notebook>
+            <!-- there are separate groups for leads/opportunities in core form -->
+            <xpath expr="(//field[@name='tag_ids'])[1]" position="after">
+                <field name="instrument_need" />
+            </xpath>
+
+            <xpath expr="(//field[@name='tag_ids'])[2]" position="after">
+                <field name="instrument_need" />
+            </xpath>
         </field>
     </record>
 
