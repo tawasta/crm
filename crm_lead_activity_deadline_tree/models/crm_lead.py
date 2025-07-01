@@ -4,7 +4,7 @@ from odoo import models, fields, api
 class CrmLead(models.Model):
     _inherit = "crm.lead"
 
-    activity_date_deadline_stored = fields.Date(
+    activity_date_deadline_all = fields.Date(
         string="Next Activity Deadline (Stored)",
         compute="_compute_deadline",
         store=True,
@@ -16,4 +16,4 @@ class CrmLead(models.Model):
             dates = lead.activity_ids.filtered(lambda a: not a.date_done).mapped(
                 "date_deadline"
             )
-            lead.activity_date_deadline_stored = min(dates) if dates else False
+            lead.activity_date_deadline_all = min(dates) if dates else False
