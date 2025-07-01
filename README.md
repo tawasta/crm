@@ -24,5 +24,6 @@ addon | version | maintainers | summary
 [crm_lead_tree_activity_date_deadline_as_date](crm_lead_tree_activity_date_deadline_as_date/) | 17.0.1.0.0 |  | Show activity date deadline as date in lead tree view
 [crm_lead_tree_optionals](crm_lead_tree_optionals/) | 17.0.1.0.0 |  | Customize optional-attributes in tree view
 [crm_lead_tree_write_date](crm_lead_tree_write_date/) | 17.0.1.0.0 |  | Show last write date on crm lead tree view
+[crm_sharepoint_link](crm_sharepoint_link/) | 17.0.1.0.0 |  | CRM SharePoint Link
 
 [//]: # (end addons)
