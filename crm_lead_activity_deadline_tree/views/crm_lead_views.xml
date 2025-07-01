@@ -7,7 +7,11 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="arch" type="xml">
             <field name="my_activity_date_deadline" position="after">
-                <field name="activity_date_deadline_stored" optional="hide" options="{'allow_order': '1'}" />
+                <field
+                    name="activity_date_deadline_stored"
+                    optional="hide"
+                    options="{'allow_order': '1'}"
+                />
             </field>
         </field>
     </record>

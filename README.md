@@ -11,7 +11,9 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[crm_activity_widget_tags](crm_activity_widget_tags/) | 17.0.1.0.0 |  | Replaces activity_ids widget from list_activity to many2many_tags
 [crm_lead_activity_deadline_all](crm_lead_activity_deadline_all/) | 17.0.1.0.0 |  | Show last write date on crm lead tree view
+[crm_lead_activity_deadline_tree](crm_lead_activity_deadline_tree/) | 17.0.1.0.0 |  | Shows activity_date_deadline field in CRM list view
 [crm_lead_code_allow_editing](crm_lead_code_allow_editing/) | 17.0.1.0.0 |  | Modify OCA module to allow for manual changing of the code
 [crm_lead_disable_quick_create](crm_lead_disable_quick_create/) | 17.0.1.0.0 |  | Disable quick create from crm lead
 [crm_lead_event_date_fields](crm_lead_event_date_fields/) | 17.0.1.0.0 |  | Adds simple start and end date fields to leads
