@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, _
-from odoo import tools  # kept for potential future use; not used directly here
+from odoo import tools
 import logging
 from markupsafe import Markup, escape
 
@@ -12,16 +12,10 @@ class CrmLead(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         """
-        Backend-only extension for crm.lead create():
-        - Detects leads originating from the website (utm.utm_medium_website).
-        - Builds a translatable subject line including the sender's name and lead title.
-        - Posts a single light-layout chatter entry (mail.mail_notification_light).
-        - Renders the body safely using Markup/escape (line breaks -> <br/>).
-        - Keeps logging minimal (INFO on success/failure).
-
-        Notes:
-        - The same subject_line is shown in the chatter body after the "Subject:" label,
-        as requested.
+        On lead creation: if the lead originates from the website (utm.utm_medium_website),
+        build a translatable subject line that includes the sender's name and the lead title,
+        render a safe HTML body (preserving line breaks), and post a single light-layout
+        chatter message to the assigned salesperson (lead.user_id.partner_id).
         """
         leads = super().create(vals_list)
 
@@ -36,23 +30,22 @@ class CrmLead(models.Model):
                 if not ((v_mid and v_mid == website_medium_id) or (l_mid and l_mid == website_medium_id)):
                     continue
 
-                # Use values directly from the created record
+                # Values from the created record
                 lead_title = (lead.name or "").strip()
                 content = (lead.description or "").strip()
                 sender_name = (lead.contact_name or "").strip()
 
-                # Translatable subject line used both as email/chatter subject AND in the body
+                # Translatable subject line (also used inside the body)
                 subject_line = _("Subject: %(title)s — Sender: %(name)s", title=lead_title, name=sender_name)
 
-                # Safe HTML body (preserve line breaks)
+                # Safe HTML body with preserved line breaks
                 content_html = Markup("<br/>").join(escape(content).split("\n"))
-                body = Markup("<p><strong>{label}</strong> {subject_line}</p><p>{content}</p>").format(
-                    label=escape(_("Subject:")),
-                    subject_line=escape(subject_line),
+                body = Markup("<p><strong>{subject}</strong></p><p>{content}</p>").format(
+                    subject=escape(subject_line),
                     content=content_html,
                 )
 
-                # Notify the record's responsible partner and keep a chatter entry
+                # Post to chatter for the assigned salesperson
                 pid = lead.user_id.partner_id.id if lead.user_id and lead.user_id.partner_id else False
                 if not pid:
                     continue
