@@ -21,7 +21,7 @@
     "name": "website_crm_contactus_chatter_note",
     "version": "17.0.1.0.0",
     "category": "CRM",
-    "summary": "website_crm_contactus_chatter_note",
+    "summary": "Post a light-layout chatter note on website-originated leads",
     "website": "https://github.com/tawasta/crm",
     "author": "Futural",
     "license": "AGPL-3",
