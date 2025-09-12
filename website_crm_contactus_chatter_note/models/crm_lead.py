@@ -60,9 +60,7 @@ class CrmLead(models.Model):
                 )
 
                 # description with preserved line breaks
-                description_html = Markup("<br/>").join(
-                    escape(content).split("\n")
-                )
+                description_html = Markup("<br/>").join(escape(content).split("\n"))
 
                 # final body: 4 lines, blank line, then description
                 body = Markup("<div>{hdr}<br/><br/>{desc}</div>").format(
