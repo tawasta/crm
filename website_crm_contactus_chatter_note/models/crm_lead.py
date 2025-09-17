@@ -14,7 +14,7 @@ class CrmLead(models.Model):
         """
         On lead creation: if the lead originates from the website (utm.utm_medium_website),
         build a translatable subject line that includes the sender's name and the lead title,
-        render a safe HTML body (preserving line breaks), and post a single light-layout
+        render a safe HTML body in the requested format, and post a single light-layout
         chatter message to the assigned salesperson (lead.user_id.partner_id).
         """
         leads = super().create(vals_list)
@@ -40,20 +40,32 @@ class CrmLead(models.Model):
                 content = (lead.description or "").strip()
                 sender_name = (lead.contact_name or "").strip()
 
-                # Translatable subject line (also used inside the body)
+                # Translatable subject line
                 subject_line = _(
                     "Subject: %(title)s — Sender: %(name)s",
                     title=lead_title,
                     name=sender_name,
                 )
 
-                # Safe HTML body with preserved line breaks
-                content_html = Markup("<br/>").join(escape(content).split("\n"))
-                body = Markup(
-                    "<p><strong>{subject}</strong></p><p>{content}</p>"
-                ).format(
-                    subject=escape(subject_line),
-                    content=content_html,
+                # === Body in requested layout ===
+                # header lines (each on its own line)
+                header_lines = [
+                    (lead.contact_name or "").strip(),
+                    (lead.phone or "").strip(),
+                    (lead.partner_name or "").strip(),
+                    (lead.email_from or "").strip(),
+                ]
+                header_html = Markup("<br/>").join(
+                    escape(line) for line in header_lines
+                )
+
+                # description with preserved line breaks
+                description_html = Markup("<br/>").join(escape(content).split("\n"))
+
+                # final body: 4 lines, blank line, then description
+                body = Markup("<div>{hdr}<br/><br/>{desc}</div>").format(
+                    hdr=header_html,
+                    desc=description_html,
                 )
 
                 # Post to chatter for the assigned salesperson
@@ -67,7 +79,7 @@ class CrmLead(models.Model):
 
                 msg = lead.message_post(
                     body=body,
-                    subject=subject_line,
+                    subject=subject_line,  # keep the subject for notifications
                     partner_ids=[pid],
                     subtype_xmlid="mail.mt_note",
                     email_layout_xmlid="mail.mail_notification_light",
