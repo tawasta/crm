@@ -25,6 +25,7 @@ addon | version | maintainers | summary
 [crm_lead_tree_optionals](crm_lead_tree_optionals/) | 17.0.1.0.0 |  | Customize optional-attributes in tree view
 [crm_lead_tree_write_date](crm_lead_tree_write_date/) | 17.0.1.0.0 |  | Show last write date on crm lead tree view
 [crm_sharepoint_link](crm_sharepoint_link/) | 17.0.1.0.0 |  | CRM SharePoint Link
+[crm_teams_as_first_menuitem](crm_teams_as_first_menuitem/) | 17.0.1.0.0 |  | Open 'Teams' view when CRM menu is opened
 [website_crm_contactus_chatter_note](website_crm_contactus_chatter_note/) | 17.0.1.0.0 |  | Post a light-layout chatter note on website-originated leads
 
 [//]: # (end addons)
