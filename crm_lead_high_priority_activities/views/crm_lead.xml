@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- opportunity tree -->
+    <record id="crm_case_tree_view_oppor_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.tree.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="arch" type="xml">
+
+            <field name="message_needaction" position="before">
+                <field name="high_priority_activities" optional="show" />
+            </field>
+
+        </field>
+    </record>
+
+    <!-- opportunity form -->
+    <record id="crm_lead_view_form_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+
+            <field name="user_id" position="after">
+                <field name="high_priority_activities" />
+            </field>
+
+        </field>
+    </record>
+
+    <!-- Opportunity kanban -->
+    <record id="crm_case_kanban_view_leads_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads" />
+        <field name="arch" type="xml">
+
+            <field name="team_id" position="after">
+                <field name="high_priority_activities" />
+            </field>
+
+            <xpath expr="//div[hasclass('oe_kanban_content')]" position="inside">
+                <div>
+                    <div t-if="record.high_priority_activities.raw_value">
+                        <span
+                            class="text-danger"
+                        >Contains high priority activities</span>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>
