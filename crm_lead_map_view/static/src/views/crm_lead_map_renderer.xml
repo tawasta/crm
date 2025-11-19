@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="crm_lead_map_view.Renderer">
+        <div id="crm_lead_map" style="height: 100%; overflow: hidden;" />
+    </t>
+</templates>
