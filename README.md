@@ -19,6 +19,7 @@ addon | version | maintainers | summary
 [crm_lead_event_date_fields](crm_lead_event_date_fields/) | 17.0.1.0.0 |  | Adds simple start and end date fields to leads
 [crm_lead_high_priority_activities](crm_lead_high_priority_activities/) | 17.0.1.0.0 |  | Enables flagging leads' activities (calls, meetings...) as high priority, and then filtering the leads based on if any exist.
 [crm_lead_instrument_need](crm_lead_instrument_need/) | 17.0.1.0.0 |  | Adds a simple new text field
+[crm_lead_map_view](crm_lead_map_view/) | 17.0.1.0.0 |  | Add map view for CRM leads
 [crm_lead_new_customer](crm_lead_new_customer/) | 17.0.1.0.0 |  | New customer boolean toggle for CRM lead
 [crm_lead_to_sale_fiscal_position](crm_lead_to_sale_fiscal_position/) | 17.0.1.0.0 |  | Converting opportunities to sales sets fiscal position based on partner
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 17.0.1.0.0 |  | Converting opportunities to sales copies related attachments
