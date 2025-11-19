@@ -4,10 +4,12 @@ import {KeepLast} from "@web/core/utils/concurrency";
 import {session} from "@web/session";
 
 export class CRMLeadMapModel {
-    constructor(orm, rpc, resModel, fields, archInfo, domain) {
+    constructor(orm, rpc, action, resModel, searchModel, fields, archInfo, domain) {
         this.orm = orm;
         this.rpc = rpc;
+        this.action = action;
         this.resModel = resModel;
+        this.searchModel = searchModel;
         const {latitude, longitude} = archInfo;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -56,15 +58,15 @@ export class CRMLeadMapModel {
             };
         }
 
-        var result = await this.orm.webSearchRead(this.resModel, [], {
+        var result = await this.orm.webSearchRead(
+            this.resModel,
+            this.searchModel._domain, {
             specification: this.getSpecification(),
         });
 
         let partner_ids = $.map(result.records, function(record) {
             return record.partner_id
         }).filter(function(item) { return item; });
-
-        console.log(partner_ids);
 
         var partner_result = await this.orm.webSearchRead(
             "res.partner",
@@ -75,8 +77,6 @@ export class CRMLeadMapModel {
                 },
             }
         );
-
-        console.log(partner_result);
 
         this.records = [];
 
