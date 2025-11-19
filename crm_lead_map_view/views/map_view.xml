@@ -6,7 +6,6 @@
         <field name="model">crm.lead</field>
         <field name="arch" type="xml">
             <CRMLeadMapView
-                text="name"
                 latitude="customer_latitude"
                 longitude="customer_longitude"
             />

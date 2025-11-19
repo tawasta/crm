@@ -20,13 +20,13 @@ export class CRMLeadMapRenderer extends Component {
                     "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
             }).addTo(this.map);
             this.props.records.forEach((record) => {
-                const text =
-                    record.text +
-                    " <a href='https://www.google.com/maps?z=15&q=" +
+                const text = "<a target='_blank' href='/web#id=" + record.lead_id + "&model=crm.lead'>" + record.lead_name + "</a></br></br>" +
+                    "<a target='_blank' href='/web#id=" + record.partner_id + "&model=res.partner'>" + record.partner_name + "</a></br></br>" +
+                    "<a target='_blank' href='https://www.google.com/maps?z=15&q=" +
                     record.latitude +
                     "," +
                     record.longitude +
-                    "' target='_blank'>Google Maps</a>";
+                    "'>Google Maps</a>";
                 // eslint-disable-next-line
                 L.marker([record.latitude, record.longitude])
                     .bindPopup(text)
