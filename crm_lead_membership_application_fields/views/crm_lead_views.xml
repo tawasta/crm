@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Lead+opportunity form -->
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.membership.application.fields</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='internal_notes']" position="after">
+
+                <page
+                    name="page_membership_application"
+                    string="Membership Application Info"
+                >
+                    <group>
+                        <group
+                            name="group_organization_fields"
+                            string="Organization Info"
+                        >
+                            <field name="company_registry" />
+                            <field name="organization_director_name" />
+                            <field name="organization_year_established" />
+                        </group>
+                        <group name="group_billing_fields" string="Billing Info">
+                            <field name="invoice_email" />
+                            <field name="edicode" />
+                            <field name="einvoice_operator_id" />
+                        </group>
+                    </group>
+                    <group>
+
+                        <!-- When inheriting you can place any customer-specific fields here-->
+                        <group
+                            name="group_misc_fields"
+                            string="Miscellaneous Extra Info"
+                        >
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
