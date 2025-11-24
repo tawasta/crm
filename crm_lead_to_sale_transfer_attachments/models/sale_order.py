@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
         If the sale order creation was triggered from an opportunity,
         duplicate the opportunity's attachments to the new SO
         """
-        res = super(SaleOrder, self).create(values)
+        res = super().create(values)
 
         if (
             self._context.get("default_opportunity_id", False)

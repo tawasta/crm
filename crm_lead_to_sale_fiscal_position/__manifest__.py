@@ -20,7 +20,7 @@
 
 {
     "name": "CRM: Opportunity to Sale - Set Fiscal Position",
-    "summary": "Converting opportunities to sales sets fiscal position based on partner",
+    "summary": "Convert opportunities to sales sets fiscal position based on partner",
     "version": "17.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/tawasta/crm",
