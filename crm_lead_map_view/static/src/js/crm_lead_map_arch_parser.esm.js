@@ -1,7 +1,8 @@
 /** @odoo-module */
 
 export class CRMLeadMapArchParser {
-    parse(arch, _) {
+    // eslint-disable-line @typescript-eslint/no-unused-vars
+    parse(arch, fields) {
         const latitude = arch.getAttribute("latitude");
         const longitude = arch.getAttribute("longitude");
         return {
