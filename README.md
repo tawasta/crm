@@ -22,7 +22,7 @@ addon | version | maintainers | summary
 [crm_lead_map_view](crm_lead_map_view/) | 17.0.1.0.0 |  | Add map view for CRM leads
 [crm_lead_membership_application_fields](crm_lead_membership_application_fields/) | 17.0.1.0.0 |  | Adds generic fields to be used when website form responses are used for gathering applications for membership.
 [crm_lead_new_customer](crm_lead_new_customer/) | 17.0.1.0.0 |  | New customer boolean toggle for CRM lead
-[crm_lead_to_sale_fiscal_position](crm_lead_to_sale_fiscal_position/) | 17.0.1.0.0 |  | Converting opportunities to sales sets fiscal position based on partner
+[crm_lead_to_sale_fiscal_position](crm_lead_to_sale_fiscal_position/) | 17.0.1.0.0 |  | Convert opportunities to sales sets fiscal position based on partner
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 17.0.1.0.0 |  | Converting opportunities to sales copies related attachments
 [crm_lead_tree_activity_date_deadline_as_date](crm_lead_tree_activity_date_deadline_as_date/) | 17.0.1.0.0 |  | Show activity date deadline as date in lead tree view
 [crm_lead_tree_optionals](crm_lead_tree_optionals/) | 17.0.1.0.0 |  | Customize optional-attributes in tree view

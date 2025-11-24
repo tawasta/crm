@@ -6,7 +6,7 @@
 CRM: Opportunity to Sale - Set Fiscal Position
 ==============================================
 
-* Converting opportunities to sales sets fiscal position based on partner,
+* Convert opportunities to sales sets fiscal position based on partner,
   removing the need to do it manually once the SO form opens
 
 Configuration
