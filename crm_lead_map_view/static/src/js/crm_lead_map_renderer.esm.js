@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import {Component, onMounted, onRendered, onWillUpdateProps} from "@odoo/owl";
+import {Component, onMounted, onRendered} from "@odoo/owl";
 
 export class CRMLeadMapRenderer extends Component {
     async render() {

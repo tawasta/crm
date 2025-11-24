@@ -96,7 +96,7 @@ export class CRMLeadMapModel {
             marker.lead_name = record.name;
             marker.lead_id = record.id;
             partner_result.records.forEach((partner) => {
-                if (partner.id == record.partner_id) {
+                if (partner.id === record.partner_id) {
                     marker.partner_id = record.partner_id;
                     marker.partner_name = partner.name;
                 }
