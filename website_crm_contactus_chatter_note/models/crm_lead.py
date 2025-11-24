@@ -1,7 +1,8 @@
-from odoo import api, models, _
-from odoo import tools
 import logging
+
 from markupsafe import Markup, escape
+
+from odoo import _, api, models
 
 _logger = logging.getLogger(__name__)
 
@@ -12,8 +13,10 @@ class CrmLead(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         """
-        On lead creation: if the lead originates from the website (utm.utm_medium_website),
-        build a translatable subject line that includes the sender's name and the lead title,
+        On lead creation: if the lead originates from
+        the website (utm.utm_medium_website),
+        build a translatable subject line that includes
+        the sender's name and the lead title,
         render a safe HTML body in the requested format, and post a single light-layout
         chatter message to the assigned salesperson (lead.user_id.partner_id).
         """
@@ -24,7 +27,7 @@ class CrmLead(models.Model):
         )
         website_medium_id = website_medium.id if website_medium else False
 
-        for lead, vals in zip(leads, vals_list):
+        for lead, vals in zip(leads, vals_list, strict=True):
             try:
                 # Process only website-originated leads
                 v_mid = vals.get("medium_id")
