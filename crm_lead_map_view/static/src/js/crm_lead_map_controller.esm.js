@@ -21,7 +21,7 @@ export class CRMLeadMapController extends Component {
                 this.env.searchModel,
                 this.props.fields,
                 this.props.archInfo,
-                this.props.domain,
+                this.props.domain
             )
         );
 
@@ -32,7 +32,6 @@ export class CRMLeadMapController extends Component {
         onWillUpdateProps(async () => {
             await this.model.load();
         });
-
     }
 }
 

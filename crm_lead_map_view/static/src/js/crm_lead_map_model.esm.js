@@ -19,16 +19,16 @@ export class CRMLeadMapModel {
     }
 
     getSpecification() {
-        let fields = {};
-        fields['id'] = {};
-        fields['name'] = {};
+        const fields = {};
+        fields.id = {};
+        fields.name = {};
         if (this.latitude !== undefined) {
             fields[this.latitude] = {};
         }
         if (this.longitude !== undefined) {
             fields[this.longitude] = {};
         }
-        fields['partner_id'] = {};
+        fields.partner_id = {};
         return fields;
     }
 
@@ -66,9 +66,11 @@ export class CRMLeadMapModel {
             }
         );
 
-        let partner_ids = $.map(result.records, function(record) {
+        const partner_ids = $.map(result.records, function(record) {
             return record.partner_id
-        }).filter(function(item) { return item; });
+        }).filter(function(item) {
+            return item;
+        });
 
         var partner_result = await this.orm.webSearchRead(
             "res.partner",
@@ -89,12 +91,12 @@ export class CRMLeadMapModel {
                 partner_name: "",
                 partner_id: 0,
                 latitude: 0,
-                longitude: 0
+                longitude: 0,
             };
-            marker.lead_name = record['name'];
-            marker.lead_id = record['id'];
+            marker.lead_name = record.name;
+            marker.lead_id = record.id;
             partner_result.records.forEach((partner) => {
-                if(partner.id == record.partner_id) {
+                if (partner.id == record.partner_id) {
                     marker.partner_id = record.partner_id;
                     marker.partner_name = partner.name;
                 }
