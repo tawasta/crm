@@ -68,7 +68,7 @@ export class CRMLeadMapModel {
 
         const partner_ids = $.map(result.records, function(record) {
             return record.partner_id;
-        }).filter(function(item) {
+        }).filter(function (item) {
             return item;
         });
 
