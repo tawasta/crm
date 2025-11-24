@@ -60,9 +60,11 @@ export class CRMLeadMapModel {
 
         var result = await this.orm.webSearchRead(
             this.resModel,
-            this.searchModel._domain, {
-            specification: this.getSpecification(),
-        });
+            this.searchModel._domain,
+            {
+                specification: this.getSpecification(),
+            }
+        );
 
         let partner_ids = $.map(result.records, function(record) {
             return record.partner_id
