@@ -4,12 +4,13 @@ import {KeepLast} from "@web/core/utils/concurrency";
 import {session} from "@web/session";
 
 export class CRMLeadMapModel {
-    constructor(orm, rpc, resModel, fields, archInfo, domain) {
+    constructor(orm, rpc, action, resModel, searchModel, fields, archInfo, domain) {
         this.orm = orm;
         this.rpc = rpc;
+        this.action = action;
         this.resModel = resModel;
-        const {text, latitude, longitude} = archInfo;
-        this.text = text;
+        this.searchModel = searchModel;
+        const {latitude, longitude} = archInfo;
         this.latitude = latitude;
         this.longitude = longitude;
         this.fields = fields;
@@ -18,19 +19,16 @@ export class CRMLeadMapModel {
     }
 
     getSpecification() {
-        // Which fields are used for text, latitude and longitude
-        // are dynamic and passed from the view to map_arch_parser to
-        // here
-        var fields = {};
-        if (this.text !== undefined) {
-            fields[this.text] = {};
-        }
+        const fields = {};
+        fields.id = {};
+        fields.name = {};
         if (this.latitude !== undefined) {
             fields[this.latitude] = {};
         }
         if (this.longitude !== undefined) {
             fields[this.longitude] = {};
         }
+        fields.partner_id = {};
         return fields;
     }
 
@@ -47,7 +45,6 @@ export class CRMLeadMapModel {
                 },
             }
         );
-        console.log(company_result);
         if (company_result.length < 1) {
             // No company found center the map to Tampere
             this.company_location = {
@@ -61,17 +58,49 @@ export class CRMLeadMapModel {
             };
         }
 
-        var result = await this.orm.webSearchRead(this.resModel, [], {
-            specification: this.getSpecification(),
+        var result = await this.orm.webSearchRead(
+            this.resModel,
+            this.searchModel._domain,
+            {
+                specification: this.getSpecification(),
+            }
+        );
+
+        const partner_ids = $.map(result.records, function (record) {
+            return record.partner_id;
+        }).filter(function (item) {
+            return item;
         });
+
+        var partner_result = await this.orm.webSearchRead(
+            "res.partner",
+            [["id", "in", partner_ids]],
+            {
+                specification: {
+                    name: {},
+                },
+            }
+        );
 
         this.records = [];
 
         result.records.forEach((record) => {
-            var marker = {text: "", latitude: 0, longitude: 0};
-            if (this.text !== undefined) {
-                marker.text = record[this.text];
-            }
+            var marker = {
+                lead_name: "",
+                lead_id: 0,
+                partner_name: "",
+                partner_id: 0,
+                latitude: 0,
+                longitude: 0,
+            };
+            marker.lead_name = record.name;
+            marker.lead_id = record.id;
+            partner_result.records.forEach((partner) => {
+                if (partner.id === record.partner_id) {
+                    marker.partner_id = record.partner_id;
+                    marker.partner_name = partner.name;
+                }
+            });
             if (this.latitude !== undefined) {
                 marker.latitude = record[this.latitude];
             }
