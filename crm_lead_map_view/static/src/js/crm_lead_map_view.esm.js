@@ -9,7 +9,7 @@ import {registry} from "@web/core/registry";
 export const CRMLeadMapView = {
     type: "CRMLeadMapView",
     display_name: "Map",
-    icon: "fa fa-map",
+    icon: "fa fa-picture-o",
     multiRecord: true,
     Controller: CRMLeadMapController,
     ArchParser: CRMLeadMapArchParser,
