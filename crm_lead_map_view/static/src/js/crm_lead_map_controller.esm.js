@@ -30,6 +30,10 @@ export class CRMLeadMapController extends Component {
             await this.model.load();
         });
 
+        onMounted(async () => {
+            await this.model.load();
+        });
+
         onWillStart(async () => {
             await this.model.load();
         });

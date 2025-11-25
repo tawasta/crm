@@ -55,6 +55,8 @@ export class CRMLeadMapModel {
             this.searchModel._domain,
             {
                 specification: {
+                    id: {},
+                    name: {},
                     partner_id: {},
                 },
             }
@@ -82,8 +84,8 @@ export class CRMLeadMapModel {
 
         result.records.forEach((record) => {
             var marker = {
-                lead_name: "",
-                lead_id: 0,
+                lead_name: record.name,
+                lead_id: record.id,
                 partner_name: "",
                 partner_id: 0,
                 latitude: 0,

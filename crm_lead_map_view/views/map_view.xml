@@ -6,6 +6,7 @@
         <field name="model">crm.lead</field>
         <field name="arch" type="xml">
             <CRMLeadMapView
+                text="name"
                 latitude="customer_latitude"
                 longitude="customer_longitude"
             />
@@ -13,15 +14,6 @@
     </record>
 
     <record id="crm.crm_lead_action_pipeline" model="ir.actions.act_window">
-        <field
-            name="view_mode"
-        >kanban,tree,graph,pivot,form,calendar,activity,CRMLeadMapView</field>
-    </record>
-
-    <record
-        id="crm.crm_case_form_view_salesteams_opportunity"
-        model="ir.actions.act_window"
-    >
         <field
             name="view_mode"
         >kanban,tree,graph,pivot,form,calendar,activity,CRMLeadMapView</field>

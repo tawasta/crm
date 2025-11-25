@@ -12,14 +12,14 @@ export class CRMLeadMapRenderer extends Component {
             this.props.records.forEach((record) => {
                 const text =
                     "<a target='_blank' href='/web#id=" +
-                    record.lead_id +
-                    "&model=crm.lead'>" +
-                    record.lead_name +
-                    "</a></br></br>" +
-                    "<a target='_blank' href='/web#id=" +
                     record.partner_id +
                     "&model=res.partner'>" +
                     record.partner_name +
+                    "</a></br></br>" +
+                    "<a target='_blank' href='/web#id=" +
+                    record.lead_id +
+                    "&model=crm.lead'>" +
+                    record.lead_name +
                     "</a></br></br>" +
                     "<a target='_blank' href='https://www.google.com/maps?z=15&q=" +
                     record.latitude +
@@ -34,7 +34,6 @@ export class CRMLeadMapRenderer extends Component {
             });
         }
     }
-
     setup() {
         onMounted(async () => {
             // eslint-disable-next-line
