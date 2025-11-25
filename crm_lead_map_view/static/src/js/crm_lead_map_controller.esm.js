@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import {Component, onWillStart, useState} from "@odoo/owl";
+import {Component, onMounted, onWillStart, onWillUpdateProps, useState} from "@odoo/owl";
 import {Layout} from "@web/search/layout";
 import {SearchBar} from "@web/search/search_bar/search_bar";
 import {useService} from "@web/core/utils/hooks";
@@ -14,13 +14,22 @@ export class CRMLeadMapController extends Component {
                 this.orm,
                 this.rpc,
                 this.props.resModel,
+                this.env.searchModel,
                 this.props.fields,
                 this.props.archInfo,
                 this.props.domain
             )
         );
 
+        onMounted(async () => {
+            await this.model.load();
+        });
+
         onWillStart(async () => {
+            await this.model.load();
+        });
+
+        onWillUpdateProps(async () => {
             await this.model.load();
         });
     }
