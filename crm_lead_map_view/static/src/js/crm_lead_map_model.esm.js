@@ -4,15 +4,11 @@ import {KeepLast} from "@web/core/utils/concurrency";
 import {session} from "@web/session";
 
 export class CRMLeadMapModel {
-    constructor(orm, rpc, action, resModel, searchModel, fields, archInfo, domain) {
+    constructor(orm, rpc, resModel, searchModel, fields, archInfo, domain) {
         this.orm = orm;
         this.rpc = rpc;
-        this.action = action;
         this.resModel = resModel;
         this.searchModel = searchModel;
-        const {latitude, longitude} = archInfo;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.fields = fields;
         this.domain = domain;
         this.keepLast = new KeepLast();

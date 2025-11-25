@@ -9,7 +9,8 @@
                 <t
                     t-component="props.Renderer"
                     records="model.records"
-                    company_location="model.company_location"
+                    company_latitude="model.company_latitude"
+                    company_longitude="model.company_longitude"
                 />
             </Layout>
         </div>
