@@ -26,6 +26,13 @@ export class CRMLeadMapController extends Component {
                 this.props.domain
             )
         );
+        onMounted(async () => {
+            await this.model.load();
+        });
+
+        onMounted(async () => {
+            await this.model.load();
+        });
 
         onMounted(async () => {
             await this.model.load();
