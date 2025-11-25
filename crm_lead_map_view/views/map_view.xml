@@ -6,6 +6,7 @@
         <field name="model">crm.lead</field>
         <field name="arch" type="xml">
             <CRMLeadMapView
+                text="name"
                 latitude="customer_latitude"
                 longitude="customer_longitude"
             />
@@ -24,7 +25,7 @@
     >
         <field
             name="view_mode"
-        >kanban,tree,graph,pivot,form,calendar,activity,CRMLeadMapView</field>
+        >kanban,tree,graph,form,calendar,pivot,CRMLeadMapView</field>
     </record>
 
 </odoo>
