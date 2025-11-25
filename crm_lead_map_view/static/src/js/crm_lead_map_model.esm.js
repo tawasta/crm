@@ -4,32 +4,16 @@ import {KeepLast} from "@web/core/utils/concurrency";
 import {session} from "@web/session";
 
 export class CRMLeadMapModel {
-    constructor(orm, rpc, action, resModel, searchModel, fields, archInfo, domain) {
+    constructor(orm, rpc, resModel, searchModel, fields, archInfo, domain) {
         this.orm = orm;
         this.rpc = rpc;
-        this.action = action;
         this.resModel = resModel;
         this.searchModel = searchModel;
-        const {latitude, longitude} = archInfo;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.fields = fields;
         this.domain = domain;
         this.keepLast = new KeepLast();
-    }
-
-    getSpecification() {
-        const fields = {};
-        fields.id = {};
-        fields.name = {};
-        if (this.latitude !== undefined) {
-            fields[this.latitude] = {};
-        }
-        if (this.longitude !== undefined) {
-            fields[this.longitude] = {};
-        }
-        fields.partner_id = {};
-        return fields;
+        this.company_latitude = 0;
+        this.company_longitude = 0;
     }
 
     async load() {
@@ -40,29 +24,39 @@ export class CRMLeadMapModel {
             {
                 specification: {
                     name: {},
-                    company_latitude: {},
-                    company_longitude: {},
+                    partner_id: {},
                 },
             }
         );
-        if (company_result.length < 1) {
+        const company_partner_id = company_result.records[0].partner_id;
+        var company_partner_result = await this.orm.webSearchRead(
+            "res.partner",
+            [["id", "=", company_partner_id]],
+            {
+                specification: {
+                    name: {},
+                    partner_latitude: {},
+                    partner_longitude: {},
+                },
+            }
+        );
+        if (company_partner_result.length < 1) {
             // No company found center the map to Tampere
-            this.company_location = {
-                latitude: 61.49911,
-                longitude: 23.78712,
-            };
+            this.company_latitude = 61.49911;
+            this.company_longitude = 23.78712;
         } else {
-            this.company_location = {
-                latitude: company_result.records[0].company_latitude,
-                longitude: company_result.records[0].company_longitude,
-            };
+            this.company_latitude = company_partner_result.records[0].partner_latitude;
+            this.company_longitude =
+                company_partner_result.records[0].partner_longitude;
         }
 
         var result = await this.orm.webSearchRead(
             this.resModel,
             this.searchModel._domain,
             {
-                specification: this.getSpecification(),
+                specification: {
+                    partner_id: {},
+                },
             }
         );
 
@@ -78,6 +72,8 @@ export class CRMLeadMapModel {
             {
                 specification: {
                     name: {},
+                    partner_latitude: {},
+                    partner_longitude: {},
                 },
             }
         );
@@ -99,14 +95,10 @@ export class CRMLeadMapModel {
                 if (partner.id === record.partner_id) {
                     marker.partner_id = record.partner_id;
                     marker.partner_name = partner.name;
+                    marker.latitude = partner.partner_latitude;
+                    marker.longitude = partner.partner_longitude;
                 }
             });
-            if (this.latitude !== undefined) {
-                marker.latitude = record[this.latitude];
-            }
-            if (this.longitude !== undefined) {
-                marker.longitude = record[this.longitude];
-            }
             this.records.push(marker);
         });
     }
