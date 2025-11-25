@@ -40,7 +40,6 @@ export class CRMLeadMapModel {
                 },
             }
         );
-        console.log(company_partner_result);
         if (company_partner_result.length < 1) {
             // No company found center the map to Tampere
             this.company_latitude = 61.49911;
@@ -48,7 +47,6 @@ export class CRMLeadMapModel {
         } else {
             this.company_latitude = company_partner_result.records[0].partner_latitude;
             this.company_longitude = company_partner_result.records[0].partner_longitude;
-            console.log(this);
         }
 
         var result = await this.orm.webSearchRead(
