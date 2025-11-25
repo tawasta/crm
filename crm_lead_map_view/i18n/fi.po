@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_lead_map_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20251106\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-19 05:53+0000\n"
+"PO-Revision-Date: 2025-11-19 07:55+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: crm_lead_map_view
+#: model:ir.model,name:crm_lead_map_view.model_ir_actions_act_window_view
+msgid "Action Window View"
+msgstr "Toimintoikkunan näkymä"
+
+#. module: crm_lead_map_view
+#: model:ir.model.fields.selection,name:crm_lead_map_view.selection__ir_actions_act_window_view__view_mode__crmleadmapview
+#: model:ir.model.fields.selection,name:crm_lead_map_view.selection__ir_ui_view__type__crmleadmapview
+msgid "CRM Lead Map"
+msgstr "Liidikartta"
+
+#. module: crm_lead_map_view
+#: model:ir.model.fields,field_description:crm_lead_map_view.field_crm_lead__customer_latitude
+msgid "Latitude"
+msgstr "Leveysaste"
+
+#. module: crm_lead_map_view
+#: model:ir.model,name:crm_lead_map_view.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Liidi/mahdollisuus"
+
+#. module: crm_lead_map_view
+#: model:ir.model.fields,field_description:crm_lead_map_view.field_crm_lead__customer_longitude
+msgid "Longitude"
+msgstr "Pituusaste"
+
+#. module: crm_lead_map_view
+#: model:ir.model,name:crm_lead_map_view.model_ir_ui_view
+msgid "View"
+msgstr "Näytä"
+
+#. module: crm_lead_map_view
+#: model:ir.model.fields,field_description:crm_lead_map_view.field_ir_actions_act_window_view__view_mode
+#: model:ir.model.fields,field_description:crm_lead_map_view.field_ir_ui_view__type
+msgid "View Type"
+msgstr "Näkymän tyyppi"

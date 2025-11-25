@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="crm_lead_map_view.View">
+        <div t-ref="root" t-att-class="props.className">
+            <Layout display="props.display" className="'h-100'">
+                <t t-set-slot="layout-actions">
+                    <SearchBar />
+                </t>
+                <t
+                    t-component="props.Renderer"
+                    records="model.records"
+                    company_latitude="model.company_latitude"
+                    company_longitude="model.company_longitude"
+                />
+            </Layout>
+        </div>
+    </t>
+</templates>
