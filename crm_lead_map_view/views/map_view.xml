@@ -19,7 +19,10 @@
         >kanban,tree,graph,pivot,form,calendar,activity,CRMLeadMapView</field>
     </record>
 
-    <record id="crm.crm_case_form_view_salesteams_opportunity" model="ir.actions.act_window">
+    <record
+        id="crm.crm_case_form_view_salesteams_opportunity"
+        model="ir.actions.act_window"
+    >
         <field
             name="view_mode"
         >kanban,tree,graph,form,calendar,pivot,CRMLeadMapView</field>
