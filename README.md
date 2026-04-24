@@ -18,6 +18,7 @@ addon | version | maintainers | summary
 [crm_lead_delivery_date](crm_lead_delivery_date/) | 17.0.1.0.0 |  | Adds Delivery Date to lead/opportunity
 [crm_lead_disable_quick_create](crm_lead_disable_quick_create/) | 17.0.1.0.0 |  | Disable quick create from crm lead
 [crm_lead_event_date_fields](crm_lead_event_date_fields/) | 17.0.1.0.0 |  | Adds simple start and end date fields to leads
+[crm_lead_force_opportunity](crm_lead_force_opportunity/) | 17.0.1.0.0 |  | Force to use Opportunity type on created Leads
 [crm_lead_high_priority_activities](crm_lead_high_priority_activities/) | 17.0.1.0.0 |  | Enables flagging leads' activities (calls, meetings...) as high priority, and then filtering the leads based on if any exist.
 [crm_lead_instrument_need](crm_lead_instrument_need/) | 17.0.1.0.0 |  | Adds a simple new text field
 [crm_lead_map_view](crm_lead_map_view/) | 17.0.1.0.0 |  | Add map view for CRM leads
