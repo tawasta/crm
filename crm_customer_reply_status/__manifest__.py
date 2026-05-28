@@ -21,7 +21,7 @@
     "name": "CRM Customer Reply Status",
     "version": "19.0.1.0.0",
     "category": "CRM",
-    "summary": "Marks CRM leads when a customer replies, without default notification spam",
+    "summary": "Marks CRM leads when a customer replies",
     "website": "https://github.com/tawasta/crm",
     "author": "Futural",
     "license": "AGPL-3",
