@@ -27,7 +27,7 @@
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "external_dependencies": {"python": [], "bin": []},
     "depends": ["crm", "partner_map_view"],
     "data": ["views/map_view.xml"],

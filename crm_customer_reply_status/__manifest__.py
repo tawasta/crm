@@ -1,7 +1,7 @@
 ##############################################################################
 #
 #    Author: Futural Oy
-#    Copyright 2025 Futural Oy (https://futural.fi)
+#    Copyright 2021- Futural Oy (https://futural.fi)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,25 +17,20 @@
 #    along with this program. If not, see http://www.gnu.org/licenses/agpl.html
 #
 ##############################################################################
-
 {
-    "name": "CRM: Opportunity to Sale - Set Fiscal Position",
-    "summary": "Convert opportunities to sales sets fiscal position based on partner",
-    "version": "17.0.1.0.0",
-    "category": "Sales",
+    "name": "CRM Customer Reply Status",
+    "version": "19.0.1.0.0",
+    "category": "CRM",
+    "summary": "Marks CRM leads when a customer replies",
     "website": "https://github.com/tawasta/crm",
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
-    "installable": False,
-    "external_dependencies": {
-        "python": [],
-        "bin": [],
-    },
-    "depends": [
-        "sale_crm",
-        # "sale",
+    "installable": True,
+    "depends": ["crm", "mail", "sales_team"],
+    "data": [
+        "views/crm_lead_views.xml",
+        "views/crm_stage_views.xml",
+        "views/crm_team_views.xml",
     ],
-    "data": [],
-    "demo": [],
 }

@@ -28,7 +28,7 @@
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": ["mail", "crm"],
     "data": [
         "views/crm_lead.xml",
