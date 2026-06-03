@@ -1,6 +1,6 @@
 import logging
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -20,35 +20,45 @@ class Lead(models.Model):
         index=True,
     )
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Messages posted while creating a lead from an incoming email are part
+        # of the initial enquiry. They must not be treated as a customer reply
+        # to an existing lead.
+        leads = super(
+            Lead,
+            self.with_context(skip_customer_reply_tracking=True),
+        ).create(vals_list)
+
+        return leads
+
     def message_post(self, *args, **kwargs):
         """Track customer replies and salesperson responses on CRM leads.
 
-        The CRM chatter creates different `mail.message` records depending on
-        what happened:
+        The CRM chatter creates different ``mail.message`` records depending on
+        the source of the message:
 
-        * Incoming email from the customer:
-          `message_type == "email"`
+        * Incoming customer email:
+          ``message_type == "email"``
 
-        * Outgoing message sent from the chatter to recipients:
-          `message_type == "comment"` with email recipients
+        * Outgoing message sent from the chatter:
+          ``message_type == "comment"`` with email recipients
 
-        * Internal notes and system notifications:
-          `message_type == "comment"` / `"notification"` without being a
-          customer reply event
+        * Internal notes, notifications and system messages:
+          ``message_type == "comment"`` / ``"notification"``
 
-        The goal is to keep `customer_replied` as an actionable flag:
+        The ``customer_replied`` flag is meant to be actionable:
 
-        * True  = the customer has replied and the lead needs attention.
-        * False = the salesperson has answered, so we are waiting for the
-          customer again.
+        * ``True`` means the customer has replied and the lead needs attention.
+        * ``False`` means the salesperson has answered and the lead is waiting
+          for the customer again.
         """
+
         message = super().message_post(*args, **kwargs)
 
-        # A chatter message sent to partners with email addresses means the
-        # salesperson has replied to the customer. Reset the actionable flag.
-        #
-        # Internal notes must not reset the flag. They normally do not have
-        # external email recipients in `message.partner_ids`.
+        if self.env.context.get("skip_customer_reply_tracking"):
+            return message
+
         if (
             message.message_type == "comment"
             and message.partner_ids.filtered("email")
@@ -62,14 +72,9 @@ class Lead(models.Model):
 
             return message
 
-        # Only incoming email messages represent customer replies. Other
-        # chatter entries, notes and notifications are ignored.
         if message.message_type != "email":
             return message
 
-        # When an incoming email creates a brand-new lead, it is a new enquiry,
-        # not a reply to an existing CRM lead. In that case we leave the flag
-        # untouched.
         previous_message_count = self.env["mail.message"].search_count(
             [
                 ("model", "=", self._name),
@@ -81,9 +86,6 @@ class Lead(models.Model):
         if not previous_message_count:
             return message
 
-        # A CRM stage can be marked as the target stage for customer replies.
-        # If no such stage is configured, the lead is still marked as replied;
-        # only the automatic stage move is skipped.
         stage = self._stage_find(
             domain=[("customer_replied", "=", True)],
             limit=1,
@@ -103,8 +105,6 @@ class Lead(models.Model):
             if not lead.team_id:
                 continue
 
-            # Team-level setting overrides member-level settings:
-            # if enabled on the team, notify all team members.
             if lead.team_id.customer_reply_notify:
                 members = lead.team_id.crm_team_member_ids
             else:
@@ -117,8 +117,6 @@ class Lead(models.Model):
             if not partners:
                 continue
 
-            # Leave an audit trail in the chatter so users can see who was
-            # notified about the customer reply.
             lead.message_post(
                 body=_("Customer reply email notification sent to: %s")
                 % ", ".join(partners.mapped("display_name")),
@@ -126,8 +124,6 @@ class Lead(models.Model):
                 subtype_xmlid="mail.mt_note",
             )
 
-            # Send an explicit email notification. This avoids relying only on
-            # Discuss inbox notifications, which users may miss.
             lead.with_context(
                 mail_notify_force_send=True,
             ).message_notify(
