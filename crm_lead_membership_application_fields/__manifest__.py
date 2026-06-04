@@ -27,7 +27,7 @@
     "author": "Futural",
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": ["crm", "l10n_fi_edicode"],
     "data": ["views/crm_lead_views.xml"],
 }
