@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="group_crm_lead_read_only" model="res.groups">
+        <field name="name">CRM Lead: Read Only</field>
+        <field name="category_id" ref="base.module_category_sales_sales" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="comment">Users in this group can view CRM leads/opportunities but cannot create, edit or delete them.</field>
+    </record>
+</odoo>
