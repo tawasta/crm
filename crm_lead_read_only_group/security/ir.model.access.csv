@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_crm_lead_read_only,crm.lead read only,model_crm_lead,group_crm_lead_read_only,1,0,0,0
+access_crm_lead_read_only,crm.lead read only,crm.model_crm_lead,group_crm_lead_read_only,1,0,0,0
