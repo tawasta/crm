@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "CRM Lead: Membership Application Fields",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.1.0",
     "category": "CRM",
     "summary": "Adds generic fields to be used when website form responses are used "
     "for gathering applications for membership.",

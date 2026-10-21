@@ -24,6 +24,11 @@ CRM Lead: Membership Application Fields
     * eInvoice Operator
     * Invoice e-mail address
 
+  * Personal info:
+
+    * Birthdate
+    * Gender
+
 Configuration
 =============
 * Configure your website form to map inputs to the relevant

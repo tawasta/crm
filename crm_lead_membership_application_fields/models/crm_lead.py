@@ -15,3 +15,10 @@ class Lead(models.Model):
         string="eInvoice Operator",
         help="Provider for eInvoice documents",
     )
+
+    # Names and selection keys match OCA partner_contact_birthdate and
+    # partner_contact_gender, so the values map 1:1 to res.partner
+    birthdate_date = fields.Date("Birthdate")
+    gender = fields.Selection(
+        selection=[("male", "Male"), ("female", "Female"), ("other", "Other")],
+    )
