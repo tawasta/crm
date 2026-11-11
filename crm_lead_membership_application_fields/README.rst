@@ -20,6 +20,8 @@ CRM Lead: Membership Application Fields
 
   * Billing info:
 
+    * Payer Name (the organization paying the membership, if not paid by
+      the applicant)
     * edicode
     * eInvoice Operator
     * Invoice e-mail address

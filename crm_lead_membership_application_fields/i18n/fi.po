@@ -81,9 +81,19 @@ msgid "Organization Info"
 msgstr "Organisaation tiedot"
 
 #. module: crm_lead_membership_application_fields
+#: model:ir.model.fields,help:crm_lead_membership_application_fields.field_crm_lead__payer_name
+msgid "Organization that pays the membership, if not paid by the applicant"
+msgstr "Jäsenmaksun maksava organisaatio, jos hakija ei maksa itse"
+
+#. module: crm_lead_membership_application_fields
 #: model:ir.model.fields.selection,name:crm_lead_membership_application_fields.selection__crm_lead__gender__other
 msgid "Other"
 msgstr "Muu"
+
+#. module: crm_lead_membership_application_fields
+#: model:ir.model.fields,field_description:crm_lead_membership_application_fields.field_crm_lead__payer_name
+msgid "Payer Name"
+msgstr "Maksajan nimi"
 
 #. module: crm_lead_membership_application_fields
 #: model_terms:ir.ui.view,arch_db:crm_lead_membership_application_fields.crm_lead_view_form

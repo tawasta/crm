@@ -7,6 +7,9 @@ class Lead(models.Model):
     company_registry = fields.Char()
     organization_year_established = fields.Integer("Year Established")
     organization_director_name = fields.Char("Director's Name")
+    payer_name = fields.Char(
+        help="Organization that pays the membership, if not paid by the applicant",
+    )
     invoice_email = fields.Char("Invoicing E-mail")
     edicode = fields.Char()
 
