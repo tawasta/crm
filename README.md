@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [crm_lead_instrument_need](crm_lead_instrument_need/) | 17.0.1.0.0 |  | Adds a simple new text field
 [crm_lead_map_view](crm_lead_map_view/) | 17.0.1.0.0 |  | Add map view for CRM leads
 [crm_lead_membership_application_fields](crm_lead_membership_application_fields/) | 17.0.1.2.0 |  | Adds generic fields to be used when website form responses are used for gathering applications for membership.
+[crm_lead_membership_application_fields_subscription_ref](crm_lead_membership_application_fields_subscription_ref/) | 17.0.1.0.0 |  | Pass a customer reference from the lead to the quotation and its subscription
 [crm_lead_new_customer](crm_lead_new_customer/) | 17.0.1.0.0 |  | New customer boolean toggle for CRM lead
 [crm_lead_to_partner_field_mapping](crm_lead_to_partner_field_mapping/) | 17.0.1.0.0 |  | Copy configured lead fields to the partner created from the lead
 [crm_lead_to_sale_fiscal_position](crm_lead_to_sale_fiscal_position/) | 17.0.1.0.0 |  | Convert opportunities to sales sets fiscal position based on partner
