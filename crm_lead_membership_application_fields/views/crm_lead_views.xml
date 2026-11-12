@@ -24,12 +24,17 @@
                             <field name="organization_year_established" />
                         </group>
                         <group name="group_billing_fields" string="Billing Info">
+                            <field name="payer_name" />
                             <field name="invoice_email" />
                             <field name="edicode" />
                             <field name="einvoice_operator_id" />
                         </group>
                     </group>
                     <group>
+                        <group name="group_personal_fields" string="Personal Info">
+                            <field name="birthdate_date" />
+                            <field name="gender" />
+                        </group>
 
                         <!-- When inheriting you can place any customer-specific fields here-->
                         <group
