@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Lead+opportunity form -->
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.education.level</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="page_education" string="Education">
+                    <group>
+                        <group name="group_education_fields">
+                            <field
+                                name="education_level_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <field name="other_education_or_degree" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

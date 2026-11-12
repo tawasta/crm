@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Lead+opportunity form -->
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >crm.lead.form.inherit.membership.application.subscription.ref</field>
+        <field name="model">crm.lead</field>
+        <field
+            name="inherit_id"
+            ref="crm_lead_membership_application_fields.crm_lead_view_form"
+        />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='payer_name']" position="after">
+                <field name="subscription_invoice_ref" />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

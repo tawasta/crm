@@ -17,13 +17,16 @@ addon | version | maintainers | summary
 [crm_lead_code_allow_editing](crm_lead_code_allow_editing/) | 17.0.1.0.0 |  | Modify OCA module to allow for manual changing of the code
 [crm_lead_delivery_date](crm_lead_delivery_date/) | 17.0.1.0.0 |  | Adds Delivery Date to lead/opportunity
 [crm_lead_disable_quick_create](crm_lead_disable_quick_create/) | 17.0.1.0.0 |  | Disable quick create from crm lead
+[crm_lead_education_level](crm_lead_education_level/) | 17.0.1.0.0 |  | Store several education levels on a lead, e.g. from a website form
 [crm_lead_event_date_fields](crm_lead_event_date_fields/) | 17.0.1.0.0 |  | Adds simple start and end date fields to leads
 [crm_lead_force_opportunity](crm_lead_force_opportunity/) | 17.0.1.0.0 |  | Force to use Opportunity type on created Leads
 [crm_lead_high_priority_activities](crm_lead_high_priority_activities/) | 17.0.1.0.0 |  | Enables flagging leads' activities (calls, meetings...) as high priority, and then filtering the leads based on if any exist.
 [crm_lead_instrument_need](crm_lead_instrument_need/) | 17.0.1.0.0 |  | Adds a simple new text field
 [crm_lead_map_view](crm_lead_map_view/) | 17.0.1.0.0 |  | Add map view for CRM leads
-[crm_lead_membership_application_fields](crm_lead_membership_application_fields/) | 17.0.1.0.0 |  | Adds generic fields to be used when website form responses are used for gathering applications for membership.
+[crm_lead_membership_application_fields](crm_lead_membership_application_fields/) | 17.0.1.2.0 |  | Adds generic fields to be used when website form responses are used for gathering applications for membership.
+[crm_lead_membership_application_fields_subscription_ref](crm_lead_membership_application_fields_subscription_ref/) | 17.0.1.0.0 |  | Pass a customer reference from the lead to the quotation and its subscription
 [crm_lead_new_customer](crm_lead_new_customer/) | 17.0.1.0.0 |  | New customer boolean toggle for CRM lead
+[crm_lead_to_partner_field_mapping](crm_lead_to_partner_field_mapping/) | 17.0.1.0.0 |  | Copy configured lead fields to the partner created from the lead
 [crm_lead_to_sale_fiscal_position](crm_lead_to_sale_fiscal_position/) | 17.0.1.0.0 |  | Convert opportunities to sales sets fiscal position based on partner
 [crm_lead_to_sale_transfer_attachments](crm_lead_to_sale_transfer_attachments/) | 17.0.1.0.0 |  | Converting opportunities to sales copies related attachments
 [crm_lead_tree_activity_date_deadline_as_date](crm_lead_tree_activity_date_deadline_as_date/) | 17.0.1.0.0 |  | Show activity date deadline as date in lead tree view
